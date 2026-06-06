@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(python3 *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:4321/pictures/Limestone%20page%20images/carving.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:4321/pictures/Limestone%20page%20images/Balusters%20%26%20Balustrades.jpg\")",
+      "Bash(curl *)",
+      "Bash(mv \"Balusters & Balustrades.jpg\" \"Balusters-Balustrades.jpg\")",
+      "Bash(mv \"Banding & String Courses.jpg\" \"Banding-String-Courses.jpg\")",
+      "Bash(mv \"Door & Window Surrounds.jpg\" \"Door-Window-Surrounds.jpg\")",
+      "Bash(sed -i '' 's/class=\"story-image clip-reveal\"/class=\"story-image reveal\"/g' /Users/alisabah/Desktop/Tulip-precast-website/src/pages/index.astro /Users/alisabah/Desktop/Tulip-precast-website/src/pages/about.astro)",
+      "Bash(sed -i '' 's/class=\"precast-image clip-reveal\"/class=\"precast-image reveal\"/g' /Users/alisabah/Desktop/Tulip-precast-website/src/pages/precast.astro)",
+      "Bash(sed -i '' 's/class=\"service-card-image clip-reveal\"/class=\"service-card-image reveal\"/g' /Users/alisabah/Desktop/Tulip-precast-website/src/pages/services.astro)",
+      "Bash(npx playwright *)",
+      "Bash(node *)",
+      "Bash(npm list *)",
+      "Bash(pkill -f \"astro dev\")",
+      "Bash(npm uninstall *)"
+    ]
+  }
+}

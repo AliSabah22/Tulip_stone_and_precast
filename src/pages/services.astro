@@ -1,0 +1,513 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const services = [
+  {
+    id: 'landscaping',
+    label: 'Landscaping',
+    title: 'Landscaping',
+    description: 'Front porches, patios, and backyards transformed. We design and build welcoming entrances and beautiful outdoor spaces suited to summer entertaining. Natural stone and precast elements coordinated into a cohesive landscape that ages well.',
+    gradient: 'var(--grad-garden)',
+    comingSoon: false,
+    imageSrc: '/pictures/Residential.jpg',
+    imageAlt: 'Residential landscaping with natural stone — Tulip Precast Brampton',
+  },
+  {
+    id: '3d-wall-art',
+    label: '3D Wall Art',
+    title: '3D Wall Art',
+    description: 'Handmade concrete 3D wall panels for modern and distinctive interior and exterior feature walls. Each panel is entirely handmade — no moulds repeated, no patterns duplicated. Authentic and memorable architectural art.',
+    gradient: 'var(--grad-craft)',
+    comingSoon: false,
+    imageSrc: '/pictures/stone%20texture.jpg',
+    imageAlt: '3D concrete wall panel texture — Tulip Precast',
+  },
+  {
+    id: 'design-services',
+    label: 'Design Services',
+    title: 'Design Services',
+    description: 'Full design from first sketch to final finish. Our experienced designers guide material selection, proportion, and detail to bring your vision to life. Coordination with your architect or contractor throughout the process.',
+    gradient: 'var(--grad-limestone)',
+    comingSoon: false,
+    imageSrc: '/pictures/craftsman%20hands.jpg',
+    imageAlt: 'Design and craftsmanship — Tulip Precast full design services',
+  },
+  {
+    id: 'fireplace',
+    label: 'Fireplace',
+    title: 'Fireplace Design',
+    description: 'Outdoor traditional fireplaces and modern firepits — designed for year-round outdoor living. Indoor: classical carved limestone surrounds and contemporary profiles. Both bring warmth, permanence, and considered design to any setting.',
+    gradient: 'var(--grad-product)',
+    comingSoon: false,
+    imageSrc: '/pictures/fireplace.jpg',
+    imageAlt: 'Custom limestone fireplace design — Tulip Precast outdoor and indoor fireplaces',
+  },
+  {
+    id: 'sculpturing',
+    label: 'Sculpturing',
+    title: 'Sculpturing',
+    description: 'Personalized custom statues for front yards, garden features, and architectural installations. Any shape, available in 3 materials and a range of colours. From classical figurative work to contemporary abstract forms.',
+    gradient: 'var(--grad-exterior)',
+    comingSoon: false,
+    imageSrc: '/pictures/masonry%20detail.jpg',
+    imageAlt: 'Custom stone sculpturing — Tulip Precast Brampton',
+  },
+  {
+    id: 'gfrc',
+    label: 'GFRC · Advanced Concrete',
+    title: 'Glass Fiber Reinforced Concrete',
+    description: 'An advanced composite of glass fibers and cementitious matrix — dramatically lighter than standard concrete, capable of achieving forms and surface detail that traditional precast cannot.',
+    gradient: 'var(--grad-product)',
+    comingSoon: false,
+    imageSrc: '/pictures/stone%20texture%202.jpg',
+    imageAlt: 'GFRC architectural panel texture — Tulip Precast',
+    badge: 'Architectural Material',
+    subtag: 'GFRC',
+    primaryCTA: 'Learn About GFRC',
+    primaryCTAHref: '/gfrc',
+    secondaryCTA: 'Request a Quote',
+    secondaryCTAHref: '/contact?service=gfrc',
+    features: ['Up to 75% lighter than precast', 'Complex forms and deep relief', 'Facades, walls, fireplaces & more', 'Ontario Made fabrication'],
+  },
+  {
+    id: 'ai-rendering',
+    label: 'AI Rendering',
+    title: 'AI Rendering Tool',
+    description: 'Upload a photo of your home and see how our stone products look on your property before you order. Visualize different limestone colours, veneer patterns, and architectural elements on your actual facade.',
+    gradient: 'var(--grad-craft)',
+    comingSoon: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Additional Services | Landscaping, Fireplace, 3D Wall Art | Tulip"
+  description="Beyond limestone and precast — landscaping, fireplace design, 3D concrete wall panels, sculpting, design services, and AI rendering. Brampton, ON."
+  pageClass="page-services"
+>
+
+  <Hero
+    eyebrow="BEYOND THE STONE · COMPLETE DESIGN SERVICES"
+    headline="Beyond the Stone."
+    headlineItalic="Complete Design Services."
+    subheading="Landscaping, fireplace design, 3D wall art, custom sculpturing, and full design services — every element of your outdoor environment, considered."
+    primaryCTA="REQUEST A CONSULTATION"
+    primaryCTAHref="/contact"
+    secondaryCTA="VIEW PORTFOLIO"
+    secondaryCTAHref="/portfolio"
+    size="short"
+    backgroundGradient="var(--grad-garden)"
+    imageSrc="/pictures/lifestyle.jpg"
+    imageAlt="Natural stone outdoor lifestyle — Tulip Precast design services"
+  />
+
+  <section class="services-section">
+    <div class="container">
+      <SectionHeader
+        label="Our Services"
+        title="Every Element."
+        titleItalic="Considered."
+        subtitle="Six services that extend beyond stone fabrication — from initial design to the finished outdoor environment."
+        align="center"
+      />
+
+      <div class="services-grid" data-stagger-group>
+        {services.map((service, i) => (
+          <article
+            class={`service-card reveal ${service.comingSoon ? 'service-card--soon service-card--coming-soon' : ''}`}
+            id={service.id}
+            style={`transition-delay: ${(i % 3) * 100}ms`}
+            data-stagger-child
+          >
+            <!-- Image -->
+            <div class="service-card-image reveal" style="position: relative;">
+              {service.imageSrc ? (
+                <>
+                  <img
+                    src={service.imageSrc}
+                    alt={service.imageAlt || service.title}
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="service-real-img"
+                  />
+                  {service.badge && (
+                    <span class="service-img-badge">{service.badge}</span>
+                  )}
+                </>
+              ) : (
+                <div class="service-placeholder" style={`background: ${service.gradient}`} aria-hidden="true">
+                  <span class="placeholder-label">[ Photography ]</span>
+                </div>
+              )}
+            </div>
+
+            <!-- Body -->
+            <div class="service-card-content">
+              {service.comingSoon && (
+                <span class="service-card-badge">Coming Soon</span>
+              )}
+              <p class="service-card-label">{service.label}</p>
+              {service.subtag && (
+                <span class="service-card-subtag">{service.subtag}</span>
+              )}
+              <h3 class="service-card-title">{service.title}</h3>
+              <p class="service-card-description">{service.description}</p>
+
+              {service.features && (
+                <ul class="service-card-features">
+                  {service.features.map((f: string) => (
+                    <li>{f}</li>
+                  ))}
+                </ul>
+              )}
+
+              {service.comingSoon ? (
+                <!-- Waitlist email capture -->
+                <form class="waitlist-form" name="ai-rendering-waitlist" data-netlify="true" method="POST">
+                  <input type="hidden" name="form-name" value="ai-rendering-waitlist" />
+                  <div class="waitlist-row">
+                    <input
+                      type="email"
+                      name="email"
+                      class="waitlist-input"
+                      placeholder="Enter your email"
+                      required
+                      aria-label="Email for AI rendering waitlist"
+                    />
+                    <button type="submit" class="btn btn-primary btn-sm">
+                      Notify Me
+                    </button>
+                  </div>
+                </form>
+              ) : service.primaryCTAHref ? (
+                <div class="service-card-ctas">
+                  <a href={service.primaryCTAHref} class="btn btn-outlined-dark btn-sm">
+                    {service.primaryCTA || `Request ${service.title}`}
+                  </a>
+                  {service.secondaryCTAHref && (
+                    <a href={service.secondaryCTAHref} class="service-card-link">
+                      {service.secondaryCTA}
+                    </a>
+                  )}
+                </div>
+              ) : (
+                <a href={`/contact?service=${service.id}`} class="btn btn-outlined-dark btn-sm">
+                  Request {service.title}
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    background="sage"
+    headline="A project beyond stone?"
+    subheading="Our team handles the full scope — from design through delivery. Let's talk about your vision."
+    buttonText="START A CONVERSATION"
+    buttonHref="/contact"
+  />
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .services-section {
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) 0;
+  }
+
+  /* ── Services grid ─────────────────────────────────── */
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  /* ── Service card ──────────────────────────────────── */
+
+  .service-card {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--warm-sand);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .service-card:hover {
+    border-color: var(--sand-light);
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .service-card--soon {
+    border-style: dashed;
+  }
+
+  .service-card-image {
+    overflow: hidden;
+  }
+
+  .service-real-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .service-card:hover .service-real-img {
+    transform: scale(1.04);
+  }
+
+  .service-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .service-card:hover .service-placeholder {
+    transform: scale(1.04);
+  }
+
+  .service-card-content {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+  }
+
+  .service-card-badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--quarry-stone);
+    background: var(--warm-sand);
+    padding: 4px 10px;
+    align-self: flex-start;
+  }
+
+  .service-card-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    max-width: none;
+  }
+
+  .service-card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 400;
+    line-height: var(--lh-heading);
+    color: var(--stone-dark);
+  }
+
+  .service-card-description {
+    font-size: var(--text-small);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    flex: 1;
+    max-width: 100%;
+  }
+
+  /* ── Image badge ───────────────────────────────────── */
+
+  .service-img-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: var(--font-sans);
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--white-warm);
+    background: var(--warm-sand);
+    padding: 4px 8px;
+    z-index: 2;
+  }
+
+  /* ── Subtag ─────────────────────────────────────────── */
+
+  .service-card-subtag {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-green);
+    display: block;
+  }
+
+  /* ── Feature list ───────────────────────────────────── */
+
+  .service-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .service-card-features li {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    color: var(--stone-mid);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .service-card-features li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--warm-sand);
+    font-weight: 700;
+  }
+
+  /* ── Card CTA group ─────────────────────────────────── */
+
+  .service-card-ctas {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .service-card-link {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    color: var(--stone-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .service-card-link:hover {
+    color: var(--warm-sand);
+  }
+
+  /* ── Coming-soon centering ─────────────────────────── */
+
+  .service-card--coming-soon {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── Waitlist form ─────────────────────────────────── */
+
+  .waitlist-form {
+    margin-top: auto;
+  }
+
+  .waitlist-row {
+    display: flex;
+    gap: var(--space-xs);
+  }
+
+  .waitlist-input {
+    flex: 1;
+    background: var(--limestone-cream);
+    border: 1px solid var(--cream-dark);
+    padding: 10px 14px;
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-dark);
+    outline: none;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .waitlist-input:focus {
+    border-color: var(--warm-sand);
+  }
+
+  .waitlist-input::placeholder {
+    color: var(--stone-light);
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-card--coming-soon {
+      grid-column: span 2;
+      max-width: 100%;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-card--coming-soon {
+      grid-column: 1;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.tulipprecast.com/services" }
+  ]
+}
+</script>

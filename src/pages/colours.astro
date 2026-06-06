@@ -1,0 +1,658 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+import ColourDetail from '../components/ColourDetail.astro';
+
+const colours = [
+  {
+    id: 'standard-buff',
+    name: 'Standard Buff',
+    family: 'Buff',
+    hex: '#C8A870',
+    imageSrc: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20BUFF.jpg',
+    imageAlt: 'Indiana Limestone Standard Buff — natural golden-buff stone swatch, Tulip Precast',
+    description: 'The quintessential Indiana Limestone colour — the same warm golden-buff stone that built the Empire State Building, the National Cathedral, and the Biltmore Estate. Standard Buff is warm, luminous, and unmistakably classical.',
+    characteristics: [
+      'Warm golden-buff tone with natural variation',
+      'Highly workable — holds crisp carved detail',
+      'Luminous in both sunlight and shade',
+      'Weathers beautifully and deepens with age',
+    ],
+    bestFor: [
+      'Columns, pilasters, and architectural millwork',
+      'Carved keystones, cartouches, and door surrounds',
+      'Exterior facades and cladding',
+      'Pavers, pier caps, and garden walls',
+    ],
+    pairsWith: 'Cream, white, warm wood tones, charcoal trim, and all natural materials.',
+  },
+  {
+    id: 'silver-buff',
+    name: 'Silver Buff',
+    family: 'Buff',
+    hex: '#C0B890',
+    imageSrc: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20SILVER%20BUFF.jpg',
+    imageAlt: 'Indiana Limestone Silver Buff — light warm buff stone swatch with silver highlights, Tulip Precast',
+    description: 'A luminous blend of warm buff and silver-gray — lighter and brighter than Standard Buff, with a subtle coolness that bridges the buff and gray families. Silver Buff photographs beautifully and adapts across architectural styles from neoclassical to contemporary.',
+    characteristics: [
+      'Light warm buff with silver-gray highlights',
+      'Bright and luminous in natural light',
+      'Cooler undertone than Standard Buff',
+      'Exceptional surface consistency across pieces',
+    ],
+    bestFor: [
+      'Residential facades and feature walls',
+      'Window and door surrounds',
+      'Balusters, balustrades, and sills',
+      'Fine detail work — keystones and carved ornaments',
+    ],
+    pairsWith: 'Warm white, bronze hardware, sage green landscaping, and natural wood.',
+  },
+  {
+    id: 'standard-gray',
+    name: 'Standard Gray',
+    family: 'Gray',
+    hex: '#9A9A94',
+    imageSrc: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20GRAY.jpg',
+    imageAlt: 'Indiana Limestone Standard Gray — clean neutral gray stone swatch, Tulip Precast',
+    description: 'A clean, balanced gray that reads as refined in both traditional and contemporary settings. Standard Gray has the cool neutrality to complement glass and steel as naturally as it does brick and timber — the most versatile of the gray family.',
+    characteristics: [
+      'Pure cool-neutral gray, balanced and restrained',
+      'Excellent contrast against dark or light trim',
+      'Strong in both fine detail and large panel applications',
+      'Contemporary and transitional versatility',
+    ],
+    bestFor: [
+      'Modern and transitional facades',
+      'Commercial and institutional applications',
+      'Urban infill and mixed-use projects',
+      'Veneers for contemporary cladding',
+    ],
+    pairsWith: 'Black trim, charcoal, stainless steel, glass, white concrete, and dark iron hardware.',
+  },
+  {
+    id: 'rustic-gray',
+    name: 'Rustic Gray',
+    family: 'Gray',
+    hex: '#7A7A72',
+    imageSrc: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20RUSTIC%20GRAY.jpg',
+    imageAlt: 'Indiana Limestone Rustic Gray — deep warm-gray stone swatch with natural character, Tulip Precast',
+    description: 'The darkest and most characterful of the gray tones — Rustic Gray carries visible natural variation and an aged quality that deepens over time. It is the colour of historic stone quarries, with a richness that draws the eye and a weight that anchors any composition.',
+    characteristics: [
+      'Deep warm-gray with earthy brown undertones',
+      'Strong natural variation in tone across surface',
+      'Aged, character-rich quality from day one',
+      'Deepens subtly and gains patina as it weathers',
+    ],
+    bestFor: [
+      'Heritage and rustic architecture',
+      'Garden walls, retaining walls, and landscape elements',
+      'Feature walls, fireplaces, and interior stone',
+      'Veneers for dramatic, high-contrast facades',
+    ],
+    pairsWith: 'Warm wood tones, dark iron hardware, slate, terracotta, and deep green plantings.',
+  },
+];
+
+const veneerTypes = [
+  {
+    title: 'Smooth',
+    subtitle: 'Thin Bed',
+    depth: '1¼"',
+    description: 'No footing required. Installs over existing masonry or new construction.',
+    specs: [
+      { key: 'Heights',  val: '4", 8", 12"' },
+      { key: 'Length',   val: '24"' },
+      { key: 'Depth',    val: '1¼"' },
+      { key: 'Footing',  val: 'Not required' },
+    ],
+    imageSrc: '/pictures/stone%20texture.jpg',
+    imageAlt: 'Smooth Indiana Limestone thin bed veneer — Tulip Precast',
+  },
+  {
+    title: 'Split Face & Tumbled',
+    subtitle: 'Thin Bed',
+    depth: '¾"–1¼"',
+    description: 'Lightweight, fast, and economical. Split face texture or naturally tumbled edges.',
+    specs: [
+      { key: 'Split Face', val: '2¼", 5", 7¾", 10½"' },
+      { key: 'Tumbled',    val: '2"–12"' },
+      { key: 'Depth',      val: '¾"–1¼"' },
+      { key: 'Length',     val: 'Random' },
+    ],
+    imageSrc: '/pictures/stone%20texture%202.jpg',
+    imageAlt: 'Split face and tumbled Indiana Limestone thin bed veneer — Tulip Precast',
+  },
+  {
+    title: 'Smooth',
+    subtitle: 'Full Bed Depth',
+    depth: '4"',
+    description: 'Precision cut modular units. Same stone as iconic landmark buildings — now for your facade.',
+    specs: [
+      { key: 'Heights',  val: '4", 8", 12", 16"' },
+      { key: 'Lengths',  val: '24" or 36"' },
+      { key: 'Depth',    val: '4"' },
+      { key: 'Footing',  val: 'Required' },
+    ],
+    imageSrc: '/pictures/stone%20texture.jpg',
+    imageAlt: 'Smooth Indiana Limestone full bed depth veneer — Tulip Precast',
+  },
+  {
+    title: 'Split Face',
+    subtitle: 'Full Bed Depth',
+    depth: '3"–4"',
+    description: 'The same stone used on landmark buildings across North America, with a rugged split-face texture.',
+    specs: [
+      { key: 'Heights',  val: '2¼", 5", 7¾", 10½"' },
+      { key: 'Length',   val: 'Random' },
+      { key: 'Depth',    val: '3"–4"' },
+      { key: 'Footing',  val: 'Required' },
+    ],
+    imageSrc: '/pictures/masonry%20detail.jpg',
+    imageAlt: 'Split face Indiana Limestone full bed depth veneer — Tulip Precast',
+  },
+  {
+    title: 'Tumbled',
+    subtitle: 'Full Bed Depth',
+    depth: '3"–5"',
+    description: 'Natural patina develops over time. Tumbled edges give an aged, character-rich finish from day one.',
+    specs: [
+      { key: 'Heights',  val: '2"–12"' },
+      { key: 'Length',   val: 'Varies' },
+      { key: 'Depth',    val: '3"–5"' },
+      { key: 'Footing',  val: 'Required' },
+    ],
+    imageSrc: '/pictures/stone%20texture%202.jpg',
+    imageAlt: 'Tumbled Indiana Limestone full bed depth veneer — Tulip Precast',
+  },
+];
+---
+
+<BaseLayout
+  title="Stone Colours & Finishes | Indiana Limestone Colours | Tulip Precast"
+  description="Explore Indiana Limestone colours — Standard Buff, Silver Buff, Standard Gray, and Rustic Gray. Available in all veneer types. Request physical samples from Tulip Precast in Brampton, ON."
+  pageClass="page-colours"
+>
+
+  <Hero
+    eyebrow="4 NATURAL COLOURS · INDIANA LIMESTONE"
+    headline="Stone Colours."
+    headlineItalic="Nature's Palette."
+    subheading="Four Indiana Limestone colours — from warm golden buff to deep characterful gray. Every colour available in all veneer types. Request physical samples before you order."
+    primaryCTA="REQUEST SAMPLES"
+    primaryCTAHref="/contact?subject=sample-request"
+    secondaryCTA="VIEW VENEERS"
+    secondaryCTAHref="#veneers"
+    size="xs"
+    imageSrc="/pictures/stone%20texture.jpg"
+    imageAlt="Indiana Limestone stone colours and texture — Tulip Precast"
+  />
+
+  <!-- Colour selector section -->
+  <section class="colours-section" aria-label="Indiana Limestone colour palette">
+    <div class="container">
+
+      <SectionHeader
+        label="Explore Our Palette"
+        title="Four Indiana Limestone Colours."
+        subtitle="Each colour is a naturally occurring variation in the same geological formation. All are 100% authentic Indiana Limestone, quarried and fabricated to your specification."
+      />
+
+      <!-- Swatch grid — photo thumbnails -->
+      <div
+        class="swatch-grid"
+        role="radiogroup"
+        aria-label="Limestone colour selector"
+      >
+        {colours.map((colour, i) => (
+          <button
+            class:list={['swatch-btn', i === 0 && 'swatch-btn--active']}
+            data-colour-id={colour.id}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+            aria-label={`Select ${colour.name}`}
+            type="button"
+          >
+            <div class="swatch-photo">
+              <img
+                src={colour.imageSrc}
+                alt={colour.imageAlt}
+                width="400"
+                height="280"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                class="swatch-img"
+              />
+              <div class="swatch-overlay" aria-hidden="true">
+                <span class="swatch-family">{colour.family}</span>
+              </div>
+            </div>
+            <div class="swatch-meta">
+              <span class="swatch-name">{colour.name}</span>
+              <span class="swatch-hex" aria-hidden="true" style={`background: ${colour.hex}`}></span>
+            </div>
+            <div class="swatch-active-bar" aria-hidden="true"></div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Colour detail panels — one per colour, JS toggles active -->
+      <div class="detail-wrap" aria-live="polite" aria-atomic="false">
+        {colours.map((colour, i) => (
+          <ColourDetail colour={colour} isFirst={i === 0} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Veneer types section -->
+  <section id="veneers" class="veneers-section" aria-label="Veneer types and specifications">
+    <div class="container">
+
+      <SectionHeader
+        label="Veneer Types"
+        title="Specifications &"
+        titleItalic="Options."
+        subtitle="Five veneer systems — from lightweight thin-bed to full structural depth. Every type available in all four colours."
+      />
+
+      <div class="veneer-grid">
+        {veneerTypes.map((v, i) => (
+          <article class={`veneer-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class="veneer-card-image" aria-hidden="true">
+              <img
+                src={v.imageSrc}
+                alt={v.imageAlt}
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="veneer-real-img"
+              />
+            </div>
+            <div class="veneer-card-body">
+              <div class="veneer-card-header">
+                <p class="veneer-card-subtitle">{v.subtitle} · {v.depth}</p>
+                <h3 class="veneer-card-title">{v.title}</h3>
+              </div>
+              <p class="veneer-description">{v.description}</p>
+              <div class="veneer-spec-table">
+                {v.specs.map((spec) => (
+                  <>
+                    <span class="veneer-spec-key">{spec.key}</span>
+                    <span class="veneer-spec-val">{spec.val}</span>
+                  </>
+                ))}
+              </div>
+              <a href="/contact?product=veneer" class="btn btn-outlined-dark btn-sm">
+                Request a Quote
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample request CTA -->
+  <CTASection
+    background="sand"
+    headline="Not sure which colour suits your project?"
+    subheading="Request a sample pack — we'll send you physical limestone samples in your preferred colours so you can compare them in your actual light conditions."
+    buttonText="REQUEST SAMPLES"
+    buttonHref="/contact?subject=sample-request"
+  />
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  /* ── Colours section ─────────────────────────────────── */
+
+  .colours-section {
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) 0 var(--space-3xl);
+  }
+
+  /* ── Swatch grid ─────────────────────────────────────── */
+
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .swatch-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: left;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .swatch-btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .swatch-btn:focus-visible {
+    outline: 2px solid var(--warm-sand);
+    outline-offset: 3px;
+  }
+
+  .swatch-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .swatch-btn--active .swatch-photo,
+  .swatch-btn[aria-pressed="true"] .swatch-photo {
+    border-color: var(--warm-sand);
+  }
+
+  .swatch-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .swatch-btn:hover .swatch-img,
+  .swatch-btn--active .swatch-img {
+    transform: scale(1.06);
+  }
+
+  .swatch-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30, 26, 23, 0.5) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-xs) var(--space-sm);
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  .swatch-btn:hover .swatch-overlay,
+  .swatch-btn--active .swatch-overlay {
+    opacity: 1;
+  }
+
+  .swatch-family {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+  }
+
+  .swatch-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-xs) 0;
+    gap: var(--space-xs);
+  }
+
+  .swatch-name {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    letter-spacing: var(--ls-wide);
+    color: var(--stone-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .swatch-btn--active .swatch-name,
+  .swatch-btn[aria-pressed="true"] .swatch-name {
+    color: var(--warm-sand);
+  }
+
+  .swatch-hex {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--cream-dark);
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  /* Active bottom bar */
+  .swatch-active-bar {
+    height: 2px;
+    background: var(--warm-sand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .swatch-btn--active .swatch-active-bar,
+  .swatch-btn[aria-pressed="true"] .swatch-active-bar {
+    transform: scaleX(1);
+  }
+
+  /* ── Detail wrap ─────────────────────────────────────── */
+
+  .detail-wrap {
+    margin-top: var(--space-lg);
+  }
+
+  /* ── Veneers section ─────────────────────────────────── */
+
+  .veneers-section {
+    background: var(--cream-dark);
+    padding: var(--space-2xl) 0;
+  }
+
+  .veneer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .veneer-card {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .veneer-card:hover {
+    border-color: var(--sand-light);
+    transform: translateY(-4px);
+  }
+
+  .veneer-card-image {
+    overflow: hidden;
+  }
+
+  .veneer-real-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .veneer-card:hover .veneer-real-img {
+    transform: scale(1.04);
+  }
+
+  .veneer-card-body {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+  }
+
+  .veneer-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .veneer-card-subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    max-width: none;
+  }
+
+  .veneer-card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .veneer-description {
+    font-size: var(--text-small);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 100%;
+  }
+
+  .veneer-spec-table {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 16px;
+    margin: var(--space-xs) 0;
+  }
+
+  .veneer-spec-key {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: var(--ls-wide);
+    color: var(--stone-light);
+    max-width: none;
+  }
+
+  .veneer-spec-val {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    color: var(--stone-mid);
+    max-width: none;
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .swatch-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .veneer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .swatch-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xs);
+    }
+
+    .veneer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<!-- Colour panel switcher -->
+<script>
+  (function () {
+    const swatches = document.querySelectorAll<HTMLButtonElement>('.swatch-btn');
+    const panels   = document.querySelectorAll<HTMLElement>('[data-colour-panel]');
+
+    if (swatches.length === 0) return;
+
+    function activate(id: string) {
+      swatches.forEach((btn) => {
+        const isMatch = btn.dataset.colourId === id;
+        btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+        btn.classList.toggle('swatch-btn--active', isMatch);
+      });
+
+      panels.forEach((panel) => {
+        const isMatch = panel.dataset.colourPanel === id;
+        panel.classList.toggle('cd--active', isMatch);
+        panel.setAttribute('aria-hidden', isMatch ? 'false' : 'true');
+      });
+    }
+
+    swatches.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.colourId;
+        if (id) activate(id);
+      });
+
+      btn.addEventListener('keydown', (e: KeyboardEvent) => {
+        const list = Array.from(swatches);
+        const i    = list.indexOf(btn);
+        let target = -1;
+
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          target = (i + 1) % list.length;
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          target = (i - 1 + list.length) % list.length;
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          target = 0;
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          target = list.length - 1;
+        }
+
+        if (target >= 0) {
+          const id = list[target].dataset.colourId;
+          if (id) {
+            activate(id);
+            list[target].focus();
+          }
+        }
+      });
+    });
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",              "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Colours & Finishes","item": "https://www.tulipprecast.com/colours" }
+  ]
+}
+</script>

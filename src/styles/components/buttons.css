@@ -1,0 +1,213 @@
+/* ============================================================
+   BUTTONS — all variants, hover states, magnetic base
+   ============================================================ */
+
+/* ── Base ────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 14px 32px;
+  min-height: 48px;
+  min-width: 44px;
+  position: relative;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* ── Primary ─────────────────────────────────────────────── */
+
+.btn-primary {
+  background: var(--warm-sand);
+  color: var(--quarry-stone);
+}
+
+.btn-primary:hover {
+  background: var(--quarry-stone);
+  color: var(--white-warm);
+}
+
+/* ── Secondary ───────────────────────────────────────────── */
+
+.btn-secondary {
+  background: var(--quarry-stone);
+  color: var(--white-warm);
+}
+
+.btn-secondary:hover {
+  background: var(--warm-sand);
+  color: var(--quarry-stone);
+}
+
+/* ── Outlined — light (on dark backgrounds) ──────────────── */
+
+.btn-outlined {
+  background: transparent;
+  color: var(--white-warm);
+  border: 1px solid rgba(253, 250, 246, 0.4);
+}
+
+.btn-outlined:hover {
+  background: rgba(253, 250, 246, 0.08);
+  border-color: var(--white-warm);
+}
+
+/* ── Outlined — dark (on light backgrounds) ──────────────── */
+
+.btn-outlined-dark {
+  background: transparent;
+  color: var(--stone-dark);
+  border: 1px solid var(--stone-dark);
+}
+
+.btn-outlined-dark:hover {
+  background: var(--stone-dark);
+  color: var(--white-warm);
+}
+
+/* ── Outlined — sand ─────────────────────────────────────── */
+
+.btn-outlined-sand {
+  background: transparent;
+  color: var(--warm-sand);
+  border: 1px solid var(--warm-sand);
+}
+
+.btn-outlined-sand:hover {
+  background: var(--warm-sand);
+  color: var(--white-warm);
+}
+
+/* ── Ghost ───────────────────────────────────────────────── */
+
+.btn-ghost {
+  background: transparent;
+  color: var(--warm-sand);
+  padding: 14px 0;
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--warm-sand);
+  transform: scaleX(0.3);
+  transform-origin: left center;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.btn-ghost:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Text link ───────────────────────────────────────────── */
+
+.btn-text {
+  background: transparent;
+  color: var(--stone-dark);
+  padding: 0;
+  min-height: auto;
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-widest);
+  position: relative;
+  gap: 6px;
+}
+
+.btn-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.btn-text:hover {
+  color: var(--warm-sand);
+}
+
+.btn-text:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Size variants ───────────────────────────────────────── */
+
+.btn-sm {
+  padding: 10px 20px;
+  min-height: 40px;
+  font-size: var(--text-xs);
+}
+
+.btn-lg {
+  padding: 18px 48px;
+  min-height: 56px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ── Magnetic button — base positioning ──────────────────── */
+
+.btn-magnetic {
+  position: relative;
+  will-change: transform;
+}
+
+/* JS will set transform: translate(x, y) inline */
+
+/* ── Icon in button ──────────────────────────────────────── */
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:hover .btn-icon {
+  transform: translateX(3px);
+}
+
+/* ── Sage CTA ────────────────────────────────────────────── */
+
+.btn-sage {
+  background: var(--white-warm);
+  color: var(--sage-green);
+}
+
+.btn-sage:hover {
+  background: var(--quarry-stone);
+  color: var(--white-warm);
+}
+
+/* ── Focus states ────────────────────────────────────────── */
+
+.btn:focus-visible {
+  outline: 2px solid var(--warm-sand);
+  outline-offset: 3px;
+}

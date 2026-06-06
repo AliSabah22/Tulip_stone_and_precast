@@ -1,0 +1,84 @@
+---
+export interface Props {
+  solidNav?: boolean;
+}
+
+const { solidNav = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/limestone', label: 'Limestone' },
+  { href: '/precast',   label: 'Precast' },
+  { href: '/services',  label: 'Services' },
+  { href: '/gfrc',      label: 'GFRC' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/colours',   label: 'Colours' },
+  { href: '/about',     label: 'About' },
+];
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav id="main-nav" class={solidNav ? 'solid' : ''} aria-label="Main navigation">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a class="nav-logo" href="/" aria-label="Tulip Limestone Precast — home">
+      TULIP <span class="logo-dot">·</span> LIMESTONE · PRECAST
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Desktop CTA -->
+    <a class="nav-cta" href="/contact">Request a Quote</a>
+
+    <!-- Hamburger -->
+    <button
+      class="nav-hamburger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-mobile-overlay"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile overlay -->
+  <div
+    id="nav-mobile-overlay"
+    class="nav-mobile-overlay"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Navigation menu"
+  >
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        aria-current={isActive(link.href) ? 'page' : undefined}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a class="nav-mobile-cta" href="/contact">Request a Quote</a>
+    <div class="nav-mobile-contact">
+      <a href="tel:6475347755">647-534-7755</a>
+      <a href="mailto:office@tulipprecast.com">office@tulipprecast.com</a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,337 @@
+/* ============================================================
+   NAV — desktop, scroll state, and mobile overlay
+   ============================================================ */
+
+#main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+
+/* Transparent state — sitting on hero */
+#main-nav:not(.scrolled) {
+  background-color: transparent;
+}
+
+/* Scrolled state — solid background */
+#main-nav.scrolled,
+#main-nav.solid {
+  background-color: var(--quarry-stone);
+  border-bottom-color: rgba(200, 168, 130, 0.15);
+}
+
+/* ── Container ───────────────────────────────────────────── */
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ── Logo ────────────────────────────────────────────────── */
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--white-warm);
+  flex-shrink: 0;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.nav-logo:hover {
+  color: var(--warm-sand);
+}
+
+.logo-dot {
+  color: var(--warm-sand);
+}
+
+/* ── Desktop links ───────────────────────────────────────── */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: rgba(253, 250, 246, 0.75);
+  transition: color var(--duration-fast) var(--ease-out);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--warm-sand);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--white-warm);
+}
+
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  width: 100%;
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--warm-sand);
+}
+
+/* ── CTA button ──────────────────────────────────────────── */
+
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--quarry-stone);
+  background: var(--sand-light);
+  padding: 10px 20px;
+  flex-shrink: 0;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.nav-cta:hover {
+  background: var(--warm-sand);
+  color: var(--white-warm);
+}
+
+/* ── Hamburger ───────────────────────────────────────────── */
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-hamburger span {
+  display: block;
+  height: 1px;
+  background: var(--white-warm);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out),
+    width var(--duration-base) var(--ease-out);
+  transform-origin: center;
+}
+
+.nav-hamburger span:nth-child(1) { width: 24px; }
+.nav-hamburger span:nth-child(2) { width: 18px; }
+.nav-hamburger span:nth-child(3) { width: 24px; }
+
+/* Hamburger → X when menu is open */
+body.menu-open .nav-hamburger span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+  width: 24px;
+}
+
+body.menu-open .nav-hamburger span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+body.menu-open .nav-hamburger span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+  width: 24px;
+}
+
+/* ── Mobile overlay ──────────────────────────────────────── */
+
+.nav-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--quarry-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--duration-slow) var(--ease-out);
+  pointer-events: none;
+}
+
+body.menu-open .nav-mobile-overlay {
+  clip-path: inset(0 0 0% 0);
+  pointer-events: auto;
+}
+
+.nav-mobile-overlay a {
+  font-family: var(--font-serif);
+  font-size: var(--text-title);
+  font-weight: 300;
+  letter-spacing: var(--ls-tight);
+  color: var(--sand-light);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    color var(--duration-fast);
+}
+
+body.menu-open .nav-mobile-overlay a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.menu-open .nav-mobile-overlay a:nth-child(1) { transition-delay: 100ms; }
+body.menu-open .nav-mobile-overlay a:nth-child(2) { transition-delay: 150ms; }
+body.menu-open .nav-mobile-overlay a:nth-child(3) { transition-delay: 200ms; }
+body.menu-open .nav-mobile-overlay a:nth-child(4) { transition-delay: 250ms; }
+body.menu-open .nav-mobile-overlay a:nth-child(5) { transition-delay: 300ms; }
+body.menu-open .nav-mobile-overlay a:nth-child(6) { transition-delay: 350ms; }
+
+.nav-mobile-overlay a:hover {
+  color: var(--warm-sand);
+}
+
+.nav-mobile-cta {
+  margin-top: var(--space-md);
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-small) !important;
+  font-weight: 400 !important;
+  letter-spacing: var(--ls-widest) !important;
+  text-transform: uppercase !important;
+  color: var(--quarry-stone) !important;
+  background: var(--sand-light);
+  padding: 14px 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-base) var(--ease-out) 400ms,
+    transform var(--duration-base) var(--ease-out) 400ms,
+    background-color var(--duration-fast) !important;
+}
+
+body.menu-open .nav-mobile-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-mobile-cta:hover {
+  background: var(--warm-sand) !important;
+  color: var(--white-warm) !important;
+}
+
+/* Contact info in mobile menu */
+.nav-mobile-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out) 450ms;
+}
+
+body.menu-open .nav-mobile-contact {
+  opacity: 1;
+}
+
+.nav-mobile-contact a {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-xs) !important;
+  font-weight: 300 !important;
+  letter-spacing: var(--ls-wide) !important;
+  color: var(--stone-light) !important;
+  transform: none !important;
+  opacity: 1 !important;
+  transition: color var(--duration-fast) !important;
+}
+
+.nav-mobile-contact a:hover {
+  color: var(--warm-sand) !important;
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ── Skip to main content ────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 200;
+  background: var(--warm-sand);
+  color: var(--white-warm);
+  padding: 8px 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 400;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  transition: top var(--duration-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-size: 11px;
+  }
+}

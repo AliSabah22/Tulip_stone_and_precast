@@ -1,0 +1,657 @@
+---
+// SplashScreen.astro
+// Renders once per browser session. First-visit only via sessionStorage guard.
+// Wired as first child of <body> in BaseLayout.astro.
+---
+
+<div id="splash" class="splash" aria-hidden="true" role="presentation">
+
+  <!-- Background: stone texture image with dark overlay -->
+  <div class="splash-bg">
+    <img
+      src="/pictures/stone%20texture.jpg"
+      alt=""
+      aria-hidden="true"
+      class="splash-bg-img"
+      fetchpriority="high"
+      decoding="sync"
+    />
+    <div class="splash-bg-overlay"></div>
+    <!-- Subtle grain overlay -->
+    <div class="splash-grain" aria-hidden="true"></div>
+  </div>
+
+  <!-- Top curtain panel (exits upward) -->
+  <div class="splash-curtain splash-curtain--top" aria-hidden="true"></div>
+
+  <!-- Bottom curtain panel (exits downward) -->
+  <div class="splash-curtain splash-curtain--bottom" aria-hidden="true"></div>
+
+  <!-- Center content -->
+  <div class="splash-content">
+
+    <!-- Decorative top line -->
+    <div class="splash-top-line" aria-hidden="true"></div>
+
+    <!-- Eyebrow label -->
+    <div class="splash-eyebrow" aria-hidden="true">
+      <span class="splash-eyebrow-text">
+        ONTARIO MADE · LIMESTONE &amp; PRECAST
+      </span>
+    </div>
+
+    <!-- Logo / brand name — letters revealed individually by JS -->
+    <div class="splash-logo" aria-label="Tulip Limestone Precast">
+      <div class="splash-logo-primary">
+        <span class="splash-logo-word" data-word="TULIP"></span>
+      </div>
+      <div class="splash-logo-sub">
+        <span class="splash-logo-dot" aria-hidden="true">·</span>
+        <span class="splash-logo-subtitle">LIMESTONE · PRECAST</span>
+      </div>
+    </div>
+
+    <!-- Tagline — typewriter reveal -->
+    <div class="splash-tagline" aria-hidden="true">
+      <span class="splash-tagline-line1" id="splash-line1"></span>
+      <br />
+      <em class="splash-tagline-line2" id="splash-line2"></em>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="splash-progress" aria-hidden="true">
+      <div class="splash-progress-track">
+        <div class="splash-progress-fill" id="splash-progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Decorative bottom line -->
+    <div class="splash-bottom-line" aria-hidden="true"></div>
+
+  </div>
+
+</div>
+
+<style is:global>
+
+  /* ── SPLASH BASE ──────────────────────────────────────────── */
+
+  #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: all;
+  }
+
+  #splash.splash--hidden {
+    display: none;
+  }
+
+  #splash.splash--exiting {
+    pointer-events: none;
+  }
+
+  /* ── BACKGROUND ───────────────────────────────────────────── */
+
+  .splash-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .splash-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transform: scale(1.08);
+    transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .splash-bg-img.is-zoomed {
+    transform: scale(1);
+  }
+
+  .splash-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(30, 26, 23, 0.72) 0%,
+        rgba(20, 18, 16, 0.88) 50%,
+        rgba(30, 26, 23, 0.72) 100%
+      );
+  }
+
+  .splash-grain {
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── CURTAINS ─────────────────────────────────────────────── */
+
+  .splash-curtain {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: var(--quarry-stone, #3D3530);
+    z-index: 10;
+  }
+
+  .splash-curtain--top {
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .splash-curtain--bottom {
+    bottom: 0;
+    transform: translateY(100%);
+    transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .splash-curtain--top.curtain-enter {
+    transform: translateY(0);
+  }
+
+  .splash-curtain--bottom.curtain-enter {
+    transform: translateY(0);
+  }
+
+  .splash--exiting .splash-curtain--top {
+    transform: translateY(-100%);
+  }
+
+  .splash--exiting .splash-curtain--bottom {
+    transform: translateY(100%);
+  }
+
+  /* ── CONTENT ──────────────────────────────────────────────── */
+
+  .splash-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 clamp(24px, 8vw, 120px);
+    gap: clamp(20px, 3vh, 36px);
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+    will-change: opacity, transform;
+  }
+
+  .splash-content.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .splash--exiting .splash-content {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
+
+  /* ── DECORATIVE LINES ─────────────────────────────────────── */
+
+  .splash-top-line,
+  .splash-bottom-line {
+    width: 0;
+    height: 1px;
+    background: var(--warm-sand, #C8A882);
+    opacity: 0.5;
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .splash-top-line.is-drawn,
+  .splash-bottom-line.is-drawn {
+    width: clamp(60px, 15vw, 140px);
+  }
+
+  /* ── EYEBROW ──────────────────────────────────────────────── */
+
+  .splash-eyebrow {
+    overflow: hidden;
+    height: 16px;
+  }
+
+  .splash-eyebrow-text {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(8px, 1vw, 10px);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--warm-sand, #C8A882);
+    transform: translateY(100%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .splash-eyebrow-text.is-visible {
+    transform: translateY(0);
+  }
+
+  /* ── LOGO ─────────────────────────────────────────────────── */
+
+  .splash-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .splash-logo-primary {
+    display: flex;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  .splash-letter-wrap {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .splash-letter {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 10vw, 96px);
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--white-warm, #FDFAF6);
+    line-height: 1;
+    transform: translateY(110%);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .splash-letter.is-revealed {
+    transform: translateY(0);
+  }
+
+  .splash-logo-sub {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.6s;
+  }
+
+  .splash-logo-sub.is-visible {
+    opacity: 1;
+  }
+
+  .splash-logo-dot {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--warm-sand, #C8A882);
+  }
+
+  .splash-logo-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(9px, 1.2vw, 11px);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(253, 250, 246, 0.55);
+  }
+
+  /* ── TAGLINE ──────────────────────────────────────────────── */
+
+  .splash-tagline {
+    min-height: clamp(48px, 6vh, 72px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .splash-tagline-line1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3.5vw, 32px);
+    font-weight: 300;
+    color: var(--white-warm, #FDFAF6);
+    letter-spacing: 0.02em;
+    min-height: 1.2em;
+    display: block;
+  }
+
+  .splash-tagline-line2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-sand, #C8A882);
+    letter-spacing: 0.02em;
+    min-height: 1.2em;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .splash-tagline-line2.is-visible {
+    opacity: 1;
+  }
+
+  .splash-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 0.85em;
+    background: var(--warm-sand, #C8A882);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursorBlink 0.8s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ── PROGRESS BAR ─────────────────────────────────────────── */
+
+  .splash-progress {
+    width: clamp(120px, 20vw, 200px);
+  }
+
+  .splash-progress-track {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .splash-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--warm-sand, #C8A882);
+    transition: width 2.4s linear;
+    will-change: width;
+  }
+
+  .splash-progress-fill.is-filling {
+    width: 100%;
+  }
+
+  /* ── REDUCED MOTION ───────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-bg-img {
+      transform: scale(1) !important;
+      transition: none !important;
+    }
+    .splash-letter {
+      transform: translateY(0) !important;
+      transition: none !important;
+    }
+    .splash-content {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .splash-cursor {
+      animation: none;
+      opacity: 0;
+    }
+    .splash-top-line,
+    .splash-bottom-line {
+      width: 100px !important;
+      transition: none !important;
+    }
+    #splash.splash--reduced {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  /* ── MOBILE ───────────────────────────────────────────────── */
+
+  @media (max-width: 480px) {
+    .splash-logo-sub {
+      display: none;
+    }
+    .splash-eyebrow {
+      display: none;
+    }
+    .splash-letter {
+      font-size: clamp(40px, 14vw, 64px);
+      letter-spacing: 0.12em;
+    }
+  }
+
+</style>
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ── Session check ──────────────────────────────────────── */
+
+    const SPLASH_KEY = 'tulip_splash_shown';
+    const splash     = document.getElementById('splash');
+
+    if (!splash) return;
+
+    /* Return visit — hide instantly and exit */
+    if (sessionStorage.getItem(SPLASH_KEY)) {
+      splash.classList.add('splash--hidden');
+      document.body.style.overflow = '';
+      return;
+    }
+
+    /* First visit — mark session and run animation */
+    sessionStorage.setItem(SPLASH_KEY, '1');
+
+    /* ── Lock body scroll while splash is active ────────────── */
+    document.body.style.overflow = 'hidden';
+
+    /* ── Reduced motion check ───────────────────────────────── */
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (reducedMotion) {
+      splash.classList.add('splash--reduced');
+      setTimeout(() => {
+        exitSplash();
+      }, 800);
+      return;
+    }
+
+    /* ── TIMING CONSTANTS (ms) ──────────────────────────────── */
+    const T = {
+      CONTENT_REVEAL:  180,
+      LINES_DRAW:      300,
+      EYEBROW:         500,
+      LETTERS_START:   650,
+      LETTER_STAGGER:   65,
+      SUBTITLE:       1100,
+      TAGLINE_LINE1:  1200,
+      TAGLINE_LINE2:  1900,
+      PROGRESS_START:  800,
+      TOTAL_DURATION: 3200,
+      EXIT_DURATION:  1100,
+    };
+
+    /* ── BUILD LETTER SPANS ─────────────────────────────────── */
+
+    const wordEl = document.querySelector('[data-word="TULIP"]');
+    if (wordEl) {
+      'TULIP'.split('').forEach((char) => {
+        const wrap = document.createElement('span');
+        wrap.className = 'splash-letter-wrap';
+
+        const letter = document.createElement('span');
+        letter.className = 'splash-letter';
+        letter.textContent = char;
+        letter.style.transitionDelay = '0ms';
+
+        wrap.appendChild(letter);
+        wordEl.appendChild(wrap);
+      });
+    }
+
+    /* ── TYPEWRITER FUNCTION ────────────────────────────────── */
+
+    function typewrite(el, text, charDelay, onComplete) {
+      let i = 0;
+
+      const cursor = document.createElement('span');
+      cursor.className = 'splash-cursor';
+      el.after(cursor);
+
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.textContent += text[i];
+          i++;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => cursor.remove(), 300);
+          if (onComplete) onComplete();
+        }
+      }, charDelay);
+    }
+
+    /* ── MAIN ANIMATION SEQUENCE ────────────────────────────── */
+
+    /* Background zoom */
+    const bgImg = splash.querySelector('.splash-bg-img');
+    if (bgImg) {
+      requestAnimationFrame(() => {
+        bgImg.classList.add('is-zoomed');
+      });
+    }
+
+    /* Content reveal */
+    setTimeout(() => {
+      const content = splash.querySelector('.splash-content');
+      if (content) content.classList.add('is-visible');
+    }, T.CONTENT_REVEAL);
+
+    /* Decorative lines */
+    setTimeout(() => {
+      splash.querySelectorAll('.splash-top-line, .splash-bottom-line')
+        .forEach(el => el.classList.add('is-drawn'));
+    }, T.LINES_DRAW);
+
+    /* Eyebrow */
+    setTimeout(() => {
+      const eyebrow = splash.querySelector('.splash-eyebrow-text');
+      if (eyebrow) eyebrow.classList.add('is-visible');
+    }, T.EYEBROW);
+
+    /* Letter reveal with stagger */
+    setTimeout(() => {
+      const letters = splash.querySelectorAll('.splash-letter');
+      letters.forEach((letter, i) => {
+        setTimeout(() => {
+          letter.classList.add('is-revealed');
+        }, i * T.LETTER_STAGGER);
+      });
+    }, T.LETTERS_START);
+
+    /* Subtitle */
+    setTimeout(() => {
+      const sub = splash.querySelector('.splash-logo-sub');
+      if (sub) sub.classList.add('is-visible');
+    }, T.SUBTITLE);
+
+    /* Typewriter line 1 */
+    setTimeout(() => {
+      const line1 = document.getElementById('splash-line1');
+      if (line1) {
+        typewrite(line1, 'Crafted by Nature.', 38, () => {
+          setTimeout(() => {
+            const line2 = document.getElementById('splash-line2');
+            if (line2) {
+              line2.classList.add('is-visible');
+              typewrite(line2, 'Perfected by Design.', 38, null);
+            }
+          }, 180);
+        });
+      }
+    }, T.TAGLINE_LINE1);
+
+    /* Progress bar */
+    setTimeout(() => {
+      const fill = document.getElementById('splash-progress-fill');
+      if (fill) {
+        requestAnimationFrame(() => {
+          fill.classList.add('is-filling');
+        });
+      }
+    }, T.PROGRESS_START);
+
+    /* ── EXIT SEQUENCE ──────────────────────────────────────── */
+
+    setTimeout(() => {
+      exitSplash();
+    }, T.TOTAL_DURATION);
+
+    function exitSplash() {
+      splash.classList.add('splash--exiting');
+
+      const topCurtain    = splash.querySelector('.splash-curtain--top');
+      const bottomCurtain = splash.querySelector('.splash-curtain--bottom');
+
+      /* Curtains slide in to cover content */
+      if (topCurtain) {
+        topCurtain.style.transition =
+          'transform 0.65s cubic-bezier(0.76, 0, 0.24, 1)';
+        topCurtain.style.transform = 'translateY(0)';
+      }
+      if (bottomCurtain) {
+        bottomCurtain.style.transition =
+          'transform 0.65s cubic-bezier(0.76, 0, 0.24, 1)';
+        bottomCurtain.style.transform = 'translateY(0)';
+      }
+
+      /* Brief hold — then curtains split and exit */
+      setTimeout(() => {
+        if (topCurtain) {
+          topCurtain.style.transition =
+            'transform 0.9s cubic-bezier(0.76, 0, 0.24, 1)';
+          topCurtain.style.transform = 'translateY(-100%)';
+        }
+        if (bottomCurtain) {
+          bottomCurtain.style.transition =
+            'transform 0.9s cubic-bezier(0.76, 0, 0.24, 1)';
+          bottomCurtain.style.transform = 'translateY(100%)';
+        }
+
+        /* Release body scroll */
+        document.body.style.overflow = '';
+
+        /* Remove splash after animation */
+        setTimeout(() => {
+          splash.classList.add('splash--hidden');
+          splash.setAttribute('aria-hidden', 'true');
+          document.dispatchEvent(new CustomEvent('splashComplete'));
+        }, 950);
+
+      }, 380);
+    }
+
+  })();
+</script>

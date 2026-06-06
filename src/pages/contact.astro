@@ -1,0 +1,398 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+---
+
+<BaseLayout
+  title="Contact & Quote Request | Tulip Limestone · Precast | Brampton"
+  description="Request a quote, submit drawings, or ask about our limestone and precast products. Located in Brampton, ON serving the Greater Toronto Area."
+  pageClass="page-contact"
+  solidNav={true}
+  loadFormValidation={true}
+>
+
+  <div class="contact-page">
+    <div class="container">
+
+      <!-- Page heading -->
+      <header class="contact-heading reveal">
+        <h1 class="contact-title">
+          Let's Build Something<br />
+          <em class="contact-title-italic">Lasting.</em>
+        </h1>
+        <div class="draw-line contact-rule" aria-hidden="true"></div>
+        <p class="contact-intro">
+          Send us your drawings, measurements, or inspiration. We'll respond within one business day.
+        </p>
+      </header>
+
+      <!-- 2-column layout -->
+      <div class="contact-grid">
+
+        <!-- LEFT: Form -->
+        <div class="contact-form-col reveal">
+          <h2 class="col-heading">Request a Quote</h2>
+          <QuoteForm />
+        </div>
+
+        <!-- RIGHT: Contact info -->
+        <aside class="contact-info-col reveal reveal-delay-2" aria-label="Contact information">
+          <div class="contact-info-sticky">
+
+            <!-- Direct contact -->
+            <div class="info-block">
+              <h3 class="info-block-heading">Direct Contact</h3>
+              <div class="info-links">
+                <a href="mailto:office@tulipprecast.com" class="info-link info-link--email">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="1" y="3" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1"/>
+                    <path d="M1 4l7 5 7-5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                  </svg>
+                  office@tulipprecast.com
+                </a>
+                <a href="tel:6475347755" class="info-link">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10.5 1.5c.5 1.5 1.5 3 2.5 3.5l-2 2c-1-1-2.5-2-4-2.5L8.5 2.5a8.5 8.5 0 00-2 0L5 4.5C5.5 6 6.5 7.5 7.5 8.5L5.5 10.5c-.5-1.5-1.5-3-2.5-3.5l2-2c.5 1 1.5 2 2.5 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 2.5A1.5 1.5 0 012.5 1h1.1c.4 0 .8.3.9.7l.8 3.1a1 1 0 01-.3 1L4 6.8a10 10 0 004.2 4.2l1-.9a1 1 0 011-.3l3.1.8c.4.1.7.5.7.9v1.1a1.5 1.5 0 01-1.5 1.5C6.3 14 1 8.7 1 2.5z" stroke="currentColor" stroke-width="1"/>
+                  </svg>
+                  647-534-7755
+                </a>
+<a href="tel:9057960110" class="info-link">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 2.5A1.5 1.5 0 012.5 1h1.1c.4 0 .8.3.9.7l.8 3.1a1 1 0 01-.3 1L4 6.8a10 10 0 004.2 4.2l1-.9a1 1 0 011-.3l3.1.8c.4.1.7.5.7.9v1.1a1.5 1.5 0 01-1.5 1.5C6.3 14 1 8.7 1 2.5z" stroke="currentColor" stroke-width="1"/>
+                  </svg>
+                  905-796-0110
+                </a>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="info-block">
+              <h3 class="info-block-heading">Our Location</h3>
+              <address class="info-address">
+                <p>98 Rutherford Rd Unit 2C</p>
+                <p>Brampton, ON L6W 3J5</p>
+              </address>
+
+              <!-- Map embed -->
+              <div class="map-wrap" aria-label="Google Maps showing Tulip Precast location">
+                <iframe
+                  title="Tulip Limestone · Precast location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.2!2d-79.7624!3d43.6853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDQxJzA3LjEiTiA3OcKwNDUnNDQuNiJX!5e0!3m2!1sen!2sca!4v1"
+                  width="100%"
+                  height="100%"
+                  style="border:0"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=98+Rutherford+Rd+Unit+2C,+Brampton,+ON+L6W+3J5"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outlined-dark btn-sm"
+              >
+                Get Directions
+              </a>
+            </div>
+
+            <!-- Hours -->
+            <div class="info-block">
+              <h3 class="info-block-heading">Hours</h3>
+              <div class="hours-grid">
+                <span class="hours-day">Monday – Friday</span>
+                <span class="hours-time">8:00 AM – 5:00 PM</span>
+                <span class="hours-day">Saturday – Sunday</span>
+                <span class="hours-time">By appointment</span>
+              </div>
+            </div>
+
+            <!-- What to include -->
+            <div class="info-block info-block--card">
+              <h3 class="info-block-heading">What to Include</h3>
+              <p class="info-block-note">For the most accurate quote, please include:</p>
+              <ul class="include-list" role="list">
+                <li class="include-item">
+                  <span class="include-mark" aria-hidden="true">·</span>
+                  Project type and location
+                </li>
+                <li class="include-item">
+                  <span class="include-mark" aria-hidden="true">·</span>
+                  Product category of interest
+                </li>
+                <li class="include-item">
+                  <span class="include-mark" aria-hidden="true">·</span>
+                  Approximate quantities
+                </li>
+                <li class="include-item">
+                  <span class="include-mark" aria-hidden="true">·</span>
+                  Any drawings or specifications
+                </li>
+                <li class="include-item">
+                  <span class="include-mark" aria-hidden="true">·</span>
+                  Desired timeline
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  /* ── Page wrapper ──────────────────────────────────── */
+
+  .contact-page {
+    background: var(--limestone-cream);
+    padding-bottom: var(--space-3xl);
+  }
+
+  /* ── Heading ───────────────────────────────────────── */
+
+  .contact-heading {
+    padding-top: 120px;
+    padding-bottom: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .contact-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-tight);
+    color: var(--stone-dark);
+  }
+
+  .contact-title-italic {
+    font-style: italic;
+    color: var(--stone-mid);
+  }
+
+  .contact-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--warm-sand);
+  }
+
+  .contact-intro {
+    font-size: var(--text-body);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 52ch;
+  }
+
+  /* ── Contact grid ──────────────────────────────────── */
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  /* ── Column headings ───────────────────────────────── */
+
+  .col-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: var(--space-lg);
+  }
+
+  /* ── Sticky info column ────────────────────────────── */
+
+  .contact-info-sticky {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  /* ── Info blocks ───────────────────────────────────── */
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .info-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .info-block-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── Links ─────────────────────────────────────────── */
+
+  .info-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .info-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .info-link:hover {
+    color: var(--warm-sand);
+  }
+
+  .info-link svg {
+    flex-shrink: 0;
+    color: var(--stone-light);
+  }
+
+  /* ── Address ───────────────────────────────────────── */
+
+  .info-address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .info-address p {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    max-width: none;
+  }
+
+  /* ── Map ───────────────────────────────────────────── */
+
+  .map-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+    background: var(--cream-dark);
+  }
+
+  /* ── Hours ─────────────────────────────────────────── */
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 16px;
+  }
+
+  .hours-day {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+  }
+
+  .hours-time {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    color: var(--stone-dark);
+  }
+
+  /* ── What to include card ──────────────────────────── */
+
+  .info-block--card {
+    background: var(--sand-pale);
+    border: none;
+    padding: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .info-block-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    font-style: italic;
+    max-width: none;
+  }
+
+  .include-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .include-item {
+    display: flex;
+    gap: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+  }
+
+  .include-mark {
+    color: var(--warm-sand);
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-info-sticky {
+      position: static;
+    }
+
+    .map-wrap {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.tulipprecast.com/contact" }
+  ]
+}
+</script>

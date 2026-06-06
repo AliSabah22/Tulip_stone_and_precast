@@ -1,0 +1,101 @@
+/* ============================================================
+   TULIP LIMESTONE · PRECAST — DESIGN TOKENS
+   ============================================================ */
+
+:root {
+
+  /* ── COLOURS ──────────────────────────────────────────── */
+
+  /* Primary — Quarry Stone */
+  --quarry-stone:     #3D3530;
+  --quarry-dark:      #1e1a17;
+
+  /* Sand / Accent */
+  --warm-sand:        #C8A882;
+  --sand-light:       #E8D5BC;
+  --sand-pale:        #F5EDE0;
+
+  /* Cream / Background */
+  --limestone-cream:  #FAF6EF;
+  --cream-dark:       #F0E8D8;
+  --white-warm:       #FDFAF6;
+
+  /* Sage / Secondary */
+  --sage-green:       #7A9176;
+  --sage-light:       #A8BEA4;
+  --sage-pale:        #D6E3D4;
+
+  /* Stone / Text */
+  --stone-dark:       #3D3530;
+  --stone-mid:        #6B5E56;
+  --stone-light:      #9C8880;
+
+  /* Functional */
+  --success:          #4A7C59;
+  --error:            #8B3A3A;
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────── */
+
+  /* Font families */
+  --font-serif:       'Cormorant Garamond', 'Georgia', serif;
+  --font-sans:        'Jost', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Type scale */
+  --text-hero:        clamp(48px, 6vw, 80px);
+  --text-display:     clamp(36px, 4vw, 56px);
+  --text-title:       clamp(24px, 3vw, 36px);
+  --text-subtitle:    clamp(18px, 2vw, 24px);
+  --text-body:        16px;
+  --text-small:       14px;
+  --text-xs:          12px;
+  --text-label:       10px;
+
+  /* Letter spacing */
+  --ls-tight:         -0.02em;
+  --ls-normal:        0;
+  --ls-wide:          0.08em;
+  --ls-wider:         0.15em;
+  --ls-widest:        0.25em;
+
+  /* Line height */
+  --lh-tight:         1.0;
+  --lh-heading:       1.2;
+  --lh-body:          1.7;
+  --lh-loose:         2.0;
+
+  /* ── SPACING ──────────────────────────────────────────── */
+
+  --space-xs:         8px;
+  --space-sm:         16px;
+  --space-md:         24px;
+  --space-lg:         40px;
+  --space-xl:         64px;
+  --space-2xl:        96px;
+  --space-3xl:        128px;
+
+  /* Layout */
+  --max-width:        1280px;
+  --content-padding:  clamp(24px, 5vw, 80px);
+  --section-padding:  var(--space-2xl) 0;
+
+  /* ── MOTION ───────────────────────────────────────────── */
+
+  --ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:      cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-fast:    150ms;
+  --duration-base:    300ms;
+  --duration-slow:    600ms;
+  --duration-slower:  900ms;
+
+  /* ── GRADIENTS — placeholder fills until real photography ── */
+
+  --grad-hero:        linear-gradient(105deg, #2a2218 0%, #3D3530 55%, #3d3028 100%);
+  --grad-limestone:   linear-gradient(135deg, #C8A882 0%, #E8D5BC 40%, #F5EDE0 70%, #C8A882 100%);
+  --grad-exterior:    linear-gradient(180deg, #E8D5BC 0%, #C8A882 50%, #9C8880 100%);
+  --grad-garden:      linear-gradient(135deg, #7A9176 0%, #A8BEA4 40%, #D6E3D4 70%);
+  --grad-product:     linear-gradient(120deg, #3D3530 0%, #6B5E56 50%, #3D3530 100%);
+  --grad-craft:       linear-gradient(135deg, #6B5E56 0%, #9C8880 50%, #C8A882 100%);
+
+}

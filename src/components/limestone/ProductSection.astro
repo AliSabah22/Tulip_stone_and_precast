@@ -1,0 +1,814 @@
+---
+type Variant    = { name: string; description?: string; imageSrc?: string };
+type SpecRow    = [string, string];
+type Benefit    = { title: string; body: string };
+type VeneerCard = {
+  type: string; bed: string; title: string; description: string;
+  imageSrc: string; imagePosition: string; specs: SpecRow[];
+};
+
+export interface Props {
+  id: string;
+  num: string;
+  label: string;
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+  imagePosition?: string;
+  description: string;
+  callout?: { label: string; body: string };
+  variants?: Variant[];
+  specs?: SpecRow[];
+  benefits?: Benefit[];
+  veneers?: VeneerCard[];
+  flip?: boolean;
+}
+
+const {
+  id, num, label, title,
+  imageSrc, imageAlt, imagePosition = 'center center',
+  description, callout, variants, specs, benefits, veneers,
+  flip = false,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['ps', flip && 'ps--flip']}
+  style="scroll-margin-top: 130px;"
+  aria-label={title}
+>
+  <span class="ps-bg-num" aria-hidden="true">{num}</span>
+
+  <div class="ps-container">
+    <div class="ps-grid">
+
+      <!-- Media side -->
+      <div class="ps-media">
+        <div class="ps-image">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            loading="lazy"
+            width="800"
+            height="600"
+            style={`object-position: ${imagePosition}`}
+          />
+        </div>
+      </div>
+
+      <!-- Content side -->
+      <div class="ps-content">
+        <span class="ps-eyebrow">{label}</span>
+        <h2 class="ps-title">{title}</h2>
+        <span class="ps-rule draw-line" aria-hidden="true"></span>
+        <p class="ps-body">{description}</p>
+
+        {callout && (
+          <div class="ps-callout">
+            <span class="ps-callout-label">{callout.label}</span>
+            <p class="ps-callout-body">{callout.body}</p>
+          </div>
+        )}
+
+        {variants && variants.length > 0 && (
+          <div class="ps-variants">
+            <p class="ps-variants-label">Available Profiles</p>
+            <div class="ps-accordion" data-accordion>
+              {variants.map((v, vi) => {
+                const hasContent = !!(v.description || v.imageSrc);
+                return hasContent ? (
+                  <div class="psa-item">
+                    <button
+                      class="psa-trigger"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls={`${id}-v${vi}`}
+                      data-idx={String(vi)}
+                    >
+                      <span class="psa-name">{v.name}</span>
+                      <svg class="psa-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <div class="psa-panel" id={`${id}-v${vi}`} aria-hidden="true">
+                      <div class="psa-panel-inner">
+                        {v.imageSrc && (
+                          <div class="psa-img-wrap">
+                            <img
+                              src={v.imageSrc}
+                              alt={`${v.name} — ${title} profile`}
+                              loading="lazy"
+                              width="400"
+                              height="280"
+                            />
+                          </div>
+                        )}
+                        {v.description && <p class="psa-desc">{v.description}</p>}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="psa-item psa-item--plain">
+                    <span class="psa-name">{v.name}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {specs && specs.length > 0 && (
+          <table class="ps-specs-table">
+            <tbody>
+              {specs.map(([key, value]) => (
+                <tr>
+                  <td class="ps-spec-key">{key}</td>
+                  <td class="ps-spec-value">{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+
+        {benefits && benefits.length > 0 && (
+          <div class="ps-benefits">
+            {benefits.map((b) => (
+              <div class="ps-benefit-pill">
+                <span class="ps-benefit-title">{b.title}</span>
+                <span class="ps-benefit-body">{b.body}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {veneers && veneers.length > 0 && (
+          <div class="ps-veneer-strip">
+            <div class="ps-vs-pill">
+              <span class="ps-vs-stat">No Aggregate</span>
+              <span class="ps-vs-desc">100% natural stone, as formed by nature</span>
+            </div>
+            <div class="ps-vs-pill">
+              <span class="ps-vs-stat">No Footing</span>
+              <span class="ps-vs-desc">Thin veneers install over existing masonry</span>
+            </div>
+            <div class="ps-vs-pill">
+              <span class="ps-vs-stat">50% Faster</span>
+              <span class="ps-vs-desc">Masons install thin veneer 50% faster than full bed</span>
+            </div>
+          </div>
+        )}
+
+        <a
+          href={`/contact?product=${id}`}
+          class="btn btn-outlined-dark btn-magnetic ps-cta"
+        >
+          Request a Quote for {title} →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Veneer type cards — veneers section only -->
+    {veneers && veneers.length > 0 && (
+      <div class="ps-veneer-cards">
+        <p class="ps-veneer-cards-heading">Five Veneer Systems — Complete Specifications</p>
+        <div class="ps-veneer-cards-grid">
+          {veneers.map((v) => (
+            <article class="pvc reveal">
+              <div class="pvc-image">
+                <img
+                  src={v.imageSrc}
+                  alt={`${v.title} ${v.type} Indiana Limestone veneer — Tulip Precast`}
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                  style={`object-position: ${v.imagePosition}`}
+                />
+              </div>
+              <div class="pvc-body">
+                <div class="pvc-header">
+                  <span class="pvc-type">{v.type}</span>
+                  <span class="pvc-bed">{v.bed}</span>
+                </div>
+                <h3 class="pvc-title">{v.title}</h3>
+                <p class="pvc-desc">{v.description}</p>
+                <table class="ps-specs-table">
+                  <tbody>
+                    {v.specs.map(([k, val]) => (
+                      <tr>
+                        <td class="ps-spec-key">{k}</td>
+                        <td class="ps-spec-value">{val}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <a href="/contact?product=veneer" class="btn btn-ghost">
+                  Request a Quote →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="ps-veneer-cta">
+          <a href="/contact?product=veneer" class="btn btn-outlined-dark btn-magnetic">
+            Request a Quote for Veneers
+          </a>
+        </div>
+      </div>
+    )}
+
+  </div>
+</section>
+
+<style>
+  /* ── Section wrapper ─────────────────────────────────────── */
+
+  .ps {
+    padding: var(--space-3xl) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-bg-num {
+    font-family: var(--font-serif);
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(200, 168, 130, 0.06);
+    position: absolute;
+    top: var(--space-xl);
+    right: var(--space-xl);
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .ps-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Two-column grid ─────────────────────────────────────── */
+
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
+    align-items: start;
+  }
+
+  .ps--flip .ps-media  { order: 2; }
+  .ps--flip .ps-content { order: 1; }
+
+  /* ── Media side ──────────────────────────────────────────── */
+
+  .ps-media {
+    position: sticky;
+    top: 140px;
+  }
+
+  .ps-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--cream-dark);
+    position: relative;
+  }
+
+  .ps-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms var(--ease-out);
+    display: block;
+  }
+
+  .ps:hover .ps-image img {
+    transform: scale(1.03);
+  }
+
+  .ps-image::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: var(--warm-sand);
+    transition: height 500ms ease;
+    z-index: 2;
+  }
+
+  .ps:hover .ps-image::after {
+    height: 100%;
+  }
+
+  /* ── Content side ────────────────────────────────────────── */
+
+  .ps-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .ps-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+  }
+
+  .ps-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .ps-rule {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--warm-sand);
+  }
+
+  .ps-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 55ch;
+  }
+
+  .ps-cta {
+    align-self: flex-start;
+    margin-top: var(--space-sm);
+  }
+
+  /* ── Callout box ─────────────────────────────────────────── */
+
+  .ps-callout {
+    padding: var(--space-lg);
+    background: var(--sand-pale);
+    border-left: 3px solid var(--warm-sand);
+  }
+
+  .ps-callout-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .ps-callout-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+  }
+
+  /* ── Variants accordion ──────────────────────────────────── */
+
+  .ps-variants-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: var(--space-sm);
+    max-width: none;
+  }
+
+  .ps-accordion {
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .psa-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .psa-item--plain {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .psa-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: var(--space-md);
+    color: inherit;
+  }
+
+  .psa-trigger:focus-visible {
+    outline: 2px solid var(--warm-sand);
+    outline-offset: 2px;
+  }
+
+  .psa-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-body);
+    font-weight: 400;
+    color: var(--stone-dark);
+    transition: color 200ms ease;
+  }
+
+  .psa-item--plain .psa-name {
+    color: var(--stone-light);
+    font-size: var(--text-small);
+  }
+
+  .psa-trigger:hover .psa-name,
+  .psa-trigger[aria-expanded="true"] .psa-name {
+    color: var(--warm-sand);
+  }
+
+  .psa-chevron {
+    flex-shrink: 0;
+    color: var(--stone-light);
+    transition: transform 350ms var(--ease-out), color 200ms ease;
+  }
+
+  .psa-trigger[aria-expanded="true"] .psa-chevron {
+    transform: rotate(180deg);
+    color: var(--warm-sand);
+  }
+
+  /* Panel height animated via JS */
+  .psa-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .psa-panel-inner {
+    padding-bottom: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .psa-img-wrap {
+    background: var(--sand-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .psa-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  .psa-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+  }
+
+  /* ── Specs table ─────────────────────────────────────────── */
+
+  .ps-specs-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .ps-specs-table tr {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .ps-specs-table tr:first-child {
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .ps-spec-key {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    padding: 8px 0;
+    width: 40%;
+    vertical-align: top;
+  }
+
+  .ps-spec-value {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: 8px 0;
+  }
+
+  /* ── Benefit pills ───────────────────────────────────────── */
+
+  .ps-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .ps-benefit-pill {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    border: 1px solid var(--cream-dark);
+    background: var(--white-warm);
+    gap: var(--space-xs);
+  }
+
+  .ps-benefit-title {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: 1.2;
+  }
+
+  .ps-benefit-body {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: 1.4;
+    max-width: none;
+  }
+
+  /* ── Veneer stats strip ──────────────────────────────────── */
+
+  .ps-veneer-strip {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .ps-vs-pill {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    border: 1px solid var(--cream-dark);
+    background: var(--white-warm);
+    gap: 4px;
+  }
+
+  .ps-vs-stat {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1.2;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .ps-vs-desc {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: 1.4;
+    max-width: none;
+  }
+
+  /* ── Veneer type cards ───────────────────────────────────── */
+
+  .ps-veneer-cards {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .ps-veneer-cards-heading {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: var(--space-xl);
+    max-width: none;
+    text-align: center;
+  }
+
+  .ps-veneer-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .pvc {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    transition: border-color 300ms ease, transform 300ms ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pvc:hover {
+    border-color: var(--sand-light);
+    transform: translateY(-2px);
+  }
+
+  .pvc-image {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+  }
+
+  .pvc-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms ease;
+    display: block;
+  }
+
+  .pvc:hover .pvc-image img {
+    transform: scale(1.04);
+  }
+
+  .pvc-body {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+  }
+
+  .pvc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pvc-type {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--sage-green);
+  }
+
+  .pvc-bed {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--stone-light);
+  }
+
+  .pvc-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .pvc-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+  }
+
+  .ps-veneer-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-md);
+  }
+
+  /* ── Reduced motion ──────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .psa-panel {
+      transition: none;
+    }
+    .psa-chevron {
+      transition: none;
+    }
+  }
+
+  /* ── Responsive ──────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .ps-media {
+      position: static;
+    }
+    .ps-veneer-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ps--flip .ps-media,
+    .ps--flip .ps-content {
+      order: unset;
+    }
+
+    .ps-body {
+      max-width: none;
+    }
+
+    .ps-benefits {
+      grid-template-columns: 1fr;
+    }
+
+    .ps-veneer-strip {
+      flex-direction: column;
+    }
+
+    .ps-veneer-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-accordion]').forEach((accordion) => {
+    const triggers = Array.from(accordion.querySelectorAll<HTMLButtonElement>('.psa-trigger'));
+    const panels   = Array.from(accordion.querySelectorAll<HTMLElement>('.psa-panel'));
+
+    function closeAll() {
+      triggers.forEach((t, i) => {
+        t.setAttribute('aria-expanded', 'false');
+        if (panels[i]) {
+          panels[i].style.maxHeight = '0';
+          panels[i].setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
+
+    function open(index: number) {
+      closeAll();
+      const t = triggers[index];
+      const p = panels[index];
+      if (!t || !p) return;
+      t.setAttribute('aria-expanded', 'true');
+      p.setAttribute('aria-hidden', 'false');
+      p.style.maxHeight = p.scrollHeight + 'px';
+    }
+
+    triggers.forEach((trigger, i) => {
+      trigger.addEventListener('click', () => {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          closeAll();
+        } else {
+          open(i);
+        }
+      });
+
+      trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+        let target = -1;
+        switch (e.key) {
+          case 'ArrowDown': e.preventDefault(); target = (i + 1) % triggers.length; break;
+          case 'ArrowUp':   e.preventDefault(); target = (i - 1 + triggers.length) % triggers.length; break;
+          case 'Home':      e.preventDefault(); target = 0; break;
+          case 'End':       e.preventDefault(); target = triggers.length - 1; break;
+        }
+        if (target >= 0) triggers[target].focus();
+      });
+    });
+  });
+</script>

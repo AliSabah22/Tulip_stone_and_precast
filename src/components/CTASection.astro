@@ -1,0 +1,76 @@
+---
+export interface Props {
+  headline: string;
+  subheading?: string;
+  buttonText: string;
+  buttonHref: string;
+  background?: 'sage' | 'sand' | 'dark';
+}
+
+const {
+  headline,
+  subheading,
+  buttonText,
+  buttonHref,
+  background = 'sage',
+} = Astro.props;
+
+const bgMap = {
+  sage: { bg: 'var(--sage-green)',    text: 'var(--white-warm)', btn: 'btn-sage' },
+  sand: { bg: 'var(--warm-sand)',     text: 'var(--quarry-stone)', btn: 'btn-secondary' },
+  dark: { bg: 'var(--quarry-stone)', text: 'var(--white-warm)', btn: 'btn-outlined' },
+};
+
+const theme = bgMap[background];
+---
+
+<section
+  class="cta-section reveal"
+  style={`background: ${theme.bg}; color: ${theme.text}`}
+  aria-label="Call to action"
+>
+  <div class="cta-section-inner">
+    <h2 class="cta-headline">{headline}</h2>
+    {subheading && <p class="cta-subheading">{subheading}</p>}
+    <a href={buttonHref} class={`btn btn-magnetic ${theme.btn}`}>
+      {buttonText}
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .cta-section-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .cta-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    color: inherit;
+  }
+
+  .cta-subheading {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    line-height: var(--lh-body);
+    color: inherit;
+    opacity: 0.85;
+    max-width: 52ch;
+    text-align: center;
+  }
+</style>

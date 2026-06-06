@@ -1,0 +1,1025 @@
+---
+interface ProjectImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  position?: string;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  style: string;
+  location: string;
+  year: string;
+  categories: string[];
+  heroImage: ProjectImage;
+  images: ProjectImage[];
+  materials: string[];
+  description: string;
+  featured?: boolean;
+}
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<!-- Project data for JS (not rendered) -->
+<script
+  id="pv-data"
+  type="application/json"
+  set:html={JSON.stringify(projects)}
+></script>
+
+<div
+  id="project-viewer"
+  class="pv"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Project detail"
+  aria-hidden="true"
+  hidden
+>
+
+  <!-- Backdrop -->
+  <div
+    class="pv-backdrop"
+    id="pv-backdrop"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Slide-in panel -->
+  <div class="pv-panel" id="pv-panel">
+
+    <!-- ── Header ────────────────────────────────────────────── -->
+    <div class="pv-header">
+
+      <div class="pv-header-left">
+        <span class="pv-header-eyebrow">Project Detail</span>
+        <span
+          class="pv-counter"
+          id="pv-counter"
+          aria-live="polite"
+          aria-atomic="true"
+        ></span>
+      </div>
+
+      <div class="pv-header-right">
+
+        <button
+          class="pv-icon-btn"
+          id="pv-prev"
+          aria-label="Previous project"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16"
+               fill="none" aria-hidden="true">
+            <path d="M10 3L5 8l5 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button
+          class="pv-icon-btn"
+          id="pv-next"
+          aria-label="Next project"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16"
+               fill="none" aria-hidden="true">
+            <path d="M6 3l5 5-5 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button
+          class="pv-icon-btn pv-close"
+          id="pv-close"
+          aria-label="Close project detail"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16"
+               fill="none" aria-hidden="true">
+            <path d="M3 3l10 10M13 3L3 13"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ── Body ──────────────────────────────────────────────── -->
+    <div class="pv-body">
+
+      <!-- Left: Gallery -->
+      <div class="pv-gallery">
+
+        <!-- Primary image -->
+        <div class="pv-primary-wrap">
+          <img
+            id="pv-primary-img"
+            class="pv-primary-img"
+            src=""
+            alt=""
+            width="1200"
+            height="900"
+          />
+          <span
+            class="pv-img-caption"
+            id="pv-img-caption"
+            aria-hidden="true"
+          ></span>
+        </div>
+
+        <!-- Thumbnail strip -->
+        <div
+          class="pv-thumbs"
+          id="pv-thumbs"
+          role="list"
+          aria-label="Project photos"
+        >
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+
+      <!-- Right: Info -->
+      <div class="pv-info" id="pv-info">
+        <div class="pv-info-scroll">
+
+          <!-- Style + Year -->
+          <div class="pv-meta-row">
+            <span class="pv-style" id="pv-style"></span>
+            <span class="pv-year-pill" id="pv-year"></span>
+          </div>
+
+          <!-- Title -->
+          <h2 class="pv-title" id="pv-title"></h2>
+
+          <!-- Location -->
+          <div class="pv-location-row">
+            <svg width="12" height="14" viewBox="0 0 12 14"
+                 fill="none" aria-hidden="true">
+              <path
+                d="M6 1a4 4 0 0 1 4 4c0 3-4 8-4 8S2 8 2 5a4 4 0 0 1 4-4z"
+                stroke="var(--warm-sand, #C8A882)"
+                stroke-width="1"
+                fill="none"
+              />
+              <circle
+                cx="6" cy="5" r="1.5"
+                fill="var(--warm-sand, #C8A882)"
+              />
+            </svg>
+            <span
+              class="pv-location"
+              id="pv-location"
+            ></span>
+          </div>
+
+          <!-- Divider rule -->
+          <span
+            class="pv-rule"
+            aria-hidden="true"
+          ></span>
+
+          <!-- Description -->
+          <p
+            class="pv-description"
+            id="pv-description"
+          ></p>
+
+          <!-- Materials -->
+          <div class="pv-materials-block">
+            <span class="pv-materials-heading">
+              Materials Used
+            </span>
+            <ul
+              class="pv-materials-list"
+              id="pv-materials-list"
+              role="list"
+            >
+              <!-- Populated by JS -->
+            </ul>
+          </div>
+
+          <!-- Primary CTA -->
+          <a
+            href="/contact"
+            class="btn btn-primary pv-cta"
+          >
+            Start a Similar Project →
+          </a>
+
+          <!-- Secondary CTA -->
+          <a
+            href="/contact"
+            class="pv-secondary-link"
+          >
+            Request project information
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style is:global>
+
+  /* ── Viewer root ────────────────────────────────────────────── */
+
+  .pv {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+
+  .pv[aria-hidden="false"] {
+    pointer-events: all;
+  }
+
+  /* ── Backdrop ───────────────────────────────────────────────── */
+
+  .pv-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 16, 0);
+    cursor: pointer;
+    transition: background 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pv.is-open .pv-backdrop {
+    background: rgba(20, 18, 16, 0.72);
+  }
+
+  /* ── Panel ──────────────────────────────────────────────────── */
+
+  .pv-panel {
+    position: relative;
+    z-index: 1;
+    width: min(1040px, 92vw);
+    height: 100dvh;
+    background: var(--limestone-cream, #FAF6EF);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(102%);
+    transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .pv.is-open .pv-panel {
+    transform: translateX(0);
+  }
+
+  /* ── Header ─────────────────────────────────────────────────── */
+
+  .pv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--cream-dark, #F0E8D8);
+    background: var(--white-warm, #FDFAF6);
+    flex-shrink: 0;
+    gap: 16px;
+  }
+
+  .pv-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .pv-header-eyebrow {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-light, #9C8880);
+    white-space: nowrap;
+  }
+
+  .pv-counter {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--stone-lighter, #C4B8B0);
+    letter-spacing: 0.05em;
+  }
+
+  .pv-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .pv-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--cream-dark, #F0E8D8);
+    cursor: pointer;
+    color: var(--stone-mid, #6B5E56);
+    transition:
+      border-color 200ms ease,
+      color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .pv-icon-btn:hover {
+    border-color: var(--warm-sand, #C8A882);
+    color: var(--stone-dark, #3D3530);
+    background: var(--sand-pale, #F5EDE0);
+  }
+
+  .pv-icon-btn:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .pv-icon-btn:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: 2px;
+  }
+
+  /* ── Body grid ──────────────────────────────────────────────── */
+
+  .pv-body {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Gallery ────────────────────────────────────────────────── */
+
+  .pv-gallery {
+    display: flex;
+    flex-direction: column;
+    background: var(--quarry-stone, #3D3530);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .pv-primary-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .pv-primary-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 320ms ease;
+    will-change: opacity;
+  }
+
+  .pv-primary-img.is-fading {
+    opacity: 0;
+  }
+
+  .pv-img-caption {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253, 250, 246, 0.6);
+    background: rgba(20, 18, 16, 0.52);
+    padding: 3px 8px;
+    pointer-events: none;
+  }
+
+  /* ── Thumbnail strip ────────────────────────────────────────── */
+
+  .pv-thumbs {
+    display: flex;
+    gap: 2px;
+    background: var(--quarry-dark, #1e1a17);
+    padding: 2px;
+    flex-shrink: 0;
+    min-height: 70px;
+    max-height: 70px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .pv-thumbs::-webkit-scrollbar { display: none; }
+
+  .pv-thumbs.pv-thumbs--solo {
+    display: none;
+  }
+
+  .pv-thumb {
+    flex-shrink: 0;
+    width: 96px;
+    height: 66px;
+    overflow: hidden;
+    cursor: pointer;
+    background: none;
+    border: 2px solid transparent;
+    padding: 0;
+    opacity: 0.5;
+    transition:
+      opacity 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .pv-thumb:hover {
+    opacity: 0.82;
+  }
+
+  .pv-thumb.is-active {
+    opacity: 1;
+    border-color: var(--warm-sand, #C8A882);
+  }
+
+  .pv-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .pv-thumb:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: 2px;
+  }
+
+  /* ── Info panel ─────────────────────────────────────────────── */
+
+  .pv-info {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sand-light, #E8D5BC) transparent;
+  }
+
+  .pv-info::-webkit-scrollbar { width: 3px; }
+  .pv-info::-webkit-scrollbar-thumb {
+    background: var(--sand-light, #E8D5BC);
+  }
+
+  .pv-info-scroll {
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pv-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .pv-style {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage-green, #7A9176);
+  }
+
+  .pv-year-pill {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--stone-light, #9C8880);
+    border: 1px solid var(--cream-dark, #F0E8D8);
+    padding: 3px 9px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .pv-title {
+    font-family: var(--font-serif, serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark, #3D3530);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .pv-location-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .pv-location {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--stone-mid, #6B5E56);
+  }
+
+  .pv-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light, #E8D5BC);
+    width: 44px;
+    margin: 4px 0;
+  }
+
+  .pv-description {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--stone-mid, #6B5E56);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  /* ── Materials ──────────────────────────────────────────────── */
+
+  .pv-materials-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pv-materials-heading {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-light, #9C8880);
+    display: block;
+  }
+
+  .pv-materials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--cream-dark, #F0E8D8);
+  }
+
+  .pv-material-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-dark, #F0E8D8);
+    font-family: var(--font-serif, serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--stone-dark, #3D3530);
+    line-height: 1.2;
+  }
+
+  .pv-material-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--warm-sand, #C8A882);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── CTAs ───────────────────────────────────────────────────── */
+
+  .pv-cta {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    text-decoration: none;
+  }
+
+  .pv-secondary-link {
+    display: block;
+    text-align: center;
+    font-family: var(--font-sans, sans-serif);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone-light, #9C8880);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sand-light, #E8D5BC);
+    padding-bottom: 2px;
+    width: fit-content;
+    margin: 0 auto;
+    transition:
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .pv-secondary-link:hover {
+    color: var(--warm-sand, #C8A882);
+    border-color: var(--warm-sand, #C8A882);
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────────── */
+
+  @media (max-width: 768px) {
+    .pv {
+      align-items: flex-end;
+      justify-content: stretch;
+    }
+
+    .pv-panel {
+      width: 100%;
+      height: 94dvh;
+      transform: translateY(104%);
+      border-radius: 0;
+    }
+
+    .pv.is-open .pv-panel {
+      transform: translateY(0);
+    }
+
+    .pv-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: 52vw 1fr;
+      overflow-y: auto;
+    }
+
+    .pv-gallery {
+      height: 52vw;
+      flex-shrink: 0;
+    }
+
+    .pv-info { overflow: visible; }
+
+    .pv-info-scroll {
+      padding: 24px 20px;
+      padding-bottom: calc(36px + env(safe-area-inset-bottom));
+    }
+
+    .pv-thumbs {
+      max-height: 58px;
+      min-height: 58px;
+    }
+
+    .pv-thumb {
+      width: 80px;
+      height: 54px;
+    }
+
+    .pv-header {
+      padding: 14px 20px;
+    }
+  }
+
+  /* ── Reduced motion ─────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .pv-panel { transition: none; }
+    .pv-backdrop { transition: none; }
+    .pv-primary-img { transition: none; }
+    .pv-thumb { transition: none; }
+  }
+
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Parse project data ──────────────────────────────────── */
+
+  const dataEl = document.getElementById('pv-data');
+  if (!dataEl) return;
+
+  let allProjects;
+  try {
+    allProjects = JSON.parse(dataEl.textContent || '[]');
+  } catch {
+    console.error('ProjectViewer: failed to parse project data');
+    return;
+  }
+
+  if (!allProjects.length) return;
+
+  /* ── DOM references ──────────────────────────────────────── */
+
+  const viewer      = document.getElementById('project-viewer');
+  const backdrop    = document.getElementById('pv-backdrop');
+  const panel       = document.getElementById('pv-panel');
+  const closeBtn    = document.getElementById('pv-close');
+  const prevBtn     = document.getElementById('pv-prev');
+  const nextBtn     = document.getElementById('pv-next');
+  const counterEl   = document.getElementById('pv-counter');
+  const primaryImg  = document.getElementById('pv-primary-img');
+  const captionEl   = document.getElementById('pv-img-caption');
+  const thumbsEl    = document.getElementById('pv-thumbs');
+  const styleEl     = document.getElementById('pv-style');
+  const yearEl      = document.getElementById('pv-year');
+  const titleEl     = document.getElementById('pv-title');
+  const locationEl  = document.getElementById('pv-location');
+  const descEl      = document.getElementById('pv-description');
+  const materialsEl = document.getElementById('pv-materials-list');
+  const infoEl      = document.getElementById('pv-info');
+
+  if (!viewer || !primaryImg || !thumbsEl) return;
+
+  /* ── State ───────────────────────────────────────────────── */
+
+  let visibleProjects  = [...allProjects];
+  let currentProjIdx   = 0;
+  let currentImgIdx    = 0;
+  let isOpen           = false;
+  let triggerEl        = null;
+
+  /* ── Open ────────────────────────────────────────────────── */
+
+  function openViewer(projectId, currentFilter) {
+    visibleProjects = currentFilter && currentFilter !== 'all'
+      ? allProjects.filter(p => p.categories.includes(currentFilter))
+      : [...allProjects];
+
+    const idx = visibleProjects.findIndex(p => p.id === projectId);
+    if (idx === -1) return;
+
+    currentProjIdx = idx;
+    currentImgIdx  = 0;
+
+    viewer.removeAttribute('hidden');
+    void viewer.getBoundingClientRect();
+
+    viewer.setAttribute('aria-hidden', 'false');
+    viewer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    isOpen = true;
+
+    renderProject();
+
+    setTimeout(() => closeBtn && closeBtn.focus(), 80);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('project', projectId);
+    history.replaceState({}, '', url.toString());
+  }
+
+  /* ── Close ───────────────────────────────────────────────── */
+
+  function closeViewer() {
+    viewer.classList.remove('is-open');
+    viewer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    isOpen = false;
+
+    const onEnd = () => {
+      viewer.setAttribute('hidden', '');
+      viewer.removeEventListener('transitionend', onEnd);
+    };
+    viewer.addEventListener('transitionend', onEnd);
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete('project');
+    history.replaceState({}, '', url.toString());
+
+    if (triggerEl) triggerEl.focus();
+    triggerEl = null;
+  }
+
+  /* ── Render project ──────────────────────────────────────── */
+
+  function renderProject() {
+    const project = visibleProjects[currentProjIdx];
+    if (!project) return;
+
+    if (counterEl) {
+      counterEl.textContent = `${currentProjIdx + 1} / ${visibleProjects.length}`;
+    }
+
+    if (prevBtn) prevBtn.disabled = currentProjIdx === 0;
+    if (nextBtn) nextBtn.disabled = currentProjIdx === visibleProjects.length - 1;
+
+    if (styleEl)    styleEl.textContent    = project.style;
+    if (yearEl)     yearEl.textContent     = project.year;
+    if (titleEl)    titleEl.textContent    = project.title;
+    if (locationEl) locationEl.textContent = project.location;
+    if (descEl)     descEl.textContent     = project.description;
+
+    if (materialsEl) {
+      materialsEl.innerHTML = '';
+      project.materials.forEach(mat => {
+        const li = document.createElement('li');
+        li.className = 'pv-material-item';
+        li.textContent = mat;
+        materialsEl.appendChild(li);
+      });
+    }
+
+    if (infoEl) infoEl.scrollTop = 0;
+
+    setImage(0, true);
+    buildThumbs(project);
+  }
+
+  /* ── Set primary image ───────────────────────────────────── */
+
+  function setImage(imgIdx, instant) {
+    const project = visibleProjects[currentProjIdx];
+    if (!project) return;
+
+    const imgData = project.images[imgIdx];
+    if (!imgData) return;
+
+    currentImgIdx = imgIdx;
+
+    if (instant) {
+      primaryImg.src   = imgData.src;
+      primaryImg.alt   = imgData.alt;
+      primaryImg.style.objectPosition = imgData.position ?? 'center center';
+      if (captionEl) captionEl.textContent = imgData.caption ?? '';
+    } else {
+      primaryImg.classList.add('is-fading');
+      setTimeout(() => {
+        primaryImg.src   = imgData.src;
+        primaryImg.alt   = imgData.alt;
+        primaryImg.style.objectPosition = imgData.position ?? 'center center';
+        if (captionEl) captionEl.textContent = imgData.caption ?? '';
+        primaryImg.classList.remove('is-fading');
+      }, 160);
+    }
+
+    thumbsEl.querySelectorAll('.pv-thumb').forEach((t, i) => {
+      const active = i === imgIdx;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    const activeThumb = thumbsEl.querySelector('.pv-thumb.is-active');
+    if (activeThumb) {
+      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
+  /* ── Build thumbnail strip ───────────────────────────────── */
+
+  function buildThumbs(project) {
+    thumbsEl.innerHTML = '';
+
+    if (project.images.length <= 1) {
+      thumbsEl.classList.add('pv-thumbs--solo');
+      return;
+    }
+
+    thumbsEl.classList.remove('pv-thumbs--solo');
+
+    project.images.forEach((img, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pv-thumb' + (i === 0 ? ' is-active' : '');
+      btn.setAttribute('role', 'listitem');
+      btn.setAttribute('aria-label', img.caption ?? `Photo ${i + 1}`);
+      btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+
+      const image = document.createElement('img');
+      image.src   = img.src;
+      image.alt   = '';
+      image.setAttribute('aria-hidden', 'true');
+      image.width  = 96;
+      image.height = 66;
+      image.loading = 'lazy';
+      image.style.objectPosition = img.position ?? 'center center';
+
+      btn.appendChild(image);
+      btn.addEventListener('click', () => setImage(i, false));
+      thumbsEl.appendChild(btn);
+    });
+  }
+
+  /* ── Project navigation ──────────────────────────────────── */
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= visibleProjects.length) return;
+    currentProjIdx = idx;
+    currentImgIdx  = 0;
+    renderProject();
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('project', visibleProjects[idx].id);
+    history.replaceState({}, '', url.toString());
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(currentProjIdx - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(currentProjIdx + 1));
+
+  /* ── Close triggers ──────────────────────────────────────── */
+
+  if (closeBtn) closeBtn.addEventListener('click', closeViewer);
+  if (backdrop) backdrop.addEventListener('click', closeViewer);
+
+  /* ── Keyboard ────────────────────────────────────────────── */
+
+  document.addEventListener('keydown', e => {
+    if (!isOpen) return;
+    const project = visibleProjects[currentProjIdx];
+
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        closeViewer();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        goTo(currentProjIdx - 1);
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        goTo(currentProjIdx + 1);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (currentImgIdx > 0) setImage(currentImgIdx - 1, false);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        if (project && currentImgIdx < project.images.length - 1) {
+          setImage(currentImgIdx + 1, false);
+        }
+        break;
+    }
+  });
+
+  /* ── Focus trap ──────────────────────────────────────────── */
+
+  if (panel) {
+    panel.addEventListener('keydown', e => {
+      if (e.key !== 'Tab' || !isOpen) return;
+      const focusable = Array.from(
+        panel.querySelectorAll(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  /* ── Card click delegation ───────────────────────────────── */
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-open-project]');
+    if (!btn) return;
+
+    triggerEl = btn;
+    const projectId = btn.dataset.openProject;
+
+    const activeFilterBtn = document.querySelector('.portfolio-filter-btn.is-active');
+    const activeFilter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+
+    openViewer(projectId, activeFilter || 'all');
+  });
+
+  /* ── Deep-link on page load ──────────────────────────────── */
+
+  const urlProject = new URLSearchParams(window.location.search).get('project');
+  if (urlProject) {
+    const exists = allProjects.some(p => p.id === urlProject);
+    if (exists) {
+      setTimeout(() => openViewer(urlProject, 'all'), 700);
+    }
+  }
+
+})();
+</script>

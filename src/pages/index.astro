@@ -1,0 +1,1430 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TrustBar from '../components/TrustBar.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProductCard from '../components/ProductCard.astro';
+import PortfolioItem from '../components/PortfolioItem.astro';
+import CTASection from '../components/CTASection.astro';
+
+const processSteps = [
+  {
+    num: '01',
+    title: 'Contact',
+    body: 'Email office@tulipprecast.com or call 647-534-7755 to discuss your project.',
+  },
+  {
+    num: '02',
+    title: 'Estimate',
+    body: 'Submit project details to our estimator for accurate pricing.',
+  },
+  {
+    num: '03',
+    title: 'Shop Drawings',
+    body: 'Our drafting team collaborates with your architect or contractor on every detail.',
+  },
+  {
+    num: '04',
+    title: 'Approval',
+    body: 'Drawings forwarded for approval. Phone confirmation required on return.',
+  },
+  {
+    num: '05',
+    title: 'Fabrication',
+    body: 'Upon signed proposal and deposit, your project enters our schedule.',
+  },
+  {
+    num: '06',
+    title: 'Delivery',
+    body: 'Custom limestone or precast elements delivered to site, ready for installation.',
+  },
+];
+---
+
+<BaseLayout
+  title="Tulip Limestone · Precast | Indiana Limestone Fabrication | Brampton, ON"
+  description="Premium Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across the Greater Toronto Area. Ontario Made certified. Brampton, ON."
+  pageClass="page-home"
+  loadParticles={true}
+>
+
+  <!-- Section 01: Hero -->
+  <Hero
+    size="full"
+    videoSrc="/video/Stone%20video.mp4"
+    posterSrc="/pictures/hero%20image.jpg"
+    imageAlt="Indiana limestone estate with Corinthian columns and balustrades, Greater Toronto Area"
+    eyebrow="ONTARIO MADE · LIMESTONE & PRECAST · BRAMPTON, ON"
+    headline="Crafted by Nature."
+    headlineItalic="Perfected by Design."
+    subheading="Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across the Greater Toronto Area."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact"
+    secondaryCTA="VIEW OUR WORK"
+    secondaryCTAHref="/portfolio"
+    accentCount="500+"
+    accentLabel="PROJECTS"
+  />
+
+  <!-- Section 02: Trust Bar -->
+  <TrustBar />
+
+  <!-- Section 03: Brand Statement -->
+  <section class="section-statement" aria-label="Indiana Limestone heritage">
+    <div class="section-container">
+      <div class="section-statement__inner">
+
+        <!-- Left: text -->
+        <div class="statement-text reveal">
+          <span class="label-section">Indiana Limestone · Natural Stone Fabrication</span>
+
+          <h2 class="statement-headline">
+            The same stone as the<br />
+            <em>Empire State Building.</em>
+          </h2>
+
+          <span class="statement-rule draw-line" aria-hidden="true"></span>
+
+          <p class="statement-body">
+            Indiana Limestone has been prized for over 150 years for its workability, durability, and capacity to hold crisp architectural detail. The same geological formation supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate. Now available for your project, fabricated right here in Ontario.
+          </p>
+
+          <div class="statement-pills" aria-label="Key facts">
+            <div class="statement-pill reveal reveal-delay-1">
+              <span class="statement-pill-stat">150+</span>
+              <span class="statement-pill-label">Years trusted</span>
+            </div>
+            <div class="statement-pill reveal reveal-delay-2">
+              <span class="statement-pill-stat">100%</span>
+              <span class="statement-pill-label">Natural stone</span>
+            </div>
+            <div class="statement-pill reveal reveal-delay-3">
+              <span class="statement-pill-stat">Ontario</span>
+              <span class="statement-pill-label">Made certified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: video with premium frame -->
+        <div class="statement-video-frame reveal reveal-delay-2">
+          <video
+            class="statement-video"
+            src="/video/detialed%20limesonte.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            aria-label="Indiana Limestone fabrication detail"
+          ></video>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 04: Category Grid -->
+  <section class="section section--light section-categories" aria-label="Product categories">
+    <div class="section-container">
+      <SectionHeader
+        label="Our Specialties"
+        title="Two Crafts."
+        titleItalic="One Standard."
+        subtitle="Indiana Limestone fabrication and concrete precast — each produced with the same commitment to precision, permanence, and considered design."
+      />
+
+      <div class="category-grid">
+        <a href="/limestone" class="category-tile reveal reveal-delay-1">
+          <span class="category-tile-label">Natural Stone</span>
+          <h3 class="category-tile-title">Limestone Products</h3>
+          <p class="category-tile-desc">Columns, balusters, veneers, pavers, carving, and more. Custom shop drawings for every specification.</p>
+          <span class="category-tile-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a href="/precast" class="category-tile reveal reveal-delay-2">
+          <span class="category-tile-label">Concrete</span>
+          <h3 class="category-tile-title">Precast Products</h3>
+          <p class="category-tile-desc">Residential, commercial, and industrial precast elements built precisely to specification.</p>
+          <span class="category-tile-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a href="/services" class="category-tile reveal reveal-delay-3">
+          <span class="category-tile-label">Full Service</span>
+          <h3 class="category-tile-title">Custom Services</h3>
+          <p class="category-tile-desc">GFRC panels, landscaping, fireplace design, 3D wall art, sculpturing, and complete design services.</p>
+          <span class="category-tile-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a href="/colours" class="category-tile reveal reveal-delay-4">
+          <span class="category-tile-label">Materials</span>
+          <h3 class="category-tile-title">Colours &amp; Finishes</h3>
+          <p class="category-tile-desc">Fifteen Indiana Limestone colours plus six veneer types. Request physical samples.</p>
+          <span class="category-tile-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GFRC Feature Strip -->
+  <div class="gfrc-feature-strip reveal">
+    <div class="gfrc-strip-inner">
+      <div class="gfrc-strip-text">
+        <span class="label-section" style="color: rgba(200,168,130,0.7);">Now Available</span>
+        <h3 class="gfrc-strip-title">Glass Fiber Reinforced Concrete</h3>
+        <p class="gfrc-strip-desc">Lightweight, high-strength GFRC panels for architectural facades, feature walls, fireplace surrounds, and custom sculptural elements. Up to 75% lighter than standard precast — with unlimited design flexibility.</p>
+      </div>
+      <a href="/gfrc" class="btn gfrc-strip-btn btn-magnetic">Explore GFRC →</a>
+    </div>
+  </div>
+
+  <!-- Section 05: Featured Products -->
+  <section class="section section--cream section-products" aria-label="Featured limestone products">
+    <div class="section-container">
+      <SectionHeader
+        label="Our Products"
+        title="Built for"
+        titleItalic="Permanence."
+        subtitle="Every piece fabricated to your exact specification. Standard profiles and fully custom work available."
+      />
+
+      <div class="product-grid">
+        <ProductCard
+          category="Limestone · Architectural"
+          title="Columns"
+          description="Handcrafted Indiana Limestone columns in Doric, Ionic, Corinthian, Tuscan, and Composite styles. Custom specifications for every project, crafted with great artistry and precision."
+          href="/limestone#columns"
+          imageSrc="/pictures/column.jpg"
+          imageAlt="Handcrafted Indiana limestone Corinthian columns, Tulip Limestone · Precast"
+          imagePosition="center 25%"
+        />
+
+        <ProductCard
+          category="Limestone · Architectural"
+          title="Balusters & Balustrades"
+          description="Solid limestone balusters for entryways, balconies, staircases, and pool areas. Visually consistent colour and form throughout your entire project."
+          href="/limestone#balusters-balustrades"
+          imageSrc="/pictures/lifestyle.jpg"
+          imageAlt="Indiana limestone balusters on residential balcony, Tulip Precast"
+          imagePosition="center 40%"
+        />
+
+        <ProductCard
+          category="Limestone · Cladding"
+          title="Veneers"
+          description="Thin and full bed depth Indiana Limestone veneers in smooth, split face, and tumbled finishes. No footing required for thin veneer — installs over existing masonry."
+          href="/limestone#veneers"
+          imageSrc="/pictures/stone%20texture.jpg"
+          imageAlt="Indiana limestone smooth thin veneer surface, Tulip Precast"
+          imagePosition="center 50%"
+        />
+
+        <ProductCard
+          category="Limestone · Hardscape"
+          title="Pavers"
+          description="Timeless beauty and exceptional durability for outdoor spaces. Low maintenance, long-lasting, available in a variety of colours, cuts, and textures."
+          href="/limestone#pavers"
+          imageSrc="/pictures/Residential.jpg"
+          imageAlt="Indiana limestone pavers on residential outdoor terrace, Tulip Precast"
+          imagePosition="center 50%"
+        />
+
+        <ProductCard
+          category="Limestone · Finishing"
+          title="Wall Caps"
+          description="An elegant finished look for any masonry wall. Cost-effective protection in six standard profiles — Classic, Rounded, Double Wash, Bull Nose, Vintage, and Natural Rockface."
+          href="/limestone#wall-caps"
+          imageSrc="/pictures/stone%20texture%202.jpg"
+          imageAlt="Indiana limestone wall caps on garden wall, Tulip Precast"
+          imagePosition="center 50%"
+        />
+
+        <ProductCard
+          category="Limestone · Artisan"
+          title="Carving"
+          description="Custom limestone carving expertise — from intricate architectural ornaments to full sculptural commissions. The stone that holds crisp detail better than any other."
+          href="/limestone#carving"
+          imageSrc="/pictures/masonry%20detail.jpg"
+          imageAlt="Artisan Indiana limestone carving detail, Tulip Limestone · Precast"
+          imagePosition="center 40%"
+        />
+      </div>
+
+      <div class="section-link-row reveal">
+        <a href="/limestone" class="btn btn-outlined-dark btn-magnetic">
+          View All Limestone Products →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 06: Why Tulip -->
+  <section class="section-why" aria-label="Why choose Tulip">
+    <div class="section-container">
+      <SectionHeader
+        label="Why Tulip"
+        title="Design-Led Stone Fabrication."
+        align="center"
+      />
+
+      <div class="why-grid">
+        <div class="why-card reveal reveal-delay-1">
+          <span class="why-number" aria-hidden="true">01</span>
+          <h3 class="why-title">Expertise</h3>
+          <span class="why-rule" aria-hidden="true"></span>
+          <p class="why-body">Indiana Limestone and Precast specialists with deep material knowledge. We work directly with architects, contractors, and homeowners to bring every specification to life exactly as envisioned.</p>
+        </div>
+
+        <div class="why-card reveal reveal-delay-2">
+          <span class="why-number" aria-hidden="true">02</span>
+          <h3 class="why-title">Process</h3>
+          <span class="why-rule" aria-hidden="true"></span>
+          <p class="why-body">Custom shop drawings and CNC precision. Our drafting team collaborates closely with your architect to address every detail — eliminating jobsite issues before fabrication begins.</p>
+        </div>
+
+        <div class="why-card reveal reveal-delay-3">
+          <span class="why-number" aria-hidden="true">03</span>
+          <h3 class="why-title">Result</h3>
+          <span class="why-rule" aria-hidden="true"></span>
+          <p class="why-body">Standard and fully custom solutions, trusted on luxury residences across the Greater Toronto Area. Ontario Made. Built to endure for generations — not just for today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 07: Portfolio Preview -->
+  <section class="section section--light section-portfolio" aria-label="Portfolio preview">
+    <div class="section-container">
+      <SectionHeader
+        label="Our Work"
+        title="Recent"
+        titleItalic="Projects."
+        subtitle="A selection of residential, commercial, and custom limestone and precast projects across the Greater Toronto Area."
+      />
+
+      <div class="portfolio-preview-grid">
+
+        <PortfolioItem
+          title="French Château Estate"
+          style="Beaux-Arts"
+          location="Greater Toronto Area, ON"
+          category="residential limestone"
+          imageSrc="/porfolio_directory/project_1/0e7b7d6c-dc6e-4ba3-b41e-692ea3a76fa4.jpg"
+          imageAlt="Grand Beaux-Arts limestone estate with mansard roof and columns"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Neoclassic Estate Entry"
+          style="Neoclassical"
+          location="Oakville, ON"
+          category="residential limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_5917.jpg"
+          imageAlt="Neoclassical limestone estate entrance with columns, Oakville Ontario"
+          imagePosition="center top"
+        />
+
+        <PortfolioItem
+          title="Garden Balustrade"
+          style="Classical"
+          location="Richmond Hill, ON"
+          category="residential limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_6493%20(2).jpg"
+          imageAlt="Indiana limestone garden balustrade on residential terrace"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Commercial Office Facade"
+          style="Contemporary"
+          location="Toronto, ON"
+          category="commercial limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_6535.jpg"
+          imageAlt="Contemporary limestone office building facade, Toronto"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Column Entrance"
+          style="Neoclassical"
+          location="Mississauga, ON"
+          category="residential limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_6545.jpg"
+          imageAlt="Indiana limestone column residential entrance, Mississauga"
+          imagePosition="center 30%"
+        />
+
+        <PortfolioItem
+          title="Carved Door Surround"
+          style="Artisan"
+          location="Brampton, ON"
+          category="residential limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_6560.jpg"
+          imageAlt="Carved Indiana limestone door surround, Brampton"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Pavers Terrace"
+          style="Contemporary"
+          location="Burlington, ON"
+          category="residential precast"
+          imageSrc="/pictures/portofolio%20images/IMG_6569.jpg"
+          imageAlt="Indiana limestone pavers on residential terrace, Burlington"
+          imagePosition="center bottom"
+        />
+
+        <PortfolioItem
+          title="Commercial Entry System"
+          style="Modern"
+          location="Toronto, ON"
+          category="commercial precast"
+          imageSrc="/pictures/portofolio%20images/IMG_6574.jpg"
+          imageAlt="Precast concrete commercial entry system, Toronto"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Artisan Stone Carving"
+          style="Artisan"
+          location="Oakville, ON"
+          category="residential limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_6606.jpg"
+          imageAlt="Artisan Indiana limestone carving detail, Oakville"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Stone Banding"
+          style="Contemporary"
+          location="Etobicoke, ON"
+          category="commercial limestone"
+          imageSrc="/pictures/portofolio%20images/IMG_6621.jpg"
+          imageAlt="Indiana limestone banding on commercial masonry, Etobicoke"
+          imagePosition="center center"
+        />
+
+        <PortfolioItem
+          title="Custom Sculpture"
+          style="Artisan"
+          location="Thornhill, ON"
+          category="residential custom"
+          imageSrc="/pictures/portofolio%20images/IMG_6654.jpg"
+          imageAlt="Custom limestone sculpture, residential garden, Thornhill"
+          imagePosition="center 40%"
+        />
+
+        <PortfolioItem
+          title="3D Wall Panel Feature"
+          style="Modern"
+          location="North York, ON"
+          category="residential custom"
+          imageSrc="/pictures/portofolio%20images/IMG_6660.jpg"
+          imageAlt="Handmade concrete 3D wall panel feature, North York"
+          imagePosition="center center"
+        />
+
+      </div>
+
+      <div class="section-link-row reveal">
+        <a href="/portfolio" class="btn btn-outlined-dark btn-magnetic">
+          View Full Portfolio →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 08: Brand Story -->
+  <section class="section-story" aria-label="Brand story">
+    <div class="story-container">
+      <div class="story-text reveal">
+        <span class="label-section">Our Craft</span>
+
+        <h2 class="story-headline">
+          Where stone meets<br />
+          <em>artisanship.</em>
+        </h2>
+
+        <span class="story-rule draw-line" aria-hidden="true"></span>
+
+        <p class="story-body">
+          Every piece we fabricate carries the weight of generations of stonemasonry tradition. Indiana Limestone, shaped by hand, finished with precision — the same natural stone used in the Empire State Building, the National Cathedral, and the Biltmore Estate. Now available for your home.
+        </p>
+
+        <p class="story-body">
+          Based in Brampton, Ontario, we fabricate limestone and precast elements for homeowners, architects, and contractors across the Greater Toronto Area. Every project is approached as if it will stand for generations — because it will.
+        </p>
+
+        <a href="/about" class="btn btn-outlined-dark btn-magnetic story-cta">
+          Our Story →
+        </a>
+      </div>
+
+      <div class="story-image reveal">
+        <video
+          class="story-img"
+          src="/video/drill%20carving.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-label="Artisan drilling detail into Indiana Limestone"
+        ></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 09: Testimonials -->
+  <section class="section section--light section-testimonials" aria-label="Client testimonials">
+    <div class="section-container">
+      <SectionHeader
+        label="Client Stories"
+        title="Built on Trust."
+        align="center"
+      />
+
+      <div class="testimonial-grid">
+        <article class="testimonial-card reveal reveal-delay-1">
+          <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="testimonial-quote">
+            The craftsmanship on our limestone columns exceeded every expectation. The team was meticulous with the shop drawings and kept us informed throughout fabrication. The finished result is exactly what we envisioned.
+          </blockquote>
+          <footer class="testimonial-footer">
+            <p class="testimonial-author">M. Stefanovic</p>
+            <p class="testimonial-location">Residential — Oakville, ON</p>
+          </footer>
+        </article>
+
+        <article class="testimonial-card reveal reveal-delay-2">
+          <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="testimonial-quote">
+            We have specified Tulip's limestone products on three projects now. Their ability to match existing stone and accommodate custom profiles is unmatched in the GTA. A reliable partner for any architect working with natural stone.
+          </blockquote>
+          <footer class="testimonial-footer">
+            <p class="testimonial-author">D. Marchetti, Architect</p>
+            <p class="testimonial-location">Commercial — Toronto, ON</p>
+          </footer>
+        </article>
+
+        <article class="testimonial-card reveal reveal-delay-3">
+          <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="testimonial-quote">
+            Our balustrades and paver terrace have transformed the property entirely. Visitors always ask who did the stonework. The quality of the material and the installation speaks for itself every single day.
+          </blockquote>
+          <footer class="testimonial-footer">
+            <p class="testimonial-author">J. Harrison</p>
+            <p class="testimonial-location">Residential — Richmond Hill, ON</p>
+          </footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Process Strip -->
+  <section class="section-process" aria-label="How it works">
+    <div class="section-container">
+      <SectionHeader
+        label="Our Process"
+        title="Six Steps to"
+        titleItalic="Your Stone."
+        subtitle="From first contact to final delivery — here is exactly what to expect."
+        align="center"
+      />
+
+      <div class="process-timeline">
+        <div class="process-connector" aria-hidden="true"></div>
+        {processSteps.map((step, i) => (
+          <div class="process-step reveal" style={`transition-delay: ${i * 80}ms`}>
+            <div class="process-circle" aria-hidden="true">
+              <span class="process-num">{step.num}</span>
+            </div>
+            <h3 class="process-title">{step.title}</h3>
+            <p class="process-body">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: Ontario Made Strip -->
+  <section class="section-ontario" aria-label="Ontario Made certification">
+    <div class="section-container">
+      <div class="ontario-inner">
+        <div class="ontario-badge" aria-label="Ontario Made certified">
+          <svg
+            width="88"
+            height="88"
+            viewBox="0 0 88 88"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle cx="44" cy="44" r="42" stroke="var(--warm-sand)" stroke-width="1"/>
+            <circle cx="44" cy="44" r="36" stroke="var(--warm-sand)" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text
+              x="44" y="30"
+              font-family="Jost, sans-serif"
+              font-size="7"
+              font-weight="400"
+              letter-spacing="2"
+              fill="var(--warm-sand)"
+              text-anchor="middle"
+            >ONTARIO</text>
+            <path
+              d="M24 42 C24 37 29 32 36 32 C38 32 39 33 40 34 C38 36 37 38 37 40 C37 45 39 50 44 53 C49 50 51 45 51 40 C51 38 50 36 48 34 C49 33 50 32 52 32 C59 32 64 37 64 42 C64 51 56 60 44 65 C32 60 24 51 24 42Z"
+              fill="var(--warm-sand)"
+              opacity="0.85"
+            />
+            <text
+              x="44" y="76"
+              font-family="Jost, sans-serif"
+              font-size="6"
+              font-weight="400"
+              letter-spacing="2"
+              fill="var(--warm-sand)"
+              text-anchor="middle"
+            >MADE</text>
+          </svg>
+        </div>
+
+        <div class="ontario-text reveal">
+          <span class="label-section">Ontario Made Certified</span>
+          <h2 class="ontario-headline">Fabricated Locally. Built to Last.</h2>
+          <p class="ontario-body">
+            Every product is fabricated right here in Ontario. Choosing Tulip means investing in local craftsmanship, local jobs, and a supply chain you can trust from raw material to finished stone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 12: CTA Band -->
+  <CTASection
+    headline="Ready to start your project?"
+    subheading="Send us your drawings, concepts, or inspiration. Our team will guide you from design to delivery."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+  /* ── Shared ──────────────────────────────────────────────── */
+
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .section--light { background: var(--limestone-cream); }
+  .section--cream { background: var(--cream-dark); }
+
+  .section-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-link-row {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Section 03: Brand Statement ────────────────────────── */
+
+  .section-statement {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+  }
+
+  .section-statement__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.75fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  /* Left column */
+  .statement-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .statement-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(26px, 2.8vw, 40px);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    margin: var(--space-sm) 0;
+    max-width: 20ch;
+  }
+
+  .statement-headline em {
+    font-style: italic;
+    color: var(--warm-sand);
+  }
+
+  .statement-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin: var(--space-md) 0;
+    transform-origin: left center;
+  }
+
+  .statement-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin-bottom: var(--space-lg);
+  }
+
+  .statement-pills {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .statement-pill {
+    flex: 1;
+    border: 1px solid var(--sand-light);
+    background: var(--white-warm);
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .statement-pill-stat {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .statement-pill-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    text-align: center;
+  }
+
+  /* Right column — premium video frame */
+  .statement-video-frame {
+    position: relative;
+    align-self: center;
+    width: 100%;
+    padding: 14px;
+    background: var(--sand-pale);
+    border: 1px solid var(--warm-sand);
+    box-shadow:
+      0 0 0 5px rgba(200, 168, 130, 0.08),
+      0 8px 32px rgba(61, 53, 48, 0.09),
+      0 28px 80px rgba(61, 53, 48, 0.14);
+  }
+
+  .statement-video-frame::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(200, 168, 130, 0.30);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .statement-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    outline: 1px solid rgba(200, 168, 130, 0.50);
+    outline-offset: -1px;
+  }
+
+  /* ── Section 04: Category Grid ──────────────────────────── */
+
+  .section-categories .section-container {
+    padding-top: 0;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+
+  .category-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    position: relative;
+    overflow: hidden;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+    text-decoration: none;
+  }
+
+  .category-tile::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--warm-sand);
+    transition: width var(--duration-slow) var(--ease-out);
+  }
+
+  /* Reset global ::after from cards.css */
+  .category-tile::after {
+    content: none;
+  }
+
+  .category-tile:hover {
+    border-color: var(--sand-light);
+    transform: translateY(-2px);
+  }
+
+  .category-tile:hover::before {
+    width: 100%;
+  }
+
+  .category-tile-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--sage-green);
+    max-width: none;
+  }
+
+  .category-tile-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .category-tile-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    flex: 1;
+    max-width: none;
+  }
+
+  .category-tile-arrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    color: var(--sand-light);
+    margin-top: var(--space-sm);
+    display: block;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .category-tile:hover .category-tile-arrow {
+    color: var(--warm-sand);
+    transform: translateX(4px);
+  }
+
+  /* ── Section 05: Product Grid ───────────────────────────── */
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  /* ── Section 06: Why Tulip ──────────────────────────────── */
+
+  .section-why {
+    background: var(--quarry-stone);
+    padding: var(--space-3xl) 0;
+  }
+
+  .section-why .section-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-why :global(.section-label) {
+    color: rgba(200, 168, 130, 0.7);
+  }
+
+  .section-why :global(.section-title) {
+    color: var(--white-warm);
+  }
+
+  .section-why :global(.section-rule) {
+    background: rgba(200, 168, 130, 0.3);
+  }
+
+  .section-why :global(.section-subtitle) {
+    color: var(--stone-light);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: var(--space-xl);
+  }
+
+  .why-card {
+    padding: var(--space-xl) var(--space-lg);
+    border-top: 1px solid rgba(200, 168, 130, 0.2);
+    position: relative;
+  }
+
+  .why-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--warm-sand);
+    transition: width 600ms var(--ease-out);
+  }
+
+  .why-card.is-visible::after {
+    width: 100%;
+  }
+
+  .why-number {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    color: rgba(200, 168, 130, 0.12);
+    line-height: 1;
+    display: block;
+    margin-bottom: var(--space-sm);
+    user-select: none;
+  }
+
+  .why-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .why-rule {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--warm-sand);
+    opacity: 0.5;
+    margin-bottom: var(--space-md);
+  }
+
+  .why-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+    max-width: none;
+  }
+
+  /* ── Section 07: Portfolio Preview ─────────────────────── */
+
+  .portfolio-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xl);
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Section 08: Brand Story ─────────────────────────────── */
+
+  .section-story {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+  }
+
+  .story-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .story-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .story-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .story-headline em {
+    font-style: italic;
+    color: var(--warm-sand);
+  }
+
+  .story-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    transform-origin: left center;
+  }
+
+  .story-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 55ch;
+  }
+
+  .story-cta {
+    margin-top: var(--space-sm);
+    align-self: flex-start;
+  }
+
+  .story-image {
+    position: relative;
+    padding: 14px;
+    background: var(--sand-pale);
+    border: 1px solid var(--warm-sand);
+    box-shadow:
+      0 0 0 5px rgba(200, 168, 130, 0.08),
+      0 8px 32px rgba(61, 53, 48, 0.09),
+      0 28px 80px rgba(61, 53, 48, 0.14);
+  }
+
+  .story-image::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(200, 168, 130, 0.30);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .story-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    outline: 1px solid rgba(200, 168, 130, 0.50);
+    outline-offset: -1px;
+  }
+
+  /* ── Section 09: Testimonials ───────────────────────────── */
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  .testimonial-card {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-xl) var(--space-lg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-mark {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--sand-light);
+    display: block;
+    margin-bottom: var(--space-sm);
+    user-select: none;
+  }
+
+  .testimonial-quote {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--stone-dark);
+    line-height: var(--lh-body);
+    margin-bottom: var(--space-lg);
+    flex: 1;
+    max-width: none;
+  }
+
+  .testimonial-footer {
+    margin-top: auto;
+  }
+
+  .testimonial-author {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    max-width: none;
+    margin-bottom: 2px;
+  }
+
+  .testimonial-location {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 300;
+    color: var(--stone-light);
+    max-width: none;
+  }
+
+  /* ── Section 10: Process Strip ──────────────────────────── */
+
+  .section-process {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+  }
+
+  .process-timeline {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    position: relative;
+    text-align: center;
+  }
+
+  .process-connector {
+    position: absolute;
+    top: 20px;
+    left: calc(100% / 12);
+    right: calc(100% / 12);
+    height: 1px;
+    background: var(--sand-light);
+    z-index: 0;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-circle {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--warm-sand);
+    background: var(--sand-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .process-num {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--warm-sand);
+    line-height: 1;
+  }
+
+  .process-title {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-dark);
+  }
+
+  .process-body {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+  }
+
+  /* ── Section 11: Ontario Made ───────────────────────────── */
+
+  .section-ontario {
+    background: var(--limestone-cream);
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+    padding: var(--space-xl) 0;
+  }
+
+  .ontario-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  .ontario-badge {
+    flex-shrink: 0;
+  }
+
+  .ontario-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .ontario-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 300;
+    color: var(--stone-dark);
+  }
+
+  .ontario-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 55ch;
+  }
+
+  /* ── GFRC Feature Strip ─────────────────────────────────── */
+
+  .gfrc-feature-strip {
+    background: var(--quarry-stone);
+    padding: var(--space-xl) 0;
+    margin-top: var(--space-md);
+  }
+
+  .gfrc-strip-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .gfrc-strip-text { flex: 1; min-width: 280px; }
+
+  .gfrc-strip-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 400;
+    color: var(--white-warm);
+    margin: var(--space-xs) 0 var(--space-sm);
+    line-height: var(--lh-heading);
+  }
+
+  .gfrc-strip-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+    max-width: 55ch;
+  }
+
+  .gfrc-strip-btn {
+    background: transparent;
+    border: 1px solid rgba(200, 168, 130, 0.45);
+    color: var(--sand-light);
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    padding: 14px 28px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      background var(--duration-base) var(--ease-out);
+  }
+
+  .gfrc-strip-btn:hover {
+    border-color: var(--warm-sand);
+    color: var(--warm-sand);
+    background: rgba(200, 168, 130, 0.08);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .section-statement__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .statement-pills {
+      flex-wrap: wrap;
+    }
+
+    .statement-pill {
+      flex: 1 1 calc(33% - var(--space-sm));
+    }
+
+    .category-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-card {
+      border-top: none;
+      border-bottom: 1px solid rgba(200, 168, 130, 0.15);
+    }
+
+    .why-card::after {
+      display: none;
+    }
+
+    .portfolio-preview-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .story-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .story-body {
+      max-width: none;
+    }
+
+    .story-image {
+      order: -1;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-timeline {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-connector {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ontario-inner {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-lg);
+    }
+
+    .ontario-body {
+      max-width: none;
+    }
+
+    .statement-pills {
+      gap: var(--space-sm);
+    }
+
+    .gfrc-strip-inner { flex-direction: column; align-items: flex-start; }
+    .gfrc-strip-btn { width: 100%; text-align: center; }
+  }
+
+  @media (max-width: 640px) {
+    .category-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-timeline {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .statement-pill {
+      min-width: 100px;
+      padding: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .portfolio-preview-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<!-- Website JSON-LD schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Tulip Limestone · Precast",
+  "url": "https://www.tulipprecast.com",
+  "description": "Indiana Limestone fabrication and concrete precast specialists serving the Greater Toronto Area.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.tulipprecast.com/portfolio?filter={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

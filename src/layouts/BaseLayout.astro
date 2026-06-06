@@ -1,0 +1,225 @@
+---
+import { SEO } from 'astro-seo';
+import LocalBusiness from '../components/schema/LocalBusiness.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SplashScreen from '../components/SplashScreen.astro';
+
+import '../styles/reset.css';
+import '../styles/tokens.css';
+import '../styles/typography.css';
+import '../styles/animations.css';
+import '../styles/components/nav.css';
+import '../styles/components/hero.css';
+import '../styles/components/cards.css';
+import '../styles/components/forms.css';
+import '../styles/components/buttons.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  pageClass?: string;
+  loadParticles?: boolean;
+  loadPortfolioFilter?: boolean;
+  loadColourSelector?: boolean;
+  loadFormValidation?: boolean;
+  solidNav?: boolean;
+  additionalSchema?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/images/og-default.jpg',
+  canonicalUrl,
+  pageClass = '',
+  loadParticles = false,
+  loadPortfolioFilter = false,
+  loadColourSelector = false,
+  loadFormValidation = false,
+  solidNav = false,
+  additionalSchema,
+} = Astro.props;
+
+const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site).href;
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Splash session guard — runs sync before paint to prevent flash on return visits -->
+    <script is:inline>
+      if (typeof sessionStorage !== 'undefined' &&
+          sessionStorage.getItem('tulip_splash_shown')) {
+        document.documentElement.classList.add('splash-was-shown');
+      }
+    </script>
+
+    <!-- Font preloads for splash screen letter reveal -->
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-latin-300-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jost-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      openGraph={{
+        basic: {
+          title: title,
+          type: 'website',
+          image: ogImageAbsolute,
+          url: canonical,
+        },
+        optional: {
+          description: description,
+          locale: 'en_CA',
+          siteName: 'Tulip Limestone · Precast',
+        },
+        image: {
+          alt: 'Tulip Limestone · Precast — Indiana Limestone Fabrication',
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        title: title,
+        description: description,
+        image: ogImageAbsolute,
+        imageAlt: 'Tulip Limestone · Precast',
+      }}
+      extend={{
+        link: [
+          { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+          { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+          { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        ],
+        meta: [
+          { name: 'theme-color', content: '#3D3530' },
+          { name: 'author', content: 'Tulip Limestone · Precast' },
+          { httpEquiv: 'content-language', content: 'en-CA' },
+          { name: 'geo.region', content: 'CA-ON' },
+          { name: 'geo.placename', content: 'Brampton, Ontario' },
+          { name: 'geo.position', content: '43.6853;-79.7624' },
+          { name: 'ICBM', content: '43.6853, -79.7624' },
+        ],
+      }}
+    />
+
+    <link rel="alternate" hreflang="en-CA" href={canonical} />
+
+    <!-- Grain overlay — inlined for zero layout shift -->
+    <style>
+      .grain-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        pointer-events: none;
+        opacity: 0.018;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 120px 120px;
+      }
+    </style>
+
+    <!-- Google Analytics 4 — loaded after first interaction -->
+    <script is:inline>
+      (function () {
+        function loadGA() {
+          if (window._gaLoaded) return;
+          window._gaLoaded = true;
+
+          const s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          document.head.appendChild(s);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+        }
+
+        ['mousedown', 'keydown', 'touchstart', 'scroll'].forEach((ev) => {
+          document.addEventListener(ev, loadGA, { once: true, passive: true });
+        });
+      })();
+    </script>
+
+    <LocalBusiness />
+
+    {additionalSchema && (
+      <script type="application/ld+json" set:html={additionalSchema} />
+    )}
+  </head>
+
+  <body class={pageClass}>
+    <SplashScreen />
+
+    <!-- Grain texture overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <Nav solidNav={solidNav} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Global scripts — bundled by Vite -->
+    <script>
+      import '../scripts/nav-scroll.js';
+    </script>
+    <script>
+      import '../scripts/gsap-init.js';
+    </script>
+    <script>
+      import '../scripts/count-up.js';
+    </script>
+
+    <!-- Conditional scripts — included only on pages that need them -->
+    {loadParticles && (
+      <script>
+        import '../scripts/particles-init.js';
+      </script>
+    )}
+    {loadPortfolioFilter && (
+      <script>
+        import '../scripts/portfolio-filter.js';
+      </script>
+    )}
+    {loadColourSelector && (
+      <script>
+        import '../scripts/colour-selector.js';
+      </script>
+    )}
+    {loadFormValidation && (
+      <script>
+        import '../scripts/form-validation.js';
+      </script>
+    )}
+  </body>
+</html>

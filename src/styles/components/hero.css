@@ -1,0 +1,272 @@
+/* ============================================================
+   HERO — full viewport, particles, text reveal, scroll indicator
+   ============================================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--quarry-dark);
+}
+
+/* ── Background layer ────────────────────────────────────── */
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Gradient placeholder */
+.hero-bg.grad-hero {
+  background: var(--grad-hero);
+}
+
+/* ── Overlay ─────────────────────────────────────────────── */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(30, 26, 23, 0.72) 0%,
+    rgba(61, 53, 48, 0.45) 60%,
+    rgba(30, 26, 23, 0.25) 100%
+  );
+}
+
+/* ── Particle canvas ─────────────────────────────────────── */
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Content ─────────────────────────────────────────────── */
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 120px var(--content-padding) var(--space-3xl);
+}
+
+/* ── Eyebrow ─────────────────────────────────────────────── */
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--warm-sand);
+  max-width: none;
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  animation: fadeIn var(--duration-base) var(--ease-out) 200ms both;
+}
+
+/* ── Headline ────────────────────────────────────────────── */
+
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--white-warm);
+  margin-bottom: var(--space-md);
+  max-width: 14ch;
+}
+
+.hero-italic {
+  font-style: italic;
+  color: var(--sand-light);
+}
+
+/* Word-split containers (set by JS) */
+.hero-headline .word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-right: 0.25em;
+}
+
+.hero-headline .word-inner {
+  display: inline-block;
+}
+
+/* ── Subheading ──────────────────────────────────────────── */
+
+.hero-sub {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 300;
+  line-height: var(--lh-body);
+  color: rgba(253, 250, 246, 0.75);
+  max-width: 52ch;
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  animation: fadeUp var(--duration-slow) var(--ease-out) 600ms both;
+}
+
+/* ── CTA buttons ─────────────────────────────────────────── */
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0;
+  animation: fadeUp var(--duration-slow) var(--ease-out) 800ms both;
+}
+
+/* ── Scroll indicator ────────────────────────────────────── */
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  opacity: 0;
+  animation: fadeIn var(--duration-slow) var(--ease-out) 1200ms both;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: var(--warm-sand);
+  animation: scrollBounce 2s var(--ease-in-out) infinite 1400ms;
+  transform-origin: top center;
+}
+
+.scroll-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: rgba(200, 168, 130, 0.6);
+}
+
+/* ── Right accent ────────────────────────────────────────── */
+
+.hero-right-accent {
+  position: absolute;
+  right: var(--content-padding);
+  bottom: var(--space-3xl);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  opacity: 0;
+  animation: fadeIn var(--duration-slow) var(--ease-out) 1000ms both;
+}
+
+.accent-line {
+  width: 40px;
+  height: 1px;
+  background: var(--warm-sand);
+  margin-bottom: var(--space-xs);
+  align-self: flex-end;
+}
+
+.accent-count {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 300;
+  color: var(--white-warm);
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+}
+
+.accent-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--warm-sand);
+}
+
+/* ── Short hero variant (inner pages, 50vh or 40vh) ──────── */
+
+.hero--short {
+  min-height: 50vh;
+}
+
+.hero--short .hero-content {
+  padding-top: 140px;
+  padding-bottom: var(--space-2xl);
+}
+
+.hero--short .hero-scroll-indicator,
+.hero--short .hero-right-accent {
+  display: none;
+}
+
+.hero--xs {
+  min-height: 40vh;
+}
+
+.hero--xs .hero-content {
+  padding-top: 130px;
+  padding-bottom: var(--space-xl);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding-top: 100px;
+    padding-bottom: var(--space-2xl);
+  }
+
+  .hero-headline {
+    max-width: 100%;
+  }
+
+  .hero-right-accent {
+    display: none;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero--short {
+    min-height: 45vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

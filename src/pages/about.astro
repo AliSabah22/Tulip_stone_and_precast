@@ -1,0 +1,605 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const pillars = [
+  {
+    num: '01',
+    title: 'Expertise',
+    body: 'Indiana Limestone and precast specialists with deep material knowledge accumulated over two decades. We understand how stone behaves across seasons and generations — and we design every piece with that permanence in mind.',
+  },
+  {
+    num: '02',
+    title: 'Process',
+    body: 'Custom shop drawings prepared by our drafting team, coordinated directly with your architect or contractor. Every specification confirmed before fabrication begins. No surprises on site.',
+  },
+  {
+    num: '03',
+    title: 'Result',
+    body: 'Standard profiles and fully custom solutions, trusted on luxury residences and commercial projects across the GTA. Work that stands long after the project closes — as it should.',
+  },
+];
+
+const processSteps = [
+  {
+    num: '01',
+    title: 'Contact',
+    body: 'Email us at office@tulipprecast.com or call 647-534-7755 with your project details and requirements.',
+  },
+  {
+    num: '02',
+    title: 'Estimate',
+    body: "Submit your project details to our estimating team. We'll prepare pricing based on your scope and specifications.",
+  },
+  {
+    num: '03',
+    title: 'Shop Drawings',
+    body: 'Our drafting team collaborates with your contractor or architect to address every specification. Full-size layouts reviewed as required.',
+  },
+  {
+    num: '04',
+    title: 'Approval',
+    body: 'Drawings are forwarded to the architect or responsible party for sign-off. Phone confirmation is required on return to proceed.',
+  },
+  {
+    num: '05',
+    title: 'Fabrication',
+    body: 'Upon receipt of a signed proposal and deposit, your project enters our fabrication schedule. Timeline confirmed at this stage.',
+  },
+  {
+    num: '06',
+    title: 'Delivery',
+    body: 'Your custom limestone or precast elements are delivered to site, ready for your contractor to install.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Tulip | Indiana Limestone Specialists | Brampton, ON"
+  description="Tulip Limestone · Precast — Ontario Made certified Indiana Limestone fabrication specialists. Our story, our process, and why designers and homeowners trust us."
+  pageClass="page-about"
+>
+
+  <Hero
+    eyebrow="ONTARIO MADE · BRAMPTON, ON · SINCE 2004"
+    headline="Our Story."
+    headlineItalic="Crafted in Ontario."
+    subheading="Two decades of Indiana Limestone fabrication and concrete precast — every piece made in Ontario, every specification met with precision."
+    primaryCTA="VIEW OUR PRODUCTS"
+    primaryCTAHref="/limestone"
+    secondaryCTA="REQUEST A QUOTE"
+    secondaryCTAHref="/contact"
+    size="short"
+    backgroundGradient="var(--grad-craft)"
+    imageSrc="/pictures/masonry%20detail.jpg"
+    imageAlt="Indiana Limestone masonry craftsmanship — Tulip Precast Brampton"
+  />
+
+  <!-- Section 1: Brand story -->
+  <section class="story-section">
+    <div class="container story-container">
+      <blockquote class="pull-quote reveal" cite="https://www.tulipprecast.com/about">
+        "Crafted by Nature. Perfected by Design."
+      </blockquote>
+
+      <div class="story-body reveal reveal-delay-2">
+        <p class="story-paragraph">
+          Tulip Limestone · Precast was built on one belief: that natural stone, properly crafted, outlasts everything else. Our Indiana Limestone comes from the same geological formation that supplied the stone for the Empire State Building, the National Cathedral, and the Biltmore Estate — one of the most trusted building materials in architectural history.
+        </p>
+        <p class="story-paragraph">
+          Based in Brampton, Ontario, we fabricate limestone and precast elements for homeowners, architects, and contractors across the Greater Toronto Area. Every piece is custom. Every specification is met with precision. And every project is approached as if it will stand for generations — because it will.
+        </p>
+      </div>
+
+      <div class="story-image reveal">
+        <video
+          class="story-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="/pictures/lifestyle.jpg"
+          aria-hidden="true"
+          preload="none"
+        >
+          <source src="/video/video.mp4" type="video/mp4" />
+        </video>
+        <img
+          class="story-video-poster"
+          src="/pictures/lifestyle.jpg"
+          alt="Indiana Limestone craftsmanship — Tulip Precast Brampton"
+          width="800"
+          height="1000"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Why Tulip -->
+  <section class="why-section">
+    <div class="container">
+      <SectionHeader
+        label="Why Tulip"
+        title="Design-Led Stone Fabrication."
+        align="center"
+      />
+
+      <div class="pillars-grid" data-stagger-group>
+        {pillars.map((p, i) => (
+          <div class={`pillar reveal reveal-delay-${i * 2}`} data-stagger-child>
+            <div class="pillar-number" aria-hidden="true">{p.num}</div>
+            <h3 class="pillar-title">{p.title}</h3>
+            <div class="pillar-rule" aria-hidden="true"></div>
+            <p class="pillar-body">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Ontario Made -->
+  <section class="ontario-section">
+    <div class="container ontario-container">
+      <div class="ontario-badge-wrap" aria-label="Ontario Made certified">
+        <svg width="120" height="48" viewBox="0 0 120 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0.5" y="0.5" width="119" height="47" stroke="#C8A882" stroke-width="1"/>
+          <text x="60" y="18" font-family="Jost, sans-serif" font-size="8" font-weight="400" fill="#C8A882" text-anchor="middle" letter-spacing="3">ONTARIO</text>
+          <text x="60" y="34" font-family="Jost, sans-serif" font-size="12" font-weight="400" fill="#C8A882" text-anchor="middle" letter-spacing="4">MADE</text>
+        </svg>
+      </div>
+      <div class="ontario-text reveal">
+        <p class="ontario-body">We are proud to fabricate every product right here in Ontario. Choosing Tulip means investing in local craftsmanship, local employment, and a supply chain you can trust. Every piece ships from our Brampton facility — no overseas sourcing, no third-party fabrication.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Process -->
+  <section id="process" class="process-section">
+    <div class="container">
+      <SectionHeader
+        label="Our Process"
+        title="From First Contact to"
+        titleItalic="Delivery."
+        subtitle="A clear six-step process that protects your timeline and ensures every specification is met before fabrication begins."
+      />
+
+      <div class="process-steps">
+        {processSteps.map((step, i) => (
+          <div class={`process-step reveal ${i % 2 === 1 ? 'reveal-delay-2' : ''}`}>
+            <div class="step-number">{step.num}</div>
+            <div class="step-content">
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-body">{step.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Masonry detail accent image -->
+  <div class="masonry-accent">
+    <img
+      src="/pictures/masonry%20detail.jpg"
+      alt="Indiana Limestone masonry detail — Tulip Precast craftsmanship"
+      width="1920"
+      height="600"
+      loading="lazy"
+      decoding="async"
+      class="masonry-accent-img"
+    />
+  </div>
+
+  <!-- Section 5: Specialty order requirements -->
+  <section id="ordering" class="ordering-section">
+    <div class="container">
+      <div class="ordering-card reveal">
+        <div class="ordering-card-inner">
+          <p class="ordering-label">Specialty Orders</p>
+          <h2 class="ordering-title">When ordering custom or replica pieces, please provide:</h2>
+          <div class="draw-line ordering-rule" aria-hidden="true"></div>
+          <ul class="ordering-list" role="list">
+            <li class="ordering-list-item">
+              <span class="ordering-mark" aria-hidden="true">—</span>
+              <span>Drawings and specifications for the piece</span>
+            </li>
+            <li class="ordering-list-item">
+              <span class="ordering-mark" aria-hidden="true">—</span>
+              <span>Full-size layouts, if available</span>
+            </li>
+            <li class="ordering-list-item">
+              <span class="ordering-mark" aria-hidden="true">—</span>
+              <span>For replicas: photographs and measurements of the existing piece</span>
+            </li>
+          </ul>
+          <a href="/contact" class="btn btn-primary btn-magnetic">
+            Start Your Order
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    background="sage"
+    headline="Ready to work with us?"
+    subheading="Send us your project details. Our team responds within one business day."
+    buttonText="REQUEST A QUOTE"
+    buttonHref="/contact"
+  />
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  /* ── Story section ─────────────────────────────────── */
+
+  .story-section {
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) 0;
+  }
+
+  .story-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .pull-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: var(--lh-heading);
+    color: var(--warm-sand);
+    letter-spacing: var(--ls-tight);
+    grid-column: 1;
+    grid-row: 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .story-body {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .story-paragraph {
+    font-size: var(--text-body);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 58ch;
+  }
+
+  .story-image {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+    aspect-ratio: 3 / 4;
+  }
+
+  .story-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .story-video,
+  .story-video-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .story-video {
+    z-index: 1;
+  }
+
+  .story-video-poster {
+    z-index: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-video {
+      display: none;
+    }
+    .story-video-poster {
+      z-index: 1;
+    }
+  }
+
+  /* ── Masonry accent ────────────────────────────────── */
+
+  .masonry-accent {
+    overflow: hidden;
+    max-height: 420px;
+  }
+
+  .masonry-accent-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+
+  /* ── Why Tulip section ─────────────────────────────── */
+
+  .why-section {
+    background: var(--quarry-stone);
+    padding: var(--space-2xl) 0;
+  }
+
+  .why-section :global(.section-label)   { color: var(--warm-sand); }
+  .why-section :global(.section-title)   { color: var(--white-warm); }
+  .why-section :global(.section-rule)    { background: var(--warm-sand); }
+  .why-section :global(.section-subtitle){ color: rgba(253,250,246,0.65); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .pillar {
+    border-top: 1px solid rgba(200, 168, 130, 0.3);
+    padding-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .pillar-number {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 300;
+    color: var(--warm-sand);
+    opacity: 0.5;
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+  }
+
+  .pillar-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--white-warm);
+  }
+
+  .pillar-rule {
+    width: 24px;
+    height: 1px;
+    background: var(--warm-sand);
+  }
+
+  .pillar-body {
+    font-size: var(--text-small);
+    line-height: var(--lh-body);
+    color: rgba(253, 250, 246, 0.65);
+    max-width: 100%;
+  }
+
+  /* ── Ontario Made section ──────────────────────────── */
+
+  .ontario-section {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .ontario-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  .ontario-badge-wrap {
+    flex-shrink: 0;
+  }
+
+  .ontario-text {
+    flex: 1;
+  }
+
+  .ontario-body {
+    font-size: var(--text-body);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 65ch;
+  }
+
+  /* ── Process section ───────────────────────────────── */
+
+  .process-section {
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) 0;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg) var(--space-xl);
+  }
+
+  .process-step {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .step-number {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+    flex-shrink: 0;
+    width: 40px;
+  }
+
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .step-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-dark);
+  }
+
+  .step-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 100%;
+  }
+
+  /* ── Ordering section ──────────────────────────────── */
+
+  .ordering-section {
+    background: var(--cream-dark);
+    padding: var(--space-2xl) 0;
+  }
+
+  .ordering-card {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ordering-card-inner {
+    background: var(--sand-pale);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .ordering-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    max-width: none;
+  }
+
+  .ordering-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    line-height: var(--lh-heading);
+    color: var(--stone-dark);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .ordering-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--warm-sand);
+  }
+
+  .ordering-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .ordering-list-item {
+    display: flex;
+    gap: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+  }
+
+  .ordering-mark {
+    color: var(--warm-sand);
+    flex-shrink: 0;
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .story-container {
+      grid-template-columns: 1fr;
+    }
+
+    .story-image {
+      grid-column: 1;
+      grid-row: auto;
+      position: static;
+    }
+
+    .story-placeholder {
+      aspect-ratio: 16 / 7;
+    }
+
+    .process-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ontario-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .process-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.tulipprecast.com/about" }
+  ]
+}
+</script>

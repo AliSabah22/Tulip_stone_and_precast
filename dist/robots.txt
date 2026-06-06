@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/build paths
+Disallow: /_astro/
+Disallow: /404.html
+
+Sitemap: https://www.tulipprecast.com/sitemap-index.xml

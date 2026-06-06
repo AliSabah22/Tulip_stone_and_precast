@@ -1,0 +1,233 @@
+---
+// Full Netlify-compatible quote request form
+---
+
+<div class="form-wrapper">
+  <!-- Success state (shown after valid submission) -->
+  <div class="form-success" role="alert" aria-live="polite" tabindex="-1">
+    <div class="form-success-check" aria-hidden="true">✓</div>
+    <h2 class="form-success-heading">Thank you.</h2>
+    <div class="form-success-rule" aria-hidden="true"></div>
+    <p class="form-success-body">
+      Your request has been received. We'll be in touch within one business day.
+    </p>
+  </div>
+
+  <!-- Quote form -->
+  <form
+    class="quote-form"
+    name="quote-request"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <!-- Netlify honeypot -->
+    <p aria-hidden="true" style="display:none">
+      <label>Don't fill this out: <input name="bot-field" /></label>
+    </p>
+    <input type="hidden" name="form-name" value="quote-request" />
+
+    <!-- Row 1: Name -->
+    <div class="form-row">
+      <div class="field-group">
+        <label class="field-label" for="first-name">
+          First Name<span class="required-mark" aria-hidden="true">*</span>
+        </label>
+        <input
+          class="field-input"
+          type="text"
+          id="first-name"
+          name="first-name"
+          autocomplete="given-name"
+          required
+          aria-required="true"
+        />
+        <span class="field-error" role="alert"></span>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="last-name">
+          Last Name<span class="required-mark" aria-hidden="true">*</span>
+        </label>
+        <input
+          class="field-input"
+          type="text"
+          id="last-name"
+          name="last-name"
+          autocomplete="family-name"
+          required
+          aria-required="true"
+        />
+        <span class="field-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Row 2: Email + Phone -->
+    <div class="form-row">
+      <div class="field-group">
+        <label class="field-label" for="email">
+          Email<span class="required-mark" aria-hidden="true">*</span>
+        </label>
+        <input
+          class="field-input"
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="email"
+          required
+          aria-required="true"
+        />
+        <span class="field-error" role="alert"></span>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="phone">
+          Phone<span class="required-mark" aria-hidden="true">*</span>
+        </label>
+        <input
+          class="field-input"
+          type="tel"
+          id="phone"
+          name="phone"
+          autocomplete="tel"
+          required
+          aria-required="true"
+        />
+        <span class="field-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Row 3: Company (optional) -->
+    <div class="form-row form-row--full">
+      <div class="field-group">
+        <label class="field-label" for="company">Company <span style="opacity:0.5;font-weight:300">(optional)</span></label>
+        <input
+          class="field-input"
+          type="text"
+          id="company"
+          name="company"
+          autocomplete="organization"
+        />
+      </div>
+    </div>
+
+    <!-- Row 4: Product interest -->
+    <div class="form-row form-row--full">
+      <div class="field-group">
+        <label class="field-label" for="product-interest">
+          Product Interest<span class="required-mark" aria-hidden="true">*</span>
+        </label>
+        <select
+          class="field-select"
+          id="product-interest"
+          name="product-interest"
+          required
+          aria-required="true"
+        >
+          <option value="" disabled selected>— Select a product type —</option>
+          <option value="indiana-limestone">Indiana Limestone Products</option>
+          <option value="precast">Concrete Precast</option>
+          <option value="landscaping">Landscaping Services</option>
+          <option value="3d-wall-art">3D Wall Art</option>
+          <option value="fireplace">Fireplace Design</option>
+          <option value="sculpturing">Sculpturing</option>
+          <option value="design-services">Design Services</option>
+          <option value="multiple">Multiple / Not Sure</option>
+        </select>
+        <span class="field-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Row 5: Project type -->
+    <div class="form-row form-row--full">
+      <div class="field-group">
+        <fieldset style="border:none;padding:0">
+          <legend class="field-label">
+            Project Type<span class="required-mark" aria-hidden="true">*</span>
+          </legend>
+          <div class="radio-group" role="group">
+            {['Residential', 'Commercial', 'Industrial', 'Other'].map((type) => (
+              <label class="radio-pill">
+                <input
+                  type="radio"
+                  name="project-type"
+                  value={type.toLowerCase()}
+                  required
+                />
+                <span class="radio-pill-label">{type}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <span class="field-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Row 6: Project description -->
+    <div class="form-row form-row--full">
+      <div class="field-group">
+        <label class="field-label" for="description">
+          Project Description<span class="required-mark" aria-hidden="true">*</span>
+        </label>
+        <textarea
+          class="field-textarea"
+          id="description"
+          name="description"
+          rows="5"
+          placeholder="Describe your project — dimensions, quantities, timeline, inspiration..."
+          required
+          aria-required="true"
+        ></textarea>
+        <span class="field-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Row 7: File upload -->
+    <div class="form-row form-row--full">
+      <div class="field-group">
+        <label class="field-label" for="drawings">
+          Upload Drawings <span style="opacity:0.5;font-weight:300">(optional)</span>
+        </label>
+        <div class="file-input-wrapper">
+          <svg class="file-input-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="file-input-label">Drop files here or click to browse</span>
+          <span class="file-input-accepted">Accepted: PDF, DWG, JPG, PNG</span>
+          <input
+            type="file"
+            id="drawings"
+            name="drawings"
+            accept=".pdf,.dwg,.jpg,.jpeg,.png"
+            multiple
+            aria-label="Upload drawings or images"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 8: Referral source -->
+    <div class="form-row form-row--full">
+      <div class="field-group">
+        <label class="field-label" for="referral">How did you hear about us?</label>
+        <select class="field-select" id="referral" name="referral">
+          <option value="" disabled selected>— Select —</option>
+          <option value="google">Google Search</option>
+          <option value="referral">Referral</option>
+          <option value="social">Social Media</option>
+          <option value="drive-by">Drive By</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="form-row form-row--full">
+      <button type="submit" class="btn btn-primary btn-full">
+        Submit Request
+      </button>
+    </div>
+
+    <p class="form-submit-note">We typically respond within 1 business day.</p>
+  </form>
+</div>

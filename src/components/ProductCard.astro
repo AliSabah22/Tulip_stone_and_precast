@@ -1,0 +1,56 @@
+---
+export interface Props {
+  category: string;
+  title: string;
+  description: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  href: string;
+  gradient?: string;
+  linkLabel?: string;
+  imagePosition?: string;
+}
+
+const {
+  category,
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  href,
+  gradient = 'var(--grad-limestone)',
+  linkLabel = 'View Details',
+  imagePosition = 'center center',
+} = Astro.props;
+---
+
+<article class="product-card reveal">
+  <div class="card-image">
+    {imageSrc
+      ? (
+        <img
+          src={imageSrc}
+          alt={imageAlt || `${title} — ${category}`}
+          width="600"
+          height="450"
+          loading="lazy"
+          decoding="async"
+          style={`object-position: ${imagePosition}`}
+        />
+      )
+      : (
+        <div class="card-placeholder" style={`background: ${gradient}`} aria-hidden="true">
+          <span class="placeholder-label">[ Photography ]</span>
+        </div>
+      )
+    }
+  </div>
+  <div class="card-body">
+    <p class="card-category">{category}</p>
+    <h3 class="card-title">{title}</h3>
+    <p class="card-description">{description}</p>
+    <a href={href} class="card-link" aria-label={`${linkLabel} — ${title}`}>
+      {linkLabel} →
+    </a>
+  </div>
+</article>

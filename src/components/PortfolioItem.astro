@@ -1,0 +1,147 @@
+---
+export interface Props {
+  title: string;
+  style?: string;
+  location?: string;
+  category: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+  gradient?: string;
+}
+
+const {
+  title,
+  style,
+  location,
+  category,
+  imageSrc,
+  imageAlt,
+  imagePosition = 'center center',
+  gradient = 'var(--grad-limestone)',
+} = Astro.props;
+---
+
+<article
+  class="portfolio-item reveal"
+  data-category={category}
+  data-lightbox="true"
+  data-src={imageSrc || ''}
+  data-title={title}
+  data-location={location || ''}
+  data-style={style || ''}
+  data-gradient={gradient}
+  tabindex="0"
+  role="button"
+  aria-label={`View ${title}${location ? ` — ${location}` : ''}`}
+>
+  <div class="portfolio-card">
+    <div class="portfolio-card-image">
+      {imageSrc
+        ? (
+          <img
+            src={imageSrc}
+            alt={imageAlt || `${title} — ${style || ''} limestone project in ${location || 'GTA'}`}
+            width="600"
+            height="450"
+            loading="lazy"
+            decoding="async"
+            style={`width:100%;height:100%;object-fit:cover;object-position:${imagePosition}`}
+          />
+        )
+        : (
+          <div
+            class="card-placeholder"
+            style={`background: ${gradient}; width:100%; height:100%; aspect-ratio: 4/3; display:flex; align-items:center; justify-content:center`}
+            aria-hidden="true"
+          >
+            <span class="placeholder-label">[ Photography ]</span>
+          </div>
+        )
+      }
+    </div>
+    <div class="portfolio-card-overlay" aria-hidden="true">
+      <p class="portfolio-card-title">{title}</p>
+      <p class="portfolio-card-meta">
+        {style && <span>{style}</span>}
+        {style && location && ' · '}
+        {location && <span>{location}</span>}
+      </p>
+    </div>
+  </div>
+</article>
+
+<style>
+  .portfolio-item {
+    cursor: pointer;
+    display: block;
+  }
+
+  .portfolio-item:focus-visible {
+    outline: 2px solid var(--warm-sand);
+    outline-offset: 2px;
+  }
+
+  .portfolio-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--quarry-stone);
+    display: block;
+    width: 100%;
+  }
+
+  .portfolio-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    display: block;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .portfolio-item:hover .portfolio-card-image,
+  .portfolio-item:focus-visible .portfolio-card-image {
+    transform: scale(1.06);
+  }
+
+  .portfolio-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(30, 26, 23, 0.85) 0%,
+      rgba(30, 26, 23, 0.2) 50%,
+      transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-md);
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  .portfolio-item:hover .portfolio-card-overlay,
+  .portfolio-item:focus-visible .portfolio-card-overlay {
+    opacity: 1;
+  }
+
+  .portfolio-card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--white-warm);
+    line-height: var(--lh-heading);
+    margin-bottom: 4px;
+    max-width: none;
+  }
+
+  .portfolio-card-meta {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    max-width: none;
+  }
+</style>

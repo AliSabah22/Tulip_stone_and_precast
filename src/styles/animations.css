@@ -1,0 +1,169 @@
+/* ============================================================
+   ANIMATIONS — @keyframes + scroll-triggered utility classes
+   ============================================================ */
+
+/* ── Splash return-visit guard — hides splash before JS runs ─ */
+
+html.splash-was-shown #splash {
+  display: none !important;
+}
+
+/* ── @keyframes ──────────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes drawIn {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes clipReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes wordReveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0% 0); }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+@keyframes spinnerRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+/* ── Scroll-reveal — initial hidden state ────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+/* ── Clip reveal — image wipe-in ─────────────────────────── */
+
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--duration-slower) var(--ease-out);
+}
+
+.clip-reveal.is-visible {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ── Horizontal line draw ────────────────────────────────── */
+
+.draw-line {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.draw-line.is-visible {
+  transform: scaleX(1);
+}
+
+/* ── Word reveal — for hero headline JS splitting ─────────── */
+
+.word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+}
+
+.word-inner {
+  display: inline-block;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--duration-slow) var(--ease-out);
+}
+
+.word-inner.is-revealed {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* ── Fade-up on-load (used for hero content) ─────────────── */
+
+.fade-up {
+  animation: fadeUp var(--duration-slow) var(--ease-out) both;
+}
+
+.fade-up-delay-1 { animation-delay: 100ms; }
+.fade-up-delay-2 { animation-delay: 200ms; }
+.fade-up-delay-3 { animation-delay: 400ms; }
+.fade-up-delay-4 { animation-delay: 600ms; }
+
+/* ── Scroll indicator bounce ─────────────────────────────── */
+
+.scroll-bounce {
+  animation: scrollBounce 2s var(--ease-in-out) infinite;
+}
+
+/* ── Reduced motion overrides ────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .clip-reveal,
+  .draw-line,
+  .word-inner,
+  .fade-up {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .clip-reveal {
+    clip-path: none;
+  }
+
+  .draw-line {
+    transform: scaleX(1);
+  }
+
+  .word-inner {
+    clip-path: none;
+  }
+}

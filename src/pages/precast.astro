@@ -1,0 +1,390 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const categories = [
+  {
+    id: 'residential',
+    label: 'Residential',
+    title: 'Residential Precast',
+    description: 'For homeowners who want lasting beauty and structural integrity. Our residential precast elements include front porch systems, garden and retaining walls, architectural steps, decorative column bases, and custom exterior elements. Each piece is fabricated to match your project drawings.',
+    features: [
+      'Front porch systems and platforms',
+      'Garden walls and retaining walls',
+      'Architectural steps and landings',
+      'Decorative column bases and pier caps',
+      'Custom exterior accent elements',
+    ],
+    gradient: 'var(--grad-limestone)',
+    imageSrc: '/pictures/Residential.jpg',
+    imageAlt: 'Residential precast concrete elements — Tulip Precast Brampton',
+  },
+  {
+    id: 'commercial',
+    label: 'Commercial',
+    title: 'Commercial Precast',
+    description: 'Scale and precision for commercial construction projects. Our commercial precast capability handles architectural facade elements, building entrance systems, commercial steps and platforms, and custom precast components coordinated with your structural engineer and architect.',
+    features: [
+      'Architectural facade panels',
+      'Commercial entrance systems',
+      'Large-format steps and platforms',
+      'Facade accent elements',
+      'Custom commercial applications',
+    ],
+    gradient: 'var(--grad-exterior)',
+    imageSrc: '/pictures/stone%20texture%202.jpg',
+    imageAlt: 'Commercial precast stone texture — Tulip Precast',
+  },
+  {
+    id: 'industrial',
+    label: 'Industrial',
+    title: 'Industrial Precast',
+    description: 'Engineering-grade precast for industrial applications. Built to specification, fabricated for performance. Our industrial precast is produced to meet structural requirements with mix designs, reinforcement, and tolerances confirmed in your approved shop drawings.',
+    features: [
+      'Structural precast components',
+      'Custom industrial elements',
+      'High-load capacity specifications',
+      'Reinforced and post-tensioned options',
+      'Full shop drawing package included',
+    ],
+    gradient: 'var(--grad-product)',
+    imageSrc: '/pictures/hero%20image.jpg',
+    imageAlt: 'Industrial precast concrete — Tulip Precast Brampton',
+  },
+];
+
+const processSteps = [
+  { num: '01', title: 'Contact',       body: 'Email office@tulipprecast.com or call 647-534-7755 with your project details.' },
+  { num: '02', title: 'Estimate',      body: 'Submit project information for pricing from our estimating team.' },
+  { num: '03', title: 'Shop Drawings', body: 'Our drafting team collaborates with your contractor or architect to address every specification.' },
+  { num: '04', title: 'Approval',      body: 'Drawings forwarded to architect or responsible party. Phone confirmation required on return.' },
+  { num: '05', title: 'Fabrication',   body: 'Upon receipt of signed proposal and deposit, your project enters our fabrication schedule.' },
+  { num: '06', title: 'Delivery',      body: 'Your custom precast elements delivered to site, ready for installation.' },
+];
+---
+
+<BaseLayout
+  title="Precast Concrete Products | Residential, Commercial, Industrial | Tulip"
+  description="Custom concrete precast products for residential, commercial, and industrial applications across the Greater Toronto Area. Fabricated in Brampton, ON."
+  pageClass="page-precast"
+>
+
+  <Hero
+    eyebrow="CONCRETE PRECAST · CUSTOM FABRICATION · BRAMPTON, ON"
+    headline="Concrete Precast."
+    headlineItalic="Precision Built."
+    subheading="Custom precast concrete elements for residential, commercial, and industrial projects. Fabricated in Ontario. Delivered across the GTA."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact"
+    secondaryCTA="VIEW PORTFOLIO"
+    secondaryCTAHref="/portfolio?filter=precast"
+    size="short"
+    backgroundGradient="var(--grad-product)"
+    imageSrc="/pictures/stone%20texture%202.jpg"
+    imageAlt="Precast concrete texture — Tulip Precast custom fabrication"
+  />
+
+  <!-- Category sections -->
+  <div class="precast-content">
+    <div class="container">
+
+      {categories.map((cat, i) => (
+        <section id={cat.id} class="precast-section reveal" aria-label={cat.title}>
+          <div class={`precast-grid ${i % 2 === 1 ? 'precast-grid--reverse' : ''}`}>
+            <div class="precast-image reveal">
+              {cat.imageSrc ? (
+                <img
+                  src={cat.imageSrc}
+                  alt={cat.imageAlt || cat.title}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="precast-real-img"
+                />
+              ) : (
+                <div class="precast-placeholder" style={`background: ${cat.gradient}`} aria-hidden="true">
+                  <span class="placeholder-label">[ Photography ]</span>
+                </div>
+              )}
+            </div>
+            <div class="precast-text">
+              <p class="section-label precast-label">{cat.label}</p>
+              <h2 class="precast-title">{cat.title}</h2>
+              <div class="draw-line precast-rule" aria-hidden="true"></div>
+              <p class="precast-description">{cat.description}</p>
+              <ul class="precast-features" role="list">
+                {cat.features.map((f) => (
+                  <li class="precast-feature-item">
+                    <span class="feature-mark" aria-hidden="true">—</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href={`/contact?product=${cat.id}-precast`} class="btn btn-primary btn-magnetic">
+                Request a Quote for {cat.title}
+              </a>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <!-- Process section -->
+      <section id="process" class="process-section">
+        <SectionHeader
+          label="Our Process"
+          title="How Ordering Works."
+          subtitle="From first contact to delivery — a clear, coordinated process that protects your timeline and budget."
+          align="center"
+        />
+
+        <div class="process-timeline">
+          {processSteps.map((step, i) => (
+            <div class="process-step reveal" style={`transition-delay: ${i * 80}ms`}>
+              <div class="process-step-number">{step.num}</div>
+              <div class="process-step-connector" aria-hidden="true"></div>
+              <h3 class="process-step-title">{step.title}</h3>
+              <p class="process-step-body">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <CTASection
+    background="dark"
+    headline="Need a precast estimate?"
+    subheading="Submit your drawings or project details and our team will prepare a comprehensive quotation."
+    buttonText="REQUEST A QUOTE"
+    buttonHref="/contact"
+  />
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .precast-content {
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) 0;
+  }
+
+  .precast-section {
+    padding: var(--space-2xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  /* ── Content grid ──────────────────────────────────── */
+
+  .precast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .precast-grid--reverse {
+    direction: rtl;
+  }
+
+  .precast-grid--reverse > * {
+    direction: ltr;
+  }
+
+  .precast-image {
+    overflow: hidden;
+  }
+
+  .precast-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .precast-real-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .precast-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .precast-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    max-width: none;
+  }
+
+  .precast-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 400;
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    color: var(--stone-dark);
+  }
+
+  .precast-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--warm-sand);
+  }
+
+  .precast-description {
+    font-size: var(--text-body);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 55ch;
+  }
+
+  .precast-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .precast-feature-item {
+    display: flex;
+    gap: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+  }
+
+  .feature-mark {
+    color: var(--warm-sand);
+    flex-shrink: 0;
+  }
+
+  /* ── Process ───────────────────────────────────────── */
+
+  .process-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .process-timeline {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-md);
+    position: relative;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-top: var(--space-lg);
+    position: relative;
+  }
+
+  .process-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--sand-light);
+  }
+
+  .process-step-number {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+    margin-bottom: 4px;
+  }
+
+  .process-step-connector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--warm-sand);
+    border-radius: 50%;
+    transform: translate(-1px, -4px);
+  }
+
+  .process-step-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-dark);
+  }
+
+  .process-step-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 100%;
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .process-timeline {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .precast-grid,
+    .precast-grid--reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+    }
+
+    .process-timeline {
+      grid-template-columns: 1fr;
+    }
+
+    .process-step::before {
+      left: 20px;
+      right: auto;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      right: auto;
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Precast Products", "item": "https://www.tulipprecast.com/precast" }
+  ]
+}
+</script>

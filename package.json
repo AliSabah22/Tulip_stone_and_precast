@@ -1,0 +1,21 @@
+{
+  "name": "tulip-precast-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "latest",
+    "@astrojs/sitemap": "latest",
+    "@fontsource/cormorant-garamond": "latest",
+    "@fontsource/jost": "latest",
+    "astro": "latest",
+    "astro-seo": "latest",
+    "sharp": "latest"
+  }
+}

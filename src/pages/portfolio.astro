@@ -1,0 +1,713 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/portfolio/ProjectCard.astro';
+import ProjectViewer from '../components/portfolio/ProjectViewer.astro';
+
+interface ProjectImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  position?: string;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  style: string;
+  location: string;
+  year: string;
+  categories: string[];
+  heroImage: ProjectImage;
+  images: ProjectImage[];
+  materials: string[];
+  description: string;
+  featured?: boolean;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────
+ * HOW TO ADD A NEW PROJECT
+ * ─────────────────────────────────────────────────────────────
+ *
+ * 1. Add photos to public/pictures/portofolio images/
+ *    Name them clearly: project-name-1.jpg, project-name-2.jpg
+ *    Aim for 2–4 photos per project (exterior, detail, material)
+ *
+ * 2. Append a new object to the `projects` array below.
+ *    Copy an existing entry as your template.
+ *
+ * 3. Required fields:
+ *    id          — unique slug, lowercase, hyphens only
+ *    title       — display name shown in card and viewer
+ *    style       — architectural style e.g. "Neoclassical"
+ *    location    — city and province only, never full address
+ *    year        — four-digit string e.g. "2025"
+ *    categories  — one or more of: "residential" "commercial"
+ *                  "limestone" "precast" "custom"
+ *    heroImage   — the image shown in the grid card
+ *    images      — all images including the hero (for the viewer)
+ *    materials   — list of Tulip products used on this project
+ *    description — 2–3 sentence project summary
+ *
+ * 4. Optional:
+ *    featured: true — makes the card taller in the masonry grid
+ *
+ * 5. Save the file. Run: npm run build
+ *    The project appears automatically everywhere:
+ *    grid card, filter system, viewer panel, URL deep-link.
+ *    No other files need to change.
+ * ─────────────────────────────────────────────────────────────
+ */
+
+const projects: Project[] = [
+
+  {
+    id: "neoclassic-estate-entry",
+    title: "Neoclassic Estate Entry",
+    style: "Neoclassical",
+    location: "Oakville, ON",
+    year: "2024",
+    categories: ["residential", "limestone"],
+    featured: true,
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_5917.jpg",
+      alt: "Neoclassical limestone estate entrance with columns, Oakville Ontario",
+      position: "center top"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_5917.jpg",
+        alt: "Neoclassical limestone estate entrance with columns, Oakville Ontario",
+        position: "center top"
+      }
+    ],
+    materials: ["Corinthian Columns", "Balusters", "Wall Caps"],
+    description: "A complete limestone entrance system for a luxury residential estate in Oakville. Handcrafted Corinthian columns in Indiana Limestone anchor a grand entryway — each base, shaft, and capital fabricated to exact specification with custom shop drawings. The balustrade and wall cap system complete the composition."
+  },
+
+  {
+    id: "garden-balustrade",
+    title: "Garden Balustrade",
+    style: "Classical",
+    location: "Richmond Hill, ON",
+    year: "2024",
+    categories: ["residential", "limestone"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6493%20(2).jpg",
+      alt: "Indiana limestone garden balustrade on residential terrace, Richmond Hill Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6493%20(2).jpg",
+        alt: "Indiana limestone garden balustrade on residential terrace, Richmond Hill Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Balusters & Balustrades", "Pier Caps"],
+    description: "A limestone balustrade system defining the perimeter of a raised residential terrace. Standard baluster profiles were selected for visual consistency across the full run, with pier caps anchoring each structural post. Fabricated in Indiana Limestone for a warm, enduring garden feature."
+  },
+
+  {
+    id: "commercial-office-facade",
+    title: "Commercial Office Facade",
+    style: "Contemporary",
+    location: "Toronto, ON",
+    year: "2023",
+    categories: ["commercial", "limestone"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6535.jpg",
+      alt: "Contemporary limestone office building facade, Toronto Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6535.jpg",
+        alt: "Contemporary limestone office building facade, Toronto Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Smooth Full Bed Veneers", "Banding", "Sills"],
+    description: "Full facade cladding for a commercial office building in Toronto using Indiana Limestone smooth full bed depth veneer. String coursing in Classic Banding provides horizontal definition at each floor level, while standard limestone sills complete each window opening."
+  },
+
+  {
+    id: "column-entrance",
+    title: "Column Entrance",
+    style: "Neoclassical",
+    location: "Mississauga, ON",
+    year: "2024",
+    categories: ["residential", "limestone"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6545.jpg",
+      alt: "Indiana limestone column residential entrance, Mississauga Ontario",
+      position: "center 30%"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6545.jpg",
+        alt: "Indiana limestone column residential entrance, Mississauga Ontario",
+        position: "center 30%"
+      }
+    ],
+    materials: ["Ionic Columns", "Door Surround", "Keystones"],
+    description: "A paired Ionic column entrance system for a luxury residential property in Mississauga. Indiana Limestone columns frame a classic door surround with chamfered keystones above. Custom shop drawings ensured precise integration with the existing masonry facade."
+  },
+
+  {
+    id: "carved-door-surround",
+    title: "Carved Door Surround",
+    style: "Artisan",
+    location: "Brampton, ON",
+    year: "2025",
+    categories: ["residential", "limestone", "custom"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6560.jpg",
+      alt: "Carved Indiana limestone door surround, Brampton Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6560.jpg",
+        alt: "Carved Indiana limestone door surround, Brampton Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Custom Carving", "Classic Door Surround", "Keystones"],
+    description: "A bespoke carved limestone door surround fabricated for a residential property in Brampton. The client provided detailed drawings for the carved ornamental detail — our carvers produced the piece from full-size layouts with Indiana Limestone, then integrated it with a Classic Bullnose surround system."
+  },
+
+  {
+    id: "pavers-terrace",
+    title: "Pavers Terrace",
+    style: "Contemporary",
+    location: "Burlington, ON",
+    year: "2023",
+    categories: ["residential", "precast"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6569.jpg",
+      alt: "Indiana limestone pavers on residential terrace, Burlington Ontario",
+      position: "center bottom"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6569.jpg",
+        alt: "Indiana limestone pavers on residential terrace, Burlington Ontario",
+        position: "center bottom"
+      }
+    ],
+    materials: ["Indiana Limestone Pavers"],
+    description: "A full rear terrace installation in Indiana Limestone pavers for a Burlington residential property. The client selected a smooth cut finish in Standard Buff — providing traction through all seasons while maintaining a refined, contemporary appearance."
+  },
+
+  {
+    id: "commercial-entry-system",
+    title: "Commercial Entry System",
+    style: "Modern",
+    location: "Toronto, ON",
+    year: "2024",
+    categories: ["commercial", "precast"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6574.jpg",
+      alt: "Precast concrete commercial entry system, Toronto Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6574.jpg",
+        alt: "Precast concrete commercial entry system, Toronto Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Precast Entry System", "Banding"],
+    description: "A custom precast concrete entry system for a commercial building in Toronto. The system includes entrance steps, landing slabs, and facade banding — all produced with full shop drawings and coordinated directly with the site contractor for seamless installation."
+  },
+
+  {
+    id: "artisan-stone-carving",
+    title: "Artisan Stone Carving",
+    style: "Artisan",
+    location: "Oakville, ON",
+    year: "2024",
+    categories: ["residential", "limestone", "custom"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6606.jpg",
+      alt: "Artisan Indiana limestone carving detail, Oakville Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6606.jpg",
+        alt: "Artisan Indiana limestone carving detail, Oakville Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Custom Limestone Carving"],
+    description: "A custom artisan carving commission for a residential client in Oakville. The piece — a carved architectural ornament for integration above a primary entrance — was produced from client drawings and photographs of an existing heritage piece. Indiana Limestone was selected for its unmatched capacity to hold fine carved detail."
+  },
+
+  {
+    id: "stone-banding-project",
+    title: "Stone Banding Project",
+    style: "Contemporary",
+    location: "Etobicoke, ON",
+    year: "2023",
+    categories: ["commercial", "limestone"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6621.jpg",
+      alt: "Indiana limestone banding on commercial masonry, Etobicoke Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6621.jpg",
+        alt: "Indiana limestone banding on commercial masonry, Etobicoke Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Double Chamfered Banding", "Sills"],
+    description: "A limestone string coursing project for a commercial building in Etobicoke. Double Chamfered banding profiles were installed at two floor levels, providing horizontal definition to an otherwise flat brick facade. Standard limestone sills were produced simultaneously for all window openings."
+  },
+
+  {
+    id: "custom-sculpture",
+    title: "Custom Sculpture",
+    style: "Artisan",
+    location: "Thornhill, ON",
+    year: "2025",
+    categories: ["residential", "custom"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6654.jpg",
+      alt: "Custom limestone sculpture, residential garden, Thornhill Ontario",
+      position: "center 40%"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6654.jpg",
+        alt: "Custom limestone sculpture, residential garden, Thornhill Ontario",
+        position: "center 40%"
+      }
+    ],
+    materials: ["Custom Sculpture"],
+    description: "A custom garden sculpture commission for a residential property in Thornhill. Indiana Limestone was selected for its workability, colour warmth, and the graceful patina it develops over time in an outdoor setting."
+  },
+
+  {
+    id: "3d-wall-panel-feature",
+    title: "3D Wall Panel Feature",
+    style: "Modern",
+    location: "North York, ON",
+    year: "2024",
+    categories: ["residential", "custom"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_6660.jpg",
+      alt: "Handmade concrete 3D wall panel feature, North York Ontario",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_6660.jpg",
+        alt: "Handmade concrete 3D wall panel feature, North York Ontario",
+        position: "center center"
+      }
+    ],
+    materials: ["Handmade 3D Concrete Panels"],
+    description: "A handmade 3D concrete wall panel feature for a residential living room in North York. Each panel was individually cast and finished — the relief pattern creates a tactile, modern focal point that complements the room's natural material palette."
+  },
+
+  {
+    id: "limestone-facade",
+    title: "Limestone Facade",
+    style: "Georgian",
+    location: "Mississauga, ON",
+    year: "2023",
+    categories: ["residential", "limestone"],
+    heroImage: {
+      src: "/pictures/portofolio%20images/IMG_5917.jpg",
+      alt: "Indiana limestone residential facade, Georgian style, Mississauga Ontario",
+      position: "center 35%"
+    },
+    images: [
+      {
+        src: "/pictures/portofolio%20images/IMG_5917.jpg",
+        alt: "Indiana limestone residential facade, Georgian style, Mississauga Ontario",
+        position: "center 35%"
+      }
+    ],
+    materials: [
+      "Smooth Full Bed Veneers",
+      "Classic Door Surround",
+      "Sills",
+      "Water Tables"
+    ],
+    description: "A complete Indiana Limestone facade for a Georgian style residential property in Mississauga. Smooth full bed depth veneer forms the primary cladding system, with a Classic door surround, limestone sills at all window openings, and a water table at grade to anchor the base of the building."
+  },
+
+  {
+    id: "french-chateau-estate",
+    title: "French Château Estate",
+    style: "Beaux-Arts",
+    location: "Greater Toronto Area, ON",
+    year: "2025",
+    categories: ["residential", "limestone"],
+    featured: true,
+    heroImage: {
+      src: "/porfolio_directory/project_1/0e7b7d6c-dc6e-4ba3-b41e-692ea3a76fa4.jpg",
+      alt: "Grand Beaux-Arts limestone estate — full exterior facade with mansard roof and symmetrical columns",
+      position: "center center"
+    },
+    images: [
+      {
+        src: "/porfolio_directory/project_1/0e7b7d6c-dc6e-4ba3-b41e-692ea3a76fa4.jpg",
+        alt: "Full exterior street view of Beaux-Arts limestone estate",
+        caption: "Full exterior — Indiana Limestone cladding across the complete facade"
+      },
+      {
+        src: "/porfolio_directory/project_1/ea210b35-8d48-4147-afc5-f0bb08948163.jpg",
+        alt: "Front elevation of limestone estate with symmetrical columns",
+        caption: "Front elevation — paired column bays with classical proportions"
+      },
+      {
+        src: "/porfolio_directory/project_1/f2fdb64e-ce68-44b7-8b77-ed520e0c6a6f%281%29.jpg",
+        alt: "Wide facade view showing columns and scaffolding during construction",
+        caption: "Facade under construction — column placement and stonework in progress"
+      },
+      {
+        src: "/porfolio_directory/project_1/55b58a9b-23de-4056-8668-5ee6e7fb47fb.jpg",
+        alt: "Full side elevation with mansard roof and oval windows",
+        caption: "Side elevation — mansard roofline with limestone dormers and oval windows"
+      },
+      {
+        src: "/porfolio_directory/project_1/6cc57d22-397b-4fa7-b1a0-1611ba8f7cce.jpg",
+        alt: "Arched entrance portal with limestone keystone and pilasters",
+        caption: "Entrance portal — arched opening with carved keystone and flanking pilasters"
+      },
+      {
+        src: "/porfolio_directory/project_1/5e62ae4d-92ea-41ae-ae62-81f382867f07.jpg",
+        alt: "Side wing with limestone arch and pilasters",
+        caption: "Side wing — arched bay with full-height pilasters and classical cornice"
+      },
+      {
+        src: "/porfolio_directory/project_1/2cd8565d-3aad-4fea-a657-ad1f63a6473e.jpg",
+        alt: "Corner detail showing oval window, pilasters and decorative cornice",
+        caption: "Corner detail — oval window set within pilastered bay, carved cornice above"
+      },
+      {
+        src: "/porfolio_directory/project_1/2ca642b8-545e-4ce5-88da-226e52075019.jpg",
+        alt: "Upper facade with pilasters, oval windows and dormer",
+        caption: "Upper facade — symmetrical oval windows with limestone surrounds and dormer"
+      },
+      {
+        src: "/porfolio_directory/project_1/0f37aac2-7ad4-48df-a6a6-93b63e18b7f3.jpg",
+        alt: "Arched dormer flanked by symmetrical oval windows on upper facade",
+        caption: "Upper storey — arched dormer and symmetrical oval window composition"
+      },
+      {
+        src: "/porfolio_directory/project_1/ea7e0c55-f3cd-47fe-99d3-cb03bb5e69ff.jpg",
+        alt: "Upper floor detail with arched dormer, pilasters and carved limestone",
+        caption: "Upper floor detail — arched dormer with carved limestone and pilaster capitals"
+      }
+    ],
+    materials: [
+      "Full Bed Indiana Limestone Cladding",
+      "Corinthian Pilasters",
+      "Arched Entrance Portal",
+      "Oval Window Surrounds",
+      "Mansard Dormers",
+      "Decorative Cornices",
+      "Custom Carved Details"
+    ],
+    description: "A grand Beaux-Arts residential estate clad entirely in Indiana Limestone — one of the most comprehensive full-facade limestone commissions in Tulip's portfolio. The project encompasses full-height pilasters, a monumental arched entrance portal, oval window surrounds, mansard dormers, and multi-tiered decorative cornices, all fabricated with custom shop drawings and installed in sequence during construction."
+  }
+
+];
+
+const filterOptions = [
+  { value: 'all',         label: 'All Projects'  },
+  { value: 'residential', label: 'Residential'   },
+  { value: 'commercial',  label: 'Commercial'    },
+  { value: 'limestone',   label: 'Limestone'     },
+  { value: 'precast',     label: 'Precast'       },
+  { value: 'custom',      label: 'Custom'        },
+];
+---
+
+<BaseLayout
+  title="Project Portfolio | Limestone & Precast Work | Tulip"
+  description="Browse Tulip's portfolio of residential, commercial, and industrial Indiana Limestone and precast projects across the Greater Toronto Area. Ontario Made."
+  pageClass="page-portfolio"
+  solidNav={true}
+  loadPortfolioFilter={true}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/hero%20image.jpg"
+    imageAlt="Indiana limestone portfolio — residential and commercial projects across the Greater Toronto Area"
+    headline="Our Portfolio."
+    headlineItalic="Projects Built to Last."
+    eyebrow="RESIDENTIAL · COMMERCIAL · INDUSTRIAL · CUSTOM"
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact"
+  />
+
+  <!-- Filter bar -->
+  <div
+    class="port-filter-bar"
+    role="toolbar"
+    aria-label="Filter projects by category"
+  >
+    <div class="port-filter-inner">
+
+      {filterOptions.map(opt => (
+        <button
+          class:list={[
+            'portfolio-filter-btn',
+            { 'is-active': opt.value === 'all' }
+          ]}
+          data-filter={opt.value}
+          type="button"
+          aria-pressed={opt.value === 'all' ? 'true' : 'false'}
+        >
+          {opt.label}
+        </button>
+      ))}
+
+      <span
+        class="port-filter-count"
+        id="portfolio-count"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {projects.length} projects
+      </span>
+
+    </div>
+  </div>
+
+  <!-- Project grid -->
+  <section class="port-main" aria-label="Portfolio projects">
+    <div class="port-container">
+
+      <div
+        class="port-grid"
+        id="portfolio-grid"
+      >
+        {projects.map((project, index) => (
+          <ProjectCard
+            project={project}
+            index={index}
+            size={project.featured ? 'featured' : 'normal'}
+          />
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div
+        class="port-empty"
+        id="portfolio-empty"
+        hidden
+        aria-live="polite"
+      >
+        <p class="port-empty-text">
+          No projects in this category yet.
+        </p>
+        <button
+          class="btn btn-outlined-dark"
+          data-filter="all"
+          type="button"
+        >
+          View All Projects
+        </button>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="port-bottom">
+        <p class="port-bottom-note">
+          More projects available on request — contact us to discuss
+          your specific style and requirements.
+        </p>
+        <a
+          href="/contact"
+          class="btn btn-primary btn-magnetic"
+        >
+          Start Your Project →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Project viewer — renders all data, shown on demand -->
+  <ProjectViewer projects={projects} />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Filter bar ─────────────────────────────────────────────── */
+
+  .port-filter-bar {
+    position: sticky;
+    top: var(--nav-height, 72px);
+    z-index: 80;
+    background: var(--white-warm);
+    border-bottom: 1px solid var(--cream-dark);
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .port-filter-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .port-filter-inner::-webkit-scrollbar { display: none; }
+
+  .portfolio-filter-btn {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 16px 18px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .portfolio-filter-btn:hover {
+    color: var(--stone-dark);
+  }
+
+  .portfolio-filter-btn.is-active {
+    color: var(--warm-sand);
+    border-bottom-color: var(--warm-sand);
+  }
+
+  .portfolio-filter-btn:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: -2px;
+  }
+
+  .port-filter-count {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 300;
+    color: var(--stone-lighter, #C4B8B0);
+    letter-spacing: 0.05em;
+    margin-left: auto;
+    padding: 16px 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── Main ───────────────────────────────────────────────────── */
+
+  .port-main {
+    padding: var(--space-xl) 0 var(--space-2xl);
+    background: var(--limestone-cream);
+  }
+
+  .port-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  /* ── Masonry grid — 4 cols on desktop, stepping down ───────── */
+
+  .port-grid {
+    columns: 4;
+    column-gap: 14px;
+    column-fill: balance;
+  }
+
+  /* ── Empty state — hidden by default, flex when visible ─────── */
+
+  .port-empty {
+    display: none;
+  }
+
+  .port-empty:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    text-align: center;
+    padding: var(--space-2xl) 0;
+  }
+
+  .port-empty-text {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--stone-light);
+  }
+
+  /* ── Bottom row ─────────────────────────────────────────────── */
+
+  .port-bottom {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+  }
+
+  .port-bottom-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    max-width: 48ch;
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+
+  @media (max-width: 1200px) {
+    .port-grid { columns: 3; column-gap: 12px; }
+  }
+
+  @media (max-width: 768px) {
+    .port-grid { columns: 2; column-gap: 10px; }
+  }
+
+  @media (max-width: 480px) {
+    .port-grid { columns: 1; }
+    .port-bottom {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+    .port-bottom-note { max-width: none; }
+  }
+
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.tulipprecast.com/portfolio" }
+  ]
+}
+</script>

@@ -1,0 +1,330 @@
+---
+interface ProjectImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  position?: string;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  style: string;
+  location: string;
+  year: string;
+  categories: string[];
+  heroImage: ProjectImage;
+  images: ProjectImage[];
+  materials: string[];
+  description: string;
+  featured?: boolean;
+}
+
+interface Props {
+  project: Project;
+  index: number;
+  size?: 'normal' | 'featured';
+}
+
+const {
+  project,
+  index,
+  size = 'normal'
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    'pc',
+    { 'pc--featured': size === 'featured' }
+  ]}
+  data-project-id={project.id}
+  data-categories={project.categories.join(' ')}
+  style={`animation-delay: ${index * 60}ms`}
+  aria-label={`${project.title} — ${project.style}, ${project.location}`}
+>
+
+  <button
+    class="pc-trigger"
+    aria-haspopup="dialog"
+    aria-label={`View ${project.title} project`}
+    data-open-project={project.id}
+    type="button"
+  >
+
+    <!-- Image container -->
+    <div class="pc-image-wrap">
+
+      <img
+        src={project.heroImage.src}
+        alt={project.heroImage.alt}
+        loading="lazy"
+        width="800"
+        height="600"
+        class="pc-image"
+        style={`object-position: ${project.heroImage.position ?? 'center center'}`}
+      />
+
+      <!-- Multi-image badge -->
+      {project.images.length > 1 && (
+        <span
+          class="pc-count"
+          aria-label={`${project.images.length} photos`}
+        >
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 11 11"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect
+              x="0.5" y="2.5"
+              width="7" height="7"
+              rx="1"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M2.5 2.5V1.5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1"
+              stroke="currentColor"
+              stroke-width="1"
+              fill="none"
+            />
+          </svg>
+          {project.images.length}
+        </span>
+      )}
+
+      <!-- Hover overlay -->
+      <div class="pc-overlay" aria-hidden="true">
+        <div class="pc-overlay-content">
+          <span class="pc-overlay-label">View Project</span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
+            <line
+              x1="2" y1="7"
+              x2="12" y2="7"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M8 3l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Card footer -->
+    <div class="pc-footer">
+      <div class="pc-footer-text">
+        <h3 class="pc-title">{project.title}</h3>
+        <p class="pc-meta">
+          {project.style}&nbsp;·&nbsp;{project.location}
+        </p>
+      </div>
+      <span class="pc-year">{project.year}</span>
+    </div>
+
+  </button>
+</article>
+
+<style>
+
+  /* ── Base ───────────────────────────────────────────────────── */
+
+  .pc {
+    break-inside: avoid;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: pcReveal 420ms var(--ease-out, ease) forwards;
+  }
+
+  @keyframes pcReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pc.is-hidden {
+    display: none;
+  }
+
+  .pc-trigger {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+  }
+
+  .pc-trigger:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: 3px;
+  }
+
+  /* ── Image wrap ─────────────────────────────────────────────── */
+
+  .pc-image-wrap {
+    position: relative;
+    overflow: hidden;
+    background: var(--cream-dark, #F0E8D8);
+    aspect-ratio: 4 / 3;
+  }
+
+  .pc--featured .pc-image-wrap {
+    aspect-ratio: 1 / 1;
+  }
+
+  .pc-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 700ms var(--ease-out, ease);
+    will-change: transform;
+  }
+
+  .pc-trigger:hover .pc-image {
+    transform: scale(1.03);
+  }
+
+  /* ── Count badge ────────────────────────────────────────────── */
+
+  .pc-count {
+    position: absolute;
+    top: var(--space-sm, 16px);
+    right: var(--space-sm, 16px);
+    background: rgba(20, 18, 16, 0.68);
+    color: var(--white-warm, #FDFAF6);
+    font-family: var(--font-sans, sans-serif);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    padding: 3px 7px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── Hover overlay ──────────────────────────────────────────── */
+
+  .pc-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(61, 53, 48, 0);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px 16px 20px;
+    z-index: 3;
+    transition: background 350ms var(--ease-out, ease);
+    pointer-events: none;
+  }
+
+  .pc-trigger:hover .pc-overlay {
+    background: rgba(61, 53, 48, 0.55);
+  }
+
+  .pc-overlay-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 16px);
+    color: var(--white-warm, #FDFAF6);
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 300ms var(--ease-out, ease),
+      transform 300ms var(--ease-out, ease);
+  }
+
+  .pc-trigger:hover .pc-overlay-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pc-overlay-label {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
+
+  .pc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0 12px;
+    border-bottom: 1px solid var(--cream-dark, #F0E8D8);
+    transition: border-color 250ms ease;
+  }
+
+  .pc-trigger:hover .pc-footer {
+    border-bottom-color: var(--warm-sand, #C8A882);
+  }
+
+  .pc-title {
+    font-family: var(--font-serif, serif);
+    font-size: clamp(15px, 1.4vw, 18px);
+    font-weight: 400;
+    color: var(--stone-dark, #3D3530);
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
+
+  .pc-meta {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone-light, #9C8880);
+    max-width: none;
+  }
+
+  .pc-year {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--stone-lighter, #C4B8B0);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Reduced motion ─────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .pc {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .pc-image { transition: none; }
+    .pc-overlay,
+    .pc-overlay-content { transition: none; }
+    .pc-footer { transition: none; }
+  }
+
+</style>

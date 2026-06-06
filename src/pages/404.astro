@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Tulip Limestone · Precast"
+  description="The page you are looking for could not be found. Return to the Tulip Limestone · Precast homepage."
+  pageClass="page-404"
+>
+  <section class="not-found">
+    <div class="not-found-inner">
+      <p class="not-found-code">404</p>
+      <h1 class="not-found-heading">Page not found.</h1>
+      <div class="not-found-rule" aria-hidden="true"></div>
+      <p class="not-found-body">
+        The page you're looking for doesn't exist or may have moved.
+      </p>
+      <div class="not-found-cta">
+        <a href="/" class="btn btn-primary btn-magnetic">Return Home</a>
+        <a href="/contact" class="btn btn-outlined-dark">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) var(--content-padding);
+  }
+
+  .not-found-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
+    max-width: 480px;
+  }
+
+  .not-found-code {
+    font-family: var(--font-serif);
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--sand-light);
+    letter-spacing: var(--ls-tight);
+    max-width: none;
+  }
+
+  .not-found-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 400;
+    color: var(--stone-dark);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .not-found-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--warm-sand);
+  }
+
+  .not-found-body {
+    font-size: var(--text-body);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    text-align: center;
+  }
+
+  .not-found-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-top: var(--space-sm);
+  }
+</style>
