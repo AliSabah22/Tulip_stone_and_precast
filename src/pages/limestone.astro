@@ -564,7 +564,6 @@ const colours = [
     justify-content: center;
     gap: 0;
     white-space: nowrap;
-    position: relative;
   }
 
   .subnav-link {
@@ -601,8 +600,8 @@ const colours = [
     border: 1px solid var(--cream-dark);
     padding: 4px 10px;
     white-space: nowrap;
-    position: absolute;
-    right: var(--content-padding);
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
   /* ── Order Requirements Callout ──────────────────────────── */

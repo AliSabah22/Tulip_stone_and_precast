@@ -42,8 +42,8 @@ const processSteps = [
 ---
 
 <BaseLayout
-  title="Tulip Limestone · Precast | Indiana Limestone Fabrication | Brampton, ON"
-  description="Premium Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across the Greater Toronto Area. Ontario Made certified. Brampton, ON."
+  title="Tulip Limestone · Precast | Indiana Limestone Fabrication"
+  description="Premium Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across Canada & US. Ontario Made certified."
   pageClass="page-home"
   loadParticles={true}
 >
@@ -54,10 +54,10 @@ const processSteps = [
     videoSrc="/video/Stone%20video.mp4"
     posterSrc="/pictures/hero%20image.jpg"
     imageAlt="Indiana limestone estate with Corinthian columns and balustrades, Greater Toronto Area"
-    eyebrow="ONTARIO MADE · LIMESTONE & PRECAST · BRAMPTON, ON"
+    eyebrow="ONTARIO MADE · LIMESTONE & PRECAST"
     headline="Crafted by Nature."
     headlineItalic="Perfected by Design."
-    subheading="Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across the Greater Toronto Area."
+    subheading="Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across Canada & US."
     primaryCTA="REQUEST A QUOTE"
     primaryCTAHref="/contact"
     secondaryCTA="VIEW OUR WORK"
@@ -74,39 +74,8 @@ const processSteps = [
     <div class="section-container">
       <div class="section-statement__inner">
 
-        <!-- Left: text -->
-        <div class="statement-text reveal">
-          <span class="label-section">Indiana Limestone · Natural Stone Fabrication</span>
-
-          <h2 class="statement-headline">
-            The same stone as the<br />
-            <em>Empire State Building.</em>
-          </h2>
-
-          <span class="statement-rule draw-line" aria-hidden="true"></span>
-
-          <p class="statement-body">
-            Indiana Limestone has been prized for over 150 years for its workability, durability, and capacity to hold crisp architectural detail. The same geological formation supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate. Now available for your project, fabricated right here in Ontario.
-          </p>
-
-          <div class="statement-pills" aria-label="Key facts">
-            <div class="statement-pill reveal reveal-delay-1">
-              <span class="statement-pill-stat">150+</span>
-              <span class="statement-pill-label">Years trusted</span>
-            </div>
-            <div class="statement-pill reveal reveal-delay-2">
-              <span class="statement-pill-stat">100%</span>
-              <span class="statement-pill-label">Natural stone</span>
-            </div>
-            <div class="statement-pill reveal reveal-delay-3">
-              <span class="statement-pill-stat">Ontario</span>
-              <span class="statement-pill-label">Made certified</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: video with premium frame -->
-        <div class="statement-video-frame reveal reveal-delay-2">
+        <!-- Video: full width on top -->
+        <div class="statement-video-frame reveal">
           <video
             class="statement-video"
             src="/video/detialed%20limesonte.mp4"
@@ -116,6 +85,39 @@ const processSteps = [
             playsinline
             aria-label="Indiana Limestone fabrication detail"
           ></video>
+        </div>
+
+        <!-- Text: below the video -->
+        <div class="statement-below reveal">
+          <div class="statement-below-left">
+            <span class="label-section">Indiana Limestone · Natural Stone Fabrication</span>
+            <h2 class="statement-headline">
+              The same stone as the<br />
+              <em>Empire State Building.</em>
+            </h2>
+            <span class="statement-rule draw-line" aria-hidden="true"></span>
+          </div>
+
+          <div class="statement-below-right">
+            <p class="statement-body">
+              Indiana Limestone has been prized for over 150 years for its workability, durability, and capacity to hold crisp architectural detail. The same geological formation supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate. Now available for your project, fabricated right here in Ontario.
+            </p>
+
+            <div class="statement-pills" aria-label="Key facts">
+              <div class="statement-pill reveal reveal-delay-1">
+                <span class="statement-pill-stat">1,000+</span>
+                <span class="statement-pill-label">Years trusted</span>
+              </div>
+              <div class="statement-pill reveal reveal-delay-2">
+                <span class="statement-pill-stat">100%</span>
+                <span class="statement-pill-label">Natural stone</span>
+              </div>
+              <div class="statement-pill reveal reveal-delay-3">
+                <span class="statement-pill-stat">Ontario</span>
+                <span class="statement-pill-label">Made certified</span>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -659,17 +661,29 @@ const processSteps = [
   }
 
   .section-statement__inner {
-    display: grid;
-    grid-template-columns: 1fr 1.75fr;
-    gap: var(--space-xl);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
   }
 
-  /* Left column */
-  .statement-text {
+  /* Below-video text row */
+  .statement-below {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .statement-below-left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .statement-below-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
   }
 
   .statement-headline {
@@ -1344,7 +1358,7 @@ const processSteps = [
   /* ── Responsive ─────────────────────────────────────────── */
 
   @media (max-width: 1024px) {
-    .section-statement__inner {
+    .statement-below {
       grid-template-columns: 1fr;
       gap: var(--space-lg);
     }
