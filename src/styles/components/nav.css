@@ -2,6 +2,13 @@
    NAV — desktop, scroll state, and mobile overlay
    ============================================================ */
 
+#main-nav,
+.nav-mobile-overlay {
+  --text-label: 10px;
+  --text-small: 14px;
+  --text-xs:    12px;
+}
+
 #main-nav {
   position: fixed;
   top: 0;
