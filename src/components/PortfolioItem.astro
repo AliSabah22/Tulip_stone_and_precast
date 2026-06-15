@@ -8,6 +8,7 @@ export interface Props {
   imageAlt?: string;
   imagePosition?: string;
   gradient?: string;
+  size?: 'anchor' | 'small' | 'wide';
 }
 
 const {
@@ -19,11 +20,12 @@ const {
   imageAlt,
   imagePosition = 'center center',
   gradient = 'var(--grad-limestone)',
+  size,
 } = Astro.props;
 ---
 
 <article
-  class="portfolio-item reveal"
+  class:list={['portfolio-item', 'reveal', size && `portfolio-item--${size}`]}
   data-category={category}
   data-lightbox="true"
   data-src={imageSrc || ''}
@@ -96,6 +98,26 @@ const {
     overflow: hidden;
     display: block;
     transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  /* When used inside a .portfolio-block, grid controls the height */
+  .portfolio-item--anchor .portfolio-card-image,
+  .portfolio-item--small .portfolio-card-image,
+  .portfolio-item--wide .portfolio-card-image {
+    aspect-ratio: unset;
+    height: 100%;
+  }
+
+  .portfolio-item--anchor,
+  .portfolio-item--small,
+  .portfolio-item--wide {
+    height: 100%;
+  }
+
+  .portfolio-item--anchor .portfolio-card,
+  .portfolio-item--small .portfolio-card,
+  .portfolio-item--wide .portfolio-card {
+    height: 100%;
   }
 
   .portfolio-item:hover .portfolio-card-image,
