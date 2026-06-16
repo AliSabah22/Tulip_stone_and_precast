@@ -338,22 +338,24 @@ const navLinks = [
 ];
 
 const colours = [
-  { name: 'Glacier Buff',      hex: '#D4B896' },
-  { name: 'Prairie Blend',     hex: '#9A7D5A' },
-  { name: 'Standard Buff',     hex: '#C8A87A' },
-  { name: 'Northern Gray',     hex: '#B0AFA8' },
-  { name: 'Alabama Fleuri',    hex: '#C8C0B0' },
-  { name: 'Silver Buff',       hex: '#C0B090' },
-  { name: 'Northern Buff',     hex: '#D4B87A' },
-  { name: 'Silver Shadow',     hex: '#B8B4B0' },
-  { name: 'Standard Gray',     hex: '#A0A09A' },
-  { name: 'Sunset Canyon',     hex: '#C4907A' },
-  { name: 'Sterling',          hex: '#D0CCB8' },
-  { name: 'Full Colour Blend', hex: '#BEA882' },
-  { name: 'Champagne Plains',  hex: '#D4C4A0' },
-  { name: 'Natural Strata',    hex: '#A89070' },
-  { name: 'Gray',              hex: '#989090' },
-  { name: 'Buff',              hex: '#C8A870' },
+  { name: 'Alabama Stone',              src: '/pictures/Indiana%20limesone%20colors/Alabama%20Stone.webp' },
+  { name: 'American Mist Honed',        src: '/pictures/Indiana%20limesone%20colors/American%20mist%20honed.png' },
+  { name: 'Barre Gray Honed',           src: '/pictures/Indiana%20limesone%20colors/Barre%20Gray%20Honed.png' },
+  { name: 'Bethel White Antique',       src: '/pictures/Indiana%20limesone%20colors/Bethel%20White%20Antique.png' },
+  { name: 'Cambrian Black Antique',     src: '/pictures/Indiana%20limesone%20colors/Cambrian%20Black%20Antique.jpg' },
+  { name: 'Cambrian Black Waterjet',    src: '/pictures/Indiana%20limesone%20colors/Cambrian%20Black%20Waterjet.jpg' },
+  { name: 'Eramosa Fleuri',             src: '/pictures/Indiana%20limesone%20colors/Eramosa-Fleuri.jpg' },
+  { name: 'Rustic Gray',                src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20RUSTIC%20GRAY.jpg' },
+  { name: 'Silver Buff',                src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20SILVER%20BUFF.jpg' },
+  { name: 'Standard Buff',              src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20BUFF.jpg' },
+  { name: 'Standard Gray',              src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20GRAY.jpg' },
+  { name: 'Northern Buff',              src: '/pictures/Indiana%20limesone%20colors/Northern%20Buff.webp' },
+  { name: 'Northern Gray',              src: '/pictures/Indiana%20limesone%20colors/Northern%20Gray.webp' },
+  { name: 'Saint Clair Fleuri Honed',   src: '/pictures/Indiana%20limesone%20colors/Saint%20Clair%20Fleuri%20Honed.png' },
+  { name: 'Saint Clair Linear Antique', src: '/pictures/Indiana%20limesone%20colors/Saint%20Clair%20Linear%20Antique.png' },
+  { name: 'Saint Henry Black Antique',  src: '/pictures/Indiana%20limesone%20colors/Saint%20Henry%20Black%20antique.png' },
+  { name: 'Silver Shadow',              src: '/pictures/Indiana%20limesone%20colors/Silver%20Shadow.webp' },
+  { name: 'Turkish Limestone',          src: '/pictures/Indiana%20limesone%20colors/Turkish%20Limestone.jpg' },
 ];
 ---
 
@@ -482,11 +484,16 @@ const colours = [
       <div class="colours-swatches-grid" role="list" aria-label="Indiana Limestone colour palette">
         {colours.map((colour) => (
           <div class="colour-swatch-item reveal" role="listitem">
-            <div
-              class="colour-swatch-block"
-              style={`background-color: ${colour.hex}`}
-              aria-hidden="true"
-            ></div>
+            <div class="colour-swatch-block">
+              <img
+                src={colour.src}
+                alt={colour.name}
+                class="colour-swatch-img"
+                loading="lazy"
+                width="200"
+                height="200"
+              />
+            </div>
             <span class="colour-swatch-name">{colour.name}</span>
           </div>
         ))}
@@ -809,13 +816,20 @@ const colours = [
   .colour-swatch-block {
     width: 100%;
     aspect-ratio: 1 / 1;
-    display: block;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: transform 200ms ease;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
 
-  .colour-swatch-item:hover .colour-swatch-block {
-    transform: scale(1.04);
+  .colour-swatch-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 300ms ease;
+  }
+
+  .colour-swatch-item:hover .colour-swatch-img {
+    transform: scale(1.05);
   }
 
   .colour-swatch-name {
