@@ -374,10 +374,24 @@ const navLinks = [
 ];
 
 const colours = [
-  { name: 'Standard Buff', src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20BUFF.jpg' },
-  { name: 'Silver Buff',   src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20SILVER%20BUFF.jpg' },
-  { name: 'Standard Gray', src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20GRAY.jpg' },
-  { name: 'Rustic Gray',   src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20RUSTIC%20GRAY.jpg' },
+  { name: 'Alabama Stone',              src: '/pictures/Indiana%20limesone%20colors/Alabama%20Stone.webp' },
+  { name: 'American Mist Honed',        src: '/pictures/Indiana%20limesone%20colors/American%20mist%20honed.png' },
+  { name: 'Barre Gray Honed',           src: '/pictures/Indiana%20limesone%20colors/Barre%20Gray%20Honed.png' },
+  { name: 'Bethel White Antique',       src: '/pictures/Indiana%20limesone%20colors/Bethel%20White%20Antique.png' },
+  { name: 'Cambrian Black Antique',     src: '/pictures/Indiana%20limesone%20colors/Cambrian%20Black%20Antique.jpg' },
+  { name: 'Cambrian Black Waterjet',    src: '/pictures/Indiana%20limesone%20colors/Cambrian%20Black%20Waterjet.jpg' },
+  { name: 'Eramosa Fleuri',             src: '/pictures/Indiana%20limesone%20colors/Eramosa-Fleuri.jpg' },
+  { name: 'Rustic Gray',                src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20RUSTIC%20GRAY.jpg' },
+  { name: 'Silver Buff',                src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20SILVER%20BUFF.jpg' },
+  { name: 'Standard Buff',              src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20BUFF.jpg' },
+  { name: 'Standard Gray',              src: '/pictures/Indiana%20limesone%20colors/INDIANA%20LIMESTONE%20-%20STANDARD%20GRAY.jpg' },
+  { name: 'Northern Buff',              src: '/pictures/Indiana%20limesone%20colors/Northern%20Buff.webp' },
+  { name: 'Northern Gray',              src: '/pictures/Indiana%20limesone%20colors/Northern%20Gray.webp' },
+  { name: 'Saint Clair Fleuri Honed',   src: '/pictures/Indiana%20limesone%20colors/Saint%20Clair%20Fleuri%20Honed.png' },
+  { name: 'Saint Clair Linear Antique', src: '/pictures/Indiana%20limesone%20colors/Saint%20Clair%20Linear%20Antique.png' },
+  { name: 'Saint Henry Black Antique',  src: '/pictures/Indiana%20limesone%20colors/Saint%20Henry%20Black%20antique.png' },
+  { name: 'Silver Shadow',              src: '/pictures/Indiana%20limesone%20colors/Silver%20Shadow.webp' },
+  { name: 'Turkish Limestone',          src: '/pictures/Indiana%20limesone%20colors/Turkish%20Limestone.jpg' },
 ];
 ---
 
@@ -508,24 +522,31 @@ const colours = [
         <h2 class="colours-title">The Natural Palette.</h2>
         <span class="colours-rule draw-line" aria-hidden="true"></span>
         <p class="colours-subtitle">
-          Indiana Limestone comes in four natural colours — from warm golden buff to
-          deep characterful gray. Each piece varies naturally, the way only real stone can.
+          Indiana Limestone occurs in three colour families — each varying in tone
+          from piece to piece, the way only natural stone can.
         </p>
       </div>
 
       <div class="colour-families reveal reveal-delay-2">
         <div class="colour-family">
-          <h3 class="colour-family-name">Buff Family</h3>
+          <h3 class="colour-family-name">Buff</h3>
           <p class="colour-family-body">
-            Standard Buff and Silver Buff — warm golden tones, the most widely
+            Varies from a light creamy shade to a brownish buff. The most widely
             specified colour family across residential and commercial projects.
           </p>
         </div>
         <div class="colour-family">
-          <h3 class="colour-family-name">Gray Family</h3>
+          <h3 class="colour-family-name">Gray</h3>
           <p class="colour-family-body">
-            Standard Gray and Rustic Gray — from clean cool-neutral to deep
-            characterful gray. A favourite for contemporary and heritage facades alike.
+            Varies from a light silvery gray to shades of bluish gray. Crisp and
+            architectural — a favourite for contemporary facades.
+          </p>
+        </div>
+        <div class="colour-family">
+          <h3 class="colour-family-name">Variegated</h3>
+          <p class="colour-family-body">
+            A mix of gray and buff colours with a variety of tones in between.
+            Natural variation from piece to piece is part of its character.
           </p>
         </div>
       </div>
@@ -895,7 +916,7 @@ const colours = [
 
   .colour-families {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
     margin-bottom: var(--space-2xl);
   }
