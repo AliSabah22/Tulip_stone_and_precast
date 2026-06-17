@@ -56,6 +56,21 @@
   text-align: center;
 }
 
+/* ── Error message ───────────────────────────────────────── */
+
+.form-error-msg {
+  background: #FFF5F5;
+  border: 1px solid #E0B0B0;
+  border-left: 3px solid #C04040;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 300;
+  color: var(--stone-dark);
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-md);
+}
+
 /* ── Form layout ─────────────────────────────────────────── */
 
 .quote-form {

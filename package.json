@@ -16,6 +16,8 @@
     "@fontsource/jost": "latest",
     "astro": "latest",
     "astro-seo": "latest",
+    "busboy": "latest",
+    "resend": "latest",
     "sharp": "latest"
   }
 }

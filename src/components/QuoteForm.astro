@@ -13,21 +13,17 @@
     </p>
   </div>
 
+  <!-- Error state -->
+  <div class="form-error-msg" role="alert" aria-live="polite" style="display:none"></div>
+
   <!-- Quote form -->
   <form
     class="quote-form"
-    name="quote-request"
+    action="/.netlify/functions/submit-inquiry"
     method="POST"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
     enctype="multipart/form-data"
     novalidate
   >
-    <!-- Netlify honeypot -->
-    <p aria-hidden="true" style="display:none">
-      <label>Don't fill this out: <input name="bot-field" /></label>
-    </p>
-    <input type="hidden" name="form-name" value="quote-request" />
 
     <!-- Row 1: Name -->
     <div class="form-row">
@@ -128,10 +124,11 @@
           <option value="indiana-limestone">Indiana Limestone Products</option>
           <option value="precast">Concrete Precast</option>
           <option value="landscaping">Landscaping Services</option>
-          <option value="3d-wall-art">3D Wall Art</option>
+          <option value="pool-spa">Pool &amp; Spa</option>
+          <option value="sculptures">Sculptures</option>
           <option value="fireplace">Fireplace Design</option>
-          <option value="sculpturing">Sculpturing</option>
           <option value="design-services">Design Services</option>
+          <option value="gfrc">GFRC Panels</option>
           <option value="multiple">Multiple / Not Sure</option>
         </select>
         <span class="field-error" role="alert"></span>
