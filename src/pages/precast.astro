@@ -20,38 +20,24 @@ const categories = [
     gradient: 'var(--grad-limestone)',
     imageSrc: '/pictures/Residential.jpg',
     imageAlt: 'Residential precast concrete elements — Tulip Precast Brampton',
+    customCTA: true,
   },
   {
-    id: 'commercial',
-    label: 'Commercial',
-    title: 'Commercial Precast',
-    description: 'Scale and precision for commercial construction projects. Our commercial precast capability handles architectural facade elements, building entrance systems, commercial steps and platforms, and custom precast components coordinated with your structural engineer and architect.',
+    id: 'commercial-industrial',
+    label: 'Commercial & Industrial',
+    title: 'Commercial & Industrial Precast',
+    description: 'Scale, precision, and engineering-grade performance for commercial and industrial construction. Our capabilities span architectural facade elements, building entrance systems, large-format platforms, structural components, and custom precast elements — coordinated with your structural engineer and architect.',
     features: [
-      'Architectural facade panels',
-      'Commercial entrance systems',
-      'Large-format steps and platforms',
-      'Facade accent elements',
-      'Custom commercial applications',
+      'Architectural facade panels and cladding',
+      'Commercial entrance systems and steps',
+      'Large-format steps, platforms, and plazas',
+      'Structural precast components',
+      'High-load capacity specifications',
+      'Full shop drawing package included',
     ],
     gradient: 'var(--grad-exterior)',
     imageSrc: '/pictures/stone%20texture%202.jpg',
-    imageAlt: 'Commercial precast stone texture — Tulip Precast',
-  },
-  {
-    id: 'industrial',
-    label: 'Industrial',
-    title: 'Industrial Precast',
-    description: 'Engineering-grade precast for industrial applications. Built to specification, fabricated for performance. Our industrial precast is produced to meet structural requirements with mix designs, reinforcement, and tolerances confirmed in your approved shop drawings.',
-    features: [
-      'Structural precast components',
-      'Custom industrial elements',
-      'High-load capacity specifications',
-      'Reinforced and post-tensioned options',
-      'Full shop drawing package included',
-    ],
-    gradient: 'var(--grad-product)',
-    imageSrc: '/pictures/hero%20image.jpg',
-    imageAlt: 'Industrial precast concrete — Tulip Precast Brampton',
+    imageAlt: 'Commercial and industrial precast concrete — Tulip Precast',
   },
 ];
 
@@ -123,6 +109,15 @@ const processSteps = [
                   </li>
                 ))}
               </ul>
+              {cat.customCTA && (
+                <div class="precast-custom-cta">
+                  <span class="precast-custom-cta-label">We Can Make What You Want</span>
+                  <p class="precast-custom-cta-body">Have a unique design in mind? Bring us any idea — sketch, photo, or drawing — and we'll fabricate it exactly to your specification.</p>
+                  <a href="/contact?product=custom-residential" class="btn btn-outlined-dark btn-magnetic">
+                    Tell Us About Your Project
+                  </a>
+                </div>
+              )}
               <a href={`/contact?product=${cat.id}-precast`} class="btn btn-primary btn-magnetic">
                 Request a Quote for {cat.title}
               </a>
@@ -276,6 +271,33 @@ const processSteps = [
   .feature-mark {
     color: var(--warm-sand);
     flex-shrink: 0;
+  }
+
+  /* ── Custom CTA callout ────────────────────────────── */
+
+  .precast-custom-cta {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .precast-custom-cta-label {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    font-style: italic;
+  }
+
+  .precast-custom-cta-body {
+    font-size: var(--text-small);
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: 48ch;
   }
 
   /* ── Process ───────────────────────────────────────── */
