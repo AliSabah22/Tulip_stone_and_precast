@@ -75,6 +75,25 @@
     });
   });
 
+  // ── File input display ───────────────────────────────────
+
+  const fileInput = form.querySelector('input[type="file"]');
+  const fileLabel = fileInput?.closest('.file-input-wrapper')?.querySelector('.file-input-label');
+
+  if (fileInput && fileLabel) {
+    const defaultText = fileLabel.textContent;
+    fileInput.addEventListener('change', () => {
+      const files = Array.from(fileInput.files);
+      if (files.length === 0) {
+        fileLabel.textContent = defaultText;
+      } else if (files.length === 1) {
+        fileLabel.textContent = files[0].name;
+      } else {
+        fileLabel.textContent = `${files.length} files selected`;
+      }
+    });
+  }
+
   // ── Success / error UI ───────────────────────────────────
 
   function showSuccess() {
