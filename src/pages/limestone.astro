@@ -522,35 +522,45 @@ const colours = [
         <p class="fab-colours-heading">Available Colour Families</p>
         <div class="fab-colours-grid">
           <div class="fab-colour-card">
-            <div class="fab-colour-swatch" style="background: #8E9192;"></div>
+            <div class="fab-colour-swatch">
+              <img src="/pictures/Indiana%20limesone%20colors/Northern%20Gray.webp" alt="Northern Gray Indiana Limestone" loading="lazy" width="300" height="300" />
+            </div>
             <div class="fab-colour-info">
               <span class="fab-colour-name">Northern Gray</span>
               <span class="fab-colour-desc">Cool, silvery gray with subtle blue undertones. The most contemporary of the five colour families.</span>
             </div>
           </div>
           <div class="fab-colour-card">
-            <div class="fab-colour-swatch" style="background: #C8A86B;"></div>
+            <div class="fab-colour-swatch">
+              <img src="/pictures/Indiana%20limesone%20colors/Northern%20Buff.webp" alt="Northern Buff Indiana Limestone" loading="lazy" width="300" height="300" />
+            </div>
             <div class="fab-colour-info">
               <span class="fab-colour-name">Northern Buff</span>
               <span class="fab-colour-desc">Warm golden tones with creamy undertones. The classic Indiana Limestone colour — instantly recognisable.</span>
             </div>
           </div>
           <div class="fab-colour-card">
-            <div class="fab-colour-swatch" style="background: #B0B4B8;"></div>
+            <div class="fab-colour-swatch">
+              <img src="/pictures/Indiana%20limesone%20colors/Silver%20Shadow.webp" alt="Silver Shadow Indiana Limestone" loading="lazy" width="300" height="300" />
+            </div>
             <div class="fab-colour-info">
               <span class="fab-colour-name">Silver Shadow</span>
               <span class="fab-colour-desc">Soft gray with warm silver highlights. Bridges the gap between buff and gray — refined and understated.</span>
             </div>
           </div>
           <div class="fab-colour-card">
-            <div class="fab-colour-swatch" style="background: #9E9088;"></div>
+            <div class="fab-colour-swatch">
+              <img src="/pictures/Indiana%20limesone%20colors/Alabama%20Stone.webp" alt="Alabama Gray Indiana Limestone" loading="lazy" width="300" height="300" />
+            </div>
             <div class="fab-colour-info">
               <span class="fab-colour-name">Alabama Gray</span>
               <span class="fab-colour-desc">Rich, complex tones with natural variation in each piece. The most character-driven of the four.</span>
             </div>
           </div>
           <div class="fab-colour-card">
-            <div class="fab-colour-swatch" style="background: #E8D5B0;"></div>
+            <div class="fab-colour-swatch">
+              <img src="/pictures/Indiana%20limesone%20colors/Turkish%20Limestone.jpg" alt="Turkish Limestone Ivory" loading="lazy" width="300" height="300" />
+            </div>
             <div class="fab-colour-info">
               <span class="fab-colour-name">Turkish Limestone (Ivory) <span class="fab-colour-badge">Premium</span></span>
               <span class="fab-colour-desc">Warm ivory limestone from Turkey with a smooth, refined surface. Creamy tones with subtle natural variation — a premium specification.</span>
@@ -1303,6 +1313,17 @@ const colours = [
     width: 100%;
     aspect-ratio: 1 / 1;
     border: 1px solid var(--cream-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fab-colour-swatch img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .fab-colour-info {
