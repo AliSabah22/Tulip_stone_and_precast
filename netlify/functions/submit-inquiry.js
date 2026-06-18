@@ -92,11 +92,11 @@ function buildHtml(f) {
         </tr>
         <tr>
           <td width="36%" style="padding:8px 0;border-bottom:1px solid #F9F5EF;"><span style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9C8880;">Email</span></td>
-          <td style="padding:8px 0;border-bottom:1px solid #F9F5EF;"><a href="mailto:${esc(email)}" style="font-size:13px;color:#C8A882;text-decoration:none;">${esc(email)}</a></td>
+          <td style="padding:8px 0;border-bottom:1px solid #F9F5EF;"><span style="font-size:13px;color:#C8A882;">${esc(email)}</span></td>
         </tr>
         <tr>
           <td width="36%" style="padding:8px 0;border-bottom:1px solid #F9F5EF;"><span style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9C8880;">Phone</span></td>
-          <td style="padding:8px 0;border-bottom:1px solid #F9F5EF;"><a href="tel:${phoneHref}" style="font-size:13px;color:#3D3530;text-decoration:none;">${esc(phone)}</a></td>
+          <td style="padding:8px 0;border-bottom:1px solid #F9F5EF;"><span style="font-size:13px;color:#3D3530;">${esc(phone)}</span></td>
         </tr>
         <tr>
           <td width="36%" style="padding:8px 0;"><span style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9C8880;">Company</span></td>
@@ -131,7 +131,7 @@ function buildHtml(f) {
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td align="center" style="padding-top:24px;border-top:1px solid #F0E8D8;">
-            <a href="mailto:${esc(email)}?subject=Re%3A%20Your%20Quote%20Request%20%E2%80%94%20Tulip%20Precast" style="display:inline-block;background:#C8A882;color:#3D3530;font-size:9px;font-weight:400;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:14px 32px;">Reply to ${firstName}</a>
+            <p style="margin:0;font-size:11px;color:#9C8880;">Reply directly to this email to contact ${firstName}</p>
           </td>
         </tr>
       </table>
