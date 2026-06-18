@@ -38,6 +38,7 @@ const categories = [
     gradient: 'var(--grad-exterior)',
     imageSrc: '/pictures/stone%20texture%202.jpg',
     imageAlt: 'Commercial and industrial precast concrete — Tulip Precast',
+    comingSoon: true,
   },
 ];
 
@@ -118,9 +119,13 @@ const processSteps = [
                   </a>
                 </div>
               )}
-              <a href={`/contact?product=${cat.id}-precast`} class="btn btn-primary btn-magnetic">
-                Request a Quote for {cat.title}
-              </a>
+              {cat.comingSoon ? (
+                <span class="btn btn-primary" style="opacity:0.5;cursor:default;pointer-events:none;letter-spacing:var(--ls-wider);">Coming Soon</span>
+              ) : (
+                <a href={`/contact?product=${cat.id}-precast`} class="btn btn-primary btn-magnetic">
+                  Request a Quote for {cat.title}
+                </a>
+              )}
             </div>
           </div>
         </section>
