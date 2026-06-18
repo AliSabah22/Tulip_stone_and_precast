@@ -1,0 +1,105 @@
+---
+interface Props {
+  id: string;
+  number: string;
+  label: string;
+  title: string;
+  description: string;
+  background?: 'cream' | 'pale' | 'dark';
+}
+
+const {
+  id,
+  number,
+  label,
+  title,
+  description,
+  background = 'cream',
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['cat-section', `cat-section--${background}`]}
+  style="scroll-margin-top: 90px;"
+  aria-labelledby={`cat-title-${id}`}
+>
+  <span class="cat-watermark" aria-hidden="true">{number}</span>
+  <div class="cat-header">
+    <div class="cat-header-inner">
+      <span class="label-section">{label}</span>
+      <h2 class="cat-title" id={`cat-title-${id}`}>{title}</h2>
+      <span class="cat-rule draw-line" aria-hidden="true"></span>
+      <p class="cat-description">{description}</p>
+    </div>
+  </div>
+  <div class="cat-content">
+    <slot />
+  </div>
+  <div class="cat-divider" aria-hidden="true">
+    <div class="cat-divider-line"></div>
+    <div class="cat-divider-diamond"></div>
+    <div class="cat-divider-line"></div>
+  </div>
+</section>
+
+<style>
+  .cat-section { position: relative; overflow: hidden; padding: var(--space-3xl) 0 0; }
+  .cat-section--cream { background: var(--limestone-cream); }
+  .cat-section--pale  { background: var(--sand-pale); }
+  .cat-section--dark  { background: var(--quarry-stone); }
+  .cat-watermark {
+    position: absolute; top: var(--space-xl); right: var(--space-xl);
+    font-family: var(--font-serif); font-size: clamp(100px, 16vw, 180px);
+    font-weight: 300; color: rgba(200, 168, 130, 0.05);
+    line-height: 1; user-select: none; pointer-events: none; z-index: 0;
+    letter-spacing: -0.02em;
+  }
+  .cat-section--dark .cat-watermark { color: rgba(255, 255, 255, 0.04); }
+  .cat-header {
+    position: relative; z-index: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding) var(--space-2xl);
+  }
+  .cat-header-inner { max-width: 680px; }
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+  .cat-title {
+    font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300; color: var(--stone-dark);
+    line-height: var(--lh-heading); letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .cat-section--dark .cat-title { color: var(--white-warm); }
+  .cat-rule {
+    display: block; height: 1px; background: var(--sand-light); width: 60px;
+    margin-bottom: var(--space-lg); transform-origin: left center;
+  }
+  .cat-section--dark .cat-rule { background: rgba(200, 168, 130, 0.4); }
+  .cat-description {
+    font-family: var(--font-sans); font-size: var(--text-body);
+    font-weight: 300; color: var(--stone-mid);
+    line-height: var(--lh-body); max-width: 60ch;
+  }
+  .cat-section--dark .cat-description { color: var(--stone-light); }
+  .cat-content { position: relative; z-index: 1; }
+  .cat-divider {
+    display: flex; align-items: center;
+    max-width: var(--max-width);
+    margin: var(--space-3xl) auto 0;
+    padding: 0 var(--content-padding) var(--space-xs);
+    gap: var(--space-md);
+  }
+  .cat-divider-line { flex: 1; height: 1px; background: var(--cream-dark); }
+  .cat-section--dark .cat-divider-line { background: rgba(255,255,255,0.08); }
+  .cat-divider-diamond { width: 6px; height: 6px; background: var(--warm-sand); transform: rotate(45deg); flex-shrink: 0; }
+</style>

@@ -1,377 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import CTASection from '../components/CTASection.astro';
+import CategorySection from '../components/limestone/CategorySection.astro';
 import ProductSection from '../components/limestone/ProductSection.astro';
-
-type Variant  = { name: string; description?: string; imageSrc?: string };
-type SpecRow  = [string, string];
-type Benefit  = { title: string; body: string };
-type VeneerCard = {
-  type: string; bed: string; title: string; description: string;
-  imageSrc: string; imagePosition: string; specs: SpecRow[];
-};
-type Product = {
-  id: string; num: string; label: string; title: string;
-  imageSrc: string; imageAlt: string; imagePosition: string;
-  description: string;
-  callout?:  { label: string; body: string };
-  variants?: Variant[];
-  specs?:    SpecRow[];
-  benefits?: Benefit[];
-  veneers?:  VeneerCard[];
-};
-
-const products: Product[] = [
-  {
-    id: 'carving',
-    num: '01',
-    label: 'Limestone · Artisan Craft',
-    title: 'Carving',
-    imageSrc: '/pictures/Limestone%20page%20images/carving.jpeg',
-    imageAlt: 'Artisan Indiana limestone carved fireplace surround, custom fabricated by Tulip Limestone · Precast',
-    imagePosition: 'center center',
-    description: 'Indiana limestone is a remarkable stone — ranging from warm buff to cool blue-gray, prized across generations for its workability and its unique capacity to accept and retain crisp, intricate detail. Today\'s carvers are a diverse group of artisans, many continuing family traditions alongside those who shaped the craft before them. Their skill brings each design to life with timeless precision.',
-    callout: {
-      label: 'Custom Commission',
-      body: 'When ordering a specialty carving, please provide: drawings and specifications, any full-size layouts available, and — for replica work — photographs and measurements of the existing piece. Our team will review and confirm feasibility before quoting.',
-    },
-  },
-  {
-    id: 'balusters',
-    num: '02',
-    label: 'Limestone · Architectural',
-    title: 'Balusters & Balustrades',
-    imageSrc: '/pictures/Limestone%20page%20images/Balusters-Balustrades.jpg',
-    imageAlt: 'Indiana limestone balusters on residential balcony, custom fabricated by Tulip Precast, Brampton Ontario',
-    imagePosition: 'center center',
-    description: 'Limestone balusters have always been a popular choice — whether for a simple renovation or a complex new construction. Balusters and balustrades are used at entryways, walkways, or as hardscape features. Our solid limestone balusters highlight large and small balconies, patios, staircases, and pool areas. We produce balusters of the highest quality — visually consistent in both colour and form, so your entire project carries a unified architectural character.',
-    callout: {
-      label: 'Repair & Renovation Matching',
-      body: 'Our renovation specialists identify exact matches for existing limestone architectural features. We precisely match the colour, texture, and design of your existing baluster or balustrade — providing an architectural detail that blends seamlessly into the look and feel of the original building. Our expertise in limestone forming, colour matching, and finishing ensures your new balusters integrate perfectly throughout the project.',
-    },
-  },
-  {
-    id: 'banding',
-    num: '03',
-    label: 'Limestone · Masonry',
-    title: 'Banding & String Courses',
-    imageSrc: '/pictures/Limestone%20page%20images/Banding-String-Courses.jpg',
-    imageAlt: 'Indiana limestone banding string course on masonry wall exterior, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'Banding — also known as string coursing — is one of the most cost-effective ways to add proportion, detail, and visual definition to any masonry structure. Designed to integrate seamlessly with common brick sizes, it creates a refined transitional element that elevates the entire facade. Custom banding profiles are also available for non-standard applications.',
-    variants: [
-      { name: 'Classic',           description: 'Flat rectangular profile, clean and timeless',    imageSrc: '/pictures/banding/classic.png' },
-      { name: 'Bullnose',          description: 'Single rounded leading edge, softened profile',   imageSrc: '/pictures/banding/bull%20nose.png' },
-      { name: 'Double Bullnose',   description: 'Both edges rounded, flowing horizontal line',     imageSrc: '/pictures/banding/double%20bull%20nose.png' },
-      { name: 'Single Chamfered',  description: 'One angled reveal, adds subtle shadow line',      imageSrc: '/pictures/banding/single%20chamfered.png' },
-      { name: 'Double Chamfered',  description: 'Both edges angled, strong directional shadow',    imageSrc: '/pictures/banding/double%20chambered.png' },
-      { name: 'Natural Rock Face', description: 'Rough split texture, raw material character',     imageSrc: '/pictures/banding/natural%20rock%20face.png' },
-      { name: 'Custom',            description: 'Any profile to specification' },
-    ],
-  },
-  {
-    id: 'columns',
-    num: '04',
-    label: 'Limestone · Architectural',
-    title: 'Columns',
-    imageSrc: '/pictures/Limestone%20page%20images/columns.jpg',
-    imageAlt: 'Handcrafted Indiana limestone Corinthian columns, custom fabricated by Tulip Limestone · Precast, Brampton Ontario',
-    imagePosition: 'center 35%',
-    description: 'Finely crafted Indiana Limestone columns are the ultimate expression of timeless beauty in natural stone. Every column we deliver is handcrafted by skilled stone artisans to match any classic or contemporary style — to your exact specifications. We know that columns are the showpiece of the project, which is why we craft and deliver each base, shaft, and capital with great artistry and precision.',
-    variants: [
-      { name: 'Doric',      description: 'Short and heavy with simple round capitals. Strength and dignity.' },
-      { name: 'Ionic',      description: 'Slender pillars with large base and signature scrolled capitals.' },
-      { name: 'Corinthian', description: 'Slender, fluted columns with intricate carved capitals.' },
-      { name: 'Tuscan',     description: 'Plain base and unfluted shaft. Understated and versatile.' },
-      { name: 'Composite',  description: 'A refined blend of Ionic scrolls and Corinthian ornamentation.' },
-      { name: 'Custom',     description: 'Any classical or contemporary profile to specification.' },
-    ],
-  },
-  {
-    id: 'surrounds',
-    num: '05',
-    label: 'Limestone · Architectural',
-    title: 'Door & Window Surrounds',
-    imageSrc: '/pictures/Limestone%20page%20images/Door-Window-Surrounds.jpg',
-    imageAlt: 'Indiana limestone door and window surround on masonry facade, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'Door and window surrounds add formal flair to any masonry structure. The style of the building is an integral part of choosing surrounds that best fit the architecture — contemporary modern designs as well as classic traditional surrounds are available. Custom door and window surrounds are also available to any specification.',
-    variants: [
-      { name: 'Classic',          description: 'Clean rectangular reveal, timeless and versatile',   imageSrc: '/pictures/door:window%20surround/classic.png' },
-      { name: 'Double Chamfered', description: 'Both reveals angled, strong directional detail',     imageSrc: '/pictures/door:window%20surround/double%20chamfered.png' },
-      { name: 'Classic Bullnose', description: 'Rounded leading edge, softened classical profile',   imageSrc: '/pictures/door:window%20surround/classic%20bullnose.png' },
-      { name: 'Single Chamfered', description: 'One angled edge, adds architectural shadow line',    imageSrc: '/pictures/door:window%20surround/single%20chamfered.png' },
-      { name: 'Natural Rockface', description: 'Rough split texture surround, organic character',    imageSrc: '/pictures/door:window%20surround/natural%20rockface.png' },
-      { name: 'Custom',           description: 'Any profile or configuration to specification' },
-    ],
-  },
-  {
-    id: 'arches',
-    num: '06',
-    label: 'Limestone · Architectural',
-    title: 'Jack Arches',
-    imageSrc: '/pictures/Limestone%20page%20images/jack%20arches.jpg',
-    imageAlt: 'Indiana limestone jack arch, classic profile, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'Beautifully cut jack arches define windows and doors with subtle sophistication. These building elements are a cost-effective way to reflect the personal style of your project. Jack arches are designed for either two or three piece installation — and when combined with jambs and a sill, they make a stunning architectural statement.',
-    variants: [
-      { name: 'Classic',    description: 'Standard flat wedge arch, clean and proportional',    imageSrc: '/pictures/arches/classic.png' },
-      { name: 'Shadow Box', description: 'Recessed centre panel adds depth and dimension',      imageSrc: '/pictures/arches/shadow%20box.png' },
-      { name: 'Chamfered',  description: 'Angled edge detail, refined directional shadow' },
-      { name: 'Custom',     description: 'To specification' },
-    ],
-  },
-  {
-    id: 'keystones',
-    num: '07',
-    label: 'Limestone · Detail',
-    title: 'Keystones',
-    imageSrc: '/pictures/keystone015.webp',
-    imageAlt: 'Indiana limestone keystone, classic profile, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'Keystones originated as the final wedge-shaped piece that held together a stone arch. Today, they are still used in that manner or can be used individually as an accent piece above any window or door opening. Adding a keystone gives a clean, polished look to any commercial or residential structure.',
-    variants: [
-      { name: 'Classic',             description: 'Standard projecting keystone, classic presence',  imageSrc: '/pictures/keystones/classic.png' },
-      { name: 'Shadow Box',         description: 'Recessed centre panel, adds visual depth',        imageSrc: '/pictures/keystones/shadow%20box.png' },
-      { name: 'Chamfered',          description: 'Angled edges, clean contemporary refinement',     imageSrc: '/pictures/keystones/chamfered.png' },
-      { name: 'Custom',             description: 'Carved or profiled to specification' },
-    ],
-  },
-  {
-    id: 'pavers',
-    num: '08',
-    label: 'Limestone · Hardscape',
-    title: 'Pavers',
-    imageSrc: '/pictures/Limestone%20page%20images/Pavers.jpeg',
-    imageAlt: 'Indiana limestone pavers on luxury residential outdoor terrace, Tulip Precast, Canada & USA',
-    imagePosition: 'center 50%',
-    description: 'Indiana limestone pavers are the perfect choice for many outdoor spaces — prized for their timeless beauty and ability to weather well while maintaining reliable traction even in wet conditions. Limestone pavers are low maintenance, long-lasting, and offer the perfect marriage of modern clean lines with traditional natural materials. Available in a variety of colours, cuts, and textures to suit any project.',
-    benefits: [
-      { title: 'Weather Resistant', body: 'Low-maintenance in Canadian climate' },
-      { title: 'Natural Traction',  body: 'Safe in wet conditions year-round' },
-      { title: 'Timeless Beauty',   body: 'Colour deepens gracefully with age' },
-    ],
-  },
-  {
-    id: 'pier-caps',
-    num: '09',
-    label: 'Limestone · Finishing',
-    title: 'Pier Caps',
-    imageSrc: '/pictures/Limestone%20page%20images/Pier%20Caps.jpg',
-    imageAlt: 'Indiana limestone pier caps on garden wall entrance, residential exterior, Tulip Precast',
-    imagePosition: 'center 40%',
-    description: 'Available in 2¼" and 3" thicknesses as well as a variety of lengths and widths to meet your needs, our limestone pier caps are available in rock face or square edge finishes. We offer pier caps in Full Colour Blend (FCB) and Gray — providing timeless options for residential and commercial applications.',
-    specs: [
-      ['Thicknesses',  '2¼" and 3"'],
-      ['Finishes',     'Rock Face · Square Edge'],
-      ['Colours',      'Full Colour Blend (FCB) · Gray'],
-      ['Availability', 'Standard and custom lengths and widths'],
-    ],
-  },
-  {
-    id: 'quoins',
-    num: '10',
-    label: 'Limestone · Masonry',
-    title: 'Quoins',
-    imageSrc: '/pictures/Limestone%20page%20images/Quoins.jpg',
-    imageAlt: 'Indiana limestone classic quoin, corner block profile, Tulip Precast Brampton',
-    imagePosition: 'center center',
-    description: 'Simple and classic, quoins create a wonderful visual contrast to masonry veneer. These can be installed one on top of the other or divided by another form of exterior cladding. Versatile in application, quoins add definition, permanence, and elegance to any corner — residential or commercial.',
-    variants: [
-      { name: 'Classic Quoin',              description: 'Single piece corner block, clean and bold',    imageSrc: '/pictures/Quoins/classic%20Quoin.png' },
-      { name: 'Double Chamfered',           description: 'Angled edges both sides, refined shadow',     imageSrc: '/pictures/Quoins/double%20chamfered.png' },
-      { name: 'Classic Two Piece',          description: 'Split into two for flexible installation',     imageSrc: '/pictures/Quoins/classic%20Two%20Piece.png' },
-      { name: 'Double Chamfered Two Piece', description: 'Chamfered profile in two-piece format',       imageSrc: '/pictures/Quoins/Double%20Chamfered%20Two%20Piece.png' },
-      { name: 'Classic Two Piece Mitered',  description: 'Mitered joint for seamless corner wrap',      imageSrc: '/pictures/Quoins/Classic%20Two%20Piece%20Mitered.png' },
-    ],
-  },
-  {
-    id: 'sills',
-    num: '11',
-    label: 'Limestone · Architectural',
-    title: 'Sills',
-    imageSrc: '/pictures/Limestone%20page%20images/sills.png',
-    imageAlt: 'Indiana limestone classic slip sill profile, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'Sills are among the most essential architectural elements — adding understated style to any project. Slip sills are designed to align seamlessly with the width of the masonry opening. Lug sills extend beyond the window, allowing for the installation of a full surround and a more pronounced architectural presence. Custom sills are also available.',
-    callout: {
-      label: 'Slip Sill vs Lug Sill',
-      body: 'Slip sills sit flush within the masonry opening. Lug sills project beyond the window frame — use a lug sill when installing a full surround system for the most architecturally complete result.',
-    },
-    variants: [
-      { name: 'Classic Slip Sill',          description: 'Flush with opening, clean simple profile',    imageSrc: '/pictures/sills/Classic%20Slip%20Sill.png' },
-      { name: 'Classic Bull Nose Sill',     description: 'Rounded leading edge, softened profile',      imageSrc: '/pictures/sills/classic%20Bull%20Nose%20sill.png' },
-      { name: 'Conventional Sill',          description: 'Sloped top, standard drainage profile',       imageSrc: '/pictures/sills/Conventional%20Sill.png' },
-      { name: 'Double Slope Sill',          description: 'Dual pitch top, enhanced water runoff',       imageSrc: '/pictures/sills/Double%20Slope%20Sill.png' },
-      { name: 'Conventional Sill with Lip', description: 'Standard slope with drip-edge lip detail',   imageSrc: '/pictures/sills/Conventional%20Sill%20With%20Lip.png' },
-      { name: 'Custom',                     description: 'Any profile to specification' },
-    ],
-  },
-  {
-    id: 'wall-caps',
-    num: '12',
-    label: 'Limestone · Finishing',
-    title: 'Wall Caps',
-    imageSrc: '/pictures/Limestone%20page%20images/wall%20caps.png',
-    imageAlt: 'Indiana limestone classic wall cap profile, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'Wall caps provide a clean, elegant finish to any masonry wall. Beyond their aesthetic appeal, they offer cost-effective protection — enhancing structural integrity while shielding the wall from harsh weather. Available in a variety of stone and precast options, combining durability with timeless design.',
-    variants: [
-      { name: 'Classic Wall Cap',          description: 'Flat top profile, clean and versatile',           imageSrc: '/pictures/wall%20Caps/Classic%20Wall%20Cap.png' },
-      { name: 'Rounded Wall Cap',          description: 'Curved top surface, gentle organic form',          imageSrc: '/pictures/wall%20Caps/Rounded%20Wall%20Cap.png' },
-      { name: 'Double Wash Wall Cap',      description: 'Dual-pitched top for superior water shedding',     imageSrc: '/pictures/wall%20Caps/Double%20Wash%20Wall%20Cap.png' },
-      { name: 'Bull Nose Wall Cap',        description: 'Rounded leading edge, refined classic detail',     imageSrc: '/pictures/wall%20Caps/bull%20Nose%20Wall%20Cap.png' },
-      { name: 'Vintage Profile Wall Cap',  description: 'Ornate traditional profile, heritage character',   imageSrc: '/pictures/wall%20Caps/Vintage%20Profile%20Wall%20Cap.png' },
-      { name: 'Natural Rockface Wall Cap', description: 'Split face texture, raw stone character',          imageSrc: '/pictures/wall%20Caps/Natural%20Rockface%20Wall%20Cap.png' },
-      { name: 'Custom',                    description: 'Any profile to specification' },
-    ],
-  },
-  {
-    id: 'water-tables',
-    num: '13',
-    label: 'Limestone · Masonry',
-    title: 'Water Tables',
-    imageSrc: '/pictures/Limestone%20page%20images/water%20table.jpg',
-    imageAlt: 'Indiana limestone classic water table profile, Tulip Precast',
-    imagePosition: 'center center',
-    description: 'The water table is a powerful building element that makes a strong architectural statement. Positioned at the base of a wall or at key horizontal transitions, water tables create seamless continuity to window sills or banding — providing a streamlined, well-proportioned look to any project. Elegant, functional, and built to endure.',
-    variants: [
-      { name: 'Classic Water Table',          description: 'Clean flat profile, understated elegance',          imageSrc: '/pictures/Water%20Table/Classic%20Water%20Table.png' },
-      { name: 'Double Chamfered Water Table', description: 'Both edges angled, strong directional detail',      imageSrc: '/pictures/Water%20Table/Double%20Chamfered%20Water%20Table.png' },
-      { name: 'Single Chamfered Water Table', description: 'One angled reveal, refined shadow line',            imageSrc: '/pictures/Water%20Table/Singl%20Chamfered%20Water%20Table.png' },
-      { name: 'Ogee Water Table',             description: 'S-curve profile, the most decorative option',       imageSrc: '/pictures/Water%20Table/Ogee%20Water%20Table.png' },
-      { name: 'Custom',                       description: 'To specification' },
-    ],
-  },
-  {
-    id: 'veneers',
-    num: '14',
-    label: 'Limestone · Cladding',
-    title: 'Veneers',
-    imageSrc: '/pictures/Limestone%20page%20images/Veneers.webp',
-    imageAlt: 'Indiana limestone smooth thin veneer installed on luxury residential exterior, Tulip Precast',
-    imagePosition: 'center 50%',
-    description: 'Indiana Limestone veneers are the most versatile product in our range — available in thin and full bed depth profiles, each suited to different structural requirements and design intentions. 100% natural stone, no aggregates, no artificial colours. The same geological formation that supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate.',
-    veneers: [
-      {
-        type: 'Thin Bed', bed: '1¼" depth', title: 'Smooth',
-        description: 'Our most popular thin veneer. Smooth, refined, and consistent — also known as planed, honed, bugged, or circular sanded. Requires no footing or foundation. Installs directly over existing masonry.',
-        imageSrc: '/pictures/stone%20texture.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',   'Not required'],
-          ['Heights',   '4", 8", 12"'],
-          ['Length',    '24"'],
-          ['Depth',     '1¼"'],
-          ['Coverage',  '~135 sq ft per ton'],
-          ['Colours',   'Full colour blend · Buff · Gray'],
-        ],
-      },
-      {
-        type: 'Thin Bed', bed: '¾"–1¼" depth', title: 'Split Face & Tumbled',
-        description: 'Thin Indiana Limestone with natural texture and character. Versatile, durable, and fast to install. Available in split face and tumbled finishes — ideal for non-load-bearing walls and renovation cladding.',
-        imageSrc: '/pictures/masonry%20detail.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',         'Not required'],
-          ['Split Heights',   '2¼", 5", 7¾", 10½"'],
-          ['Tumbled Heights', '2"–12"'],
-          ['Length',          'Random'],
-          ['Depth',           '¾"–1¼"'],
-          ['Colours',         'Full colour blend · Buff · Gray'],
-        ],
-      },
-      {
-        type: 'Full Bed Depth', bed: '4" depth', title: 'Smooth',
-        description: 'Precision-cut modular units made from the same naturally durable Indiana Limestone used in many of the world\'s most renowned buildings. Competitively priced against engineered or cast stone alternatives.',
-        imageSrc: '/pictures/stone%20texture%202.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',  'Required'],
-          ['Heights',  '4", 8", 12", 16"'],
-          ['Length',   '24" or 36"'],
-          ['Depth',    '4"'],
-          ['Colours',  'Full bed · Gray · Full colour blend'],
-        ],
-      },
-      {
-        type: 'Full Bed Depth', bed: '3"–4" depth', title: 'Split Face',
-        description: 'Split face full bed depth veneer exhibits the beauty of subtle colour and grain variations inherent in natural stone. Adds a sense of permanence and lasting value to any residential or commercial project.',
-        imageSrc: '/pictures/hero%20image.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',  'Required'],
-          ['Heights',  '2¼", 5", 7¾", 10½"'],
-          ['Length',   'Random'],
-          ['Depth',    '3"–4"'],
-          ['Colours',  'Full colour blend · Buff · Gray'],
-        ],
-      },
-      {
-        type: 'Full Bed Depth', bed: '3"–5" depth', title: 'Tumbled',
-        description: 'Tumbled Indiana Limestone develops a graceful natural patina over time. Its natural variations in colour, texture, and finish enhance any architectural style — the perfect complement to brick and other building materials.',
-        imageSrc: '/pictures/lifestyle.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',  'Required'],
-          ['Heights',  '2"–12"'],
-          ['Length',   'Varies'],
-          ['Depth',    '3"–5"'],
-          ['Colours',  'Full colour blend'],
-        ],
-      },
-      {
-        type: 'Thin Bed', bed: '¾"–1¼" depth', title: 'Split Face',
-        description: 'Natural cleft face texture that reveals the character and grain of the stone. Lightweight and fast to install — ideal for feature walls, facades, and renovation cladding where a rugged, authentic texture is desired.',
-        imageSrc: '/pictures/stone%20texture.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',  'Not required'],
-          ['Heights',  '2¼", 5", 7¾", 10½"'],
-          ['Length',   'Random'],
-          ['Depth',    '¾"–1¼"'],
-          ['Colours',  'Full colour blend · Buff · Gray'],
-        ],
-      },
-      {
-        type: 'Thin Bed', bed: '¾"–1½" depth', title: 'Rock Face',
-        description: 'A bold, deeply textured natural surface — split and left with an irregular rock-face finish. Adds dramatic depth and shadow play to any facade. Available in full colour blend for maximum natural variation.',
-        imageSrc: '/pictures/stone%20texture%202.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',  'Not required'],
-          ['Heights',  '2¼", 5", 7¾", 10½"'],
-          ['Length',   'Random'],
-          ['Depth',    '¾"–1½"'],
-          ['Colours',  'Full colour blend'],
-        ],
-      },
-      {
-        type: 'Full Bed Depth', bed: '3"–4" depth', title: 'Leramosa',
-        description: 'A distinctive fossiliferous limestone with dramatic natural shell and fossil patterns visible across the surface. Each piece is unique — no two slabs share the same fossil configuration. A true statement material.',
-        imageSrc: '/pictures/masonry%20detail.jpg', imagePosition: 'center center',
-        specs: [
-          ['Footing',  'Required'],
-          ['Heights',  '4", 8", 12"'],
-          ['Length',   '24" or 36"'],
-          ['Depth',    '3"–4"'],
-          ['Colours',  'Natural fossil blend'],
-        ],
-      },
-    ],
-  },
-];
-
-const navLinks = [
-  { href: '#carving',      label: 'Carving' },
-  { href: '#balusters',    label: 'Balusters' },
-  { href: '#banding',      label: 'Banding' },
-  { href: '#columns',      label: 'Columns' },
-  { href: '#surrounds',    label: 'Surrounds' },
-  { href: '#arches',       label: 'Arches' },
-  { href: '#keystones',    label: 'Keystones' },
-  { href: '#pavers',       label: 'Pavers' },
-  { href: '#pier-caps',    label: 'Pier Caps' },
-  { href: '#quoins',       label: 'Quoins' },
-  { href: '#sills',        label: 'Sills' },
-  { href: '#wall-caps',    label: 'Wall Caps' },
-  { href: '#water-tables', label: 'Water Tables' },
-  { href: '#veneers',      label: 'Veneers' },
-];
+import CTASection from '../components/CTASection.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 
 const colours = [
   { name: 'Alabama Stone',              src: '/pictures/Indiana%20limesone%20colors/Alabama%20Stone.webp' },
@@ -404,7 +37,7 @@ const colours = [
 
   <!-- Hero -->
   <Hero
-    eyebrow="NATURAL STONE · 14 PRODUCT CATEGORIES · ONTARIO MADE"
+    eyebrow="NATURAL STONE · 5 PRODUCT CATEGORIES · ONTARIO MADE"
     headline="Indiana Limestone"
     headlineItalic="Products."
     imageSrc="/pictures/column.jpg"
@@ -419,10 +52,12 @@ const colours = [
   <!-- ── Sticky Product Sub-Navigation ─────────────────────── -->
   <nav class="product-subnav" aria-label="Limestone product categories">
     <div class="product-subnav-inner">
-      {navLinks.map((link) => (
-        <a href={link.href} class="subnav-link">{link.label}</a>
-      ))}
-      <span class="subnav-count" aria-hidden="true">14 Products</span>
+      <a href="#fabricated-stone" class="subnav-link">Custom Fabricated Stone</a>
+      <a href="#veneers" class="subnav-link">Veneers &amp; Building Stone</a>
+      <a href="#pool-spa" class="subnav-link">Pool &amp; Spa</a>
+      <a href="#landscape" class="subnav-link">Landscape</a>
+      <a href="#fireplaces" class="subnav-link">Fireplaces &amp; Sculpturing</a>
+      <span class="subnav-count" aria-hidden="true">5 Categories</span>
     </div>
   </nav>
 
@@ -463,22 +98,604 @@ const colours = [
       </div>
     </div>
 
-    <!-- ── Product Sections ─────────────────────────────── -->
-    {products.map((product, i) => (
-      <>
-        <ProductSection {...product} flip={i % 2 === 1} />
-        {i < products.length - 1 && (
-          <div class="product-divider" aria-hidden="true">
-            <div class="product-divider-line"></div>
-            <div class="product-divider-dot"></div>
-            <div class="product-divider-line"></div>
-          </div>
-        )}
-      </>
-    ))}
+    <!-- ══════════════════════════════════════════════════════════
+         CAT 1: CUSTOM FABRICATED STONE
+    ══════════════════════════════════════════════════════════ -->
+    <CategorySection
+      id="fabricated-stone"
+      number="01"
+      label="Limestone · Custom Fabrication"
+      title="Custom Fabricated Stone"
+      description="Ten product types, each handcrafted in Indiana Limestone to your exact specification. From classical columns and carved ornaments to balusters, banding, and keystones — every piece is produced with custom shop drawings and the same precision that has made Indiana Limestone the stone of choice for the world's most celebrated buildings."
+      background="cream"
+    >
+      <!-- Accordion -->
+      <div class="fab-accordion" aria-label="Custom fabricated stone products">
 
-    <!-- ── Pool & Spa Application ─────────────────────────── -->
-    <section id="pool-spa" class="pool-spa-section reveal" aria-label="Pool and spa stone applications">
+        <!-- 01 Carving -->
+        <div class="fab-item" data-accordion-item id="fab-carving">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-carving" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">01</span>
+              <div>
+                <span class="fab-name">Carving</span>
+                <span class="fab-teaser">Custom carved Indiana Limestone ornaments and architectural details.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-carving" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="carving"
+                num="01"
+                label="Limestone · Artisan Craft"
+                title="Carving"
+                imageSrc="/pictures/Limestone%20page%20images/carving.jpeg"
+                imageAlt="Artisan Indiana limestone carved fireplace surround, custom fabricated by Tulip Limestone · Precast"
+                imagePosition="center center"
+                description="Indiana limestone is a remarkable stone — ranging from warm buff to cool blue-gray, prized across generations for its workability and its unique capacity to accept and retain crisp, intricate detail. Today's carvers are a diverse group of artisans, many continuing family traditions alongside those who shaped the craft before them. Their skill brings each design to life with timeless precision."
+                callout={{ label: 'Custom Commission', body: 'When ordering a specialty carving, please provide: drawings and specifications, any full-size layouts available, and — for replica work — photographs and measurements of the existing piece. Our team will review and confirm feasibility before quoting.' }}
+                flip={false}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Balusters -->
+        <div class="fab-item" data-accordion-item id="fab-balusters">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-balusters" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">02</span>
+              <div>
+                <span class="fab-name">Balusters &amp; Balustrades</span>
+                <span class="fab-teaser">Solid limestone balusters for entryways, balconies, staircases, and pool areas.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-balusters" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="balusters"
+                num="02"
+                label="Limestone · Architectural"
+                title="Balusters & Balustrades"
+                imageSrc="/pictures/Limestone%20page%20images/Balusters-Balustrades.jpg"
+                imageAlt="Indiana limestone balusters on residential balcony, custom fabricated by Tulip Precast, Brampton Ontario"
+                imagePosition="center center"
+                description="Limestone balusters have always been a popular choice — whether for a simple renovation or a complex new construction. Balusters and balustrades are used at entryways, walkways, or as hardscape features. Our solid limestone balusters highlight large and small balconies, patios, staircases, and pool areas. We produce balusters of the highest quality — visually consistent in both colour and form, so your entire project carries a unified architectural character."
+                callout={{ label: 'Repair & Renovation Matching', body: 'Our renovation specialists identify exact matches for existing limestone architectural features. We precisely match the colour, texture, and design of your existing baluster or balustrade — providing an architectural detail that blends seamlessly into the look and feel of the original building. Our expertise in limestone forming, colour matching, and finishing ensures your new balusters integrate perfectly throughout the project.' }}
+                flip={true}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Banding -->
+        <div class="fab-item" data-accordion-item id="fab-banding">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-banding" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">03</span>
+              <div>
+                <span class="fab-name">Banding</span>
+                <span class="fab-teaser">Horizontal string courses and banding in custom profiles and dimensions.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-banding" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="banding"
+                num="03"
+                label="Limestone · Masonry"
+                title="Banding & String Courses"
+                imageSrc="/pictures/Limestone%20page%20images/Banding-String-Courses.jpg"
+                imageAlt="Indiana limestone banding string course on masonry wall exterior, Tulip Precast"
+                imagePosition="center center"
+                description="Banding — also known as string coursing — is one of the most cost-effective ways to add proportion, detail, and visual definition to any masonry structure. Designed to integrate seamlessly with common brick sizes, it creates a refined transitional element that elevates the entire facade. Custom banding profiles are also available for non-standard applications."
+                variants={[
+                  { name: 'Classic',           description: 'Flat rectangular profile, clean and timeless',    imageSrc: '/pictures/banding/classic.png' },
+                  { name: 'Bullnose',          description: 'Single rounded leading edge, softened profile',   imageSrc: '/pictures/banding/bull%20nose.png' },
+                  { name: 'Double Bullnose',   description: 'Both edges rounded, flowing horizontal line',     imageSrc: '/pictures/banding/double%20bull%20nose.png' },
+                  { name: 'Single Chamfered',  description: 'One angled reveal, adds subtle shadow line',      imageSrc: '/pictures/banding/single%20chamfered.png' },
+                  { name: 'Double Chamfered',  description: 'Both edges angled, strong directional shadow',    imageSrc: '/pictures/banding/double%20chambered.png' },
+                  { name: 'Natural Rock Face', description: 'Rough split texture, raw material character',     imageSrc: '/pictures/banding/natural%20rock%20face.png' },
+                  { name: 'Custom',            description: 'Any profile to specification' },
+                ]}
+                flip={false}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Columns -->
+        <div class="fab-item" data-accordion-item id="fab-columns">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-columns" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">04</span>
+              <div>
+                <span class="fab-name">Columns</span>
+                <span class="fab-teaser">Full round and half round columns, pilasters, and capitals in any classical order.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-columns" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="columns"
+                num="04"
+                label="Limestone · Architectural"
+                title="Columns"
+                imageSrc="/pictures/Limestone%20page%20images/columns.jpg"
+                imageAlt="Handcrafted Indiana limestone Corinthian columns, custom fabricated by Tulip Limestone · Precast, Brampton Ontario"
+                imagePosition="center 35%"
+                description="Finely crafted Indiana Limestone columns are the ultimate expression of timeless beauty in natural stone. Every column we deliver is handcrafted by skilled stone artisans to match any classic or contemporary style — to your exact specifications. We know that columns are the showpiece of the project, which is why we craft and deliver each base, shaft, and capital with great artistry and precision."
+                variants={[
+                  { name: 'Doric',      description: 'Short and heavy with simple round capitals. Strength and dignity.' },
+                  { name: 'Ionic',      description: 'Slender pillars with large base and signature scrolled capitals.' },
+                  { name: 'Corinthian', description: 'Slender, fluted columns with intricate carved capitals.' },
+                  { name: 'Tuscan',     description: 'Plain base and unfluted shaft. Understated and versatile.' },
+                  { name: 'Composite',  description: 'A refined blend of Ionic scrolls and Corinthian ornamentation.' },
+                  { name: 'Custom',     description: 'Any classical or contemporary profile to specification.' },
+                ]}
+                flip={true}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 Door & Window Surrounds -->
+        <div class="fab-item" data-accordion-item id="fab-surrounds">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-surrounds" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">05</span>
+              <div>
+                <span class="fab-name">Door &amp; Window Surrounds</span>
+                <span class="fab-teaser">Custom door and window surrounds in classical and contemporary profiles.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-surrounds" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="surrounds"
+                num="05"
+                label="Limestone · Architectural"
+                title="Door & Window Surrounds"
+                imageSrc="/pictures/Limestone%20page%20images/Door-Window-Surrounds.jpg"
+                imageAlt="Indiana limestone door and window surround on masonry facade, Tulip Precast"
+                imagePosition="center center"
+                description="Door and window surrounds add formal flair to any masonry structure. The style of the building is an integral part of choosing surrounds that best fit the architecture — contemporary modern designs as well as classic traditional surrounds are available. Custom door and window surrounds are also available to any specification."
+                variants={[
+                  { name: 'Classic',          description: 'Clean rectangular reveal, timeless and versatile',   imageSrc: '/pictures/door:window%20surround/classic.png' },
+                  { name: 'Double Chamfered', description: 'Both reveals angled, strong directional detail',     imageSrc: '/pictures/door:window%20surround/double%20chamfered.png' },
+                  { name: 'Classic Bullnose', description: 'Rounded leading edge, softened classical profile',   imageSrc: '/pictures/door:window%20surround/classic%20bullnose.png' },
+                  { name: 'Single Chamfered', description: 'One angled edge, adds architectural shadow line',    imageSrc: '/pictures/door:window%20surround/single%20chamfered.png' },
+                  { name: 'Natural Rockface', description: 'Rough split texture surround, organic character',    imageSrc: '/pictures/door:window%20surround/natural%20rockface.png' },
+                  { name: 'Custom',           description: 'Any profile or configuration to specification' },
+                ]}
+                flip={false}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 Jack Arches -->
+        <div class="fab-item" data-accordion-item id="fab-arches">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-arches" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">06</span>
+              <div>
+                <span class="fab-name">Jack Arches</span>
+                <span class="fab-teaser">Flat and segmental arches above door and window openings.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-arches" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="arches"
+                num="06"
+                label="Limestone · Architectural"
+                title="Jack Arches"
+                imageSrc="/pictures/Limestone%20page%20images/jack%20arches.jpg"
+                imageAlt="Indiana limestone jack arch, classic profile, Tulip Precast"
+                imagePosition="center center"
+                description="Beautifully cut jack arches define windows and doors with subtle sophistication. These building elements are a cost-effective way to reflect the personal style of your project. Jack arches are designed for either two or three piece installation — and when combined with jambs and a sill, they make a stunning architectural statement."
+                variants={[
+                  { name: 'Classic',    description: 'Standard flat wedge arch, clean and proportional',    imageSrc: '/pictures/arches/classic.png' },
+                  { name: 'Shadow Box', description: 'Recessed centre panel adds depth and dimension',      imageSrc: '/pictures/arches/shadow%20box.png' },
+                  { name: 'Chamfered',  description: 'Angled edge detail, refined directional shadow' },
+                  { name: 'Custom',     description: 'To specification' },
+                ]}
+                flip={true}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 Keystones -->
+        <div class="fab-item" data-accordion-item id="fab-keystones">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-keystones" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">07</span>
+              <div>
+                <span class="fab-name">Keystones</span>
+                <span class="fab-teaser">Classic wedge-shaped keystones for arched openings and accent pieces.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-keystones" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="keystones"
+                num="07"
+                label="Limestone · Detail"
+                title="Keystones"
+                imageSrc="/pictures/keystone015.webp"
+                imageAlt="Indiana limestone keystone, classic profile, Tulip Precast"
+                imagePosition="center center"
+                description="Keystones originated as the final wedge-shaped piece that held together a stone arch. Today, they are still used in that manner or can be used individually as an accent piece above any window or door opening. Adding a keystone gives a clean, polished look to any commercial or residential structure."
+                variants={[
+                  { name: 'Classic',    description: 'Standard projecting keystone, classic presence',  imageSrc: '/pictures/keystones/classic.png' },
+                  { name: 'Shadow Box', description: 'Recessed centre panel, adds visual depth',        imageSrc: '/pictures/keystones/shadow%20box.png' },
+                  { name: 'Chamfered',  description: 'Angled edges, clean contemporary refinement',     imageSrc: '/pictures/keystones/chamfered.png' },
+                  { name: 'Custom',     description: 'Carved or profiled to specification' },
+                ]}
+                flip={false}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 Sills -->
+        <div class="fab-item" data-accordion-item id="fab-sills">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-sills" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">08</span>
+              <div>
+                <span class="fab-name">Sills</span>
+                <span class="fab-teaser">Window and door sills in standard and custom profiles.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-sills" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="sills"
+                num="08"
+                label="Limestone · Architectural"
+                title="Sills"
+                imageSrc="/pictures/Limestone%20page%20images/sills.png"
+                imageAlt="Indiana limestone classic slip sill profile, Tulip Precast"
+                imagePosition="center center"
+                description="Sills are among the most essential architectural elements — adding understated style to any project. Slip sills are designed to align seamlessly with the width of the masonry opening. Lug sills extend beyond the window, allowing for the installation of a full surround and a more pronounced architectural presence. Custom sills are also available."
+                callout={{ label: 'Slip Sill vs Lug Sill', body: 'Slip sills sit flush within the masonry opening. Lug sills project beyond the window frame — use a lug sill when installing a full surround system for the most architecturally complete result.' }}
+                variants={[
+                  { name: 'Classic Slip Sill',          description: 'Flush with opening, clean simple profile',    imageSrc: '/pictures/sills/Classic%20Slip%20Sill.png' },
+                  { name: 'Classic Bull Nose Sill',     description: 'Rounded leading edge, softened profile',      imageSrc: '/pictures/sills/classic%20Bull%20Nose%20sill.png' },
+                  { name: 'Conventional Sill',          description: 'Sloped top, standard drainage profile',       imageSrc: '/pictures/sills/Conventional%20Sill.png' },
+                  { name: 'Double Slope Sill',          description: 'Dual pitch top, enhanced water runoff',       imageSrc: '/pictures/sills/Double%20Slope%20Sill.png' },
+                  { name: 'Conventional Sill with Lip', description: 'Standard slope with drip-edge lip detail',   imageSrc: '/pictures/sills/Conventional%20Sill%20With%20Lip.png' },
+                  { name: 'Custom',                     description: 'Any profile to specification' },
+                ]}
+                flip={true}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 09 Quoins -->
+        <div class="fab-item" data-accordion-item id="fab-quoins">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-quoins" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">09</span>
+              <div>
+                <span class="fab-name">Quoins</span>
+                <span class="fab-teaser">Corner quoins for residential and commercial facades.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-quoins" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="quoins"
+                num="09"
+                label="Limestone · Masonry"
+                title="Quoins"
+                imageSrc="/pictures/Limestone%20page%20images/Quoins.jpg"
+                imageAlt="Indiana limestone classic quoin, corner block profile, Tulip Precast Brampton"
+                imagePosition="center center"
+                description="Simple and classic, quoins create a wonderful visual contrast to masonry veneer. These can be installed one on top of the other or divided by another form of exterior cladding. Versatile in application, quoins add definition, permanence, and elegance to any corner — residential or commercial."
+                variants={[
+                  { name: 'Classic Quoin',              description: 'Single piece corner block, clean and bold',    imageSrc: '/pictures/Quoins/classic%20Quoin.png' },
+                  { name: 'Double Chamfered',           description: 'Angled edges both sides, refined shadow',     imageSrc: '/pictures/Quoins/double%20chamfered.png' },
+                  { name: 'Classic Two Piece',          description: 'Split into two for flexible installation',     imageSrc: '/pictures/Quoins/classic%20Two%20Piece.png' },
+                  { name: 'Double Chamfered Two Piece', description: 'Chamfered profile in two-piece format',       imageSrc: '/pictures/Quoins/Double%20Chamfered%20Two%20Piece.png' },
+                  { name: 'Classic Two Piece Mitered',  description: 'Mitered joint for seamless corner wrap',      imageSrc: '/pictures/Quoins/Classic%20Two%20Piece%20Mitered.png' },
+                ]}
+                flip={false}
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 Water Table -->
+        <div class="fab-item" data-accordion-item id="fab-water-table">
+          <button class="fab-trigger" type="button" aria-expanded="false" aria-controls="fab-panel-water-table" data-accordion-trigger>
+            <div class="fab-trigger-left">
+              <span class="fab-num" aria-hidden="true">10</span>
+              <div>
+                <span class="fab-name">Water Table</span>
+                <span class="fab-teaser">Projecting horizontal courses that shed water from the building face.</span>
+              </div>
+            </div>
+            <div class="fab-trigger-right" aria-hidden="true">
+              <span class="fab-view">View Details</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="fab-panel" id="fab-panel-water-table" role="region" hidden>
+            <div class="fab-panel-inner">
+              <ProductSection
+                id="water-tables"
+                num="10"
+                label="Limestone · Masonry"
+                title="Water Tables"
+                imageSrc="/pictures/Limestone%20page%20images/water%20table.jpg"
+                imageAlt="Indiana limestone classic water table profile, Tulip Precast"
+                imagePosition="center center"
+                description="The water table is a powerful building element that makes a strong architectural statement. Positioned at the base of a wall or at key horizontal transitions, water tables create seamless continuity to window sills or banding — providing a streamlined, well-proportioned look to any project. Elegant, functional, and built to endure."
+                variants={[
+                  { name: 'Classic Water Table',          description: 'Clean flat profile, understated elegance',          imageSrc: '/pictures/Water%20Table/Classic%20Water%20Table.png' },
+                  { name: 'Double Chamfered Water Table', description: 'Both edges angled, strong directional detail',      imageSrc: '/pictures/Water%20Table/Double%20Chamfered%20Water%20Table.png' },
+                  { name: 'Single Chamfered Water Table', description: 'One angled reveal, refined shadow line',            imageSrc: '/pictures/Water%20Table/Singl%20Chamfered%20Water%20Table.png' },
+                  { name: 'Ogee Water Table',             description: 'S-curve profile, the most decorative option',       imageSrc: '/pictures/Water%20Table/Ogee%20Water%20Table.png' },
+                  { name: 'Custom',                       description: 'To specification' },
+                ]}
+                flip={true}
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /fab-accordion -->
+
+      <!-- Colour Summary — 5 key swatches -->
+      <div class="fab-colours">
+        <p class="fab-colours-heading">Available Colour Families</p>
+        <div class="fab-colours-grid">
+          <div class="fab-colour-card">
+            <div class="fab-colour-swatch" style="background: #8E9192;"></div>
+            <div class="fab-colour-info">
+              <span class="fab-colour-name">Northern Gray</span>
+              <span class="fab-colour-desc">Cool, silvery gray with subtle blue undertones. The most contemporary of the five colour families.</span>
+            </div>
+          </div>
+          <div class="fab-colour-card">
+            <div class="fab-colour-swatch" style="background: #C8A86B;"></div>
+            <div class="fab-colour-info">
+              <span class="fab-colour-name">Northern Buff</span>
+              <span class="fab-colour-desc">Warm golden tones with creamy undertones. The classic Indiana Limestone colour — instantly recognisable.</span>
+            </div>
+          </div>
+          <div class="fab-colour-card">
+            <div class="fab-colour-swatch" style="background: #B0B4B8;"></div>
+            <div class="fab-colour-info">
+              <span class="fab-colour-name">Silver Shadow</span>
+              <span class="fab-colour-desc">Soft gray with warm silver highlights. Bridges the gap between buff and gray — refined and understated.</span>
+            </div>
+          </div>
+          <div class="fab-colour-card">
+            <div class="fab-colour-swatch" style="background: #9E9088;"></div>
+            <div class="fab-colour-info">
+              <span class="fab-colour-name">Alabama Gray</span>
+              <span class="fab-colour-desc">Rich, complex tones with natural variation in each piece. The most character-driven of the four.</span>
+            </div>
+          </div>
+          <div class="fab-colour-card">
+            <div class="fab-colour-swatch" style="background: #E8D5B0;"></div>
+            <div class="fab-colour-info">
+              <span class="fab-colour-name">Turkish Limestone (Ivory) <span class="fab-colour-badge">Premium</span></span>
+              <span class="fab-colour-desc">Warm ivory limestone from Turkey with a smooth, refined surface. Creamy tones with subtle natural variation — a premium specification.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </CategorySection>
+
+    <!-- ══════════════════════════════════════════════════════════
+         CAT 2: VENEERS & BUILDING STONE
+    ══════════════════════════════════════════════════════════ -->
+    <CategorySection
+      id="veneers"
+      number="02"
+      label="Limestone · Cladding"
+      title="Veneers & Building Stone"
+      description="Indiana Limestone veneers in thin and full bed depth profiles — smooth, split face, and rock face finishes. 100% natural stone, no aggregates, no artificial colours. The same geological formation that supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate."
+      background="pale"
+    >
+      <ProductSection
+        id="veneers-main"
+        num="02"
+        label="Limestone · Cladding"
+        title="Veneers"
+        imageSrc="/pictures/Limestone%20page%20images/Veneers.webp"
+        imageAlt="Indiana limestone smooth thin veneer installed on luxury residential exterior, Tulip Precast"
+        imagePosition="center 50%"
+        description="Indiana Limestone veneers are the most versatile product in our range — available in thin and full bed depth profiles, each suited to different structural requirements and design intentions. 100% natural stone, no aggregates, no artificial colours. The same geological formation that supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate."
+        veneers={[
+          {
+            type: 'Thin Bed', bed: '1¼" depth', title: 'Smooth',
+            description: 'Our most popular thin veneer. Smooth, refined, and consistent — also known as planed, honed, bugged, or circular sanded. Requires no footing or foundation. Installs directly over existing masonry.',
+            imageSrc: '/pictures/stone%20texture.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',   'Not required'],
+              ['Heights',   '4", 8", 12"'],
+              ['Length',    '24"'],
+              ['Depth',     '1¼"'],
+              ['Coverage',  '~135 sq ft per ton'],
+              ['Colours',   'Full colour blend · Buff · Gray'],
+            ],
+          },
+          {
+            type: 'Thin Bed', bed: '¾– 1¼" depth', title: 'Split Face & Tumbled',
+            description: 'Thin Indiana Limestone with natural texture and character. Versatile, durable, and fast to install. Available in split face and tumbled finishes — ideal for non-load-bearing walls and renovation cladding.',
+            imageSrc: '/pictures/masonry%20detail.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',         'Not required'],
+              ['Split Heights',   '2¼", 5", 7¾", 10½"'],
+              ['Tumbled Heights', '2– 12"'],
+              ['Length',          'Random'],
+              ['Depth',           '¾– 1¼"'],
+              ['Colours',         'Full colour blend · Buff · Gray'],
+            ],
+          },
+          {
+            type: 'Full Bed Depth', bed: '4" depth', title: 'Smooth',
+            description: 'Precision-cut modular units made from the same naturally durable Indiana Limestone used in many of the world\'s most renowned buildings. Competitively priced against engineered or cast stone alternatives.',
+            imageSrc: '/pictures/stone%20texture%202.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',  'Required'],
+              ['Heights',  '4", 8", 12", 16"'],
+              ['Length',   '24" or 36"'],
+              ['Depth',    '4"'],
+              ['Colours',  'Full bed · Gray · Full colour blend'],
+            ],
+          },
+          {
+            type: 'Full Bed Depth', bed: '3–4" depth', title: 'Split Face',
+            description: 'Split face full bed depth veneer exhibits the beauty of subtle colour and grain variations inherent in natural stone. Adds a sense of permanence and lasting value to any residential or commercial project.',
+            imageSrc: '/pictures/hero%20image.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',  'Required'],
+              ['Heights',  '2¼", 5", 7¾", 10½"'],
+              ['Length',   'Random'],
+              ['Depth',    '3–4"'],
+              ['Colours',  'Full colour blend · Buff · Gray'],
+            ],
+          },
+          {
+            type: 'Full Bed Depth', bed: '3–5" depth', title: 'Tumbled',
+            description: 'Tumbled Indiana Limestone develops a graceful natural patina over time. Its natural variations in colour, texture, and finish enhance any architectural style — the perfect complement to brick and other building materials.',
+            imageSrc: '/pictures/lifestyle.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',  'Required'],
+              ['Heights',  '2–12"'],
+              ['Length',   'Varies'],
+              ['Depth',    '3–5"'],
+              ['Colours',  'Full colour blend'],
+            ],
+          },
+          {
+            type: 'Thin Bed', bed: '¾–1¼" depth', title: 'Split Face',
+            description: 'Natural cleft face texture that reveals the character and grain of the stone. Lightweight and fast to install — ideal for feature walls, facades, and renovation cladding where a rugged, authentic texture is desired.',
+            imageSrc: '/pictures/stone%20texture.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',  'Not required'],
+              ['Heights',  '2¼", 5", 7¾", 10½"'],
+              ['Length',   'Random'],
+              ['Depth',    '¾–1¼"'],
+              ['Colours',  'Full colour blend · Buff · Gray'],
+            ],
+          },
+          {
+            type: 'Thin Bed', bed: '¾–1½" depth', title: 'Rock Face',
+            description: 'A bold, deeply textured natural surface — split and left with an irregular rock-face finish. Adds dramatic depth and shadow play to any facade. Available in full colour blend for maximum natural variation.',
+            imageSrc: '/pictures/stone%20texture%202.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',  'Not required'],
+              ['Heights',  '2¼", 5", 7¾", 10½"'],
+              ['Length',   'Random'],
+              ['Depth',    '¾–1½"'],
+              ['Colours',  'Full colour blend'],
+            ],
+          },
+          {
+            type: 'Full Bed Depth', bed: '3–4" depth', title: 'Leramosa',
+            description: 'A distinctive fossiliferous limestone with dramatic natural shell and fossil patterns visible across the surface. Each piece is unique — no two slabs share the same fossil configuration. A true statement material.',
+            imageSrc: '/pictures/masonry%20detail.jpg', imagePosition: 'center center',
+            specs: [
+              ['Footing',  'Required'],
+              ['Heights',  '4", 8", 12"'],
+              ['Length',   '24" or 36"'],
+              ['Depth',    '3–4"'],
+              ['Colours',  'Natural fossil blend'],
+            ],
+          },
+        ]}
+        flip={false}
+      />
+    </CategorySection>
+
+    <!-- ══════════════════════════════════════════════════════════
+         CAT 3: POOL & SPA
+    ══════════════════════════════════════════════════════════ -->
+    <CategorySection
+      id="pool-spa"
+      number="03"
+      label="Limestone · Pool &amp; Spa"
+      title="Pool &amp; Spa"
+      description="Natural limestone and premium hardstones for pool surrounds, coping, hot tub cladding, and spa walls. Natural traction in wet conditions, exceptional durability through freeze-thaw cycles, and timeless beauty that complements any landscape design."
+      background="pale"
+    >
       <div class="pool-spa-inner">
         <div class="pool-spa-image">
           <img
@@ -493,25 +710,197 @@ const colours = [
         </div>
         <div class="pool-spa-content">
           <span class="label-section">Limestone · Pool &amp; Spa</span>
-          <h2 class="pool-spa-title">Pool &amp; Spa Applications</h2>
+          <h3 class="pool-spa-title">Pool &amp; Spa Applications</h3>
           <div class="draw-line pool-spa-rule" aria-hidden="true"></div>
           <p class="pool-spa-description">
             Indiana Limestone is a natural choice for pool coping, spa surrounds, and water feature applications. Slip-resistant, low-maintenance, and beautiful — our limestone veneers and coping pieces are fabricated to withstand moisture and temperature cycling while maintaining their colour and character for decades.
           </p>
           <ul class="pool-spa-features">
-            <li><span class="feature-mark" aria-hidden="true">—</span><span>Pool coping — all profiles to specification</span></li>
-            <li><span class="feature-mark" aria-hidden="true">—</span><span>Spa surrounds and deck pavers</span></li>
-            <li><span class="feature-mark" aria-hidden="true">—</span><span>Water feature facing and sills</span></li>
-            <li><span class="feature-mark" aria-hidden="true">—</span><span>All veneer types available for pool applications</span></li>
+            <li><span class="feature-mark" aria-hidden="true">&#8212;</span><span>Pool coping — all profiles to specification</span></li>
+            <li><span class="feature-mark" aria-hidden="true">&#8212;</span><span>Spa surrounds and deck pavers</span></li>
+            <li><span class="feature-mark" aria-hidden="true">&#8212;</span><span>Water feature facing and sills</span></li>
+            <li><span class="feature-mark" aria-hidden="true">&#8212;</span><span>All veneer types available for pool applications</span></li>
           </ul>
           <a href="/contact?product=pool-spa-limestone" class="btn btn-outlined-dark btn-magnetic">
             Request a Pool &amp; Spa Quote
           </a>
         </div>
       </div>
-    </section>
+    </CategorySection>
+
+    <!-- ══════════════════════════════════════════════════════════
+         CAT 4: LANDSCAPE
+    ══════════════════════════════════════════════════════════ -->
+    <CategorySection
+      id="landscape"
+      number="04"
+      label="Limestone · Hardscape"
+      title="Landscape"
+      description="Indiana Limestone hardscape elements for outdoor spaces — wall caps, pier caps, and pavers. Timeless beauty, exceptional durability through Canadian freeze-thaw cycles, and a natural traction that performs in all conditions."
+      background="cream"
+    >
+      <ProductSection
+        id="wall-caps"
+        num="12"
+        label="Limestone · Finishing"
+        title="Wall Caps"
+        imageSrc="/pictures/Limestone%20page%20images/wall%20caps.png"
+        imageAlt="Indiana limestone classic wall cap profile, Tulip Precast"
+        imagePosition="center center"
+        description="Wall caps provide a clean, elegant finish to any masonry wall. Beyond their aesthetic appeal, they offer cost-effective protection — enhancing structural integrity while shielding the wall from harsh weather. Available in a variety of stone and precast options, combining durability with timeless design."
+        variants={[
+          { name: 'Classic Wall Cap',          description: 'Flat top profile, clean and versatile',           imageSrc: '/pictures/wall%20Caps/Classic%20Wall%20Cap.png' },
+          { name: 'Rounded Wall Cap',          description: 'Curved top surface, gentle organic form',          imageSrc: '/pictures/wall%20Caps/Rounded%20Wall%20Cap.png' },
+          { name: 'Double Wash Wall Cap',      description: 'Dual-pitched top for superior water shedding',     imageSrc: '/pictures/wall%20Caps/Double%20Wash%20Wall%20Cap.png' },
+          { name: 'Bull Nose Wall Cap',        description: 'Rounded leading edge, refined classic detail',     imageSrc: '/pictures/wall%20Caps/bull%20Nose%20Wall%20Cap.png' },
+          { name: 'Vintage Profile Wall Cap',  description: 'Ornate traditional profile, heritage character',   imageSrc: '/pictures/wall%20Caps/Vintage%20Profile%20Wall%20Cap.png' },
+          { name: 'Natural Rockface Wall Cap', description: 'Split face texture, raw stone character',          imageSrc: '/pictures/wall%20Caps/Natural%20Rockface%20Wall%20Cap.png' },
+          { name: 'Custom',                    description: 'Any profile to specification' },
+        ]}
+        flip={false}
+      />
+
+      <div class="product-divider" aria-hidden="true">
+        <div class="product-divider-line"></div>
+        <div class="product-divider-dot"></div>
+        <div class="product-divider-line"></div>
+      </div>
+
+      <ProductSection
+        id="pier-caps"
+        num="09"
+        label="Limestone · Finishing"
+        title="Pier Caps"
+        imageSrc="/pictures/Limestone%20page%20images/Pier%20Caps.jpg"
+        imageAlt="Indiana limestone pier caps on garden wall entrance, residential exterior, Tulip Precast"
+        imagePosition="center 40%"
+        description={'Available in 2¼" and 3" thicknesses as well as a variety of lengths and widths to meet your needs, our limestone pier caps are available in rock face or square edge finishes. We offer pier caps in Full Colour Blend (FCB) and Gray — providing timeless options for residential and commercial applications.'}
+        specs={[
+          ['Thicknesses',  '2¼" and 3"'],
+          ['Finishes',     'Rock Face · Square Edge'],
+          ['Colours',      'Full Colour Blend (FCB) · Gray'],
+          ['Availability', 'Standard and custom lengths and widths'],
+        ]}
+        flip={true}
+      />
+
+      <div class="product-divider" aria-hidden="true">
+        <div class="product-divider-line"></div>
+        <div class="product-divider-dot"></div>
+        <div class="product-divider-line"></div>
+      </div>
+
+      <ProductSection
+        id="pavers"
+        num="08"
+        label="Limestone · Hardscape"
+        title="Pavers"
+        imageSrc="/pictures/Limestone%20page%20images/Pavers.jpeg"
+        imageAlt="Indiana limestone pavers on luxury residential outdoor terrace, Tulip Precast, Canada & USA"
+        imagePosition="center 50%"
+        description="Indiana limestone pavers are the perfect choice for many outdoor spaces — prized for their timeless beauty and ability to weather well while maintaining reliable traction even in wet conditions. Limestone pavers are low maintenance, long-lasting, and offer the perfect marriage of modern clean lines with traditional natural materials. Available in a variety of colours, cuts, and textures to suit any project."
+        benefits={[
+          { title: 'Weather Resistant', body: 'Low-maintenance in Canadian climate' },
+          { title: 'Natural Traction',  body: 'Safe in wet conditions year-round' },
+          { title: 'Timeless Beauty',   body: 'Colour deepens gracefully with age' },
+        ]}
+        flip={false}
+      />
+    </CategorySection>
+
+    <!-- ══════════════════════════════════════════════════════════
+         CAT 5: FIREPLACES & SCULPTURING
+    ══════════════════════════════════════════════════════════ -->
+    <CategorySection
+      id="fireplaces"
+      number="05"
+      label="Limestone · Artisan"
+      title="Fireplaces &amp; Sculpturing"
+      description="Custom fireplace surrounds and sculptural commissions in Indiana Limestone. Whether you have architectural drawings or a rough sketch on paper, our carvers work from any reference to produce pieces that will stand for generations."
+      background="dark"
+    >
+      <!-- Fireplace section -->
+      <div class="fire-section">
+        <div class="fire-grid">
+          <div class="fire-image">
+            <img
+              src="/pictures/fireplace.jpg"
+              alt="Custom Indiana limestone fireplace surround, custom fabricated by Tulip Limestone · Precast"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="fire-content">
+            <span class="label-section">Limestone · Fireplaces</span>
+            <h3 class="fire-title">Fireplace Surrounds</h3>
+            <div class="fire-rule" aria-hidden="true"></div>
+            <p class="fire-desc">
+              A limestone fireplace surround is the defining architectural feature of any room. Handcrafted in Indiana Limestone to your exact specification — from a simple classic mantel to an elaborate carved surround with pilasters, frieze, and corbels. Every surround is produced with full shop drawings for your approval before fabrication begins.
+            </p>
+            <div class="fire-profiles">
+              <p class="fire-profiles-label">Available Profiles</p>
+              <ul class="fire-profiles-list">
+                <li>Classic Flat</li>
+                <li>Single Chamfered</li>
+                <li>Double Chamfered</li>
+                <li>Bullnose</li>
+                <li>Ogee</li>
+                <li>Custom to specification</li>
+              </ul>
+            </div>
+            <div class="fire-callout">
+              <span class="fire-callout-label">Commission Process</span>
+              <p class="fire-callout-body">Provide drawings, photographs, or a hand sketch. We will produce shop drawings for your approval — then fabricate to exact specification.</p>
+            </div>
+            <a href="/contact?service=fireplace" class="btn btn-outlined btn-magnetic">
+              Request a Fireplace Quote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-divider product-divider--dark" aria-hidden="true">
+        <div class="product-divider-line"></div>
+        <div class="product-divider-dot"></div>
+        <div class="product-divider-line"></div>
+      </div>
+
+      <!-- Sculpturing section -->
+      <div class="fire-section">
+        <div class="fire-grid fire-grid--flip">
+          <div class="fire-image">
+            <img
+              src="/pictures/Sculpters.jpeg"
+              alt="Indiana limestone sculpture commission — Tulip Limestone · Precast artisan carving"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="fire-content">
+            <span class="label-section">Limestone · Sculpturing</span>
+            <h3 class="fire-title">Sculptural Commissions</h3>
+            <div class="fire-rule" aria-hidden="true"></div>
+            <p class="fire-desc">
+              Our artisan carvers accept sculptural commissions in Indiana Limestone — garden ornaments, figurative sculpture, architectural carvings, memorial pieces, and replica work. Each commission is a collaboration: you bring the vision, we bring the craft and the stone.
+            </p>
+            <div class="fire-callout">
+              <span class="fire-callout-label">What to Provide</span>
+              <p class="fire-callout-body">Drawings and specifications, any full-size layouts available, and — for replica work — photographs and measurements of the existing piece. Our team will review and confirm feasibility before quoting.</p>
+            </div>
+            <a href="/contact?service=sculpturing" class="btn btn-outlined btn-magnetic">
+              Commission a Sculpture
+            </a>
+          </div>
+        </div>
+      </div>
+    </CategorySection>
 
   </div>
+  <!-- /limestone-content -->
 
   <!-- ── Stone Colours Section ─────────────────────────────── -->
   <section class="stone-colours-section">
@@ -586,9 +975,9 @@ const colours = [
   <!-- ── CTA Band ───────────────────────────────────────────── -->
   <CTASection
     background="sage"
-    headline="Ready to specify Indiana Limestone?"
-    subheading="Send us your drawings, specifications, or inspiration. We'll confirm availability, pricing, and lead times within one business day."
-    buttonText="REQUEST A QUOTE"
+    headline="Ready to start your project?"
+    subheading="Send us your drawings, specifications, or inspiration. Our team will guide you from design to delivery."
+    buttonText="REQUEST A FREE QUOTE"
     buttonHref="/contact"
   />
 
@@ -742,7 +1131,7 @@ const colours = [
   }
 
   .order-callout-list li::before {
-    content: '·';
+    content: '\00b7';
     position: absolute;
     left: 0;
     color: var(--warm-sand);
@@ -754,17 +1143,215 @@ const colours = [
     white-space: nowrap;
   }
 
-  /* ── Inter-section dividers ──────────────────────────────── */
+  /* ── Fabricated stone accordion ──────────────────────────── */
 
-  /* ── Pool & Spa section ────────────────────────────── */
-
-  .pool-spa-section {
+  .fab-accordion {
     max-width: var(--max-width);
-    margin: var(--space-2xl) auto 0;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .fab-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .fab-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: var(--space-md);
+    color: inherit;
+    transition: background 200ms ease;
+  }
+
+  .fab-trigger:hover {
+    background: rgba(200, 168, 130, 0.04);
+  }
+
+  .fab-trigger:focus-visible {
+    outline: 2px solid var(--warm-sand);
+    outline-offset: 2px;
+  }
+
+  .fab-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex: 1;
+  }
+
+  .fab-num {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 300;
+    color: var(--sand-light);
+    line-height: 1;
+    letter-spacing: var(--ls-tight);
+    flex-shrink: 0;
+    min-width: 48px;
+  }
+
+  .fab-trigger[aria-expanded="true"] .fab-num {
+    color: var(--warm-sand);
+  }
+
+  .fab-name {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    display: block;
+    transition: color 200ms ease;
+  }
+
+  .fab-trigger:hover .fab-name,
+  .fab-trigger[aria-expanded="true"] .fab-name {
+    color: var(--warm-sand);
+  }
+
+  .fab-teaser {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .fab-trigger-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+    color: var(--stone-light);
+    transition: color 200ms ease;
+  }
+
+  .fab-trigger:hover .fab-trigger-right,
+  .fab-trigger[aria-expanded="true"] .fab-trigger-right {
+    color: var(--warm-sand);
+  }
+
+  .fab-view {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+  }
+
+  .fab-trigger-right svg {
+    transition: transform 350ms var(--ease-out);
+    flex-shrink: 0;
+  }
+
+  .fab-trigger[aria-expanded="true"] .fab-trigger-right svg {
+    transform: rotate(180deg);
+  }
+
+  .fab-panel {
+    overflow: hidden;
+    transition: max-height 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .fab-panel-inner {
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* ── Colours summary block ───────────────────────────────── */
+
+  .fab-colours {
+    max-width: var(--max-width);
+    margin: var(--space-3xl) auto 0;
     padding: 0 var(--content-padding) var(--space-2xl);
   }
 
+  .fab-colours-heading {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+    margin-bottom: var(--space-lg);
+    max-width: none;
+  }
+
+  .fab-colours-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
+  }
+
+  .fab-colour-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .fab-colour-swatch {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--cream-dark);
+  }
+
+  .fab-colour-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .fab-colour-name {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+  }
+
+  .fab-colour-desc {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    display: block;
+    max-width: none;
+  }
+
+  .fab-colour-badge {
+    font-family: var(--font-sans);
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--quarry-stone);
+    background: var(--warm-sand);
+    padding: 2px 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* ── Pool & Spa layout ───────────────────────────────────── */
+
   .pool-spa-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding) var(--space-2xl);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
@@ -829,7 +1416,7 @@ const colours = [
     line-height: var(--lh-body);
   }
 
-  /* ── Product divider ─────────────────────────────── */
+  /* ── Inter-section dividers ──────────────────────────────── */
 
   .product-divider {
     display: flex;
@@ -846,12 +1433,148 @@ const colours = [
     background: var(--cream-dark);
   }
 
+  .product-divider--dark .product-divider-line {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .product-divider-dot {
     width: 4px;
     height: 4px;
     background: var(--warm-sand);
     border-radius: 50%;
     flex-shrink: 0;
+  }
+
+  /* ── Fireplaces & Sculpturing ────────────────────────────── */
+
+  .fire-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding) var(--space-2xl);
+  }
+
+  .fire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .fire-grid--flip .fire-image { order: 2; }
+  .fire-grid--flip .fire-content { order: 1; }
+
+  .fire-image {
+    overflow: hidden;
+    background: var(--quarry-dark);
+  }
+
+  .fire-image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 700ms var(--ease-out);
+    opacity: 0.9;
+  }
+
+  .fire-image:hover img {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+
+  .fire-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .fire-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+  }
+
+  .fire-rule {
+    width: 40px;
+    height: 1px;
+    background: rgba(200, 168, 130, 0.4);
+  }
+
+  .fire-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+    max-width: 55ch;
+  }
+
+  .fire-profiles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .fire-profiles-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    max-width: none;
+  }
+
+  .fire-profiles-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .fire-profiles-list li {
+    font-family: var(--font-serif);
+    font-size: var(--text-body);
+    font-weight: 400;
+    color: var(--stone-light);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color 200ms ease;
+  }
+
+  .fire-profiles-list li:hover {
+    color: var(--warm-sand);
+  }
+
+  .fire-callout {
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid var(--warm-sand);
+  }
+
+  .fire-callout-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .fire-callout-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+    max-width: none;
   }
 
   /* ── Stone Colours Section ───────────────────────────────── */
@@ -1017,6 +1740,16 @@ const colours = [
       grid-template-columns: 1fr;
       gap: var(--space-md);
     }
+    .fab-colours-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .fire-grid {
+      grid-template-columns: 1fr;
+    }
+    .fire-grid--flip .fire-image,
+    .fire-grid--flip .fire-content {
+      order: unset;
+    }
   }
 
   @media (max-width: 768px) {
@@ -1033,14 +1766,30 @@ const colours = [
     .pool-spa-inner {
       grid-template-columns: 1fr;
     }
+    .fab-trigger-left {
+      gap: var(--space-md);
+    }
+    .fab-trigger-right {
+      display: none;
+    }
+    .fab-colours-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .fab-colours-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
 </style>
 
 <script>
+  /* ── Sticky subnav active state ───────────────────────────── */
   (function () {
-    const sections = document.querySelectorAll('.ps[id]');
-    const navLinks  = document.querySelectorAll('.product-subnav a[href^="#"]');
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('.cat-section[id]'));
+    const navLinks  = Array.from(document.querySelectorAll<HTMLElement>('.product-subnav a[href^="#"]'));
     const OFFSET    = 150;
 
     if (!sections.length || !navLinks.length) return;
@@ -1056,7 +1805,7 @@ const colours = [
                 link.getAttribute('href') === '#' + id
               );
             });
-            const activeLink = document.querySelector('.product-subnav a.is-active');
+            const activeLink = document.querySelector<HTMLElement>('.product-subnav a.is-active');
             activeLink?.scrollIntoView({
               behavior: 'smooth',
               block: 'nearest',
@@ -1075,28 +1824,133 @@ const colours = [
   })();
 </script>
 
+<script>
+  /* ── Fabricated stone accordion ───────────────────────────── */
+  (function () {
+    const accordion = document.querySelector<HTMLElement>('.fab-accordion');
+    if (!accordion) return;
+
+    const triggers = Array.from(accordion.querySelectorAll<HTMLButtonElement>('[data-accordion-trigger]'));
+
+    function getPanel(trigger: HTMLButtonElement): HTMLElement | null {
+      const id = trigger.getAttribute('aria-controls');
+      return id ? document.getElementById(id) : null;
+    }
+
+    function animateOpen(trigger: HTMLButtonElement, panel: HTMLElement) {
+      panel.removeAttribute('hidden');
+      panel.style.visibility = 'visible';
+      panel.style.maxHeight = '0';
+      panel.style.overflow = 'hidden';
+      panel.style.transition = 'max-height 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      // force reflow
+      void panel.offsetHeight;
+      panel.style.maxHeight = (panel.scrollHeight + 64) + 'px';
+      trigger.setAttribute('aria-expanded', 'true');
+      panel.addEventListener('transitionend', function onEnd() {
+        panel.removeEventListener('transitionend', onEnd);
+        panel.style.maxHeight = '';
+        panel.style.overflow = '';
+      }, { once: true });
+    }
+
+    function animateClose(trigger: HTMLButtonElement, panel: HTMLElement) {
+      panel.style.overflow = 'hidden';
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      panel.style.transition = 'max-height 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      // force reflow
+      void panel.offsetHeight;
+      panel.style.maxHeight = '0';
+      trigger.setAttribute('aria-expanded', 'false');
+      panel.addEventListener('transitionend', function onEnd() {
+        panel.removeEventListener('transitionend', onEnd);
+        panel.setAttribute('hidden', '');
+        panel.style.visibility = 'hidden';
+        panel.style.maxHeight = '';
+        panel.style.overflow = '';
+        panel.style.transition = '';
+      }, { once: true });
+    }
+
+    function closeAll() {
+      triggers.forEach((t) => {
+        const p = getPanel(t);
+        if (p && t.getAttribute('aria-expanded') === 'true') {
+          animateClose(t, p);
+        }
+      });
+    }
+
+    // Initialise all panels collapsed
+    triggers.forEach((t) => {
+      const p = getPanel(t);
+      if (p) {
+        p.style.visibility = 'hidden';
+      }
+    });
+
+    triggers.forEach((trigger, i) => {
+      trigger.addEventListener('click', () => {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        const panel  = getPanel(trigger);
+        if (!panel) return;
+        if (isOpen) {
+          animateClose(trigger, panel);
+        } else {
+          closeAll();
+          animateOpen(trigger, panel);
+        }
+      });
+
+      trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+        let target = -1;
+        switch (e.key) {
+          case 'ArrowDown': e.preventDefault(); target = (i + 1) % triggers.length; break;
+          case 'ArrowUp':   e.preventDefault(); target = (i - 1 + triggers.length) % triggers.length; break;
+          case 'Home':      e.preventDefault(); target = 0; break;
+          case 'End':       e.preventDefault(); target = triggers.length - 1; break;
+          case 'Escape': {
+            const p = getPanel(trigger);
+            if (p && trigger.getAttribute('aria-expanded') === 'true') {
+              animateClose(trigger, p);
+            }
+            break;
+          }
+        }
+        if (target >= 0) triggers[target].focus();
+      });
+    });
+
+    // Deep-link: auto-open panel if URL hash matches
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+      const panelId = 'fab-panel-' + hash;
+      const target  = document.getElementById(panelId);
+      const trigger = target ? accordion.querySelector<HTMLButtonElement>(`[aria-controls="${panelId}"]`) : null;
+      if (target && trigger) {
+        animateOpen(trigger, target);
+        setTimeout(() => {
+          trigger.closest<HTMLElement>('[data-accordion-item]')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    });
+  })();
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Indiana Limestone Products",
   "description": "Custom fabricated Indiana Limestone products by Tulip Limestone · Precast, Brampton Ontario",
-  "numberOfItems": 14,
+  "numberOfItems": 5,
   "itemListElement": [
-    { "@type": "ListItem", "position": 1,  "name": "Carving" },
-    { "@type": "ListItem", "position": 2,  "name": "Balusters & Balustrades" },
-    { "@type": "ListItem", "position": 3,  "name": "Banding & String Courses" },
-    { "@type": "ListItem", "position": 4,  "name": "Columns" },
-    { "@type": "ListItem", "position": 5,  "name": "Door & Window Surrounds" },
-    { "@type": "ListItem", "position": 6,  "name": "Jack Arches" },
-    { "@type": "ListItem", "position": 7,  "name": "Keystones" },
-    { "@type": "ListItem", "position": 8,  "name": "Pavers" },
-    { "@type": "ListItem", "position": 9,  "name": "Pier Caps" },
-    { "@type": "ListItem", "position": 10, "name": "Quoins" },
-    { "@type": "ListItem", "position": 11, "name": "Sills" },
-    { "@type": "ListItem", "position": 12, "name": "Wall Caps" },
-    { "@type": "ListItem", "position": 13, "name": "Water Tables" },
-    { "@type": "ListItem", "position": 14, "name": "Veneers" }
+    { "@type": "ListItem", "position": 1, "name": "Custom Fabricated Stone" },
+    { "@type": "ListItem", "position": 2, "name": "Veneers & Building Stone" },
+    { "@type": "ListItem", "position": 3, "name": "Pool & Spa" },
+    { "@type": "ListItem", "position": 4, "name": "Landscape" },
+    { "@type": "ListItem", "position": 5, "name": "Fireplaces & Sculpturing" }
   ]
 }
 </script>
