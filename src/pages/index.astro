@@ -71,57 +71,53 @@ const processSteps = [
 
   <!-- Section 03: Brand Statement -->
   <section class="section-statement" aria-label="Indiana Limestone heritage">
+
+    <!-- Video background -->
+    <div class="statement-bg" aria-hidden="true">
+      <video
+        class="statement-video"
+        src="/video/detialed%20limesonte.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+        preload="auto"
+      ></video>
+    </div>
+
+    <!-- Dark overlay -->
+    <div class="statement-overlay" aria-hidden="true"></div>
+
+    <!-- Content on top of video -->
     <div class="section-container">
-      <div class="section-statement__inner">
-
-        <!-- Video: full width on top -->
-        <div class="statement-video-frame reveal">
-          <video
-            class="statement-video"
-            src="/video/detialed%20limesonte.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            aria-label="Indiana Limestone fabrication detail"
-          ></video>
-        </div>
-
-        <!-- Text: below the video -->
-        <div class="statement-below reveal">
-          <div class="statement-below-left">
-            <span class="label-section">Indiana Limestone · Natural Stone Fabrication</span>
-            <h2 class="statement-headline">
-              The same stone as the<br />
-              <em>Empire State Building.</em>
-            </h2>
-            <span class="statement-rule draw-line" aria-hidden="true"></span>
+      <div class="statement-content reveal">
+        <span class="label-section statement-label">Indiana Limestone · Natural Stone Fabrication</span>
+        <h2 class="statement-headline">
+          The same stone as the<br />
+          <em>Empire State Building.</em>
+        </h2>
+        <span class="statement-rule draw-line" aria-hidden="true"></span>
+        <p class="statement-body">
+          Indiana Limestone has been prized for over 1,000+ years for its workability, durability, and capacity to hold crisp architectural detail. The same geological formation supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate. Now available for your project, fabricated right here in Ontario.
+        </p>
+        <div class="statement-pills" aria-label="Key facts">
+          <div class="statement-pill reveal reveal-delay-1">
+            <span class="statement-pill-stat">1,000+</span>
+            <span class="statement-pill-label">Years trusted</span>
           </div>
-
-          <div class="statement-below-right">
-            <p class="statement-body">
-              Indiana Limestone has been prized for over 1,000+ years for its workability, durability, and capacity to hold crisp architectural detail. The same geological formation supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate. Now available for your project, fabricated right here in Ontario.
-            </p>
-
-            <div class="statement-pills" aria-label="Key facts">
-              <div class="statement-pill reveal reveal-delay-1">
-                <span class="statement-pill-stat">1,000+</span>
-                <span class="statement-pill-label">Years trusted</span>
-              </div>
-              <div class="statement-pill reveal reveal-delay-2">
-                <span class="statement-pill-stat">100%</span>
-                <span class="statement-pill-label">Natural stone</span>
-              </div>
-              <div class="statement-pill reveal reveal-delay-3">
-                <span class="statement-pill-stat">Ontario</span>
-                <span class="statement-pill-label">Made certified</span>
-              </div>
-            </div>
+          <div class="statement-pill reveal reveal-delay-2">
+            <span class="statement-pill-stat">100%</span>
+            <span class="statement-pill-label">Natural stone</span>
+          </div>
+          <div class="statement-pill reveal reveal-delay-3">
+            <span class="statement-pill-stat">Ontario</span>
+            <span class="statement-pill-label">Made certified</span>
           </div>
         </div>
-
       </div>
     </div>
+
   </section>
 
   <!-- Section 04: Category Grid -->
@@ -655,45 +651,69 @@ const processSteps = [
 
   /* ── Section 03: Brand Statement ────────────────────────── */
 
+  /* ── Statement section — full-bleed video background ── */
+
   .section-statement {
-    background: var(--sand-pale);
-    padding: var(--space-2xl) 0;
-  }
-
-  .section-statement__inner {
+    position: relative;
+    overflow: hidden;
+    min-height: 70vh;
     display: flex;
-    flex-direction: column;
-    gap: var(--space-2xl);
+    align-items: center;
   }
 
-  /* Below-video text row */
-  .statement-below {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: var(--space-xl);
-    align-items: start;
+  .statement-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
 
-  .statement-below-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .statement-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
-  .statement-below-right {
+  .statement-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(30, 23, 18, 0.78) 0%,
+      rgba(30, 23, 18, 0.55) 100%
+    );
+    z-index: 1;
+  }
+
+  .section-statement .section-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .statement-content {
+    padding: var(--space-3xl) 0;
+    max-width: 680px;
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
   }
 
+  .statement-label {
+    color: var(--warm-sand);
+    opacity: 0.85;
+  }
+
   .statement-headline {
     font-family: var(--font-serif);
-    font-size: clamp(26px, 2.8vw, 40px);
+    font-size: clamp(28px, 3.5vw, 52px);
     font-weight: 300;
-    color: var(--stone-dark);
+    color: var(--white-warm);
     line-height: var(--lh-heading);
-    margin: var(--space-sm) 0;
-    max-width: 20ch;
+    margin: var(--space-xs) 0;
   }
 
   .statement-headline em {
@@ -704,9 +724,9 @@ const processSteps = [
   .statement-rule {
     display: block;
     height: 1px;
-    background: var(--sand-light);
+    background: rgba(200, 168, 130, 0.5);
     width: 60px;
-    margin: var(--space-md) 0;
+    margin: var(--space-sm) 0;
     transform-origin: left center;
   }
 
@@ -714,10 +734,10 @@ const processSteps = [
     font-family: var(--font-sans);
     font-size: var(--text-body);
     font-weight: 300;
-    color: var(--stone-mid);
+    color: rgba(255, 255, 255, 0.72);
     line-height: var(--lh-body);
-    max-width: none;
-    margin-bottom: var(--space-lg);
+    max-width: 58ch;
+    margin-bottom: var(--space-sm);
   }
 
   .statement-pills {
@@ -726,12 +746,14 @@ const processSteps = [
     flex-wrap: nowrap;
     justify-content: flex-start;
     width: 100%;
+    max-width: 440px;
   }
 
   .statement-pill {
     flex: 1;
-    border: 1px solid var(--sand-light);
-    background: var(--white-warm);
+    border: 1px solid rgba(200, 168, 130, 0.25);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(6px);
     padding: 20px 14px;
     display: flex;
     flex-direction: column;
@@ -744,7 +766,7 @@ const processSteps = [
     font-family: var(--font-serif);
     font-size: clamp(1.4rem, 2.2vw, 1.9rem);
     font-weight: 300;
-    color: var(--stone-dark);
+    color: var(--white-warm);
     line-height: 1;
   }
 
@@ -754,40 +776,8 @@ const processSteps = [
     font-weight: 400;
     letter-spacing: var(--ls-wider);
     text-transform: uppercase;
-    color: var(--stone-light);
+    color: rgba(255, 255, 255, 0.55);
     text-align: center;
-  }
-
-  /* Right column — premium video frame */
-  .statement-video-frame {
-    position: relative;
-    align-self: center;
-    width: 100%;
-    padding: 14px;
-    background: var(--sand-pale);
-    border: 1px solid var(--warm-sand);
-    box-shadow:
-      0 0 0 5px rgba(200, 168, 130, 0.08),
-      0 8px 32px rgba(61, 53, 48, 0.09),
-      0 28px 80px rgba(61, 53, 48, 0.14);
-  }
-
-  .statement-video-frame::before {
-    content: '';
-    position: absolute;
-    inset: 5px;
-    border: 1px solid rgba(200, 168, 130, 0.30);
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .statement-video {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    outline: 1px solid rgba(200, 168, 130, 0.50);
-    outline-offset: -1px;
   }
 
   /* ── Section 04: Category Grid ──────────────────────────── */
@@ -1358,13 +1348,9 @@ const processSteps = [
   /* ── Responsive ─────────────────────────────────────────── */
 
   @media (max-width: 1024px) {
-    .statement-below {
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-
     .statement-pills {
       flex-wrap: wrap;
+      max-width: 100%;
     }
 
     .statement-pill {
