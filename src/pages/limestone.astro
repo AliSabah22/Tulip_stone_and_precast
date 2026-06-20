@@ -1478,7 +1478,7 @@ const colours = [
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
-    align-items: start;
+    align-items: stretch;
   }
 
   .fire-grid--flip .fire-image { order: 2; }
@@ -1491,7 +1491,8 @@ const colours = [
 
   .fire-image img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
+    min-height: 320px;
     object-fit: cover;
     display: block;
     transition: transform 700ms var(--ease-out);
