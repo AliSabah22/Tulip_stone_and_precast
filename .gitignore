@@ -1,3 +1,7 @@
+# Claude Code agent files
+.claude/
+.superpowers/
+
 # Dependencies
 node_modules/
 
