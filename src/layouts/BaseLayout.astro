@@ -27,6 +27,7 @@ export interface Props {
   loadFormValidation?: boolean;
   solidNav?: boolean;
   additionalSchema?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -41,6 +42,7 @@ const {
   loadFormValidation = false,
   solidNav = false,
   additionalSchema,
+  noindex = false,
 } = Astro.props;
 
 const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site).href;
@@ -83,6 +85,7 @@ const ogImageAbsolute = ogImage.startsWith('http')
       title={title}
       description={description}
       canonical={canonical}
+      noindex={noindex}
       openGraph={{
         basic: {
           title: title,

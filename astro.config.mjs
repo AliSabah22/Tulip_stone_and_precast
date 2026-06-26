@@ -9,20 +9,30 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      customPages: [
-        'https://www.tulipprecast.com/',
-        'https://www.tulipprecast.com/limestone',
-        'https://www.tulipprecast.com/precast',
-        'https://www.tulipprecast.com/services',
-        'https://www.tulipprecast.com/gfrc/',
-        'https://www.tulipprecast.com/portfolio',
-        'https://www.tulipprecast.com/colours',
-        'https://www.tulipprecast.com/about',
-        'https://www.tulipprecast.com/contact',
-      ],
       serialize(item) {
-        if (item.url === 'https://www.tulipprecast.com/gfrc/') {
-          return { ...item, priority: 0.85, changefreq: 'monthly' };
+        const url = item.url.replace(/\/$/, '');
+        if (url === 'https://www.tulipprecast.com') {
+          return { ...item, priority: 1.0, changefreq: 'weekly' };
+        }
+        if (
+          url === 'https://www.tulipprecast.com/limestone' ||
+          url === 'https://www.tulipprecast.com/gfrc' ||
+          url === 'https://www.tulipprecast.com/precast'
+        ) {
+          return { ...item, priority: 0.9, changefreq: 'weekly' };
+        }
+        if (
+          url === 'https://www.tulipprecast.com/services' ||
+          url === 'https://www.tulipprecast.com/portfolio' ||
+          url === 'https://www.tulipprecast.com/colours'
+        ) {
+          return { ...item, priority: 0.8, changefreq: 'monthly' };
+        }
+        if (
+          url === 'https://www.tulipprecast.com/about' ||
+          url === 'https://www.tulipprecast.com/contact'
+        ) {
+          return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
         return item;
       },

@@ -4,34 +4,88 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 
-const gfrcSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Glass Fiber Reinforced Concrete (GFRC) Fabrication",
-  "description": "Premium GFRC fabrication for architectural facades, feature walls, fireplace surrounds, and custom sculptural elements across Canada & USA. Ontario Made.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Tulip Limestone · Precast",
-    "url": "https://www.tulipprecast.com",
-    "telephone": ["647-534-7755", "905-796-0110"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "98 Rutherford Rd Unit 2C",
-      "addressLocality": "Brampton",
-      "addressRegion": "ON",
-      "postalCode": "L6W 3J5",
-      "addressCountry": "CA"
-    }
+const gfrcSchema = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Glass Fiber Reinforced Concrete (GFRC) Fabrication",
+    "description": "GFRC fabrication in the GTA for architectural facades, feature walls, fireplace surrounds, and custom sculptural elements. Ontario Made.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Tulip Limestone · Precast",
+      "url": "https://www.tulipprecast.com",
+      "telephone": ["+1-647-534-7755", "+1-905-796-0110"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "98 Rutherford Rd Unit 2C",
+        "addressLocality": "Brampton",
+        "addressRegion": "ON",
+        "postalCode": "L6W 3J5",
+        "addressCountry": "CA"
+      }
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Brampton" },
+      { "@type": "City", "name": "Mississauga" },
+      { "@type": "City", "name": "Toronto" },
+      { "@type": "City", "name": "Oakville" },
+      { "@type": "City", "name": "Vaughan" }
+    ],
+    "serviceType": "GFRC Architectural Fabrication",
+    "url": "https://www.tulipprecast.com/gfrc"
   },
-  "areaServed": "Canada & USA",
-  "serviceType": "GFRC Architectural Fabrication",
-  "url": "https://www.tulipprecast.com/gfrc"
-});
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is GFRC and how does it differ from standard concrete?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GFRC (Glass Fiber Reinforced Concrete) is a composite of Portland cement, fine aggregate, and alkali-resistant glass fibers. It is up to 75% lighter than standard concrete while maintaining exceptional strength, making it ideal for large-scale architectural cladding and custom elements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What can be fabricated from GFRC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GFRC is used for facade panels, feature walls, fireplace surrounds, column wraps, cornices, keystones, landscape planters, custom sculptural elements, and more. Any shape that can be moulded can be produced in GFRC."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is GFRC suitable for exterior applications in Ontario's climate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. GFRC is frost-resistant, UV-stable, and handles temperature cycling without cracking or spalling. It is suitable for exterior use in all Canadian climate zones including Ontario."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a custom GFRC project take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lead times vary by complexity. Most custom GFRC projects require 6–12 weeks from approved shop drawings to delivery. Contact us for project-specific timelines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can GFRC be finished to look like natural limestone or stone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. GFRC can be finished with aggregate exposure, acid washes, pigmentation, and surface texturing to closely simulate limestone, granite, sandstone, and other natural stone materials."
+        }
+      }
+    ]
+  }
+]);
 ---
 
 <BaseLayout
-  title="GFRC Fabrication | Glass Fiber Reinforced Concrete | Tulip Precast"
-  description="Premium GFRC (Glass Fiber Reinforced Concrete) fabrication for architectural facades, feature walls, fireplace surrounds, and custom sculptural elements across Canada & USA. Ontario Made."
+  title="GFRC Fabricator Toronto | Glass Fiber Concrete | Tulip"
+  description="GFRC fabricator in the GTA. Glass fiber reinforced concrete panels for facades, feature walls, fireplace surrounds, and custom architectural elements."
   pageClass="page-gfrc"
   additionalSchema={gfrcSchema}
 >
@@ -244,6 +298,7 @@ const gfrcSchema = JSON.stringify({
         <h3 class="gfrc-app-title">Column Wraps & Architectural Elements</h3>
         <span class="gfrc-app-rule draw-line" aria-hidden="true"></span>
         <p class="gfrc-app-body">GFRC column wraps, pilasters, cornices, and decorative architectural elements provide the visual presence of full-depth stone fabrication without structural support requirements. Column wraps install over existing structural columns — transforming utilitarian supports into architectural features with entasis, fluting, and capital detail.</p>
+        <p class="gfrc-app-body">For projects requiring solid Indiana Limestone columns, balusters, or carved elements alongside your GFRC components, see our <a href="/limestone#fabricated-stone">limestone fabrication</a> range.</p>
         <ul class="gfrc-app-features">
           <li>Doric, Ionic, Corinthian, and custom profiles</li>
           <li>Split column wrap systems for retrofit</li>
