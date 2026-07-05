@@ -1,0 +1,753 @@
+---
+interface SiteVideo {
+  src: string;
+  poster: string;
+  caption: string;
+}
+
+interface Props {
+  videos: SiteVideo[];
+}
+
+const { videos } = Astro.props;
+---
+
+<!-- Video data for JS (not rendered) -->
+<script
+  id="vv-data"
+  type="application/json"
+  set:html={JSON.stringify(videos)}
+></script>
+
+<div
+  id="video-viewer"
+  class="vv"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Video detail"
+  aria-hidden="true"
+  hidden
+>
+
+  <!-- Backdrop -->
+  <div
+    class="vv-backdrop"
+    id="vv-backdrop"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Slide-in panel -->
+  <div class="vv-panel" id="vv-panel">
+
+    <!-- ── Header ────────────────────────────────────────────── -->
+    <div class="vv-header">
+
+      <div class="vv-header-left">
+        <span class="vv-header-eyebrow">Video Detail</span>
+        <span
+          class="vv-counter"
+          id="vv-counter"
+          aria-live="polite"
+          aria-atomic="true"
+        ></span>
+      </div>
+
+      <div class="vv-header-right">
+
+        <button
+          class="vv-icon-btn"
+          id="vv-prev"
+          aria-label="Previous video"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16"
+               fill="none" aria-hidden="true">
+            <path d="M10 3L5 8l5 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button
+          class="vv-icon-btn"
+          id="vv-next"
+          aria-label="Next video"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16"
+               fill="none" aria-hidden="true">
+            <path d="M6 3l5 5-5 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button
+          class="vv-icon-btn vv-close"
+          id="vv-close"
+          aria-label="Close video detail"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16"
+               fill="none" aria-hidden="true">
+            <path d="M3 3l10 10M13 3L3 13"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ── Body ──────────────────────────────────────────────── -->
+    <div class="vv-body">
+
+      <!-- Left: Video -->
+      <div class="vv-gallery">
+
+        <!-- Primary video -->
+        <div class="vv-primary-wrap">
+          <video
+            id="vv-primary-video"
+            class="vv-primary-video"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <span
+            class="vv-caption-overlay"
+            id="vv-caption"
+            aria-hidden="true"
+          ></span>
+        </div>
+
+        <!-- Thumbnail strip -->
+        <div
+          class="vv-thumbs"
+          id="vv-thumbs"
+          role="list"
+          aria-label="All videos"
+        >
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+
+      <!-- Right: Info -->
+      <div class="vv-info" id="vv-info">
+        <div class="vv-info-scroll">
+
+          <span class="vv-eyebrow">On-Site Video</span>
+
+          <p class="vv-copy">
+            See our craftsmanship in action — behind-the-scenes footage
+            from active installations across our project sites.
+          </p>
+
+          <!-- Primary CTA -->
+          <a
+            href="/contact"
+            class="btn btn-primary vv-cta"
+          >
+            Start a Similar Project →
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style is:global>
+
+  /* ── Viewer root ────────────────────────────────────────────── */
+
+  .vv {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+
+  .vv[aria-hidden="false"] {
+    pointer-events: all;
+  }
+
+  /* ── Backdrop ───────────────────────────────────────────────── */
+
+  .vv-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 16, 0);
+    cursor: pointer;
+    transition: background 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .vv.is-open .vv-backdrop {
+    background: rgba(20, 18, 16, 0.72);
+  }
+
+  /* ── Panel ──────────────────────────────────────────────────── */
+
+  .vv-panel {
+    position: relative;
+    z-index: 1;
+    width: min(1040px, 92vw);
+    height: 100dvh;
+    background: var(--limestone-cream, #FAF6EF);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(102%);
+    transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .vv.is-open .vv-panel {
+    transform: translateX(0);
+  }
+
+  /* ── Header ─────────────────────────────────────────────────── */
+
+  .vv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--cream-dark, #F0E8D8);
+    background: var(--white-warm, #FDFAF6);
+    flex-shrink: 0;
+    gap: 16px;
+  }
+
+  .vv-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .vv-header-eyebrow {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-light, #9C8880);
+    white-space: nowrap;
+  }
+
+  .vv-counter {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--stone-lighter, #C4B8B0);
+    letter-spacing: 0.05em;
+  }
+
+  .vv-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .vv-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--cream-dark, #F0E8D8);
+    cursor: pointer;
+    color: var(--stone-mid, #6B5E56);
+    transition:
+      border-color 200ms ease,
+      color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .vv-icon-btn:hover {
+    border-color: var(--warm-sand, #C8A882);
+    color: var(--stone-dark, #3D3530);
+    background: var(--sand-pale, #F5EDE0);
+  }
+
+  .vv-icon-btn:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .vv-icon-btn:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: 2px;
+  }
+
+  /* ── Body grid ──────────────────────────────────────────────── */
+
+  .vv-body {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Gallery ────────────────────────────────────────────────── */
+
+  .vv-gallery {
+    display: flex;
+    flex-direction: column;
+    background: var(--quarry-stone, #3D3530);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .vv-primary-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .vv-primary-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+
+  .vv-caption-overlay {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253, 250, 246, 0.6);
+    background: rgba(20, 18, 16, 0.52);
+    padding: 3px 8px;
+    pointer-events: none;
+  }
+
+  /* ── Thumbnail strip ────────────────────────────────────────── */
+
+  .vv-thumbs {
+    display: flex;
+    gap: 2px;
+    background: var(--quarry-dark, #1e1a17);
+    padding: 2px;
+    flex-shrink: 0;
+    min-height: 70px;
+    max-height: 70px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .vv-thumbs::-webkit-scrollbar { display: none; }
+
+  .vv-thumb {
+    position: relative;
+    flex-shrink: 0;
+    width: 96px;
+    height: 66px;
+    overflow: hidden;
+    cursor: pointer;
+    background: none;
+    border: 2px solid transparent;
+    padding: 0;
+    opacity: 0.5;
+    transition:
+      opacity 200ms ease,
+      border-color 200ms ease;
+  }
+
+  .vv-thumb:hover {
+    opacity: 0.82;
+  }
+
+  .vv-thumb.is-active {
+    opacity: 1;
+    border-color: var(--warm-sand, #C8A882);
+  }
+
+  .vv-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .vv-thumb-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background: rgba(20, 18, 16, 0.18);
+  }
+
+  .vv-thumb-play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 5px 0 5px 8px;
+    border-color: transparent transparent transparent rgba(253, 250, 246, 0.92);
+  }
+
+  .vv-thumb:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: 2px;
+  }
+
+  /* ── Info panel ─────────────────────────────────────────────── */
+
+  .vv-info {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sand-light, #E8D5BC) transparent;
+  }
+
+  .vv-info::-webkit-scrollbar { width: 3px; }
+  .vv-info::-webkit-scrollbar-thumb {
+    background: var(--sand-light, #E8D5BC);
+  }
+
+  .vv-info-scroll {
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .vv-eyebrow {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sage-green, #7A9176);
+  }
+
+  .vv-copy {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--stone-mid, #6B5E56);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  /* ── CTA ────────────────────────────────────────────────────── */
+
+  .vv-cta {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    text-decoration: none;
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────────── */
+
+  @media (max-width: 768px) {
+    .vv {
+      align-items: flex-end;
+      justify-content: stretch;
+    }
+
+    .vv-panel {
+      width: 100%;
+      height: 94dvh;
+      transform: translateY(104%);
+      border-radius: 0;
+    }
+
+    .vv.is-open .vv-panel {
+      transform: translateY(0);
+    }
+
+    .vv-body {
+      grid-template-columns: 1fr;
+      grid-template-rows: 52vw 1fr;
+      overflow-y: auto;
+    }
+
+    .vv-gallery {
+      height: 52vw;
+      flex-shrink: 0;
+    }
+
+    .vv-info { overflow: visible; }
+
+    .vv-info-scroll {
+      padding: 24px 20px;
+      padding-bottom: calc(36px + env(safe-area-inset-bottom));
+    }
+
+    .vv-thumbs {
+      max-height: 58px;
+      min-height: 58px;
+    }
+
+    .vv-thumb {
+      width: 80px;
+      height: 54px;
+    }
+
+    .vv-header {
+      padding: 14px 20px;
+    }
+  }
+
+  /* ── Reduced motion ─────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .vv-panel { transition: none; }
+    .vv-backdrop { transition: none; }
+    .vv-thumb { transition: none; }
+  }
+
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Parse video data ────────────────────────────────────── */
+
+  const dataEl = document.getElementById('vv-data');
+  if (!dataEl) return;
+
+  let videos;
+  try {
+    videos = JSON.parse(dataEl.textContent || '[]');
+  } catch {
+    console.error('VideoViewer: failed to parse video data');
+    return;
+  }
+
+  if (!videos.length) return;
+
+  /* ── DOM references ──────────────────────────────────────── */
+
+  const viewer     = document.getElementById('video-viewer');
+  const backdrop   = document.getElementById('vv-backdrop');
+  const panel      = document.getElementById('vv-panel');
+  const closeBtn   = document.getElementById('vv-close');
+  const prevBtn    = document.getElementById('vv-prev');
+  const nextBtn    = document.getElementById('vv-next');
+  const counterEl  = document.getElementById('vv-counter');
+  const primaryVideo = document.getElementById('vv-primary-video');
+  const captionEl  = document.getElementById('vv-caption');
+  const thumbsEl   = document.getElementById('vv-thumbs');
+  const infoEl     = document.getElementById('vv-info');
+
+  if (!viewer || !primaryVideo || !thumbsEl) return;
+
+  /* ── State ───────────────────────────────────────────────── */
+
+  let currentIdx = 0;
+  let isOpen     = false;
+  let triggerEl  = null;
+
+  /* ── Open ────────────────────────────────────────────────── */
+
+  function openViewer(index) {
+    if (index < 0 || index >= videos.length) return;
+    currentIdx = index;
+
+    viewer.removeAttribute('hidden');
+    void viewer.getBoundingClientRect();
+
+    viewer.setAttribute('aria-hidden', 'false');
+    viewer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    isOpen = true;
+
+    renderVideo();
+    buildThumbs();
+
+    setTimeout(() => closeBtn && closeBtn.focus(), 80);
+  }
+
+  /* ── Close ───────────────────────────────────────────────── */
+
+  function closeViewer() {
+    primaryVideo.pause();
+    viewer.classList.remove('is-open');
+    viewer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    isOpen = false;
+
+    const onEnd = () => {
+      viewer.setAttribute('hidden', '');
+      viewer.removeEventListener('transitionend', onEnd);
+    };
+    viewer.addEventListener('transitionend', onEnd);
+
+    if (triggerEl) triggerEl.focus();
+    triggerEl = null;
+  }
+
+  /* ── Render current video ──────────────────────────────────── */
+
+  function renderVideo() {
+    const video = videos[currentIdx];
+    if (!video) return;
+
+    if (counterEl) {
+      counterEl.textContent = `${currentIdx + 1} / ${videos.length}`;
+    }
+
+    if (prevBtn) prevBtn.disabled = currentIdx === 0;
+    if (nextBtn) nextBtn.disabled = currentIdx === videos.length - 1;
+
+    primaryVideo.pause();
+    if (primaryVideo.getAttribute('src') !== video.src) {
+      primaryVideo.setAttribute('src', video.src);
+    }
+    if (video.poster) primaryVideo.poster = video.poster;
+
+    if (captionEl) captionEl.textContent = video.caption ?? '';
+
+    if (infoEl) infoEl.scrollTop = 0;
+
+    thumbsEl.querySelectorAll('.vv-thumb').forEach((t, i) => {
+      const active = i === currentIdx;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    const activeThumb = thumbsEl.querySelector('.vv-thumb.is-active');
+    if (activeThumb) {
+      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
+  /* ── Build thumbnail strip ───────────────────────────────── */
+
+  function buildThumbs() {
+    thumbsEl.innerHTML = '';
+
+    videos.forEach((video, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'vv-thumb' + (i === currentIdx ? ' is-active' : '');
+      btn.setAttribute('role', 'listitem');
+      btn.setAttribute('aria-label', video.caption || `Video ${i + 1}`);
+      btn.setAttribute('aria-pressed', i === currentIdx ? 'true' : 'false');
+
+      const image = document.createElement('img');
+      image.src     = video.poster || '';
+      image.alt     = '';
+      image.setAttribute('aria-hidden', 'true');
+      image.width   = 96;
+      image.height  = 66;
+      image.loading = 'lazy';
+
+      const playBadge = document.createElement('span');
+      playBadge.className = 'vv-thumb-play';
+      playBadge.setAttribute('aria-hidden', 'true');
+
+      btn.appendChild(image);
+      btn.appendChild(playBadge);
+      btn.addEventListener('click', () => goTo(i));
+      thumbsEl.appendChild(btn);
+    });
+  }
+
+  /* ── Navigation ──────────────────────────────────────────── */
+
+  function goTo(index) {
+    if (index < 0 || index >= videos.length) return;
+    currentIdx = index;
+    renderVideo();
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(currentIdx - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(currentIdx + 1));
+
+  /* ── Close triggers ──────────────────────────────────────── */
+
+  if (closeBtn) closeBtn.addEventListener('click', closeViewer);
+  if (backdrop) backdrop.addEventListener('click', closeViewer);
+
+  /* ── Keyboard ────────────────────────────────────────────── */
+
+  document.addEventListener('keydown', e => {
+    if (!isOpen) return;
+
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        closeViewer();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        goTo(currentIdx - 1);
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        goTo(currentIdx + 1);
+        break;
+    }
+  });
+
+  /* ── Focus trap ──────────────────────────────────────────── */
+
+  if (panel) {
+    panel.addEventListener('keydown', e => {
+      if (e.key !== 'Tab' || !isOpen) return;
+      const focusable = Array.from(
+        panel.querySelectorAll(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  /* ── Tile click delegation ───────────────────────────────── */
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-open-video]');
+    if (!btn) return;
+
+    triggerEl = btn;
+    const index = parseInt(btn.dataset.openVideo, 10);
+    if (Number.isNaN(index)) return;
+
+    openViewer(index);
+  });
+
+})();
+</script>

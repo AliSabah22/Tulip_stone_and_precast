@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/portfolio/ProjectCard.astro';
 import ProjectViewer from '../components/portfolio/ProjectViewer.astro';
+import VideoViewer from '../components/portfolio/VideoViewer.astro';
 
 interface ProjectImage {
   src: string;
@@ -840,6 +841,9 @@ const filterOptions = [
 
   <!-- Project viewer — renders all data, shown on demand -->
   <ProjectViewer projects={projects} />
+
+  <!-- Video viewer — renders all video data, shown on demand -->
+  <VideoViewer videos={siteVideos} />
 
 </BaseLayout>
 
