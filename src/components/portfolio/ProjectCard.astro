@@ -6,6 +6,12 @@ interface ProjectImage {
   position?: string;
 }
 
+interface ProjectVideo {
+  src: string;
+  poster?: string;
+  caption?: string;
+}
+
 interface Project {
   id: string;
   title: string;
@@ -15,6 +21,7 @@ interface Project {
   categories: string[];
   heroImage: ProjectImage;
   images: ProjectImage[];
+  videos?: ProjectVideo[];
   materials: string[];
   description: string;
   featured?: boolean;
@@ -64,6 +71,25 @@ const {
         class="pc-image"
         style={`object-position: ${project.heroImage.position ?? 'center center'}`}
       />
+
+      <!-- Video badge -->
+      {project.videos && project.videos.length > 0 && (
+        <span
+          class="pc-video-badge"
+          aria-label={`Includes ${project.videos.length} videos`}
+        >
+          <svg
+            width="9"
+            height="9"
+            viewBox="0 0 9 9"
+            fill="none"
+            aria-hidden="true"
+          >
+            <polygon points="1,0.5 8.5,4.5 1,8.5" fill="currentColor" />
+          </svg>
+          Video
+        </span>
+      )}
 
       <!-- Multi-image badge -->
       {project.images.length > 1 && (
@@ -200,6 +226,27 @@ const {
 
   .pc-trigger:hover .pc-image {
     transform: scale(1.03);
+  }
+
+  /* ── Video badge ────────────────────────────────────────────── */
+
+  .pc-video-badge {
+    position: absolute;
+    top: var(--space-sm, 16px);
+    left: var(--space-sm, 16px);
+    background: rgba(200, 168, 130, 0.88);
+    color: var(--white-warm, #FDFAF6);
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 8px 4px 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+    pointer-events: none;
   }
 
   /* ── Count badge ────────────────────────────────────────────── */
