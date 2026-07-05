@@ -45,9 +45,12 @@ portfolio.astro
 
 portfolio-filter.js (existing, extended)
   └─ applyFilter(filter)
-       - filter === 'videos'  → hide project grid, show video grid
+       - filter === 'videos'  → hide project grid, show video grid,
+                                 count text = allVideos.length ("N videos")
        - otherwise            → show project grid (category-filtered as
-                                 today), hide video grid
+                                 today), hide video grid, count text =
+                                 visible project count ("N projects",
+                                 unchanged from today)
 
 ProjectViewer.astro (existing, extended)
   ├─ click delegation reads data-open-index off the trigger,
