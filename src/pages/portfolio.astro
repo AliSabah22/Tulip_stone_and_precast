@@ -11,10 +11,10 @@ interface ProjectImage {
   position?: string;
 }
 
-interface ProjectVideo {
+interface SiteVideo {
   src: string;
-  poster?: string;
-  caption?: string;
+  poster: string;
+  caption: string;
 }
 
 interface Project {
@@ -26,7 +26,6 @@ interface Project {
   categories: string[];
   heroImage: ProjectImage;
   images: ProjectImage[];
-  videos?: ProjectVideo[];
   materials: string[];
   description: string;
   featured?: boolean;
@@ -416,263 +415,6 @@ const projects: Project[] = [
         caption: "Upper floor detail — arched dormer with carved limestone and pilaster capitals"
       }
     ],
-    videos: [
-      {
-        src: "/porfolio_directory/project_1/videos/clip-01.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-01.jpg",
-        caption: "Site video — clip 1"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-02.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-02.jpg",
-        caption: "Site video — clip 2"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-03.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-03.jpg",
-        caption: "Site video — clip 3"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-04.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-04.jpg",
-        caption: "Site video — clip 4"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-05.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-05.jpg",
-        caption: "Site video — clip 5"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-06.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-06.jpg",
-        caption: "Site video — clip 6"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-07.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-07.jpg",
-        caption: "Site video — clip 7"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-08.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-08.jpg",
-        caption: "Site video — clip 8"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-09.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-09.jpg",
-        caption: "Site video — clip 9"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-10.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-10.jpg",
-        caption: "Site video — clip 10"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-11.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-11.jpg",
-        caption: "Site video — clip 11"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-12.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-12.jpg",
-        caption: "Site video — clip 12"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-13.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-13.jpg",
-        caption: "Site video — clip 13"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-14.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-14.jpg",
-        caption: "Site video — clip 14"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-15.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-15.jpg",
-        caption: "Site video — clip 15"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-16.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-16.jpg",
-        caption: "Site video — clip 16"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-17.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-17.jpg",
-        caption: "Site video — clip 17"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-18.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-18.jpg",
-        caption: "Site video — clip 18"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-19.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-19.jpg",
-        caption: "Site video — clip 19"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-20.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-20.jpg",
-        caption: "Site video — clip 20"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-21.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-21.jpg",
-        caption: "Site video — clip 21"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-22.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-22.jpg",
-        caption: "Site video — clip 22"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-23.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-23.jpg",
-        caption: "Site video — clip 23"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-24.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-24.jpg",
-        caption: "Site video — clip 24"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-25.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-25.jpg",
-        caption: "Site video — clip 25"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-26.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-26.jpg",
-        caption: "Site video — clip 26"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-27.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-27.jpg",
-        caption: "Site video — clip 27"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-28.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-28.jpg",
-        caption: "Site video — clip 28"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-29.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-29.jpg",
-        caption: "Site video — clip 29"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-30.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-30.jpg",
-        caption: "Site video — clip 30"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-31.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-31.jpg",
-        caption: "Site video — clip 31"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-32.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-32.jpg",
-        caption: "Site video — clip 32"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-33.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-33.jpg",
-        caption: "Site video — clip 33"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-34.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-34.jpg",
-        caption: "Site video — clip 34"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-35.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-35.jpg",
-        caption: "Site video — clip 35"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-36.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-36.jpg",
-        caption: "Site video — clip 36"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-37.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-37.jpg",
-        caption: "Site video — clip 37"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-38.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-38.jpg",
-        caption: "Site video — clip 38"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-39.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-39.jpg",
-        caption: "Site video — clip 39"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-40.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-40.jpg",
-        caption: "Site video — clip 40"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-41.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-41.jpg",
-        caption: "Site video — clip 41"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-42.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-42.jpg",
-        caption: "Site video — clip 42"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-43.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-43.jpg",
-        caption: "Site video — clip 43"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-44.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-44.jpg",
-        caption: "Site video — clip 44"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-45.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-45.jpg",
-        caption: "Site video — clip 45"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-46.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-46.jpg",
-        caption: "Site video — clip 46"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-47.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-47.jpg",
-        caption: "Site video — clip 47"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-48.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-48.jpg",
-        caption: "Site video — clip 48"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-49.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-49.jpg",
-        caption: "Site video — clip 49"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-50.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-50.jpg",
-        caption: "Site video — clip 50"
-      },
-      {
-        src: "/porfolio_directory/project_1/videos/clip-51.mp4",
-        poster: "/porfolio_directory/project_1/videos/clip-51.jpg",
-        caption: "Site video — clip 51"
-      },
-    ],
     materials: [
       "Full Bed Indiana Limestone Cladding",
       "Corinthian Pilasters",
@@ -687,14 +429,263 @@ const projects: Project[] = [
 
 ];
 
-const allVideos = projects.flatMap(project =>
-  (project.videos || []).map((video, i) => ({
-    ...video,
-    projectId: project.id,
-    projectTitle: project.title,
-    galleryIndex: project.images.length + i,
-  }))
-);
+const siteVideos: SiteVideo[] = [
+  {
+    src: "/porfolio_directory/project_1/videos/clip-01.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-01.jpg",
+    caption: "Site video — clip 1"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-02.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-02.jpg",
+    caption: "Site video — clip 2"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-03.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-03.jpg",
+    caption: "Site video — clip 3"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-04.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-04.jpg",
+    caption: "Site video — clip 4"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-05.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-05.jpg",
+    caption: "Site video — clip 5"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-06.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-06.jpg",
+    caption: "Site video — clip 6"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-07.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-07.jpg",
+    caption: "Site video — clip 7"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-08.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-08.jpg",
+    caption: "Site video — clip 8"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-09.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-09.jpg",
+    caption: "Site video — clip 9"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-10.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-10.jpg",
+    caption: "Site video — clip 10"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-11.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-11.jpg",
+    caption: "Site video — clip 11"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-12.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-12.jpg",
+    caption: "Site video — clip 12"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-13.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-13.jpg",
+    caption: "Site video — clip 13"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-14.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-14.jpg",
+    caption: "Site video — clip 14"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-15.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-15.jpg",
+    caption: "Site video — clip 15"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-16.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-16.jpg",
+    caption: "Site video — clip 16"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-17.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-17.jpg",
+    caption: "Site video — clip 17"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-18.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-18.jpg",
+    caption: "Site video — clip 18"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-19.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-19.jpg",
+    caption: "Site video — clip 19"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-20.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-20.jpg",
+    caption: "Site video — clip 20"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-21.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-21.jpg",
+    caption: "Site video — clip 21"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-22.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-22.jpg",
+    caption: "Site video — clip 22"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-23.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-23.jpg",
+    caption: "Site video — clip 23"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-24.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-24.jpg",
+    caption: "Site video — clip 24"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-25.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-25.jpg",
+    caption: "Site video — clip 25"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-26.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-26.jpg",
+    caption: "Site video — clip 26"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-27.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-27.jpg",
+    caption: "Site video — clip 27"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-28.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-28.jpg",
+    caption: "Site video — clip 28"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-29.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-29.jpg",
+    caption: "Site video — clip 29"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-30.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-30.jpg",
+    caption: "Site video — clip 30"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-31.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-31.jpg",
+    caption: "Site video — clip 31"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-32.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-32.jpg",
+    caption: "Site video — clip 32"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-33.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-33.jpg",
+    caption: "Site video — clip 33"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-34.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-34.jpg",
+    caption: "Site video — clip 34"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-35.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-35.jpg",
+    caption: "Site video — clip 35"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-36.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-36.jpg",
+    caption: "Site video — clip 36"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-37.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-37.jpg",
+    caption: "Site video — clip 37"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-38.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-38.jpg",
+    caption: "Site video — clip 38"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-39.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-39.jpg",
+    caption: "Site video — clip 39"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-40.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-40.jpg",
+    caption: "Site video — clip 40"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-41.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-41.jpg",
+    caption: "Site video — clip 41"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-42.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-42.jpg",
+    caption: "Site video — clip 42"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-43.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-43.jpg",
+    caption: "Site video — clip 43"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-44.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-44.jpg",
+    caption: "Site video — clip 44"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-45.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-45.jpg",
+    caption: "Site video — clip 45"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-46.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-46.jpg",
+    caption: "Site video — clip 46"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-47.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-47.jpg",
+    caption: "Site video — clip 47"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-48.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-48.jpg",
+    caption: "Site video — clip 48"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-49.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-49.jpg",
+    caption: "Site video — clip 49"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-50.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-50.jpg",
+    caption: "Site video — clip 50"
+  },
+  {
+    src: "/porfolio_directory/project_1/videos/clip-51.mp4",
+    poster: "/porfolio_directory/project_1/videos/clip-51.jpg",
+    caption: "Site video — clip 51"
+  },
+];
 
 const filterOptions = [
   { value: 'all',         label: 'All Projects'  },
@@ -782,17 +773,16 @@ const filterOptions = [
         class="video-grid"
         id="portfolio-video-grid"
         role="list"
-        aria-label="Project videos"
+        aria-label="Site videos"
         hidden
       >
-        {allVideos.map(video => (
+        {siteVideos.map((video, index) => (
           <button
             class="video-tile"
             type="button"
             role="listitem"
-            data-open-project={video.projectId}
-            data-open-index={video.galleryIndex}
-            aria-label={`Play video from ${video.projectTitle}`}
+            data-open-video={index}
+            aria-label={`Play video: ${video.caption}`}
           >
             <img
               src={video.poster}
@@ -807,7 +797,7 @@ const filterOptions = [
                 <polygon points="2,1 14,8 2,15" fill="currentColor" />
               </svg>
             </span>
-            <span class="video-tile-caption">{video.projectTitle}</span>
+            <span class="video-tile-caption">{video.caption}</span>
           </button>
         ))}
       </div>
