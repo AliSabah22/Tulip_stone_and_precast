@@ -680,6 +680,15 @@ const projects: Project[] = [
 
 ];
 
+const allVideos = projects.flatMap(project =>
+  (project.videos || []).map((video, i) => ({
+    ...video,
+    projectId: project.id,
+    projectTitle: project.title,
+    galleryIndex: project.images.length + i,
+  }))
+);
+
 const filterOptions = [
   { value: 'all',         label: 'All Projects'  },
   { value: 'residential', label: 'Residential'   },
@@ -687,6 +696,7 @@ const filterOptions = [
   { value: 'limestone',   label: 'Limestone'     },
   { value: 'precast',     label: 'Precast'       },
   { value: 'custom',      label: 'Custom'        },
+  { value: 'videos',      label: 'Videos'        },
 ];
 ---
 
@@ -757,6 +767,41 @@ const filterOptions = [
             index={index}
             size={project.featured ? 'featured' : 'normal'}
           />
+        ))}
+      </div>
+
+      <!-- Video grid -->
+      <div
+        class="video-grid"
+        id="portfolio-video-grid"
+        role="list"
+        aria-label="Project videos"
+        hidden
+      >
+        {allVideos.map(video => (
+          <button
+            class="video-tile"
+            type="button"
+            role="listitem"
+            data-open-project={video.projectId}
+            data-open-index={video.galleryIndex}
+            aria-label={`Play video from ${video.projectTitle}`}
+          >
+            <img
+              src={video.poster}
+              alt=""
+              loading="lazy"
+              width="400"
+              height="300"
+              class="video-tile-image"
+            />
+            <span class="video-tile-play" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <polygon points="2,1 14,8 2,15" fill="currentColor" />
+              </svg>
+            </span>
+            <span class="video-tile-caption">{video.projectTitle}</span>
+          </button>
         ))}
       </div>
 
@@ -893,6 +938,89 @@ const filterOptions = [
     align-items: start;
   }
 
+  .port-grid[hidden] {
+    display: none;
+  }
+
+  /* ── Video grid ─────────────────────────────────────────────── */
+  /* NOTE: the [hidden] attribute alone does not hide a grid — an
+     author `display: grid` rule beats the user-agent `[hidden]`
+     rule in the cascade regardless of specificity, because origin
+     precedence (author > user-agent) is checked before specificity.
+     Both grids above/below must explicitly redeclare `display: none`
+     as their own base state, matching the existing `.port-empty`
+     pattern in this same file. */
+
+  .video-grid {
+    display: none;
+  }
+
+  .video-grid:not([hidden]) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+
+  .video-tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .video-tile:focus-visible {
+    outline: 2px solid var(--focus-ring, #C8A882);
+    outline-offset: 3px;
+  }
+
+  .video-tile-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    background: var(--cream-dark, #F0E8D8);
+  }
+
+  .video-tile-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(20, 18, 16, 0.62);
+    color: var(--white-warm, #FDFAF6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition:
+      background-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .video-tile:hover .video-tile-play {
+    background: rgba(200, 168, 130, 0.88);
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  .video-tile-caption {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--font-sans, sans-serif);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone-light, #9C8880);
+  }
+
   /* ── Empty state — hidden by default, flex when visible ─────── */
 
   .port-empty {
@@ -941,14 +1069,17 @@ const filterOptions = [
 
   @media (max-width: 1200px) {
     .port-grid { grid-template-columns: repeat(3, 1fr); }
+    .video-grid:not([hidden]) { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 768px) {
     .port-grid { grid-template-columns: repeat(2, 1fr); }
+    .video-grid:not([hidden]) { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 480px) {
     .port-grid { grid-template-columns: 1fr; }
+    .video-grid:not([hidden]) { grid-template-columns: 1fr; }
     .port-bottom {
       flex-direction: column;
       text-align: center;
