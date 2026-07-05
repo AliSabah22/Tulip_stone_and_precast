@@ -1,12 +1,14 @@
 (function () {
   'use strict';
 
-  const filterBtns = document.querySelectorAll(
+  const filterBtns  = document.querySelectorAll(
     '.portfolio-filter-btn[data-filter]'
   );
-  const cards   = document.querySelectorAll('.pc[data-categories]');
-  const countEl = document.getElementById('portfolio-count');
-  const emptyEl = document.getElementById('portfolio-empty');
+  const cards       = document.querySelectorAll('.pc[data-categories]');
+  const countEl     = document.getElementById('portfolio-count');
+  const emptyEl     = document.getElementById('portfolio-empty');
+  const projectGrid = document.getElementById('portfolio-grid');
+  const videoGrid   = document.getElementById('portfolio-video-grid');
 
   if (!filterBtns.length) return;
 
@@ -21,6 +23,30 @@
       btn.classList.toggle('is-active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+
+    if (filter === 'videos') {
+      if (projectGrid) projectGrid.hidden = true;
+      if (videoGrid) videoGrid.hidden = false;
+      if (emptyEl) emptyEl.hidden = true;
+
+      const videoCount = videoGrid
+        ? videoGrid.querySelectorAll('.video-tile').length
+        : 0;
+
+      if (countEl) {
+        countEl.textContent = videoCount === 1
+          ? '1 video'
+          : `${videoCount} videos`;
+      }
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('filter', filter);
+      history.replaceState({}, '', url.toString());
+      return;
+    }
+
+    if (projectGrid) projectGrid.hidden = false;
+    if (videoGrid) videoGrid.hidden = true;
 
     /* Show / hide cards */
     let visible = 0;
