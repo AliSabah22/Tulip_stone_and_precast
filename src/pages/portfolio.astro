@@ -11,6 +11,12 @@ interface ProjectImage {
   position?: string;
 }
 
+interface ProjectVideo {
+  src: string;
+  poster?: string;
+  caption?: string;
+}
+
 interface Project {
   id: string;
   title: string;
@@ -20,6 +26,7 @@ interface Project {
   categories: string[];
   heroImage: ProjectImage;
   images: ProjectImage[];
+  videos?: ProjectVideo[];
   materials: string[];
   description: string;
   featured?: boolean;
