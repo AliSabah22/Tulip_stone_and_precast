@@ -6,6 +6,12 @@ interface ProjectImage {
   position?: string;
 }
 
+interface ProjectVideo {
+  src: string;
+  poster?: string;
+  caption?: string;
+}
+
 interface Project {
   id: string;
   title: string;
@@ -15,6 +21,7 @@ interface Project {
   categories: string[];
   heroImage: ProjectImage;
   images: ProjectImage[];
+  videos?: ProjectVideo[];
   materials: string[];
   description: string;
   featured?: boolean;
@@ -135,6 +142,14 @@ const { projects } = Astro.props;
             width="1200"
             height="900"
           />
+          <video
+            id="pv-primary-video"
+            class="pv-primary-video"
+            controls
+            playsinline
+            preload="metadata"
+            hidden
+          ></video>
           <span
             class="pv-img-caption"
             id="pv-img-caption"
@@ -407,6 +422,18 @@ const { projects } = Astro.props;
     opacity: 0;
   }
 
+  .pv-primary-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+
+  .pv-primary-video[hidden] {
+    display: none;
+  }
+
   .pv-img-caption {
     position: absolute;
     bottom: 14px;
@@ -443,6 +470,7 @@ const { projects } = Astro.props;
   }
 
   .pv-thumb {
+    position: relative;
     flex-shrink: 0;
     width: 96px;
     height: 66px;
@@ -472,6 +500,26 @@ const { projects } = Astro.props;
     object-fit: cover;
     display: block;
     pointer-events: none;
+  }
+
+  .pv-thumb-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background: rgba(20, 18, 16, 0.18);
+  }
+
+  .pv-thumb-play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 5px 0 5px 8px;
+    border-color: transparent transparent transparent rgba(253, 250, 246, 0.92);
   }
 
   .pv-thumb:focus-visible {
@@ -737,6 +785,7 @@ const { projects } = Astro.props;
   const nextBtn     = document.getElementById('pv-next');
   const counterEl   = document.getElementById('pv-counter');
   const primaryImg  = document.getElementById('pv-primary-img');
+  const primaryVideo = document.getElementById('pv-primary-video');
   const captionEl   = document.getElementById('pv-img-caption');
   const thumbsEl    = document.getElementById('pv-thumbs');
   const styleEl     = document.getElementById('pv-style');
@@ -748,6 +797,14 @@ const { projects } = Astro.props;
   const infoEl      = document.getElementById('pv-info');
 
   if (!viewer || !primaryImg || !thumbsEl) return;
+
+  /* ── Gallery helpers ─────────────────────────────────────── */
+
+  function getGallery(project) {
+    const images = (project.images || []).map(item => ({ ...item, type: 'image' }));
+    const videos = (project.videos || []).map(item => ({ ...item, type: 'video' }));
+    return [...images, ...videos];
+  }
 
   /* ── State ───────────────────────────────────────────────── */
 
@@ -790,6 +847,7 @@ const { projects } = Astro.props;
   /* ── Close ───────────────────────────────────────────────── */
 
   function closeViewer() {
+    primaryVideo.pause();
     viewer.classList.remove('is-open');
     viewer.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -850,23 +908,39 @@ const { projects } = Astro.props;
     const project = visibleProjects[currentProjIdx];
     if (!project) return;
 
-    const imgData = project.images[imgIdx];
-    if (!imgData) return;
+    const gallery = getGallery(project);
+    const item = gallery[imgIdx];
+    if (!item) return;
 
     currentImgIdx = imgIdx;
 
+    const applyItem = () => {
+      if (item.type === 'video') {
+        primaryImg.hidden = true;
+        primaryVideo.hidden = false;
+        primaryVideo.pause();
+        if (primaryVideo.getAttribute('src') !== item.src) {
+          primaryVideo.setAttribute('src', item.src);
+        }
+        if (item.poster) primaryVideo.poster = item.poster;
+      } else {
+        primaryVideo.pause();
+        primaryVideo.removeAttribute('src');
+        primaryVideo.hidden = true;
+        primaryImg.hidden = false;
+        primaryImg.src = item.src;
+        primaryImg.alt = item.alt ?? '';
+        primaryImg.style.objectPosition = item.position ?? 'center center';
+      }
+      if (captionEl) captionEl.textContent = item.caption ?? '';
+    };
+
     if (instant) {
-      primaryImg.src   = imgData.src;
-      primaryImg.alt   = imgData.alt;
-      primaryImg.style.objectPosition = imgData.position ?? 'center center';
-      if (captionEl) captionEl.textContent = imgData.caption ?? '';
+      applyItem();
     } else {
       primaryImg.classList.add('is-fading');
       setTimeout(() => {
-        primaryImg.src   = imgData.src;
-        primaryImg.alt   = imgData.alt;
-        primaryImg.style.objectPosition = imgData.position ?? 'center center';
-        if (captionEl) captionEl.textContent = imgData.caption ?? '';
+        applyItem();
         primaryImg.classList.remove('is-fading');
       }, 160);
     }
@@ -888,31 +962,44 @@ const { projects } = Astro.props;
   function buildThumbs(project) {
     thumbsEl.innerHTML = '';
 
-    if (project.images.length <= 1) {
+    const gallery = getGallery(project);
+
+    if (gallery.length <= 1) {
       thumbsEl.classList.add('pv-thumbs--solo');
       return;
     }
 
     thumbsEl.classList.remove('pv-thumbs--solo');
 
-    project.images.forEach((img, i) => {
+    gallery.forEach((item, i) => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'pv-thumb' + (i === 0 ? ' is-active' : '');
       btn.setAttribute('role', 'listitem');
-      btn.setAttribute('aria-label', img.caption ?? `Photo ${i + 1}`);
+      btn.setAttribute(
+        'aria-label',
+        item.caption ?? (item.type === 'video' ? `Video ${i + 1}` : `Photo ${i + 1}`)
+      );
       btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
 
       const image = document.createElement('img');
-      image.src   = img.src;
+      image.src   = item.type === 'video' ? (item.poster ?? '') : item.src;
       image.alt   = '';
       image.setAttribute('aria-hidden', 'true');
       image.width  = 96;
       image.height = 66;
       image.loading = 'lazy';
-      image.style.objectPosition = img.position ?? 'center center';
+      image.style.objectPosition = item.position ?? 'center center';
 
       btn.appendChild(image);
+
+      if (item.type === 'video') {
+        const playBadge = document.createElement('span');
+        playBadge.className = 'pv-thumb-play';
+        playBadge.setAttribute('aria-hidden', 'true');
+        btn.appendChild(playBadge);
+      }
+
       btn.addEventListener('click', () => setImage(i, false));
       thumbsEl.appendChild(btn);
     });
@@ -964,7 +1051,7 @@ const { projects } = Astro.props;
         break;
       case 'ArrowDown':
         e.preventDefault();
-        if (project && currentImgIdx < project.images.length - 1) {
+        if (project && currentImgIdx < getGallery(project).length - 1) {
           setImage(currentImgIdx + 1, false);
         }
         break;
