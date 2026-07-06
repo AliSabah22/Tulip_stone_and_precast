@@ -582,8 +582,8 @@ const { videos } = Astro.props;
     document.body.style.overflow = 'hidden';
     isOpen = true;
 
-    renderVideo();
     buildThumbs();
+    renderVideo();
 
     setTimeout(() => closeBtn && closeBtn.focus(), 80);
   }
