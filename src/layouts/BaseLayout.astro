@@ -22,7 +22,6 @@ export interface Props {
   canonicalUrl?: string;
   pageClass?: string;
   loadParticles?: boolean;
-  loadPortfolioFilter?: boolean;
   loadColourSelector?: boolean;
   loadFormValidation?: boolean;
   solidNav?: boolean;
@@ -37,7 +36,6 @@ const {
   canonicalUrl,
   pageClass = '',
   loadParticles = false,
-  loadPortfolioFilter = false,
   loadColourSelector = false,
   loadFormValidation = false,
   solidNav = false,
@@ -207,11 +205,6 @@ const ogImageAbsolute = ogImage.startsWith('http')
     {loadParticles && (
       <script>
         import '../scripts/particles-init.js';
-      </script>
-    )}
-    {loadPortfolioFilter && (
-      <script>
-        import '../scripts/portfolio-filter.js';
       </script>
     )}
     {loadColourSelector && (

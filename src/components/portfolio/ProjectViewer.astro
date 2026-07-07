@@ -759,10 +759,8 @@ const { projects } = Astro.props;
 
   /* ── Open ────────────────────────────────────────────────── */
 
-  function openViewer(projectId, currentFilter) {
-    visibleProjects = currentFilter && currentFilter !== 'all'
-      ? allProjects.filter(p => p.categories.includes(currentFilter))
-      : [...allProjects];
+  function openViewer(projectId) {
+    visibleProjects = [...allProjects];
 
     const idx = visibleProjects.findIndex(p => p.id === projectId);
     if (idx === -1) return;
@@ -1005,10 +1003,7 @@ const { projects } = Astro.props;
     triggerEl = btn;
     const projectId = btn.dataset.openProject;
 
-    const activeFilterBtn = document.querySelector('.portfolio-filter-btn.is-active');
-    const activeFilter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
-
-    openViewer(projectId, activeFilter || 'all');
+    openViewer(projectId);
   });
 
   /* ── Deep-link on page load ──────────────────────────────── */
@@ -1017,7 +1012,7 @@ const { projects } = Astro.props;
   if (urlProject) {
     const exists = allProjects.some(p => p.id === urlProject);
     if (exists) {
-      setTimeout(() => openViewer(urlProject, 'all'), 700);
+      setTimeout(() => openViewer(urlProject), 700);
     }
   }
 

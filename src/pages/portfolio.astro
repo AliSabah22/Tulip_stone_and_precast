@@ -687,16 +687,6 @@ const siteVideos: SiteVideo[] = [
     caption: "Site video — clip 51"
   },
 ];
-
-const filterOptions = [
-  { value: 'all',         label: 'All Projects'  },
-  { value: 'residential', label: 'Residential'   },
-  { value: 'commercial',  label: 'Commercial'    },
-  { value: 'limestone',   label: 'Limestone'     },
-  { value: 'precast',     label: 'Precast'       },
-  { value: 'custom',      label: 'Custom'        },
-  { value: 'videos',      label: 'Videos'        },
-];
 ---
 
 <BaseLayout
@@ -704,7 +694,6 @@ const filterOptions = [
   description="Portfolio of Indiana Limestone and precast projects across the GTA — residential, commercial, and custom stonework. Serving Brampton, Oakville, Toronto."
   pageClass="page-portfolio"
   solidNav={true}
-  loadPortfolioFilter={true}
 >
 
   <Hero
@@ -717,40 +706,6 @@ const filterOptions = [
     primaryCTA="REQUEST A QUOTE"
     primaryCTAHref="/contact"
   />
-
-  <!-- Filter bar -->
-  <div
-    class="port-filter-bar"
-    role="toolbar"
-    aria-label="Filter projects by category"
-  >
-    <div class="port-filter-inner">
-
-      {filterOptions.map(opt => (
-        <button
-          class:list={[
-            'portfolio-filter-btn',
-            { 'is-active': opt.value === 'all' }
-          ]}
-          data-filter={opt.value}
-          type="button"
-          aria-pressed={opt.value === 'all' ? 'true' : 'false'}
-        >
-          {opt.label}
-        </button>
-      ))}
-
-      <span
-        class="port-filter-count"
-        id="portfolio-count"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {projects.length} projects
-      </span>
-
-    </div>
-  </div>
 
   <!-- Project grid -->
   <section class="port-main" aria-label="Portfolio projects">
@@ -767,21 +722,11 @@ const filterOptions = [
             size={project.featured ? 'featured' : 'normal'}
           />
         ))}
-      </div>
 
-      <!-- Video grid -->
-      <div
-        class="video-grid"
-        id="portfolio-video-grid"
-        role="list"
-        aria-label="Site videos"
-        hidden
-      >
         {siteVideos.map((video, index) => (
           <button
             class="video-tile"
             type="button"
-            role="listitem"
             data-open-video={index}
             aria-label={`Play video: ${video.caption}`}
           >
@@ -798,28 +743,8 @@ const filterOptions = [
                 <polygon points="2,1 14,8 2,15" fill="currentColor" />
               </svg>
             </span>
-            <span class="video-tile-caption">{video.caption}</span>
           </button>
         ))}
-      </div>
-
-      <!-- Empty state -->
-      <div
-        class="port-empty"
-        id="portfolio-empty"
-        hidden
-        aria-live="polite"
-      >
-        <p class="port-empty-text">
-          No projects in this category yet.
-        </p>
-        <button
-          class="btn btn-outlined-dark"
-          data-filter="all"
-          type="button"
-        >
-          View All Projects
-        </button>
       </div>
 
       <!-- Bottom row -->
@@ -849,74 +774,6 @@ const filterOptions = [
 
 <style>
 
-  /* ── Filter bar ─────────────────────────────────────────────── */
-
-  .port-filter-bar {
-    position: sticky;
-    top: var(--nav-height, 72px);
-    z-index: 80;
-    background: var(--white-warm);
-    border-bottom: 1px solid var(--cream-dark);
-    border-top: 1px solid var(--cream-dark);
-  }
-
-  .port-filter-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--content-padding);
-    display: flex;
-    align-items: center;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .port-filter-inner::-webkit-scrollbar { display: none; }
-
-  .portfolio-filter-btn {
-    font-family: var(--font-sans);
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: var(--ls-widest);
-    text-transform: uppercase;
-    color: var(--stone-light);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 16px 18px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition:
-      color 200ms ease,
-      border-color 200ms ease;
-  }
-
-  .portfolio-filter-btn:hover {
-    color: var(--stone-dark);
-  }
-
-  .portfolio-filter-btn.is-active {
-    color: var(--warm-sand);
-    border-bottom-color: var(--warm-sand);
-  }
-
-  .portfolio-filter-btn:focus-visible {
-    outline: 2px solid var(--focus-ring, #C8A882);
-    outline-offset: -2px;
-  }
-
-  .port-filter-count {
-    font-family: var(--font-sans);
-    font-size: 9px;
-    font-weight: 300;
-    color: var(--stone-lighter, #C4B8B0);
-    letter-spacing: 0.05em;
-    margin-left: auto;
-    padding: 16px 0;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
   /* ── Main ───────────────────────────────────────────────────── */
 
   .port-main {
@@ -931,32 +788,9 @@ const filterOptions = [
   }
 
   /* ── Portfolio grid — 4 cols on desktop, stepping down ──────── */
+  /* Photos (ProjectCard) and videos (.video-tile) share this one grid. */
 
   .port-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    align-items: start;
-  }
-
-  .port-grid[hidden] {
-    display: none;
-  }
-
-  /* ── Video grid ─────────────────────────────────────────────── */
-  /* NOTE: the [hidden] attribute alone does not hide a grid — an
-     author `display: grid` rule beats the user-agent `[hidden]`
-     rule in the cascade regardless of specificity, because origin
-     precedence (author > user-agent) is checked before specificity.
-     Both grids above/below must explicitly redeclare `display: none`
-     as their own base state, matching the existing `.port-empty`
-     pattern in this same file. */
-
-  .video-grid {
-    display: none;
-  }
-
-  .video-grid:not([hidden]) {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 14px;
@@ -1011,40 +845,6 @@ const filterOptions = [
     transform: translate(-50%, -50%) scale(1.08);
   }
 
-  .video-tile-caption {
-    display: block;
-    margin-top: 8px;
-    font-family: var(--font-sans, sans-serif);
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--stone-light, #9C8880);
-  }
-
-  /* ── Empty state — hidden by default, flex when visible ─────── */
-
-  .port-empty {
-    display: none;
-  }
-
-  .port-empty:not([hidden]) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-lg);
-    text-align: center;
-    padding: var(--space-2xl) 0;
-  }
-
-  .port-empty-text {
-    font-family: var(--font-serif);
-    font-size: var(--text-title);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--stone-light);
-  }
-
   /* ── Bottom row ─────────────────────────────────────────────── */
 
   .port-bottom {
@@ -1070,17 +870,14 @@ const filterOptions = [
 
   @media (max-width: 1200px) {
     .port-grid { grid-template-columns: repeat(3, 1fr); }
-    .video-grid:not([hidden]) { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 768px) {
     .port-grid { grid-template-columns: repeat(2, 1fr); }
-    .video-grid:not([hidden]) { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 480px) {
     .port-grid { grid-template-columns: 1fr; }
-    .video-grid:not([hidden]) { grid-template-columns: 1fr; }
     .port-bottom {
       flex-direction: column;
       text-align: center;

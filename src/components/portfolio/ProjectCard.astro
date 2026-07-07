@@ -39,7 +39,6 @@ const {
     { 'pc--featured': size === 'featured' }
   ]}
   data-project-id={project.id}
-  data-categories={project.categories.join(' ')}
   style={`animation-delay: ${index * 60}ms`}
   aria-label={`${project.title} — ${project.style}, ${project.location}`}
 >
@@ -143,10 +142,6 @@ const {
 
   @keyframes pcReveal {
     to { opacity: 1; transform: translateY(0); }
-  }
-
-  .pc.is-hidden {
-    display: none;
   }
 
   .pc-trigger {
