@@ -128,17 +128,6 @@ const {
 
     </div>
 
-    <!-- Card footer -->
-    <div class="pc-footer">
-      <div class="pc-footer-text">
-        <h3 class="pc-title">{project.title}</h3>
-        <p class="pc-meta">
-          {project.style}&nbsp;·&nbsp;{project.location}
-        </p>
-      </div>
-      <span class="pc-year">{project.year}</span>
-    </div>
-
   </button>
 </article>
 
@@ -265,52 +254,6 @@ const {
     text-transform: uppercase;
   }
 
-  /* ── Footer ─────────────────────────────────────────────────── */
-
-  .pc-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px 0 12px;
-    border-bottom: 1px solid var(--cream-dark, #F0E8D8);
-    transition: border-color 250ms ease;
-  }
-
-  .pc-trigger:hover .pc-footer {
-    border-bottom-color: var(--warm-sand, #C8A882);
-  }
-
-  .pc-title {
-    font-family: var(--font-serif, serif);
-    font-size: clamp(15px, 1.4vw, 18px);
-    font-weight: 400;
-    color: var(--stone-dark, #3D3530);
-    line-height: 1.2;
-    margin-bottom: 3px;
-  }
-
-  .pc-meta {
-    font-family: var(--font-sans, sans-serif);
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone-light, #9C8880);
-    max-width: none;
-  }
-
-  .pc-year {
-    font-family: var(--font-sans, sans-serif);
-    font-size: 10px;
-    font-weight: 300;
-    color: var(--stone-lighter, #C4B8B0);
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding-top: 3px;
-    letter-spacing: 0.05em;
-  }
-
   /* ── Reduced motion ─────────────────────────────────────────── */
 
   @media (prefers-reduced-motion: reduce) {
@@ -322,7 +265,6 @@ const {
     .pc-image { transition: none; }
     .pc-overlay,
     .pc-overlay-content { transition: none; }
-    .pc-footer { transition: none; }
   }
 
 </style>
