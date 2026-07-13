@@ -1,0 +1,446 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What styles of limestone columns does Tulip Precast fabricate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tulip Precast fabricates Indiana Limestone columns in five classical styles: Doric, Ionic, Corinthian, Tuscan, and Composite. Each column is handcrafted by skilled stone artisans and produced with custom shop drawings to your exact specification. We fabricate each base, shaft, and capital with great artistry and precision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do custom limestone columns cost in Ontario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cost of custom Indiana Limestone columns depends on the style, height, diameter, and quantity required. Columns are priced individually based on custom shop drawings. Contact Tulip Precast at 647-534-7755 or office@tulipprecast.com with your project specifications for an accurate estimate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you match existing limestone columns for a renovation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tulip Precast specialises in matching existing limestone architectural features for renovation projects. We precisely match the colour, texture, profile, and dimensions of your existing columns. Please provide photographs and measurements of the existing columns when enquiring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you serve areas outside Brampton for limestone columns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tulip Precast serves the entire Greater Toronto Area including Toronto, Mississauga, Oakville, Richmond Hill, Vaughan, Markham, Burlington, and surrounding communities."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipprecast.com/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Columns", "item": "https://www.tulipprecast.com/limestone/columns" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Indiana Limestone Columns Toronto | Custom Stone Columns | Tulip"
+  description="Custom Indiana Limestone columns in Toronto and the GTA. Doric, Ionic, Corinthian, Tuscan, and Composite styles handcrafted to exact specification. Custom shop drawings. Ontario Made. Request a free quote."
+  pageClass="page-limestone-columns"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/column.jpg"
+    imageAlt="Handcrafted Indiana Limestone Corinthian columns on luxury residential estate, Greater Toronto Area, Tulip Precast Brampton Ontario"
+    eyebrow="INDIANA LIMESTONE · COLUMNS · ONTARIO MADE"
+    headline="Limestone Columns."
+    headlineItalic="Handcrafted to Specification."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=columns"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Columns overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Toronto &amp; GTA</span>
+        <h2 class="plp-intro-headline">Custom limestone columns for the Greater Toronto Area.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Indiana Limestone columns are the ultimate architectural statement — the same natural stone used in the Empire State Building, the National Cathedral, and some of the world's most celebrated civic buildings. At Tulip Precast in Brampton, Ontario, we handcraft limestone columns in five classical styles to your exact specification, serving residential and commercial projects across the Greater Toronto Area.</p>
+        <p class="plp-intro-body">Every column begins with custom shop drawings. Our drafting team works directly with your architect or contractor to confirm every dimension before a single piece of stone is cut. Each base, shaft, and capital is fabricated with great artistry and precision — and delivered ready for installation.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">5</span>
+          <span class="plp-fact-lbl">Classical styles available</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">GTA</span>
+          <span class="plp-fact-lbl">Residential &amp; commercial service area</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Shop drawings on every order</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="columns"
+    num="04"
+    label="Limestone · Architectural"
+    title="Columns"
+    imageSrc="/pictures/Limestone%20page%20images/columns.jpg"
+    imageAlt="Handcrafted Indiana limestone Corinthian columns, custom fabricated by Tulip Limestone · Precast, Brampton Ontario"
+    imagePosition="center 35%"
+    description="Finely crafted Indiana Limestone columns are the ultimate expression of timeless beauty in natural stone. Every column we deliver is handcrafted by skilled stone artisans to match any classic or contemporary style — to your exact specifications. We know that columns are the showpiece of the project, which is why we craft and deliver each base, shaft, and capital with great artistry and precision."
+    variants={[
+      { name: 'Doric',      description: 'Short and heavy with simple round capitals. Strength and dignity.' },
+      { name: 'Ionic',      description: 'Slender pillars with large base and signature scrolled capitals.' },
+      { name: 'Corinthian', description: 'Slender, fluted columns with intricate carved capitals.' },
+      { name: 'Tuscan',     description: 'Plain base and unfluted shaft. Understated and versatile.' },
+      { name: 'Composite',  description: 'A refined blend of Ionic scrolls and Corinthian ornamentation.' },
+      { name: 'Custom',     description: 'Any classical or contemporary profile to specification.' },
+    ]}
+    flip={true}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What styles of limestone columns does Tulip Precast fabricate?</summary>
+          <div class="plp-faq-answer"><p>Tulip Precast fabricates Indiana Limestone columns in five classical styles: Doric, Ionic, Corinthian, Tuscan, and Composite. Each column is handcrafted by skilled stone artisans and produced with custom shop drawings to your exact specification. We fabricate each base, shaft, and capital with great artistry and precision.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">How much do custom limestone columns cost in Ontario?</summary>
+          <div class="plp-faq-answer"><p>The cost of custom Indiana Limestone columns depends on the style, height, diameter, and quantity required. Columns are priced individually based on custom shop drawings. Contact Tulip Precast at 647-534-7755 or office@tulipprecast.com with your project specifications for an accurate estimate.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you match existing limestone columns for a renovation?</summary>
+          <div class="plp-faq-answer"><p>Yes. Tulip Precast specialises in matching existing limestone architectural features for renovation projects. We precisely match the colour, texture, profile, and dimensions of your existing columns. Please provide photographs and measurements of the existing columns when enquiring.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Do you serve areas outside Brampton for limestone columns?</summary>
+          <div class="plp-faq-answer"><p>Yes. Tulip Precast serves the entire Greater Toronto Area including Toronto, Mississauga, Oakville, Richmond Hill, Vaughan, Markham, Burlington, and surrounding communities.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/balusters" class="plp-related-tile">
+          <span class="plp-related-name">Balusters &amp; Balustrades</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/sills" class="plp-related-tile">
+          <span class="plp-related-name">Door &amp; Window Surrounds</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Columns?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=columns"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item[open] {
+    background: var(--white-warm);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    padding: 0 0 var(--space-lg);
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

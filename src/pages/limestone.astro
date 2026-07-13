@@ -143,6 +143,9 @@ const colours = [
                 callout={{ label: 'Custom Commission', body: 'When ordering a specialty carving, please provide: drawings and specifications, any full-size layouts available, and — for replica work — photographs and measurements of the existing piece. Our team will review and confirm feasibility before quoting.' }}
                 flip={false}
               />
+              <a href="/limestone/carving" class="ps-learn-link">
+                Full guide: Custom Limestone Carving →
+              </a>
             </div>
           </div>
         </div>
@@ -178,6 +181,9 @@ const colours = [
                 callout={{ label: 'Repair & Renovation Matching', body: 'Our renovation specialists identify exact matches for existing limestone architectural features. We precisely match the colour, texture, and design of your existing baluster or balustrade — providing an architectural detail that blends seamlessly into the look and feel of the original building. Our expertise in limestone forming, colour matching, and finishing ensures your new balusters integrate perfectly throughout the project.' }}
                 flip={true}
               />
+              <a href="/limestone/balusters" class="ps-learn-link">
+                Full guide: Limestone Balusters & Balustrades →
+              </a>
             </div>
           </div>
         </div>
@@ -263,6 +269,9 @@ const colours = [
                 ]}
                 flip={true}
               />
+              <a href="/limestone/columns" class="ps-learn-link">
+                Full guide: Indiana Limestone Columns →
+              </a>
             </div>
           </div>
         </div>
@@ -428,6 +437,9 @@ const colours = [
                 ]}
                 flip={true}
               />
+              <a href="/limestone/sills" class="ps-learn-link">
+                Full guide: Limestone Window Sills →
+              </a>
             </div>
           </div>
         </div>
@@ -693,6 +705,9 @@ const colours = [
         ]}
         flip={false}
       />
+      <a href="/limestone/veneers" class="ps-learn-link">
+        Full guide: Indiana Limestone Veneers →
+      </a>
       <p class="category-cross-link">Need lightweight cladding panels that coordinate with natural limestone? See our <a href="/gfrc">GFRC fabrication</a> for glass fiber reinforced concrete facades and feature walls.</p>
     </CategorySection>
 
@@ -817,6 +832,9 @@ const colours = [
         ]}
         flip={false}
       />
+      <a href="/limestone/pavers" class="ps-learn-link">
+        Full guide: Indiana Limestone Pavers →
+      </a>
     </CategorySection>
 
     <!-- ══════════════════════════════════════════════════════════
@@ -1015,6 +1033,23 @@ const colours = [
     display: block;
     margin-bottom: var(--space-xs);
   }
+
+  /* ── Product page "Learn more" links ─────────────────────── */
+
+  .ps-learn-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    color: var(--stone-light);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    letter-spacing: var(--ls-wide);
+    transition: color 200ms ease;
+  }
+
+  .ps-learn-link:hover { color: var(--warm-sand); }
 
   /* ── Sticky Sub-Navigation ───────────────────────────────── */
 

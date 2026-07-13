@@ -1,0 +1,443 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are Indiana Limestone pavers suitable for Ontario's climate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Indiana Limestone pavers perform reliably through hundreds of freeze-thaw cycles without cracking or shifting. They weather naturally, maintaining traction and character over decades. Limestone is a low-maintenance paving choice — it does not require sealing or chemical treatment to perform in Ontario conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are limestone pavers slippery when wet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Indiana Limestone pavers provide natural traction in wet conditions — making them one of the safest natural stone paving options for outdoor spaces, pool surrounds, and terrace areas. The natural texture provides grip without requiring additional anti-slip treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What finishes are Indiana Limestone pavers available in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Indiana Limestone pavers from Tulip Precast are available in smooth sawn, split face, and rock face finishes in the four natural Indiana Limestone colour families — Northern Gray, Northern Buff, Silver Shadow, and Alabama Gray. Contact us with your dimensions and finish preference for a quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Indiana Limestone pavers be used around pools in Ontario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Indiana Limestone is one of the most popular pool coping and surround materials in the GTA due to its natural traction, cool surface temperature in direct sun, and resistance to pool chemicals and freeze-thaw cycles. We also offer a dedicated Pool and Spa stone range with eleven premium stone options for aquatic applications."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipprecast.com/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Limestone Pavers", "item": "https://www.tulipprecast.com/limestone/pavers" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Indiana Limestone Pavers Brampton & GTA | Tulip Precast"
+  description="Indiana Limestone pavers for outdoor terraces, pool surrounds, and pathways. Natural traction, low maintenance, and freeze-thaw resistant for Ontario's climate. Serving Brampton, Toronto, and the GTA."
+  pageClass="page-limestone-pavers"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/Limestone%20page%20images/Pavers.jpeg"
+    imageAlt="Indiana Limestone pavers on luxury residential outdoor terrace and pool surround, Greater Toronto Area — Tulip Precast Brampton Ontario"
+    eyebrow="INDIANA LIMESTONE · PAVERS · ONTARIO MADE"
+    headline="Limestone Pavers."
+    headlineItalic="Natural Traction. Built for Ontario."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=pavers"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Pavers overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Hardscape Pavers</span>
+        <h2 class="plp-intro-headline">Limestone pavers for Brampton and the GTA.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Indiana Limestone pavers are a premier choice for outdoor terraces, pathways, pool surrounds, and hardscape features across Ontario. At Tulip Precast in Brampton, we supply Indiana Limestone pavers in a range of cuts, colours, and textures — all prized for their natural traction, timeless beauty, and ability to weather well through Ontario's demanding freeze-thaw cycles without maintenance.</p>
+        <p class="plp-intro-body">Limestone pavers are low maintenance and long-lasting — they improve with age rather than deteriorating, and require no sealing or chemical treatment to perform in Ontario conditions. Whether you are designing a terrace, a pool surround, or a pathway, limestone pavers provide the perfect marriage of contemporary clean lines with traditional natural materials.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">Zero</span>
+          <span class="plp-fact-lbl">Sealing or maintenance required</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Natural</span>
+          <span class="plp-fact-lbl">Traction in wet conditions</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Frost</span>
+          <span class="plp-fact-lbl">Resistant through Ontario winters</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="pavers"
+    num="08"
+    label="Limestone · Hardscape"
+    title="Pavers"
+    imageSrc="/pictures/Limestone%20page%20images/Pavers.jpeg"
+    imageAlt="Indiana limestone pavers on luxury residential outdoor terrace, Tulip Precast, Canada & USA"
+    imagePosition="center 50%"
+    description="Indiana limestone pavers are the perfect choice for many outdoor spaces — prized for their timeless beauty and ability to weather well while maintaining reliable traction even in wet conditions. Limestone pavers are low maintenance, long-lasting, and offer the perfect marriage of modern clean lines with traditional natural materials. Available in a variety of colours, cuts, and textures to suit any project."
+    benefits={[
+      { title: 'Weather Resistant', body: 'Low-maintenance in Canadian climate' },
+      { title: 'Natural Traction',  body: 'Safe in wet conditions year-round' },
+      { title: 'Timeless Beauty',   body: 'Colour deepens gracefully with age' },
+    ]}
+    flip={false}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Are Indiana Limestone pavers suitable for Ontario's climate?</summary>
+          <div class="plp-faq-answer"><p>Yes. Indiana Limestone pavers perform reliably through hundreds of freeze-thaw cycles without cracking or shifting. They weather naturally, maintaining traction and character over decades. Limestone is a low-maintenance paving choice — it does not require sealing or chemical treatment to perform in Ontario conditions.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Are limestone pavers slippery when wet?</summary>
+          <div class="plp-faq-answer"><p>Indiana Limestone pavers provide natural traction in wet conditions — making them one of the safest natural stone paving options for outdoor spaces, pool surrounds, and terrace areas. The natural texture provides grip without requiring additional anti-slip treatment.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What finishes are Indiana Limestone pavers available in?</summary>
+          <div class="plp-faq-answer"><p>Indiana Limestone pavers from Tulip Precast are available in smooth sawn, split face, and rock face finishes in the four natural Indiana Limestone colour families — Northern Gray, Northern Buff, Silver Shadow, and Alabama Gray. Contact us with your dimensions and finish preference for a quote.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can Indiana Limestone pavers be used around pools?</summary>
+          <div class="plp-faq-answer"><p>Yes. Indiana Limestone is one of the most popular pool coping and surround materials in the GTA due to its natural traction, cool surface temperature in direct sun, and resistance to pool chemicals and freeze-thaw cycles. We also offer a dedicated Pool and Spa stone range with eleven premium stone options for aquatic applications.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone#pool-spa" class="plp-related-tile">
+          <span class="plp-related-name">Pool &amp; Spa Stone</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/balusters" class="plp-related-tile">
+          <span class="plp-related-name">Limestone Balusters</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Pavers?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=pavers"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item[open] {
+    background: var(--white-warm);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    padding: 0 0 var(--space-lg);
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

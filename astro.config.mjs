@@ -16,6 +16,7 @@ export default defineConfig({
         }
         if (
           url === 'https://www.tulipprecast.com/limestone' ||
+          url.startsWith('https://www.tulipprecast.com/limestone/') ||
           url === 'https://www.tulipprecast.com/gfrc' ||
           url === 'https://www.tulipprecast.com/precast'
         ) {

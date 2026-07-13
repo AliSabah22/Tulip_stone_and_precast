@@ -1,0 +1,439 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are limestone balusters used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Indiana Limestone balusters are used at entryways, walkways, balconies, patios, staircases, and pool areas. They can be used individually or as complete balustrade systems combining balusters, rails, and pier caps. Tulip Precast fabricates solid limestone balusters in standard and custom profiles for residential and commercial projects across the Greater Toronto Area."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you match existing limestone balusters for a renovation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tulip Precast specialises in renovation matching — precisely replicating the colour, texture, and profile of existing limestone balusters so new pieces integrate seamlessly with original stonework. Please provide photographs and measurements of the existing balustrade when enquiring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a baluster and a balustrade?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A baluster is an individual vertical post — the repeated upright element in a railing system. A balustrade is the complete assembly: balusters, top rail, bottom rail, and pier caps or newel posts. Tulip Precast fabricates both individual balusters and complete balustrade systems in Indiana Limestone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are limestone balusters suitable for pool areas in Ontario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Indiana Limestone maintains natural traction in wet conditions and performs reliably through Ontario's freeze-thaw cycles without deteriorating. Tulip Precast regularly fabricates balustrade systems for pool and outdoor terrace applications across the GTA."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipprecast.com/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Balusters & Balustrades", "item": "https://www.tulipprecast.com/limestone/balusters" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Balusters & Balustrades Toronto | Tulip Precast"
+  description="Indiana Limestone balusters and balustrades for entryways, balconies, staircases, and pool areas. Custom profiles, exact colour matching, and renovation matching. Serving the GTA from Brampton, ON."
+  pageClass="page-limestone-balusters"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/lifestyle.jpg"
+    imageAlt="Indiana Limestone balusters and balustrade on luxury residential balcony, Greater Toronto Area, Tulip Precast Brampton Ontario"
+    eyebrow="INDIANA LIMESTONE · BALUSTERS · ONTARIO MADE"
+    headline="Limestone Balusters."
+    headlineItalic="Visually Consistent. Built to Last."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=balusters"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Balusters overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Balusters &amp; Balustrades</span>
+        <h2 class="plp-intro-headline">Solid limestone balusters for the Greater Toronto Area.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Indiana Limestone balusters have always been a popular choice for residential and commercial architecture — whether for a simple renovation or a complex new construction project. At Tulip Precast in Brampton, Ontario, we fabricate solid limestone balusters and complete balustrade systems for entryways, balconies, staircases, and pool areas across the Greater Toronto Area.</p>
+        <p class="plp-intro-body">We produce balusters of the highest quality — visually consistent in both colour and form so your entire project carries a unified architectural character. Our renovation specialists also identify exact matches for existing limestone architectural features, ensuring new balusters blend seamlessly into the look and feel of the original building.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">Solid</span>
+          <span class="plp-fact-lbl">Indiana Limestone construction</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Colour and profile matching</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">GTA</span>
+          <span class="plp-fact-lbl">Residential and commercial projects</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="balusters"
+    num="02"
+    label="Limestone · Architectural"
+    title="Balusters & Balustrades"
+    imageSrc="/pictures/Limestone%20page%20images/Balusters-Balustrades.jpg"
+    imageAlt="Indiana limestone balusters on residential balcony, custom fabricated by Tulip Precast, Brampton Ontario"
+    imagePosition="center center"
+    description="Limestone balusters have always been a popular choice — whether for a simple renovation or a complex new construction. Balusters and balustrades are used at entryways, walkways, or as hardscape features. Our solid limestone balusters highlight large and small balconies, patios, staircases, and pool areas. We produce balusters of the highest quality — visually consistent in both colour and form, so your entire project carries a unified architectural character."
+    callout={{ label: 'Repair & Renovation Matching', body: 'Our renovation specialists identify exact matches for existing limestone architectural features. We precisely match the colour, texture, and design of your existing baluster or balustrade — providing an architectural detail that blends seamlessly into the look and feel of the original building. Our expertise in limestone forming, colour matching, and finishing ensures your new balusters integrate perfectly throughout the project.' }}
+    flip={true}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What are limestone balusters used for?</summary>
+          <div class="plp-faq-answer"><p>Indiana Limestone balusters are used at entryways, walkways, balconies, patios, staircases, and pool areas. They can be used individually or as complete balustrade systems combining balusters, rails, and pier caps. Tulip Precast fabricates solid limestone balusters in standard and custom profiles for residential and commercial projects across the Greater Toronto Area.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you match existing limestone balusters for a renovation?</summary>
+          <div class="plp-faq-answer"><p>Yes. Tulip Precast specialises in renovation matching — precisely replicating the colour, texture, and profile of existing limestone balusters so new pieces integrate seamlessly with original stonework. Please provide photographs and measurements of the existing balustrade when enquiring.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is the difference between a baluster and a balustrade?</summary>
+          <div class="plp-faq-answer"><p>A baluster is an individual vertical post — the repeated upright element in a railing system. A balustrade is the complete assembly: balusters, top rail, bottom rail, and pier caps or newel posts. Tulip Precast fabricates both individual balusters and complete balustrade systems in Indiana Limestone.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Are limestone balusters suitable for pool areas in Ontario?</summary>
+          <div class="plp-faq-answer"><p>Yes. Indiana Limestone maintains natural traction in wet conditions and performs reliably through Ontario's freeze-thaw cycles without deteriorating. Tulip Precast regularly fabricates balustrade systems for pool and outdoor terrace applications across the GTA.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/columns" class="plp-related-tile">
+          <span class="plp-related-name">Limestone Columns</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/pavers" class="plp-related-tile">
+          <span class="plp-related-name">Limestone Pavers</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Balusters & Balustrades?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=balusters"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item[open] {
+    background: var(--white-warm);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    padding: 0 0 var(--space-lg);
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

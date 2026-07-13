@@ -1,0 +1,447 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a slip sill and a lug sill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A slip sill sits flush within the masonry opening — the same width as the window frame. A lug sill projects beyond the window frame and extends into the masonry on both sides, allowing for a full surround system and more pronounced architectural presence. Tulip Precast fabricates both types in Indiana Limestone in a range of profiles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What limestone sill profiles does Tulip Precast offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tulip Precast fabricates Indiana Limestone sills in five standard profiles: Classic Slip Sill, Classic Bull Nose Sill, Conventional Sill, Double Slope Sill, and Conventional Sill with Lip. Custom profiles are also available for heritage matching and contemporary designs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can limestone sills be combined with door and window surrounds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A lug sill combined with jambs and a head surround creates a complete architectural window system — the most refined option available. Tulip Precast fabricates all components as a matched set with custom shop drawings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do limestone sills perform well in Ontario's climate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Indiana Limestone performs reliably through hundreds of freeze-thaw cycles without cracking or spalling and has been used on some of Canada's most prominent buildings for over a century. Tulip Precast sills are fabricated from the same high-quality Indiana Limestone used in institutional and commercial buildings across the GTA."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipprecast.com/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Sills", "item": "https://www.tulipprecast.com/limestone/sills" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Window Sills Toronto | Slip & Lug Sills | Tulip"
+  description="Indiana Limestone window sills for Toronto and the GTA. Slip sills, lug sills, and custom profiles. Classic, Bull Nose, Conventional, and Double Slope styles. Ontario Made. Custom shop drawings on every order."
+  pageClass="page-limestone-sills"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/window.jpg"
+    imageAlt="Indiana Limestone window sill and surround on residential masonry facade, Greater Toronto Area — Tulip Precast Brampton Ontario"
+    eyebrow="INDIANA LIMESTONE · SILLS · ONTARIO MADE"
+    headline="Limestone Window Sills."
+    headlineItalic="Slip Sill or Lug Sill."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=sills"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Sills overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Window Sills</span>
+        <h2 class="plp-intro-headline">Limestone sills for every opening in the GTA.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Indiana Limestone window sills are among the most specified architectural elements in residential and commercial masonry across Ontario — a subtle but essential detail that elevates the appearance of any brick or stone facade. At Tulip Precast in Brampton, we fabricate both slip sills and lug sills in five standard profiles, plus custom sizes and heritage profiles for non-standard applications.</p>
+        <p class="plp-intro-body">Whether you need a simple slip sill flush with the masonry opening, or a full lug sill system that extends into the masonry for maximum architectural presence, every sill we produce is fabricated with custom shop drawings and produced in Indiana Limestone — the same material used on some of Canada's most celebrated buildings.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">5</span>
+          <span class="plp-fact-lbl">Standard sill profiles</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">2</span>
+          <span class="plp-fact-lbl">Types — Slip Sill &amp; Lug Sill</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Heritage and non-standard profiles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="sills"
+    num="08"
+    label="Limestone · Architectural"
+    title="Sills"
+    imageSrc="/pictures/Limestone%20page%20images/sills.png"
+    imageAlt="Indiana limestone classic slip sill profile, Tulip Precast"
+    imagePosition="center center"
+    description="Sills are among the most essential architectural elements — adding understated style to any project. Slip sills are designed to align seamlessly with the width of the masonry opening. Lug sills extend beyond the window, allowing for the installation of a full surround and a more pronounced architectural presence. Custom sills are also available."
+    callout={{ label: 'Slip Sill vs Lug Sill', body: 'Slip sills sit flush within the masonry opening. Lug sills project beyond the window frame — use a lug sill when installing a full surround system for the most architecturally complete result.' }}
+    variants={[
+      { name: 'Classic Slip Sill',          description: 'Flush with opening, clean simple profile',    imageSrc: '/pictures/sills/Classic%20Slip%20Sill.png' },
+      { name: 'Classic Bull Nose Sill',     description: 'Rounded leading edge, softened profile',      imageSrc: '/pictures/sills/classic%20Bull%20Nose%20sill.png' },
+      { name: 'Conventional Sill',          description: 'Sloped top, standard drainage profile',       imageSrc: '/pictures/sills/Conventional%20Sill.png' },
+      { name: 'Double Slope Sill',          description: 'Dual pitch top, enhanced water runoff',       imageSrc: '/pictures/sills/Double%20Slope%20Sill.png' },
+      { name: 'Conventional Sill with Lip', description: 'Standard slope with drip-edge lip detail',   imageSrc: '/pictures/sills/Conventional%20Sill%20With%20Lip.png' },
+      { name: 'Custom',                     description: 'Any profile to specification' },
+    ]}
+    flip={true}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is the difference between a slip sill and a lug sill?</summary>
+          <div class="plp-faq-answer"><p>A slip sill sits flush within the masonry opening — the same width as the window frame. A lug sill projects beyond the window frame and extends into the masonry on both sides, allowing for a full surround system and more pronounced architectural presence. Tulip Precast fabricates both types in Indiana Limestone in a range of profiles.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What limestone sill profiles does Tulip Precast offer?</summary>
+          <div class="plp-faq-answer"><p>Tulip Precast fabricates Indiana Limestone sills in five standard profiles: Classic Slip Sill, Classic Bull Nose Sill, Conventional Sill, Double Slope Sill, and Conventional Sill with Lip. Custom profiles are also available for heritage matching and contemporary designs.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can limestone sills be combined with surrounds?</summary>
+          <div class="plp-faq-answer"><p>Yes. A lug sill combined with jambs and a head surround creates a complete architectural window system — the most refined option available. Tulip Precast fabricates all components as a matched set with custom shop drawings.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Do limestone sills perform well in Ontario's climate?</summary>
+          <div class="plp-faq-answer"><p>Yes. Indiana Limestone performs reliably through hundreds of freeze-thaw cycles without cracking or spalling and has been used on some of Canada's most prominent buildings for over a century. Tulip Precast sills are fabricated from the same high-quality Indiana Limestone used in institutional and commercial buildings across the GTA.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/columns" class="plp-related-tile">
+          <span class="plp-related-name">Limestone Columns</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/carving" class="plp-related-tile">
+          <span class="plp-related-name">Custom Limestone Carving</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Window Sills?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=sills"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item[open] {
+    background: var(--white-warm);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    padding: 0 0 var(--space-lg);
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

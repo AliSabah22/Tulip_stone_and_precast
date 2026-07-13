@@ -1,0 +1,538 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Indiana Limestone veneer require a footing in Ontario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thin bed Indiana Limestone veneer (1¼\" depth) does not require a footing or foundation and can be installed directly over existing masonry using expanded galvanized metal lath. Full bed depth veneer (3\"–4\") does require a proper footing. Tulip Precast can advise on the correct option for your project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between thin bed and full bed depth limestone veneer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thin bed limestone veneer is approximately 1¼\" deep and installs directly over existing masonry — no footing required and 50% faster to install than full bed depth. Full bed depth veneer is 3\"–4\" deep, requires a footing, and provides the authentic mass of natural limestone construction. Both are available in smooth, split face, and rock face finishes from Tulip Precast."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What sizes does Indiana Limestone veneer come in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tulip Precast offers Indiana Limestone veneer panels in three standard sizes: 12\" x 24\", 16\" x 36\", and 16\" x 48\", all in 3\" or 3.5\" depth. Custom sizes are available to specification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Indiana Limestone veneer be used for pool surrounds in Ontario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Indiana Limestone veneer is well-suited to pool surrounds and spa walls — providing natural traction in wet conditions and performing through Ontario's freeze-thaw cycles. Tulip Precast also offers a dedicated Pool and Spa stone range with eleven options specifically selected for aquatic environments."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipprecast.com" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipprecast.com/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Veneers & Building Stone", "item": "https://www.tulipprecast.com/limestone/veneers" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Indiana Limestone Veneer Ontario | Cladding & Panels | Tulip"
+  description="Indiana Limestone veneers in smooth, split face, and rock face finishes. Thin bed and full bed depth panels. No footing required for thin veneer. Serving Toronto, Brampton, and the GTA. Ontario Made."
+  pageClass="page-limestone-veneers"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/stone%20texture.jpg"
+    imageAlt="Indiana Limestone smooth thin veneer on luxury residential facade, Greater Toronto Area — Tulip Precast Brampton"
+    eyebrow="INDIANA LIMESTONE · VENEERS & CLADDING · ONTARIO MADE"
+    headline="Limestone Veneers."
+    headlineItalic="100% Natural Stone."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=veneers"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Veneers overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Veneers &amp; Building Stone</span>
+        <h2 class="plp-intro-headline">Indiana Limestone veneer for Ontario homes and buildings.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Indiana Limestone veneers bring the same geological material used in the Empire State Building, the National Cathedral, and the Biltmore Estate to residential and commercial facades across Ontario. At Tulip Precast in Brampton, we supply thin bed and full bed depth Indiana Limestone veneers in smooth, split face, and rock face finishes — 100% natural stone, no aggregates, no artificial colours.</p>
+        <p class="plp-intro-body">Thin bed limestone veneer installs directly over existing masonry with no footing required — making it one of the most cost-effective and fastest-installing natural stone cladding systems available. Full bed depth panels deliver the authentic mass and character of traditional limestone construction. Both are available in standard panel sizes or custom cut to specification.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">100%</span>
+          <span class="plp-fact-lbl">Natural stone — no aggregates</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">No footing</span>
+          <span class="plp-fact-lbl">Required for thin bed veneer</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">3 sizes</span>
+          <span class="plp-fact-lbl">12×24 · 16×36 · 16×48 panels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="veneers-main"
+    num="02"
+    label="Limestone · Cladding"
+    title="Veneers"
+    imageSrc="/pictures/Limestone%20page%20images/Veneers.webp"
+    imageAlt="Indiana limestone smooth thin veneer installed on luxury residential exterior, Tulip Precast"
+    imagePosition="center 50%"
+    description="Indiana Limestone veneers are the most versatile product in our range — available in thin and full bed depth profiles, each suited to different structural requirements and design intentions. 100% natural stone, no aggregates, no artificial colours. The same geological formation that supplied stone for the Empire State Building, the National Cathedral, and the Biltmore Estate."
+    veneers={[
+      {
+        type: 'Thin Bed', bed: '1¼" depth', title: 'Smooth',
+        description: 'Our most popular thin veneer. Smooth, refined, and consistent — also known as planed, honed, bugged, or circular sanded. Requires no footing or foundation. Installs directly over existing masonry.',
+        imageSrc: '/pictures/stone%20texture.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',   'Not required'],
+          ['Heights',   '4", 8", 12"'],
+          ['Length',    '24"'],
+          ['Depth',     '1¼"'],
+          ['Coverage',  '~135 sq ft per ton'],
+          ['Colours',   'Full colour blend · Buff · Gray'],
+        ],
+      },
+      {
+        type: 'Thin Bed', bed: '¾– 1¼" depth', title: 'Split Face & Tumbled',
+        description: 'Thin Indiana Limestone with natural texture and character. Versatile, durable, and fast to install. Available in split face and tumbled finishes — ideal for non-load-bearing walls and renovation cladding.',
+        imageSrc: '/pictures/masonry%20detail.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',         'Not required'],
+          ['Split Heights',   '2¼", 5", 7¾", 10½"'],
+          ['Tumbled Heights', '2– 12"'],
+          ['Length',          'Random'],
+          ['Depth',           '¾– 1¼"'],
+          ['Colours',         'Full colour blend · Buff · Gray'],
+        ],
+      },
+      {
+        type: 'Full Bed Depth', bed: '4" depth', title: 'Smooth',
+        description: 'Precision-cut modular units made from the same naturally durable Indiana Limestone used in many of the world\'s most renowned buildings. Competitively priced against engineered or cast stone alternatives.',
+        imageSrc: '/pictures/stone%20texture%202.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',  'Required'],
+          ['Heights',  '4", 8", 12", 16"'],
+          ['Length',   '24" or 36"'],
+          ['Depth',    '4"'],
+          ['Colours',  'Full bed · Gray · Full colour blend'],
+        ],
+      },
+      {
+        type: 'Full Bed Depth', bed: '3–4" depth', title: 'Split Face',
+        description: 'Split face full bed depth veneer exhibits the beauty of subtle colour and grain variations inherent in natural stone. Adds a sense of permanence and lasting value to any residential or commercial project.',
+        imageSrc: '/pictures/hero%20image.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',  'Required'],
+          ['Heights',  '2¼", 5", 7¾", 10½"'],
+          ['Length',   'Random'],
+          ['Depth',    '3–4"'],
+          ['Colours',  'Full colour blend · Buff · Gray'],
+        ],
+      },
+      {
+        type: 'Full Bed Depth', bed: '3–5" depth', title: 'Tumbled',
+        description: 'Tumbled Indiana Limestone develops a graceful natural patina over time. Its natural variations in colour, texture, and finish enhance any architectural style — the perfect complement to brick and other building materials.',
+        imageSrc: '/pictures/lifestyle.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',  'Required'],
+          ['Heights',  '2–12"'],
+          ['Length',   'Varies'],
+          ['Depth',    '3–5"'],
+          ['Colours',  'Full colour blend'],
+        ],
+      },
+      {
+        type: 'Thin Bed', bed: '¾–1¼" depth', title: 'Split Face',
+        description: 'Natural cleft face texture that reveals the character and grain of the stone. Lightweight and fast to install — ideal for feature walls, facades, and renovation cladding where a rugged, authentic texture is desired.',
+        imageSrc: '/pictures/stone%20texture.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',  'Not required'],
+          ['Heights',  '2¼", 5", 7¾", 10½"'],
+          ['Length',   'Random'],
+          ['Depth',    '¾–1¼"'],
+          ['Colours',  'Full colour blend · Buff · Gray'],
+        ],
+      },
+      {
+        type: 'Thin Bed', bed: '¾–1½" depth', title: 'Rock Face',
+        description: 'A bold, deeply textured natural surface — split and left with an irregular rock-face finish. Adds dramatic depth and shadow play to any facade. Available in full colour blend for maximum natural variation.',
+        imageSrc: '/pictures/stone%20texture%202.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',  'Not required'],
+          ['Heights',  '2¼", 5", 7¾", 10½"'],
+          ['Length',   'Random'],
+          ['Depth',    '¾–1½"'],
+          ['Colours',  'Full colour blend'],
+        ],
+      },
+      {
+        type: 'Full Bed Depth', bed: '3–4" depth', title: 'Leramosa',
+        description: 'A distinctive fossiliferous limestone with dramatic natural shell and fossil patterns visible across the surface. Each piece is unique — no two slabs share the same fossil configuration. A true statement material.',
+        imageSrc: '/pictures/masonry%20detail.jpg', imagePosition: 'center center',
+        specs: [
+          ['Footing',  'Required'],
+          ['Heights',  '4", 8", 12"'],
+          ['Length',   '24" or 36"'],
+          ['Depth',    '3–4"'],
+          ['Colours',  'Natural fossil blend'],
+        ],
+      },
+    ]}
+    flip={false}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Does Indiana Limestone veneer require a footing in Ontario?</summary>
+          <div class="plp-faq-answer"><p>Thin bed Indiana Limestone veneer (1¼" depth) does not require a footing or foundation and can be installed directly over existing masonry using expanded galvanized metal lath. Full bed depth veneer (3"–4") does require a proper footing. Tulip Precast can advise on the correct option for your project.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is the difference between thin bed and full bed depth?</summary>
+          <div class="plp-faq-answer"><p>Thin bed limestone veneer is approximately 1¼" deep and installs directly over existing masonry — no footing required and 50% faster to install than full bed depth. Full bed depth veneer is 3"–4" deep, requires a footing, and provides the authentic mass of natural limestone construction. Both are available in smooth, split face, and rock face finishes from Tulip Precast.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What sizes does Indiana Limestone veneer come in?</summary>
+          <div class="plp-faq-answer"><p>Tulip Precast offers Indiana Limestone veneer panels in three standard sizes: 12" x 24", 16" x 36", and 16" x 48", all in 3" or 3.5" depth. Custom sizes are available to specification.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can Indiana Limestone veneer be used for pool surrounds?</summary>
+          <div class="plp-faq-answer"><p>Yes. Indiana Limestone veneer is well-suited to pool surrounds and spa walls — providing natural traction in wet conditions and performing through Ontario's freeze-thaw cycles. Tulip Precast also offers a dedicated Pool and Spa stone range with eleven options specifically selected for aquatic environments.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone#pool-spa" class="plp-related-tile">
+          <span class="plp-related-name">Pool &amp; Spa Stone</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/pavers" class="plp-related-tile">
+          <span class="plp-related-name">Limestone Pavers</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Veneers?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=veneers"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item[open] {
+    background: var(--white-warm);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    padding: 0 0 var(--space-lg);
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>
