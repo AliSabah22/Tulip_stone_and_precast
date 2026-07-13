@@ -1051,6 +1051,33 @@ const colours = [
 
   .ps-learn-link:hover { color: var(--warm-sand); }
 
+  /* Veneers/Pavers render this link (and the pre-existing GFRC
+     cross-link paragraph) as a direct child of .cat-content, which
+     has no horizontal padding of its own — ProductSection provides
+     its own via .ps-container, but these two plain elements don't.
+     Accordion-nested instances (Columns/Balusters/Sills/Carving)
+     already sit inside .fab-accordion's padding, so this is scoped
+     to direct children only to avoid double-padding those. */
+  :global(.cat-content > .ps-learn-link),
+  :global(.cat-content > .category-cross-link) {
+    display: block;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
+    box-sizing: border-box;
+  }
+
+  :global(.cat-content > .category-cross-link) {
+    margin-top: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+  }
+
   /* ── Sticky Sub-Navigation ───────────────────────────────── */
 
   .product-subnav {
