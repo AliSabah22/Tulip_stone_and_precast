@@ -54,12 +54,60 @@ const processSteps = [
     body: 'Your custom limestone or precast elements are delivered to site, ready for your contractor to install.',
   },
 ];
+
+const deliveryFAQ = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Tulip Precast deliver across the Greater Toronto Area?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tulip Precast delivers Indiana Limestone and precast concrete products directly to residential and commercial sites across the Greater Toronto Area — including Brampton, Toronto, Mississauga, Oakville, Burlington, Richmond Hill, Vaughan, Markham, and surrounding communities. Delivery scheduling is coordinated with your site contact during the fabrication phase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do customers need to arrange unloading equipment for Tulip Precast deliveries?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For standard residential deliveries, the Tulip Precast team handles unloading at the site. Customers do not need to arrange separate equipment or crew. For large commercial orders involving heavy precast elements or oversized limestone pieces, unloading logistics are confirmed with the site superintendent during the shop drawing and scheduling phase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are typical lead times for Indiana Limestone fabrication at Tulip Precast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lead times depend on project complexity and the current fabrication schedule. The process begins with custom shop drawings. Once approved drawings and a signed proposal with deposit are received, the project enters the fabrication schedule. Contact Tulip Precast at 647-534-7755 or office@tulipprecast.com for a current lead time estimate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Tulip Precast ship limestone outside the GTA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. While most work is delivered across the Greater Toronto Area, Tulip Precast ships Indiana Limestone and precast products across Ontario and Canada. Thin bed veneer is especially economical to ship long distances — approximately 135 square feet per ton. Contact us to discuss delivery options for your location."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I place an order with Tulip Precast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send your drawings, specifications, and project requirements to office@tulipprecast.com or call 647-534-7755. The estimator will provide pricing. Once a proposal is accepted and a deposit received, the drafting team begins custom shop drawings. Fabrication starts after drawing approval and the completed order is delivered to site."
+      }
+    }
+  ]
+});
 ---
 
 <BaseLayout
   title="About Tulip Precast | Ontario Made Stone Fabrication"
   description="Tulip Precast — premium Indiana Limestone and precast concrete fabrication in Brampton, Ontario. Serving homeowners, architects, and contractors across the GTA."
   pageClass="page-about"
+  additionalSchema={deliveryFAQ}
 >
 
   <Hero
@@ -220,6 +268,64 @@ const processSteps = [
             Start Your Order
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Delivery & Service FAQ -->
+  <section class="about-faq" id="delivery-faq" aria-label="Delivery and service questions">
+    <div class="about-faq-container">
+
+      <span class="label-section">Delivery &amp; Service</span>
+      <h2 class="about-faq-title">Common Questions About Our Service</h2>
+
+      <div class="about-faq-list">
+
+        <details class="about-faq-item">
+          <summary class="about-faq-q">Does Tulip Precast deliver across the Greater Toronto Area?</summary>
+          <div class="about-faq-a">
+            <p>
+              Yes. We deliver Indiana Limestone and precast concrete products directly to residential and commercial sites across the Greater Toronto Area — including Brampton, Toronto, Mississauga, Oakville, Burlington, Richmond Hill, Vaughan, Markham, and surrounding communities. Delivery scheduling is coordinated with your site contact during the fabrication phase.
+            </p>
+          </div>
+        </details>
+
+        <details class="about-faq-item">
+          <summary class="about-faq-q">Do customers need to arrange unloading equipment?</summary>
+          <div class="about-faq-a">
+            <p>
+              For standard residential deliveries, our team handles unloading at the site. You do not need to arrange separate equipment or crew. For large commercial orders involving heavy precast elements or oversized limestone pieces, unloading logistics are discussed and confirmed with your site superintendent during the shop drawing and scheduling phase to ensure a smooth delivery.
+            </p>
+          </div>
+        </details>
+
+        <details class="about-faq-item">
+          <summary class="about-faq-q">What are typical lead times for Indiana Limestone fabrication?</summary>
+          <div class="about-faq-a">
+            <p>
+              Lead times depend on the complexity of the project and our current fabrication schedule. The process begins with custom shop drawings — once approved drawings and a signed proposal with deposit are received, your project enters the fabrication schedule. Contact us at 647-534-7755 or office@tulipprecast.com for a current lead time estimate before specifying project deadlines.
+            </p>
+          </div>
+        </details>
+
+        <details class="about-faq-item">
+          <summary class="about-faq-q">Do you ship limestone products outside the GTA?</summary>
+          <div class="about-faq-a">
+            <p>
+              Yes. While the majority of our work is delivered across the Greater Toronto Area, we ship Indiana Limestone and precast products across Ontario and Canada. Thin bed veneer is especially economical to ship long distances due to its lightweight nature — approximately 135 square feet per ton. Contact us to discuss delivery options for your location.
+            </p>
+          </div>
+        </details>
+
+        <details class="about-faq-item">
+          <summary class="about-faq-q">How do I place an order with Tulip Precast?</summary>
+          <div class="about-faq-a">
+            <p>
+              To begin, send your drawings, specifications, and project requirements to office@tulipprecast.com or call us at 647-534-7755. Our estimator will review your project and provide pricing. Once a proposal is accepted and a deposit received, our drafting team begins custom shop drawings. Fabrication starts after drawing approval — and your order is delivered to site upon completion.
+            </p>
+          </div>
+        </details>
+
       </div>
     </div>
   </section>
@@ -553,6 +659,106 @@ const processSteps = [
   .ordering-mark {
     color: var(--warm-sand);
     flex-shrink: 0;
+  }
+
+  /* ── Delivery & Service FAQ section ────────────────── */
+
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+  }
+
+  .about-faq {
+    padding: var(--space-3xl) 0;
+    background: var(--sand-pale);
+    border-top: 1px solid var(--sand-light);
+  }
+
+  .about-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .about-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .about-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .about-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .about-faq-q {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .about-faq-q::-webkit-details-marker { display: none; }
+
+  .about-faq-q::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .about-faq-item[open] .about-faq-q::after {
+    transform: rotate(45deg);
+  }
+
+  .about-faq-q:hover { color: var(--warm-sand); }
+
+  .about-faq-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .about-faq-item[open] .about-faq-a {
+    grid-template-rows: 1fr;
+  }
+
+  .about-faq-a p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
   }
 
   /* ── Responsive ────────────────────────────────────── */
