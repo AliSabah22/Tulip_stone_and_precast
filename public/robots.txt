@@ -1,11 +1,8 @@
 User-agent: *
 Allow: /
 
-# Block admin and build paths
+# Block Astro build assets (not content)
 Disallow: /_astro/
-Disallow: /api/
 
-Sitemap: https://www.tulipprecast.com/sitemap-index.xml
-
-# Crawl delay (optional — helps with server load)
-Crawl-delay: 1
+# Sitemap
+Sitemap: https://www.tulipprecast.com/sitemap-0.xml
