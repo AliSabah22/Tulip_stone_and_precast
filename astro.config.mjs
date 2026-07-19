@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.tulipprecast.com',
+  site: 'https://www.tulipstone.ca',
   output: 'static',
   integrations: [
     sitemap({
@@ -11,27 +11,27 @@ export default defineConfig({
       lastmod: new Date(),
       serialize(item) {
         const url = item.url.replace(/\/$/, '');
-        if (url === 'https://www.tulipprecast.com') {
+        if (url === 'https://www.tulipstone.ca') {
           return { ...item, priority: 1.0, changefreq: 'weekly' };
         }
         if (
-          url === 'https://www.tulipprecast.com/limestone' ||
-          url.startsWith('https://www.tulipprecast.com/limestone/') ||
-          url === 'https://www.tulipprecast.com/gfrc' ||
-          url === 'https://www.tulipprecast.com/precast'
+          url === 'https://www.tulipstone.ca/limestone' ||
+          url.startsWith('https://www.tulipstone.ca/limestone/') ||
+          url === 'https://www.tulipstone.ca/gfrc' ||
+          url === 'https://www.tulipstone.ca/precast'
         ) {
           return { ...item, priority: 0.9, changefreq: 'weekly' };
         }
         if (
-          url === 'https://www.tulipprecast.com/services' ||
-          url === 'https://www.tulipprecast.com/portfolio' ||
-          url === 'https://www.tulipprecast.com/colours'
+          url === 'https://www.tulipstone.ca/services' ||
+          url === 'https://www.tulipstone.ca/portfolio' ||
+          url === 'https://www.tulipstone.ca/colours'
         ) {
           return { ...item, priority: 0.8, changefreq: 'monthly' };
         }
         if (
-          url === 'https://www.tulipprecast.com/about' ||
-          url === 'https://www.tulipprecast.com/contact'
+          url === 'https://www.tulipstone.ca/about' ||
+          url === 'https://www.tulipstone.ca/contact'
         ) {
           return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
