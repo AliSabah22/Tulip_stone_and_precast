@@ -142,29 +142,13 @@ const ogImageAbsolute = ogImage.startsWith('http')
       }
     </style>
 
-    <!-- Google Analytics 4 — loaded after first interaction -->
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-926GRE36JL"></script>
     <script is:inline>
-      (function () {
-        function loadGA() {
-          if (window._gaLoaded) return;
-          window._gaLoaded = true;
-
-          const s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-          document.head.appendChild(s);
-
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
-        }
-
-        ['mousedown', 'keydown', 'touchstart', 'scroll'].forEach((ev) => {
-          document.addEventListener(ev, loadGA, { once: true, passive: true });
-        });
-      })();
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-926GRE36JL', { anonymize_ip: true });
     </script>
 
     <LocalBusiness />
