@@ -226,7 +226,7 @@ export const handler = async (event) => {
 
     const { error } = await resend.emails.send({
       from:        process.env.EMAIL_FROM || 'Tulip Precast Website <noreply@tulipprecast.com>',
-      to:          [RECIPIENT],
+      to:          [RECIPIENT, 'tulip.stone.gta@gmail.com'],
       reply_to:    fields['email'] || undefined,
       subject:     `New Quote Request — ${fullName}`,
       html:        buildHtml(fields),

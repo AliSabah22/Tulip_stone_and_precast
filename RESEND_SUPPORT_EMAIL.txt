@@ -1,0 +1,34 @@
+TO: support@resend.com
+SUBJECT: Hard bounce suppression removal request — office@tulipprecast.com
+
+Hi Resend team,
+
+The email address office@tulipprecast.com has been added to our
+suppression list due to hard bounces that occurred during a DNS
+misconfiguration on our sending domain (tulipprecast.com).
+
+The DNS issues have since been fully resolved. The domain is now
+correctly configured with SPF, DKIM, and DMARC records verified
+through Resend's domain dashboard.
+
+The suppressed address is our client's primary business email and
+they are a verified legitimate recipient. All emails sent to this
+address are transactional contact form submissions from their own
+website (tulipprecast.com).
+
+The dashboard does not offer a "Remove from Suppression List"
+button for this address due to the repeated bounce history. We
+are requesting a manual removal.
+
+Details:
+  Suppressed address: office@tulipprecast.com
+  Suppression reason: Hard bounce — DNS misconfiguration (now resolved)
+  Account email: [YOUR RESEND ACCOUNT EMAIL]
+  Domain: tulipprecast.com
+
+Could you please manually remove office@tulipprecast.com from the
+suppression list for our account?
+
+Thank you for your help.
+
+[YOUR NAME]
