@@ -1,0 +1,451 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are quoins in masonry architecture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quoins are the corner stones on a masonry building, typically larger than the surrounding masonry and often alternating in length. They define and visually strengthen the corner of a building and create contrast against brick or stone veneer. They can be installed continuously or divided by other cladding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What quoin profiles does Tulip Precast offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Five profiles: Classic Quoin, Classic Two Piece, Classic Two Piece Mitered, Double Chamfered, and Double Chamfered Two Piece. Two-piece configurations allow more flexible installation; mitered options create a seamless corner with no visible joint on the face."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between one-piece and two-piece quoins?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A one-piece quoin wraps the corner as a single L-shaped stone. A two-piece quoin uses two separate stones meeting at the corner, which allows more flexible installation and easier handling on site. Mitered two-piece quoins have an angled joint so no seam is visible on the corner face."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can quoins be matched to existing masonry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We match quoin dimensions to your existing masonry coursing and match colour and texture to existing stone on extension and renovation projects. Provide photographs and coursing dimensions when enquiring."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipstone.ca/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Quoins", "item": "https://www.tulipstone.ca/limestone/quoins" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Quoins Ontario | Corner Stone Detail | Tulip Precast"
+  description="Indiana Limestone quoins in five profiles including Classic, Two Piece, Mitered, and Double Chamfered. Corner definition for masonry buildings. Custom sizes. Ontario Made. Request a quote."
+  pageClass="page-limestone-quoins"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/stone%20texture.jpg"
+    imageAlt="Indiana Limestone quoins on masonry building corner — architectural detail, Tulip Precast Ontario"
+    eyebrow="INDIANA LIMESTONE · QUOINS · ONTARIO MADE"
+    headline="Limestone Quoins."
+    headlineItalic="Corners That Command Attention."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=quoins"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Quoins overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Quoins</span>
+        <h2 class="plp-intro-headline">Simple, classic, and instantly recognisable.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Quoins are the alternating corner stones on a masonry building — one of the oldest and most enduring architectural details in Western building. They create striking visual contrast against brick or stone veneer and give a building corners that read as deliberate rather than incidental.</p>
+        <p class="plp-intro-body">Tulip fabricates Indiana Limestone quoins in five profiles including one-piece and two-piece configurations, with mitered corners available for a seamless wrap with no visible joint on the corner face. Custom sizes are produced to match your masonry coursing.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">5</span>
+          <span class="plp-fact-lbl">Standard quoin profiles</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Mitered</span>
+          <span class="plp-fact-lbl">Seamless corner option available</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Sized to your masonry coursing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="quoins"
+    num="09"
+    label="Limestone · Masonry"
+    title="Quoins"
+    imageSrc="/pictures/Limestone%20page%20images/Quoins.jpg"
+    imageAlt="Indiana limestone classic quoin, corner block profile, Tulip Precast Brampton"
+    imagePosition="center center"
+    description="Simple and classic, quoins create a wonderful visual contrast to masonry veneer. These can be installed one on top of the other or divided by another form of exterior cladding. Versatile in application, quoins add definition, permanence, and elegance to any corner — residential or commercial."
+    variants={[
+      { name: 'Classic Quoin',              description: 'Single piece corner block, clean and bold',    imageSrc: '/pictures/Quoins/classic%20Quoin.png' },
+      { name: 'Double Chamfered',           description: 'Angled edges both sides, refined shadow',     imageSrc: '/pictures/Quoins/double%20chamfered.png' },
+      { name: 'Classic Two Piece',          description: 'Split into two for flexible installation',     imageSrc: '/pictures/Quoins/classic%20Two%20Piece.png' },
+      { name: 'Double Chamfered Two Piece', description: 'Chamfered profile in two-piece format',       imageSrc: '/pictures/Quoins/Double%20Chamfered%20Two%20Piece.png' },
+      { name: 'Classic Two Piece Mitered',  description: 'Mitered joint for seamless corner wrap',      imageSrc: '/pictures/Quoins/Classic%20Two%20Piece%20Mitered.png' },
+    ]}
+    flip={false}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What are quoins in masonry architecture?</summary>
+          <div class="plp-faq-answer"><p>Quoins are the corner stones on a masonry building, typically larger than the surrounding masonry and often alternating in length. They define and visually strengthen the corner of a building and create contrast against brick or stone veneer. They can be installed continuously or divided by other cladding.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What quoin profiles does Tulip Precast offer?</summary>
+          <div class="plp-faq-answer"><p>Five profiles: Classic Quoin, Classic Two Piece, Classic Two Piece Mitered, Double Chamfered, and Double Chamfered Two Piece. Two-piece configurations allow more flexible installation; mitered options create a seamless corner with no visible joint on the face.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is the difference between one-piece and two-piece quoins?</summary>
+          <div class="plp-faq-answer"><p>A one-piece quoin wraps the corner as a single L-shaped stone. A two-piece quoin uses two separate stones meeting at the corner, which allows more flexible installation and easier handling on site. Mitered two-piece quoins have an angled joint so no seam is visible on the corner face.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can quoins be matched to existing masonry?</summary>
+          <div class="plp-faq-answer"><p>Yes. We match quoin dimensions to your existing masonry coursing and match colour and texture to existing stone on extension and renovation projects. Provide photographs and coursing dimensions when enquiring.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/banding" class="plp-related-tile">
+          <span class="plp-related-name">Banding</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/sills" class="plp-related-tile">
+          <span class="plp-related-name">Sills</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Quoins?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=quoins"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .plp-faq-item[open] .plp-faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

@@ -608,6 +608,26 @@ const processSteps = [
     </div>
   </section>
 
+  <!-- Section 11.5: Service Area -->
+  <section class="home-service-area" aria-label="Service areas">
+    <div class="home-sa-container">
+      <span class="label-section">Where We Deliver</span>
+      <h2 class="home-sa-title">Serving Ontario and Beyond</h2>
+      <p class="home-sa-intro">
+        Fabricated in Brampton. Delivered across the Greater Toronto Area, shipped nationally — and to the United States duty-free under USMCA.
+      </p>
+      <div class="home-sa-grid">
+        <a href="/brampton" class="home-sa-tile">Brampton</a>
+        <a href="/toronto" class="home-sa-tile">Toronto</a>
+        <a href="/mississauga" class="home-sa-tile">Mississauga</a>
+        <a href="/oakville" class="home-sa-tile">Oakville</a>
+        <a href="/montreal" class="home-sa-tile">Montreal</a>
+        <a href="/vancouver" class="home-sa-tile">Vancouver</a>
+      </div>
+      <p class="home-sa-us-note">Also serving New York, Boston, Chicago, Texas, and Florida — <a href="/gfrc">GFRC panels and custom stone</a>, shipped duty-free under USMCA.</p>
+    </div>
+  </section>
+
   <!-- Section 12: CTA Band -->
   <CTASection
     headline="Ready to start your project?"
@@ -1282,6 +1302,79 @@ const processSteps = [
     color: var(--stone-mid);
     line-height: var(--lh-body);
     max-width: 55ch;
+  }
+
+  /* ── Section 11.5: Service Area ─────────────────────────── */
+
+  .home-service-area {
+    padding: var(--space-2xl) 0;
+    background: var(--sand-pale);
+    border-top: 1px solid var(--sand-light);
+  }
+
+  .home-sa-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .home-sa-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .home-sa-intro {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    margin-bottom: var(--space-lg);
+    max-width: 55ch;
+  }
+
+  .home-sa-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .home-sa-tile {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    letter-spacing: var(--ls-wide);
+    color: var(--stone-dark);
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: border-color 200ms ease, color 200ms ease;
+  }
+
+  .home-sa-tile:hover {
+    border-color: var(--warm-sand);
+    color: var(--warm-sand);
+  }
+
+  .home-sa-us-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    margin-top: var(--space-md);
+    max-width: 55ch;
+  }
+
+  .home-sa-us-note a {
+    color: var(--warm-sand);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .home-sa-us-note a:hover {
+    color: var(--stone-dark);
   }
 
   /* ── GFRC Feature Strip ─────────────────────────────────── */

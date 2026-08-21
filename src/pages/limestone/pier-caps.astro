@@ -1,0 +1,450 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What thicknesses do limestone pier caps come in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tulip fabricates Indiana Limestone pier caps in 2¼ inch and 3 inch thicknesses. A range of lengths and widths is available as standard, and custom dimensions are produced to match your pier size exactly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What finishes are available on pier caps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rock face and square edge. Rock face has a split natural texture that reads as raw stone and suits rustic and traditional applications. Square edge is clean and precise — better suited to contemporary architecture and formal entrances."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What colours are limestone pier caps available in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Full Colour Blend (FCB) and gray. Full Colour Blend contains the natural variation range of Indiana Limestone; gray is more consistent and cooler in tone. We recommend requesting physical samples before specifying."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you match pier caps to existing ones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We match colour, thickness, finish, and dimensions to existing pier caps for extensions and replacements. Provide photographs and measurements of the existing caps when enquiring."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipstone.ca/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Pier Caps", "item": "https://www.tulipstone.ca/limestone/pier-caps" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Pier Caps Ontario | Rock Face &amp; Square Edge | Tulip"
+  description="Indiana Limestone pier caps in 2¼&quot; and 3&quot; thicknesses. Rock face and square edge finishes in Full Colour Blend and gray. Custom lengths and widths. Ontario Made. Request a quote."
+  pageClass="page-limestone-pier-caps"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/lifestyle.jpg"
+    imageAlt="Indiana Limestone pier caps on garden entrance wall — Tulip Precast Brampton Ontario"
+    eyebrow="INDIANA LIMESTONE · PIER CAPS · ONTARIO MADE"
+    headline="Limestone Pier Caps."
+    headlineItalic="The Detail That Finishes the Wall."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=pier-caps"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Pier caps overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Pier Caps</span>
+        <h2 class="plp-intro-headline">Pier caps that anchor the composition.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Pier caps sit at the top of gate posts, entrance pillars, and balustrade newel posts — the visual anchor points of a wall or fence run. Because they sit at eye level at every entrance and corner, the profile and finish matter more than on almost any other hardscape element.</p>
+        <p class="plp-intro-body">Tulip fabricates Indiana Limestone pier caps in 2¼ inch and 3 inch thicknesses, in rock face and square edge finishes, available in Full Colour Blend and gray. Custom lengths and widths are produced to match your pier dimensions exactly.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">2¼" &amp; 3"</span>
+          <span class="plp-fact-lbl">Standard thicknesses</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">2</span>
+          <span class="plp-fact-lbl">Finishes — Rock Face and Square Edge</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Lengths and widths to specification</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="pier-caps"
+    num="09"
+    label="Limestone · Finishing"
+    title="Pier Caps"
+    imageSrc="/pictures/Limestone%20page%20images/Pier%20Caps.jpg"
+    imageAlt="Indiana limestone pier caps on garden wall entrance, residential exterior, Tulip Precast"
+    imagePosition="center 40%"
+    description={'Available in 2¼" and 3" thicknesses as well as a variety of lengths and widths to meet your needs, our limestone pier caps are available in rock face or square edge finishes. We offer pier caps in Full Colour Blend (FCB) and Gray — providing timeless options for residential and commercial applications.'}
+    specs={[
+      ['Thicknesses',  '2¼" and 3"'],
+      ['Finishes',     'Rock Face · Square Edge'],
+      ['Colours',      'Full Colour Blend (FCB) · Gray'],
+      ['Availability', 'Standard and custom lengths and widths'],
+    ]}
+    flip={true}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What thicknesses do limestone pier caps come in?</summary>
+          <div class="plp-faq-answer"><p>Tulip fabricates Indiana Limestone pier caps in 2¼ inch and 3 inch thicknesses. A range of lengths and widths is available as standard, and custom dimensions are produced to match your pier size exactly.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What finishes are available on pier caps?</summary>
+          <div class="plp-faq-answer"><p>Rock face and square edge. Rock face has a split natural texture that reads as raw stone and suits rustic and traditional applications. Square edge is clean and precise — better suited to contemporary architecture and formal entrances.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What colours are limestone pier caps available in?</summary>
+          <div class="plp-faq-answer"><p>Full Colour Blend (FCB) and gray. Full Colour Blend contains the natural variation range of Indiana Limestone; gray is more consistent and cooler in tone. We recommend requesting physical samples before specifying.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you match pier caps to existing ones?</summary>
+          <div class="plp-faq-answer"><p>Yes. We match colour, thickness, finish, and dimensions to existing pier caps for extensions and replacements. Provide photographs and measurements of the existing caps when enquiring.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/wall-caps" class="plp-related-tile">
+          <span class="plp-related-name">Wall Caps</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/balusters" class="plp-related-tile">
+          <span class="plp-related-name">Balusters</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Pier Caps?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=pier-caps"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .plp-faq-item[open] .plp-faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

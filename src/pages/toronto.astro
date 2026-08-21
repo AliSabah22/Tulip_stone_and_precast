@@ -1,0 +1,515 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do you deliver limestone to Toronto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tulip delivers Indiana Limestone and precast products throughout Toronto — downtown, midtown, Etobicoke, Scarborough, North York, and East York. Our shop is in Brampton, roughly 40 minutes from the core. Our team handles unloading."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you match limestone on a Toronto heritage building?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Heritage profile matching is one of our specialties. We work from photographs, measurements, and where available original drawings to replicate colour, texture, and profile exactly. This is common on Toronto century homes and commercial restorations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with Toronto architects on specifications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our drafting team produces full shop drawing packages and coordinates directly with architects and general contractors. We can provide specification support, physical samples, and technical documentation for your submittal package."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lead time for a Toronto project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lead time depends on project complexity and current fabrication schedule. The process begins with shop drawings; fabrication starts once drawings are approved and a signed proposal with deposit is received. Contact us at 647-534-7755 for a current estimate."
+      }
+    }
+  ]
+});
+
+const localBizSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Tulip Limestone · Precast",
+  "description": "Indiana Limestone fabrication for Toronto residential and commercial projects, delivered from our Brampton shop.",
+  "url": "https://www.tulipstone.ca/toronto",
+  "telephone": "+1-647-534-7755",
+  "email": "office@tulipprecast.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "98 Rutherford Rd Unit 2C",
+    "addressLocality": "Brampton",
+    "addressRegion": "ON",
+    "postalCode": "L6W 3J5",
+    "addressCountry": "CA"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Toronto"
+  },
+  "priceRange": "$$$"
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Toronto", "item": "https://www.tulipstone.ca/toronto" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(localBizSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Indiana Limestone Toronto | Custom Stone Fabrication | Tulip"
+  description="Indiana Limestone fabrication for Toronto residential and commercial projects. Columns, veneers, sills, carving, and GFRC. Delivered across Toronto from our Brampton shop. Ontario Made."
+  pageClass="page-geo-toronto"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/stone%20texture%202.jpg"
+    imageAlt="Indiana Limestone facade on Toronto residential building — Tulip Limestone Precast Ontario"
+    eyebrow="TORONTO, ONTARIO · DELIVERED &amp; INSTALLED"
+    headline="Indiana Limestone"
+    headlineItalic="for Toronto."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?location=toronto"
+    secondaryCTA="VIEW PORTFOLIO"
+    secondaryCTAHref="/portfolio"
+  />
+
+  <section class="geo-intro" aria-label="Toronto limestone services">
+    <div class="geo-intro-container">
+      <div class="geo-intro-text">
+        <span class="label-section">Toronto, Ontario · Residential &amp; Commercial</span>
+        <h2 class="geo-intro-headline">Custom limestone for Toronto's most demanding projects.</h2>
+        <span class="geo-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="geo-intro-body">Toronto's architectural landscape spans century homes in Rosedale and the Annex, heritage commercial buildings downtown, and contemporary residential builds across the city. Each demands something different from stone — and Indiana Limestone handles all of it. Tulip fabricates and delivers throughout Toronto from our shop in Brampton, 40 minutes from the core.</p>
+        <p class="geo-intro-body">We work directly with Toronto architects, general contractors, and homeowners. Every project starts with custom shop drawings — our drafting team collaborates with your architect to address every detail before fabrication begins, eliminating jobsite issues before they happen.</p>
+      </div>
+      <div class="geo-intro-facts">
+        <div class="geo-fact">
+          <span class="geo-fact-val">40 min</span>
+          <span class="geo-fact-lbl">From our Brampton shop to downtown</span>
+        </div>
+        <div class="geo-fact">
+          <span class="geo-fact-val">Heritage</span>
+          <span class="geo-fact-lbl">Profile matching and replica carving</span>
+        </div>
+        <div class="geo-fact">
+          <span class="geo-fact-val">Full range</span>
+          <span class="geo-fact-lbl">Limestone, precast, and GFRC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="geo-products" aria-label="Products available">
+    <div class="geo-products-container">
+      <span class="label-section">Available in Toronto</span>
+      <h2 class="geo-products-title">Products for every Toronto project.</h2>
+      <p class="geo-products-intro">From heritage restoration to new-build facades, delivered from our Brampton shop.</p>
+      <div class="geo-products-grid">
+        <a href="/limestone/columns" class="geo-product-tile">
+          <span class="geo-product-name">Columns</span>
+          <span class="geo-product-desc">Five classical orders, handcrafted to specification.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/veneers" class="geo-product-tile">
+          <span class="geo-product-name">Veneers</span>
+          <span class="geo-product-desc">Full bed and thin bed veneer in six styles.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/sills" class="geo-product-tile">
+          <span class="geo-product-name">Sills</span>
+          <span class="geo-product-desc">Slip and lug sills in standard and custom profiles.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/carving" class="geo-product-tile">
+          <span class="geo-product-name">Custom Carving</span>
+          <span class="geo-product-desc">Hand-carved ornament and architectural detail.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/banding" class="geo-product-tile">
+          <span class="geo-product-name">Banding</span>
+          <span class="geo-product-desc">Horizontal string courses in seven profiles.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/gfrc" class="geo-product-tile">
+          <span class="geo-product-name">GFRC Panels</span>
+          <span class="geo-product-desc">Lightweight architectural panels, up to 75% lighter than precast.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="geo-why" aria-label="Why choose Tulip">
+    <div class="geo-why-container">
+      <span class="label-section">Why Toronto Projects Choose Tulip</span>
+      <h2 class="geo-why-title">A fabrication partner, not just a supplier.</h2>
+      <div class="geo-why-grid">
+        <div class="geo-why-card">
+          <span class="geo-why-num" aria-hidden="true">01</span>
+          <h3 class="geo-why-heading">Heritage matching expertise</h3>
+          <p class="geo-why-body">Toronto has thousands of century buildings with original limestone detail. We match existing colour, texture, and profile so replacement pieces integrate invisibly.</p>
+        </div>
+        <div class="geo-why-card">
+          <span class="geo-why-num" aria-hidden="true">02</span>
+          <h3 class="geo-why-heading">We work with architects</h3>
+          <p class="geo-why-body">Full shop drawing packages, specification support, and direct coordination with your design team. Not just a supplier — a fabrication partner.</p>
+        </div>
+        <div class="geo-why-card">
+          <span class="geo-why-num" aria-hidden="true">03</span>
+          <h3 class="geo-why-heading">Delivered and unloaded</h3>
+          <p class="geo-why-body">We deliver across Toronto and handle unloading. Commercial deliveries are coordinated with your site superintendent during scheduling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="geo-faq" aria-label="Frequently asked questions">
+    <div class="geo-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="geo-faq-title">Toronto — Frequently Asked</h2>
+      <div class="geo-faq-list">
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">Do you deliver limestone to Toronto?</summary>
+          <div class="geo-faq-a"><p>Yes. Tulip delivers Indiana Limestone and precast products throughout Toronto — downtown, midtown, Etobicoke, Scarborough, North York, and East York. Our shop is in Brampton, roughly 40 minutes from the core. Our team handles unloading.</p></div>
+        </details>
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">Can you match limestone on a Toronto heritage building?</summary>
+          <div class="geo-faq-a"><p>Yes. Heritage profile matching is one of our specialties. We work from photographs, measurements, and where available original drawings to replicate colour, texture, and profile exactly. This is common on Toronto century homes and commercial restorations.</p></div>
+        </details>
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">Do you work with Toronto architects on specifications?</summary>
+          <div class="geo-faq-a"><p>Yes. Our drafting team produces full shop drawing packages and coordinates directly with architects and general contractors. We can provide specification support, physical samples, and technical documentation for your submittal package.</p></div>
+        </details>
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">What is the lead time for a Toronto project?</summary>
+          <div class="geo-faq-a"><p>Lead time depends on project complexity and current fabrication schedule. The process begins with shop drawings; fabrication starts once drawings are approved and a signed proposal with deposit is received. Contact us at 647-534-7755 for a current estimate.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Building in Toronto?"
+    subheading="Send us your drawings or specifications. Our team will respond within one business day."
+    buttonText="REQUEST A QUOTE"
+    buttonHref="/contact?location=toronto"
+    background="sage"
+  />
+
+  <div class="geo-other-areas">
+    <span class="geo-other-label">Also serving</span>
+    <a href="/brampton">Brampton</a> ·
+    <a href="/mississauga">Mississauga</a> ·
+    <a href="/oakville">Oakville</a> ·
+    <a href="/montreal">Montreal</a> ·
+    <a href="/vancouver">Vancouver</a>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .geo-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+  .geo-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+  .geo-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .geo-intro-rule {
+    display: block; height: 1px; width: 60px;
+    background: var(--sand-light);
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+  .geo-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+  .geo-intro-facts {
+    display: flex; flex-direction: column;
+    gap: var(--space-sm); padding-top: var(--space-md);
+  }
+  .geo-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .geo-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 300;
+    color: var(--stone-dark); line-height: 1;
+  }
+  .geo-fact-lbl {
+    font-family: var(--font-sans); font-size: 9px;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase; color: var(--stone-light);
+  }
+
+  .geo-products {
+    padding: var(--space-3xl) 0;
+    background: var(--limestone-cream);
+  }
+  .geo-products-container {
+    max-width: var(--max-width);
+    margin: 0 auto; padding: 0 var(--content-padding);
+  }
+  .geo-products-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .geo-products-intro {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 60ch;
+    margin-bottom: var(--space-xl);
+  }
+  .geo-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+  .geo-product-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg);
+    display: flex; flex-direction: column;
+    gap: var(--space-xs);
+    text-decoration: none;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .geo-product-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+  .geo-product-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+  }
+  .geo-product-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    flex: 1;
+  }
+  .geo-product-arrow {
+    font-size: var(--text-body);
+    color: var(--sand-light);
+    margin-top: var(--space-xs);
+    transition: color 200ms ease, transform 200ms ease;
+  }
+  .geo-product-tile:hover .geo-product-arrow {
+    color: var(--warm-sand);
+    transform: translateX(4px);
+  }
+
+  .geo-why {
+    background: var(--quarry-stone);
+    padding: var(--space-3xl) 0;
+  }
+  .geo-why-container {
+    max-width: var(--max-width);
+    margin: 0 auto; padding: 0 var(--content-padding);
+  }
+  .geo-why .label-section { color: rgba(200,168,130,0.7); }
+  .geo-why-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--white-warm);
+    margin: var(--space-xs) 0 var(--space-xl);
+  }
+  .geo-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  .geo-why-card {
+    border: 1px solid rgba(200,168,130,0.14);
+    background: rgba(255,255,255,0.03);
+    padding: var(--space-xl);
+  }
+  .geo-why-num {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: rgba(200,168,130,0.2);
+    display: block; line-height: 1;
+    margin-bottom: var(--space-sm);
+  }
+  .geo-why-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: var(--space-sm);
+  }
+  .geo-why-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+  }
+
+  .geo-faq {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+  }
+  .geo-faq-container {
+    max-width: 760px; margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+  .geo-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+  }
+  .geo-faq-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .geo-faq-item { border-bottom: 1px solid var(--cream-dark); }
+  .geo-faq-q {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer; list-style: none;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+  .geo-faq-q::-webkit-details-marker { display: none; }
+  .geo-faq-q::after {
+    content: '+'; font-family: var(--font-sans);
+    font-size: 18px; font-weight: 300;
+    color: var(--warm-sand); flex-shrink: 0;
+    transition: transform 300ms ease; line-height: 1;
+  }
+  .geo-faq-item[open] .geo-faq-q::after { transform: rotate(45deg); }
+  .geo-faq-q:hover { color: var(--warm-sand); }
+  .geo-faq-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+  .geo-faq-item[open] .geo-faq-a {
+    grid-template-rows: 1fr;
+  }
+  .geo-faq-a p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .geo-other-areas {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--content-padding);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .geo-other-label {
+    font-size: 9px;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+  .geo-other-areas a {
+    color: var(--stone-mid);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .geo-other-areas a:hover { color: var(--warm-sand); }
+
+  @media (max-width: 1024px) {
+    .geo-intro-container { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .geo-intro-facts { flex-direction: row; flex-wrap: wrap; }
+    .geo-fact { flex: 1; min-width: 150px; }
+    .geo-products-grid { grid-template-columns: repeat(2, 1fr); }
+    .geo-why-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .geo-products-grid { grid-template-columns: 1fr; }
+    .geo-intro-facts { flex-direction: column; }
+  }
+</style>

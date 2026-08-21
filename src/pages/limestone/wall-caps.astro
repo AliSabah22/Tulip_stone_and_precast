@@ -1,0 +1,453 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What wall cap profiles does Tulip Precast offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Six standard profiles: Classic Wall Cap, Rounded Wall Cap, Double Wash Wall Cap, Bull Nose Wall Cap, Vintage Profile Wall Cap, and Natural Rockface Wall Cap. Custom profiles including non-standard widths and heritage matching are also available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a double wash wall cap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A double wash wall cap has a dual-pitched top surface that sheds water to both sides of the wall rather than one. It provides maximum weather protection and is the preferred profile for freestanding garden and boundary walls exposed on both faces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do limestone wall caps prevent masonry damage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Wall caps shed water away from the wall face, which is the primary cause of masonry deterioration through freeze-thaw cycling. A properly specified cap significantly extends the life of the wall beneath it and is one of the most cost-effective protective elements in masonry construction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you match wall caps to an existing wall?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We match colour, profile, and dimensions to existing wall caps for extensions and repairs. Please provide photographs and measurements of the existing caps and the wall width when enquiring."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipstone.ca/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Wall Caps", "item": "https://www.tulipstone.ca/limestone/wall-caps" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Wall Caps Toronto &amp; GTA | Tulip Precast"
+  description="Indiana Limestone wall caps in six profiles — Classic, Rounded, Double Wash, Bull Nose, Vintage, and Natural Rockface. Cost-effective weather protection for masonry walls. Ontario Made."
+  pageClass="page-limestone-wall-caps"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/craftsman%20hands.jpg"
+    imageAlt="Indiana Limestone wall cap being installed on residential garden wall — Tulip Precast Brampton Ontario"
+    eyebrow="INDIANA LIMESTONE · WALL CAPS · ONTARIO MADE"
+    headline="Limestone Wall Caps."
+    headlineItalic="Six Profiles. Built to Shed Water."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=wall-caps"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Wall caps overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Wall Caps</span>
+        <h2 class="plp-intro-headline">The finish that protects the wall beneath it.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Wall caps do two jobs at once — they give a masonry wall a finished architectural edge, and they shed water away from the wall face so the masonry below does not deteriorate through Ontario freeze-thaw cycles. They are among the most cost-effective limestone elements available and add real structural longevity.</p>
+        <p class="plp-intro-body">Tulip fabricates Indiana Limestone wall caps in six standard profiles plus fully custom profiles for heritage matching and non-standard wall widths. Every cap is cut to your wall dimensions from custom shop drawings.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">6</span>
+          <span class="plp-fact-lbl">Standard profiles available</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Widths and heritage profiles</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Frost</span>
+          <span class="plp-fact-lbl">Resistant through Ontario winters</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="wall-caps"
+    num="12"
+    label="Limestone · Finishing"
+    title="Wall Caps"
+    imageSrc="/pictures/Limestone%20page%20images/wall%20caps.png"
+    imageAlt="Indiana limestone classic wall cap profile, Tulip Precast"
+    imagePosition="center center"
+    description="Wall caps provide a clean, elegant finish to any masonry wall. Beyond their aesthetic appeal, they offer cost-effective protection — enhancing structural integrity while shielding the wall from harsh weather. Available in a variety of stone and precast options, combining durability with timeless design."
+    variants={[
+      { name: 'Classic Wall Cap',          description: 'Flat top profile, clean and versatile',           imageSrc: '/pictures/wall%20Caps/Classic%20Wall%20Cap.png' },
+      { name: 'Rounded Wall Cap',          description: 'Curved top surface, gentle organic form',          imageSrc: '/pictures/wall%20Caps/Rounded%20Wall%20Cap.png' },
+      { name: 'Double Wash Wall Cap',      description: 'Dual-pitched top for superior water shedding',     imageSrc: '/pictures/wall%20Caps/Double%20Wash%20Wall%20Cap.png' },
+      { name: 'Bull Nose Wall Cap',        description: 'Rounded leading edge, refined classic detail',     imageSrc: '/pictures/wall%20Caps/bull%20Nose%20Wall%20Cap.png' },
+      { name: 'Vintage Profile Wall Cap',  description: 'Ornate traditional profile, heritage character',   imageSrc: '/pictures/wall%20Caps/Vintage%20Profile%20Wall%20Cap.png' },
+      { name: 'Natural Rockface Wall Cap', description: 'Split face texture, raw stone character',          imageSrc: '/pictures/wall%20Caps/Natural%20Rockface%20Wall%20Cap.png' },
+      { name: 'Custom',                    description: 'Any profile to specification' },
+    ]}
+    flip={false}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What wall cap profiles does Tulip Precast offer?</summary>
+          <div class="plp-faq-answer"><p>Six standard profiles: Classic Wall Cap, Rounded Wall Cap, Double Wash Wall Cap, Bull Nose Wall Cap, Vintage Profile Wall Cap, and Natural Rockface Wall Cap. Custom profiles including non-standard widths and heritage matching are also available.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is a double wash wall cap?</summary>
+          <div class="plp-faq-answer"><p>A double wash wall cap has a dual-pitched top surface that sheds water to both sides of the wall rather than one. It provides maximum weather protection and is the preferred profile for freestanding garden and boundary walls exposed on both faces.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Do limestone wall caps prevent masonry damage?</summary>
+          <div class="plp-faq-answer"><p>Yes. Wall caps shed water away from the wall face, which is the primary cause of masonry deterioration through freeze-thaw cycling. A properly specified cap significantly extends the life of the wall beneath it and is one of the most cost-effective protective elements in masonry construction.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you match wall caps to an existing wall?</summary>
+          <div class="plp-faq-answer"><p>Yes. We match colour, profile, and dimensions to existing wall caps for extensions and repairs. Please provide photographs and measurements of the existing caps and the wall width when enquiring.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/pier-caps" class="plp-related-tile">
+          <span class="plp-related-name">Pier Caps</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/pavers" class="plp-related-tile">
+          <span class="plp-related-name">Pavers</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Wall Caps?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=wall-caps"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .plp-faq-item[open] .plp-faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

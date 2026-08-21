@@ -1,0 +1,451 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a water table in masonry construction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A water table is a horizontal projecting band of stone at the base of a masonry wall. It creates a visual transition from foundation to facade, adds architectural definition to the base of the building, and sheds water away from the wall below. It typically transitions into window sills or continues as banding around the elevation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What water table profiles does Tulip Precast offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four standard profiles: Classic Water Table, Single Chamfered, Double Chamfered, and Ogee. Custom profiles are available for heritage matching and non-standard applications. The Ogee is the most decorative, suited to formal and traditional architecture; chamfered profiles create stronger directional shadow lines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do water tables need to align with window sills?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily, but they often do. A water table that ties into the sill course creates a continuous horizontal datum across the elevation, which is architecturally stronger than two separate horizontal lines. Our drafting team coordinates this during shop drawing production."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you match a water table on a heritage building?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We replicate existing water table profiles from photographs, measurements, and original drawings where available. Heritage profile matching is one of our core capabilities."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipstone.ca/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Water Tables", "item": "https://www.tulipstone.ca/limestone/water-tables" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Water Tables Ontario | Architectural Base Detail | Tulip"
+  description="Indiana Limestone water tables in Classic, Single Chamfered, Double Chamfered, and Ogee profiles. Horizontal base definition for masonry facades. Custom profiles available. Ontario Made."
+  pageClass="page-limestone-water-tables"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/hero%20image.jpg"
+    imageAlt="Indiana Limestone water table on masonry building exterior — Tulip Precast Ontario"
+    eyebrow="INDIANA LIMESTONE · WATER TABLES · ONTARIO MADE"
+    headline="Water Tables."
+    headlineItalic="The Line That Grounds the Building."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=water-tables"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Water tables overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Water Tables</span>
+        <h2 class="plp-intro-headline">A powerful architectural statement at the base.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">The water table is one of the most powerful elements in masonry architecture — a horizontal band at the base of a building that visually grounds the structure and creates a deliberate transition from foundation to facade. It typically ties into window sills or continues as banding around the elevation.</p>
+        <p class="plp-intro-body">Tulip fabricates Indiana Limestone water tables in four standard profiles plus fully custom profiles. Every piece is cut from custom shop drawings to integrate with your specific masonry coursing and sill heights.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">4</span>
+          <span class="plp-fact-lbl">Standard profiles available</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Profiles to any specification</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Ties in</span>
+          <span class="plp-fact-lbl">To sills and banding systems</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="water-tables"
+    num="10"
+    label="Limestone · Masonry"
+    title="Water Tables"
+    imageSrc="/pictures/Limestone%20page%20images/water%20table.jpg"
+    imageAlt="Indiana limestone classic water table profile, Tulip Precast"
+    imagePosition="center center"
+    description="The water table is a powerful building element that makes a strong architectural statement. Positioned at the base of a wall or at key horizontal transitions, water tables create seamless continuity to window sills or banding — providing a streamlined, well-proportioned look to any project. Elegant, functional, and built to endure."
+    variants={[
+      { name: 'Classic Water Table',          description: 'Clean flat profile, understated elegance',          imageSrc: '/pictures/Water%20Table/Classic%20Water%20Table.png' },
+      { name: 'Double Chamfered Water Table', description: 'Both edges angled, strong directional detail',      imageSrc: '/pictures/Water%20Table/Double%20Chamfered%20Water%20Table.png' },
+      { name: 'Single Chamfered Water Table', description: 'One angled reveal, refined shadow line',            imageSrc: '/pictures/Water%20Table/Singl%20Chamfered%20Water%20Table.png' },
+      { name: 'Ogee Water Table',             description: 'S-curve profile, the most decorative option',       imageSrc: '/pictures/Water%20Table/Ogee%20Water%20Table.png' },
+      { name: 'Custom',                       description: 'To specification' },
+    ]}
+    flip={true}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is a water table in masonry construction?</summary>
+          <div class="plp-faq-answer"><p>A water table is a horizontal projecting band of stone at the base of a masonry wall. It creates a visual transition from foundation to facade, adds architectural definition to the base of the building, and sheds water away from the wall below. It typically transitions into window sills or continues as banding around the elevation.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What water table profiles does Tulip Precast offer?</summary>
+          <div class="plp-faq-answer"><p>Four standard profiles: Classic Water Table, Single Chamfered, Double Chamfered, and Ogee. Custom profiles are available for heritage matching and non-standard applications. The Ogee is the most decorative, suited to formal and traditional architecture; chamfered profiles create stronger directional shadow lines.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Do water tables need to align with window sills?</summary>
+          <div class="plp-faq-answer"><p>Not necessarily, but they often do. A water table that ties into the sill course creates a continuous horizontal datum across the elevation, which is architecturally stronger than two separate horizontal lines. Our drafting team coordinates this during shop drawing production.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you match a water table on a heritage building?</summary>
+          <div class="plp-faq-answer"><p>Yes. We replicate existing water table profiles from photographs, measurements, and original drawings where available. Heritage profile matching is one of our core capabilities.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/banding" class="plp-related-tile">
+          <span class="plp-related-name">Banding</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/sills" class="plp-related-tile">
+          <span class="plp-related-name">Sills</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Water Tables?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=water-tables"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .plp-faq-item[open] .plp-faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

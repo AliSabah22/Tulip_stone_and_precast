@@ -35,6 +35,20 @@ export default defineConfig({
         ) {
           return { ...item, priority: 0.6, changefreq: 'monthly' };
         }
+        if (
+          url === 'https://www.tulipstone.ca/brampton' ||
+          url === 'https://www.tulipstone.ca/toronto' ||
+          url === 'https://www.tulipstone.ca/mississauga' ||
+          url === 'https://www.tulipstone.ca/oakville'
+        ) {
+          return { ...item, priority: 0.9, changefreq: 'weekly' };
+        }
+        if (
+          url === 'https://www.tulipstone.ca/montreal' ||
+          url === 'https://www.tulipstone.ca/vancouver'
+        ) {
+          return { ...item, priority: 0.8, changefreq: 'weekly' };
+        }
         return item;
       },
     }),

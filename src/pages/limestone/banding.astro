@@ -1,0 +1,453 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is limestone banding or string coursing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Banding, also called string coursing, is a horizontal band of stone running across a masonry facade. It adds architectural proportion and visual definition, breaking up flat expanses of brick or stone veneer. It is one of the most cost-effective limestone elements available and dramatically changes how a building reads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What banding profiles are available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seven standard profiles: Classic, Bull Nose, Double Bull Nose, Single Chamfered, Double Chambered, Natural Rock Face, and Custom. Chamfered profiles create the strongest shadow lines; bull nose profiles soften the horizontal element; rock face introduces raw stone texture against smooth masonry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does limestone banding work with standard brick sizes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our banding is dimensioned to integrate with common brick coursing so it sits within the masonry course without requiring cut brick or non-standard joints. Our drafting team confirms the coursing dimensions during shop drawing production."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can banding tie into window sills and water tables?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and it often should. Banding that aligns with the sill course or continues from a water table creates a continuous horizontal datum across the elevation, which is architecturally stronger than disconnected horizontal elements. We coordinate this during shop drawings."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipstone.ca/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Banding", "item": "https://www.tulipstone.ca/limestone/banding" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Banding &amp; String Courses Ontario | Tulip Precast"
+  description="Indiana Limestone banding and string courses in seven profiles. Cost-effective horizontal definition for masonry facades. Designed to integrate with standard brick coursing. Ontario Made."
+  pageClass="page-limestone-banding"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/hero%20image.jpg"
+    imageAlt="Indiana Limestone banding string course on masonry wall exterior — Tulip Precast Ontario"
+    eyebrow="INDIANA LIMESTONE · BANDING · ONTARIO MADE"
+    headline="Banding &amp; String Courses."
+    headlineItalic="Proportion, Defined."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?product=banding"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Banding overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Banding</span>
+        <h2 class="plp-intro-headline">The most cost-effective way to transform a facade.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Banding — also called string coursing — is a horizontal band of stone running across a masonry elevation. It is one of the most cost-effective ways to add architectural proportion and definition to any building. A flat brick wall with two well-placed string courses reads as considered architecture rather than cladding.</p>
+        <p class="plp-intro-body">Tulip fabricates Indiana Limestone banding in seven profiles designed to integrate seamlessly with standard brick coursing dimensions. Custom profiles are available for non-standard applications and heritage matching.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">7</span>
+          <span class="plp-fact-lbl">Standard banding profiles</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Brick</span>
+          <span class="plp-fact-lbl">Coursing-compatible dimensions</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Custom</span>
+          <span class="plp-fact-lbl">Non-standard and heritage profiles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="banding"
+    num="03"
+    label="Limestone · Masonry"
+    title="Banding & String Courses"
+    imageSrc="/pictures/Limestone%20page%20images/Banding-String-Courses.jpg"
+    imageAlt="Indiana limestone banding string course on masonry wall exterior, Tulip Precast"
+    imagePosition="center center"
+    description="Banding — also known as string coursing — is one of the most cost-effective ways to add proportion, detail, and visual definition to any masonry structure. Designed to integrate seamlessly with common brick sizes, it creates a refined transitional element that elevates the entire facade. Custom banding profiles are also available for non-standard applications."
+    variants={[
+      { name: 'Classic',           description: 'Flat rectangular profile, clean and timeless',    imageSrc: '/pictures/banding/classic.png' },
+      { name: 'Bullnose',          description: 'Single rounded leading edge, softened profile',   imageSrc: '/pictures/banding/bull%20nose.png' },
+      { name: 'Double Bullnose',   description: 'Both edges rounded, flowing horizontal line',     imageSrc: '/pictures/banding/double%20bull%20nose.png' },
+      { name: 'Single Chamfered',  description: 'One angled reveal, adds subtle shadow line',      imageSrc: '/pictures/banding/single%20chamfered.png' },
+      { name: 'Double Chamfered',  description: 'Both edges angled, strong directional shadow',    imageSrc: '/pictures/banding/double%20chambered.png' },
+      { name: 'Natural Rock Face', description: 'Rough split texture, raw material character',     imageSrc: '/pictures/banding/natural%20rock%20face.png' },
+      { name: 'Custom',            description: 'Any profile to specification' },
+    ]}
+    flip={false}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What is limestone banding or string coursing?</summary>
+          <div class="plp-faq-answer"><p>Banding, also called string coursing, is a horizontal band of stone running across a masonry facade. It adds architectural proportion and visual definition, breaking up flat expanses of brick or stone veneer. It is one of the most cost-effective limestone elements available and dramatically changes how a building reads.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What banding profiles are available?</summary>
+          <div class="plp-faq-answer"><p>Seven standard profiles: Classic, Bull Nose, Double Bull Nose, Single Chamfered, Double Chambered, Natural Rock Face, and Custom. Chamfered profiles create the strongest shadow lines; bull nose profiles soften the horizontal element; rock face introduces raw stone texture against smooth masonry.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Does limestone banding work with standard brick sizes?</summary>
+          <div class="plp-faq-answer"><p>Yes. Our banding is dimensioned to integrate with common brick coursing so it sits within the masonry course without requiring cut brick or non-standard joints. Our drafting team confirms the coursing dimensions during shop drawing production.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can banding tie into window sills and water tables?</summary>
+          <div class="plp-faq-answer"><p>Yes, and it often should. Banding that aligns with the sill course or continues from a water table creates a continuous horizontal datum across the elevation, which is architecturally stronger than disconnected horizontal elements. We coordinate this during shop drawings.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/water-tables" class="plp-related-tile">
+          <span class="plp-related-name">Water Tables</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/quoins" class="plp-related-tile">
+          <span class="plp-related-name">Quoins</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to specify Banding?"
+    subheading="Send us your drawings and specifications. Our team will respond within one business day."
+    buttonText="REQUEST A FREE QUOTE"
+    buttonHref="/contact?product=banding"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .plp-faq-item[open] .plp-faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

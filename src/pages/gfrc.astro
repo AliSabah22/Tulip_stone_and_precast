@@ -29,7 +29,12 @@ const gfrcSchema = JSON.stringify([
       { "@type": "City", "name": "Mississauga" },
       { "@type": "City", "name": "Toronto" },
       { "@type": "City", "name": "Oakville" },
-      { "@type": "City", "name": "Vaughan" }
+      { "@type": "City", "name": "Vaughan" },
+      { "@type": "State", "name": "New York" },
+      { "@type": "City", "name": "Boston" },
+      { "@type": "City", "name": "Chicago" },
+      { "@type": "State", "name": "Texas" },
+      { "@type": "State", "name": "Florida" }
     ],
     "serviceType": "GFRC Architectural Fabrication",
     "url": "https://www.tulipstone.ca/gfrc"
@@ -77,6 +82,30 @@ const gfrcSchema = JSON.stringify([
           "@type": "Answer",
           "text": "Yes. GFRC can be finished with aggregate exposure, acid washes, pigmentation, and surface texturing to closely simulate limestone, granite, sandstone, and other natural stone materials."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you ship GFRC panels to the United States?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We fabricate and ship GFRC architectural panels to US projects including New York, Boston, Chicago, Texas, and Florida. Because GFRC is manufactured rather than quarried, proximity to a stone source is irrelevant — the differentiators are fabrication capability and price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there import duties on GFRC shipped from Canada to the US?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under the USMCA agreement, qualifying architectural building materials including GFRC move between Canada and the United States duty-free. We handle customs documentation and provide the required certification, so quotes are delivered prices with no duty surprises."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a cost advantage to sourcing GFRC from a Canadian fabricator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Fabrication is billed in Canadian dollars, which for US clients paying in USD represents a direct cost saving against domestic quotes — combined with duty-free movement under USMCA and GFRC's light weight, which keeps cross-border freight economical."
+        }
       }
     ]
   }
@@ -85,7 +114,7 @@ const gfrcSchema = JSON.stringify([
 
 <BaseLayout
   title="GFRC Fabricator Toronto | Glass Fiber Concrete | Tulip"
-  description="GFRC fabricator in the GTA. Glass fiber reinforced concrete panels for facades, feature walls, fireplace surrounds, and custom architectural elements."
+  description="GFRC fabricator in the GTA, shipping to US markets. Glass fiber reinforced concrete panels for facades, feature walls, fireplace surrounds, and custom architectural elements. Duty-free under USMCA."
   pageClass="page-gfrc"
   additionalSchema={gfrcSchema}
 >
@@ -519,6 +548,36 @@ const gfrcSchema = JSON.stringify([
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- Section 6.5: US &amp; Cross-Border Supply -->
+  <section class="gfrc-us" aria-label="GFRC supply to the United States">
+    <div class="gfrc-container">
+      <SectionHeader
+        label="United States · Cross-Border Supply"
+        title="Also Supplied to"
+        titleItalic="US Projects."
+        subtitle="GFRC is manufactured, not quarried — proximity to a stone source is irrelevant. We ship to New York, Boston, Chicago, Texas, and Florida, duty-free under USMCA."
+        align="center"
+      />
+
+      <div class="gfrc-us-grid">
+        <div class="gfrc-us-card reveal reveal-delay-1">
+          <h4 class="gfrc-us-title">USMCA Duty-Free</h4>
+          <p class="gfrc-us-body">Qualifying architectural materials, including GFRC, move between Canada and the United States without import duty. We handle customs documentation and provide required certification.</p>
+        </div>
+        <div class="gfrc-us-card reveal reveal-delay-2">
+          <h4 class="gfrc-us-title">Currency Advantage</h4>
+          <p class="gfrc-us-body">Fabrication is quoted in Canadian dollars. For US clients paying in USD, this delivers a direct cost saving against domestic quotes — a structural advantage, not a promotion.</p>
+        </div>
+        <div class="gfrc-us-card reveal reveal-delay-3">
+          <h4 class="gfrc-us-title">Freight That Works</h4>
+          <p class="gfrc-us-body">At up to 75% lighter than standard precast, GFRC ships economically across the border — unlike heavy dimensional stone, where freight cost erodes any advantage.</p>
+        </div>
+      </div>
+
+      <p class="gfrc-us-markets">Serving New York, Boston, Chicago, Texas, and Florida — as well as custom carving and heritage restoration for US clients. See our <a href="/limestone/carving">custom carving</a> and <a href="/limestone/heritage-restoration">heritage restoration</a> capabilities.</p>
     </div>
   </section>
 
@@ -974,6 +1033,66 @@ const gfrcSchema = JSON.stringify([
     color: var(--warm-sand);
   }
 
+  /* ── Section 6.5: US Cross-Border ──────────────────────────── */
+
+  .gfrc-us {
+    background: var(--limestone-cream);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .gfrc-us-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  .gfrc-us-card {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .gfrc-us-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+  }
+
+  .gfrc-us-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  .gfrc-us-markets {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    text-align: center;
+    margin-top: var(--space-xl);
+    max-width: none;
+  }
+
+  .gfrc-us-markets a {
+    color: var(--warm-sand);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .gfrc-us-markets a:hover {
+    color: var(--stone-dark);
+  }
+
   /* ── Section 6: Technical ────────────────────────────────── */
 
   .gfrc-technical {
@@ -1117,6 +1236,10 @@ const gfrcSchema = JSON.stringify([
     }
 
     .gfrc-why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gfrc-us-grid {
       grid-template-columns: 1fr;
     }
 

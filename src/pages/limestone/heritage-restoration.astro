@@ -1,0 +1,452 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ProductSection from '../../components/limestone/ProductSection.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can you match limestone on a heritage building in Ontario?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Heritage profile matching is a core capability at Tulip Precast. We replicate the colour, texture, profile, and dimensions of existing limestone so replacement pieces integrate invisibly with the original stonework. We work from photographs, physical measurements, and original architectural drawings where available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do you need to quote a heritage restoration project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Photographs of the existing stone from multiple angles, physical measurements of the pieces being replaced, and any original drawings or specifications that exist. Full-size layouts or templates are extremely helpful. The more reference material provided, the more accurately we can match."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you carve replacement ornament for a historic building?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our carvers produce replica architectural ornament — capitals, corbels, medallions, keystones, friezes, and figurative work — from photographs and measurements of the original. Indiana Limestone is the preferred material because it holds fine carved detail for centuries and matches the stone originally specified on most North American heritage buildings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with heritage architects and restoration contractors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We work directly with heritage consultants, restoration architects, and general contractors on conservation projects. We provide full shop drawings, physical samples for approval, and documentation suitable for heritage permit submissions."
+      }
+    }
+  ]
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Limestone Products", "item": "https://www.tulipstone.ca/limestone" },
+    { "@type": "ListItem", "position": 3, "name": "Heritage Restoration", "item": "https://www.tulipstone.ca/limestone/heritage-restoration" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Heritage Limestone Restoration Ontario | Profile Matching | Tulip"
+  description="Heritage limestone restoration and profile matching across Ontario. Replica carving, colour and texture matching, and replacement pieces for historic buildings. Serving GTA architects and restoration contractors."
+  pageClass="page-limestone-heritage-restoration"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/masonry%20detail.jpg"
+    imageAlt="Heritage limestone restoration and profile matching — replica carved ornament for historic building, Tulip Precast Ontario"
+    eyebrow="INDIANA LIMESTONE · HERITAGE RESTORATION · ONTARIO"
+    headline="Heritage Restoration."
+    headlineItalic="Matched Exactly."
+    primaryCTA="REQUEST A CONSULTATION"
+    primaryCTAHref="/contact?product=heritage-restoration"
+    secondaryCTA="VIEW ALL LIMESTONE"
+    secondaryCTAHref="/limestone"
+  />
+
+  <section class="plp-intro" aria-label="Heritage restoration overview">
+    <div class="plp-intro-container">
+      <div class="plp-intro-content">
+        <span class="label-section">Indiana Limestone · Heritage &amp; Conservation</span>
+        <h2 class="plp-intro-headline">When the replacement has to be invisible.</h2>
+        <span class="plp-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="plp-intro-body">Heritage restoration is the most demanding work in stone fabrication. A replacement piece that is close is not acceptable — it has to match the original in colour, texture, profile, and weathering character so completely that nobody can tell which stone is new. Tulip specialises in exactly this work for heritage buildings across Ontario.</p>
+        <p class="plp-intro-body">We work from whatever reference material exists: photographs, physical measurements, fragments of the original piece, or century-old architectural drawings. Our carvers reproduce ornamental detail by hand where CNC cannot capture the character. Indiana Limestone was the stone originally specified on most North American heritage buildings — which means matching it starts with using the correct material.</p>
+      </div>
+      <div class="plp-intro-facts">
+        <div class="plp-fact">
+          <span class="plp-fact-val">Exact</span>
+          <span class="plp-fact-lbl">Colour, texture, and profile matching</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Hand</span>
+          <span class="plp-fact-lbl">Carved replica ornament</span>
+        </div>
+        <div class="plp-fact">
+          <span class="plp-fact-val">Heritage</span>
+          <span class="plp-fact-lbl">Permit documentation supported</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductSection
+    id="heritage-restoration"
+    num="01"
+    label="Limestone · Artisan Craft"
+    title="Heritage Restoration"
+    imageSrc="/pictures/Limestone%20page%20images/carving.jpeg"
+    imageAlt="Artisan Indiana limestone carved restoration piece, custom fabricated by Tulip Limestone · Precast"
+    imagePosition="center center"
+    description="Indiana limestone is a remarkable stone — ranging from warm buff to cool blue-gray, prized across generations for its workability and its unique capacity to accept and retain crisp, intricate detail. This is why it was the material of choice on so many of North America's heritage buildings, and why matching it correctly is the foundation of any restoration project. Today's carvers are a diverse group of artisans, many continuing family traditions alongside those who shaped the craft before them."
+    callout={{ label: 'Before You Enquire', body: 'For any heritage restoration enquiry please provide: photographs of the existing stone from multiple angles and distances, physical measurements of the pieces being replaced, any original drawings or specifications that survive, and where possible a fragment or sample of the original stone. The more reference material we have, the more precisely we can match.' }}
+    variants={[
+      { name: 'Profile Matching',          description: 'Replication of existing limestone profiles from photographs, measurements, or physical fragments. Colour, texture, and dimension matched to the original.' },
+      { name: 'Replica Carving',           description: 'Hand-carved reproduction of ornamental detail — capitals, corbels, medallions, friezes, and figurative work where original pieces have deteriorated beyond repair.' },
+      { name: 'Dutchman Repairs',          description: 'Precision-cut patch pieces for localised damage, matched and set so the repair is invisible from the ground.' },
+      { name: 'Full Element Replacement',  description: 'Complete replacement of deteriorated sills, lintels, string courses, and quoins fabricated to original dimensions and profile.' },
+      { name: 'Colour Matching',           description: 'Selection of the correct Indiana Limestone colour family and grade to match weathered original stone — accounting for how the new piece will age.' },
+    ]}
+    flip={false}
+  />
+
+  <section class="plp-faq" aria-label="Frequently asked questions">
+    <div class="plp-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="plp-faq-title">Frequently Asked Questions</h2>
+      <div class="plp-faq-list">
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you match limestone on a heritage building in Ontario?</summary>
+          <div class="plp-faq-answer"><p>Yes. Heritage profile matching is a core capability at Tulip Precast. We replicate the colour, texture, profile, and dimensions of existing limestone so replacement pieces integrate invisibly with the original stonework. We work from photographs, physical measurements, and original architectural drawings where available.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">What do you need to quote a heritage restoration project?</summary>
+          <div class="plp-faq-answer"><p>Photographs of the existing stone from multiple angles, physical measurements of the pieces being replaced, and any original drawings or specifications that exist. Full-size layouts or templates are extremely helpful. The more reference material provided, the more accurately we can match.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Can you carve replacement ornament for a historic building?</summary>
+          <div class="plp-faq-answer"><p>Yes. Our carvers produce replica architectural ornament — capitals, corbels, medallions, keystones, friezes, and figurative work — from photographs and measurements of the original. Indiana Limestone is the preferred material because it holds fine carved detail for centuries and matches the stone originally specified on most North American heritage buildings.</p></div>
+        </details>
+        <details class="plp-faq-item">
+          <summary class="plp-faq-question">Do you work with heritage architects and restoration contractors?</summary>
+          <div class="plp-faq-answer"><p>Yes. We work directly with heritage consultants, restoration architects, and general contractors on conservation projects. We provide full shop drawings, physical samples for approval, and documentation suitable for heritage permit submissions.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="plp-related" aria-label="Related limestone products">
+    <div class="plp-related-container">
+      <span class="label-section">Also From Tulip Limestone</span>
+      <div class="plp-related-grid">
+        <a href="/limestone/carving" class="plp-related-tile">
+          <span class="plp-related-name">Custom Carving</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone/banding" class="plp-related-tile">
+          <span class="plp-related-name">Banding</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+        <a href="/limestone" class="plp-related-tile plp-related-tile--all">
+          <span class="plp-related-name">All Limestone Products</span>
+          <span class="plp-related-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Restoring a heritage building?"
+    subheading="Send photographs and measurements of the existing stone. We will assess the match and quote the work."
+    buttonText="REQUEST A CONSULTATION"
+    buttonHref="/contact?product=heritage-restoration"
+    background="sage"
+  />
+
+</BaseLayout>
+
+<style>
+
+  /* ── Intro ───────────────────────────────────────────────── */
+
+  .plp-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .plp-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .plp-intro-rule {
+    display: block;
+    height: 1px;
+    background: var(--sand-light);
+    width: 60px;
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+
+  .plp-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Fact pills ───────────────────────────────────────────── */
+
+  .plp-intro-facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+  }
+
+  .plp-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plp-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: 1;
+  }
+
+  .plp-fact-lbl {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+
+  .plp-faq {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .plp-faq-question {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+
+  .plp-faq-question::-webkit-details-marker { display: none; }
+
+  .plp-faq-question::after {
+    content: '+';
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 300ms ease;
+    line-height: 1;
+  }
+
+  .plp-faq-item[open] .plp-faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .plp-faq-question:hover { color: var(--warm-sand); }
+
+  .plp-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+
+  .plp-faq-item[open] .plp-faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .plp-faq-answer p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ── Related products ─────────────────────────────────────── */
+
+  .plp-related {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--sand-light);
+    border-bottom: 1px solid var(--sand-light);
+  }
+
+  .plp-related-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .plp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .plp-related-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    text-decoration: none;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .plp-related-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+
+  .plp-related-tile--all {
+    background: var(--stone-dark);
+    border-color: var(--stone-dark);
+  }
+
+  .plp-related-tile--all .plp-related-name {
+    color: var(--white-warm);
+  }
+
+  .plp-related-tile--all .plp-related-arrow {
+    color: var(--warm-sand);
+  }
+
+  .plp-related-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .plp-related-arrow {
+    font-size: var(--text-body);
+    color: var(--warm-sand);
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .plp-related-tile:hover .plp-related-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 1024px) {
+    .plp-intro-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .plp-intro-facts {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .plp-fact { flex: 1; min-width: 160px; }
+  }
+
+  @media (max-width: 640px) {
+    .plp-related-grid { grid-template-columns: 1fr; }
+    .plp-intro-facts  { flex-direction: column; }
+  }
+
+</style>

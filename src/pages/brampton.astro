@@ -1,0 +1,515 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where is Tulip Limestone located in Brampton?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tulip Limestone · Precast is located at 98 Rutherford Rd Unit 2C, Brampton, ON L6W 3J5. Our fabrication shop, drafting office, and stone yard are all at this location. Call 647-534-7755 to arrange a visit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see limestone samples in person in Brampton?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We keep physical samples of every Indiana Limestone colour and finish at our Brampton shop. We recommend seeing samples in person before specifying — natural stone colour varies and photographs do not fully represent it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you deliver to Brampton addresses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Brampton is our home market, which means the shortest lead times and lowest delivery costs we offer. Our team handles unloading on standard residential deliveries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What products do you fabricate in Brampton?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The full range — Indiana Limestone columns, balusters, banding, sills, quoins, water tables, wall caps, pier caps, pavers, veneers, and custom carving, plus precast concrete and GFRC panels. All fabricated at our Brampton facility."
+      }
+    }
+  ]
+});
+
+const localBizSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Tulip Limestone · Precast",
+  "description": "Indiana Limestone and precast concrete fabrication shop in Brampton, Ontario. Custom columns, balusters, veneers, sills, and carving.",
+  "url": "https://www.tulipstone.ca/brampton",
+  "telephone": "+1-647-534-7755",
+  "email": "office@tulipprecast.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "98 Rutherford Rd Unit 2C",
+    "addressLocality": "Brampton",
+    "addressRegion": "ON",
+    "postalCode": "L6W 3J5",
+    "addressCountry": "CA"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Brampton"
+  },
+  "priceRange": "$$$"
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Brampton", "item": "https://www.tulipstone.ca/brampton" }
+  ]
+});
+
+const combinedSchema = JSON.stringify([
+  JSON.parse(faqSchema),
+  JSON.parse(localBizSchema),
+  JSON.parse(breadcrumbSchema),
+]);
+---
+
+<BaseLayout
+  title="Limestone Fabricator Brampton, ON | Tulip Limestone & Precast"
+  description="Indiana Limestone and precast concrete fabrication in Brampton, Ontario. Custom columns, balusters, veneers, sills, and carving. Local shop at 98 Rutherford Rd. Ontario Made. Request a quote."
+  pageClass="page-geo-brampton"
+  solidNav={true}
+  additionalSchema={combinedSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc="/pictures/hero%20image.jpg"
+    imageAlt="Indiana Limestone fabrication facility Brampton Ontario — Tulip Limestone Precast"
+    eyebrow="BRAMPTON, ONTARIO · LOCAL FABRICATION SHOP"
+    headline="Limestone Fabrication"
+    headlineItalic="in Brampton."
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref="/contact?location=brampton"
+    secondaryCTA="VISIT OUR SHOP"
+    secondaryCTAHref="/contact"
+  />
+
+  <section class="geo-intro" aria-label="Brampton limestone services">
+    <div class="geo-intro-container">
+      <div class="geo-intro-text">
+        <span class="label-section">Brampton, Ontario · Our Home Shop</span>
+        <h2 class="geo-intro-headline">Your local limestone fabricator, right here in Brampton.</h2>
+        <span class="geo-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="geo-intro-body">Tulip Limestone · Precast operates from 98 Rutherford Rd in Brampton — our fabrication shop, our drafting office, and our stone yard all in one location. For Brampton homeowners, builders, and contractors that means something practical: you can drive over, see the stone in person, hold a physical sample, and talk to the people who will actually fabricate your project.</p>
+        <p class="geo-intro-body">We fabricate the full range of Indiana Limestone products here — columns, balusters, veneers, sills, quoins, banding, water tables, wall caps, pier caps, pavers, and custom carving — as well as precast concrete and GFRC panels. Every project begins with custom shop drawings produced in-house.</p>
+      </div>
+      <div class="geo-intro-facts">
+        <div class="geo-fact">
+          <span class="geo-fact-val">Local</span>
+          <span class="geo-fact-lbl">Fabrication shop in Brampton</span>
+        </div>
+        <div class="geo-fact">
+          <span class="geo-fact-val">Same-day</span>
+          <span class="geo-fact-lbl">Site visits available</span>
+        </div>
+        <div class="geo-fact">
+          <span class="geo-fact-val">In-house</span>
+          <span class="geo-fact-lbl">Drafting and shop drawings</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="geo-products" aria-label="Products available">
+    <div class="geo-products-container">
+      <span class="label-section">Fabricated in Brampton</span>
+      <h2 class="geo-products-title">The full product range.</h2>
+      <p class="geo-products-intro">Brampton is our home market — every product we make is available here with the shortest lead times we offer.</p>
+      <div class="geo-products-grid">
+        <a href="/limestone/columns" class="geo-product-tile">
+          <span class="geo-product-name">Columns</span>
+          <span class="geo-product-desc">Five classical orders, handcrafted to specification.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/balusters" class="geo-product-tile">
+          <span class="geo-product-name">Balusters</span>
+          <span class="geo-product-desc">Solid limestone balustrades for terraces and staircases.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/veneers" class="geo-product-tile">
+          <span class="geo-product-name">Veneers</span>
+          <span class="geo-product-desc">Full bed and thin bed veneer in six styles.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/sills" class="geo-product-tile">
+          <span class="geo-product-name">Sills</span>
+          <span class="geo-product-desc">Slip and lug sills in standard and custom profiles.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/carving" class="geo-product-tile">
+          <span class="geo-product-name">Custom Carving</span>
+          <span class="geo-product-desc">Hand-carved ornament and architectural detail.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/gfrc" class="geo-product-tile">
+          <span class="geo-product-name">GFRC Panels</span>
+          <span class="geo-product-desc">Lightweight architectural panels, up to 75% lighter than precast.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="geo-why" aria-label="Why choose Tulip">
+    <div class="geo-why-container">
+      <span class="label-section">Why Brampton Customers Choose Tulip</span>
+      <h2 class="geo-why-title">Local, in every sense that matters.</h2>
+      <div class="geo-why-grid">
+        <div class="geo-why-card">
+          <span class="geo-why-num" aria-hidden="true">01</span>
+          <h3 class="geo-why-heading">Local shop, local team</h3>
+          <p class="geo-why-body">Our fabrication facility, drafting office, and stone yard are all at 98 Rutherford Rd. No middleman, no distant supplier — the people quoting your project are the people making it.</p>
+        </div>
+        <div class="geo-why-card">
+          <span class="geo-why-num" aria-hidden="true">02</span>
+          <h3 class="geo-why-heading">See the stone before you buy</h3>
+          <p class="geo-why-body">Physical samples on site. Walk in, see the colour range, feel the finishes. No guessing from a screen.</p>
+        </div>
+        <div class="geo-why-card">
+          <span class="geo-why-num" aria-hidden="true">03</span>
+          <h3 class="geo-why-heading">Fastest delivery in the GTA</h3>
+          <p class="geo-why-body">Brampton projects get the shortest lead times and lowest delivery costs of anywhere we serve. We deliver and handle unloading.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="geo-faq" aria-label="Frequently asked questions">
+    <div class="geo-faq-container">
+      <span class="label-section">Common Questions</span>
+      <h2 class="geo-faq-title">Brampton — Frequently Asked</h2>
+      <div class="geo-faq-list">
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">Where is Tulip Limestone located in Brampton?</summary>
+          <div class="geo-faq-a"><p>Tulip Limestone · Precast is located at 98 Rutherford Rd Unit 2C, Brampton, ON L6W 3J5. Our fabrication shop, drafting office, and stone yard are all at this location. Call 647-534-7755 to arrange a visit.</p></div>
+        </details>
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">Can I see limestone samples in person in Brampton?</summary>
+          <div class="geo-faq-a"><p>Yes. We keep physical samples of every Indiana Limestone colour and finish at our Brampton shop. We recommend seeing samples in person before specifying — natural stone colour varies and photographs do not fully represent it.</p></div>
+        </details>
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">Do you deliver to Brampton addresses?</summary>
+          <div class="geo-faq-a"><p>Yes. Brampton is our home market, which means the shortest lead times and lowest delivery costs we offer. Our team handles unloading on standard residential deliveries.</p></div>
+        </details>
+        <details class="geo-faq-item">
+          <summary class="geo-faq-q">What products do you fabricate in Brampton?</summary>
+          <div class="geo-faq-a"><p>The full range — Indiana Limestone columns, balusters, banding, sills, quoins, water tables, wall caps, pier caps, pavers, veneers, and custom carving, plus precast concrete and GFRC panels. All fabricated at our Brampton facility.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Building in Brampton?"
+    subheading="Come see the stone in person, or send us your drawings. We are five minutes from Highway 410."
+    buttonText="REQUEST A QUOTE"
+    buttonHref="/contact?location=brampton"
+    background="sage"
+  />
+
+  <div class="geo-other-areas">
+    <span class="geo-other-label">Also serving</span>
+    <a href="/toronto">Toronto</a> ·
+    <a href="/mississauga">Mississauga</a> ·
+    <a href="/oakville">Oakville</a> ·
+    <a href="/montreal">Montreal</a> ·
+    <a href="/vancouver">Vancouver</a>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .geo-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+  .geo-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+  .geo-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .geo-intro-rule {
+    display: block; height: 1px; width: 60px;
+    background: var(--sand-light);
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+  .geo-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+    margin-bottom: var(--space-md);
+  }
+  .geo-intro-facts {
+    display: flex; flex-direction: column;
+    gap: var(--space-sm); padding-top: var(--space-md);
+  }
+  .geo-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .geo-fact-val {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 300;
+    color: var(--stone-dark); line-height: 1;
+  }
+  .geo-fact-lbl {
+    font-family: var(--font-sans); font-size: 9px;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase; color: var(--stone-light);
+  }
+
+  .geo-products {
+    padding: var(--space-3xl) 0;
+    background: var(--limestone-cream);
+  }
+  .geo-products-container {
+    max-width: var(--max-width);
+    margin: 0 auto; padding: 0 var(--content-padding);
+  }
+  .geo-products-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .geo-products-intro {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 60ch;
+    margin-bottom: var(--space-xl);
+  }
+  .geo-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+  .geo-product-tile {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    padding: var(--space-lg);
+    display: flex; flex-direction: column;
+    gap: var(--space-xs);
+    text-decoration: none;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .geo-product-tile:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-2px);
+  }
+  .geo-product-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+  }
+  .geo-product-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    flex: 1;
+  }
+  .geo-product-arrow {
+    font-size: var(--text-body);
+    color: var(--sand-light);
+    margin-top: var(--space-xs);
+    transition: color 200ms ease, transform 200ms ease;
+  }
+  .geo-product-tile:hover .geo-product-arrow {
+    color: var(--warm-sand);
+    transform: translateX(4px);
+  }
+
+  .geo-why {
+    background: var(--quarry-stone);
+    padding: var(--space-3xl) 0;
+  }
+  .geo-why-container {
+    max-width: var(--max-width);
+    margin: 0 auto; padding: 0 var(--content-padding);
+  }
+  .geo-why .label-section { color: rgba(200,168,130,0.7); }
+  .geo-why-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--white-warm);
+    margin: var(--space-xs) 0 var(--space-xl);
+  }
+  .geo-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  .geo-why-card {
+    border: 1px solid rgba(200,168,130,0.14);
+    background: rgba(255,255,255,0.03);
+    padding: var(--space-xl);
+  }
+  .geo-why-num {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: rgba(200,168,130,0.2);
+    display: block; line-height: 1;
+    margin-bottom: var(--space-sm);
+  }
+  .geo-why-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: var(--space-sm);
+  }
+  .geo-why-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    line-height: var(--lh-body);
+  }
+
+  .geo-faq {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+  }
+  .geo-faq-container {
+    max-width: 760px; margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+  .geo-faq-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+  }
+  .geo-faq-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .geo-faq-item { border-bottom: 1px solid var(--cream-dark); }
+  .geo-faq-q {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    padding: var(--space-lg) 0;
+    cursor: pointer; list-style: none;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: var(--space-lg);
+    transition: color 200ms ease;
+  }
+  .geo-faq-q::-webkit-details-marker { display: none; }
+  .geo-faq-q::after {
+    content: '+'; font-family: var(--font-sans);
+    font-size: 18px; font-weight: 300;
+    color: var(--warm-sand); flex-shrink: 0;
+    transition: transform 300ms ease; line-height: 1;
+  }
+  .geo-faq-item[open] .geo-faq-q::after { transform: rotate(45deg); }
+  .geo-faq-q:hover { color: var(--warm-sand); }
+  .geo-faq-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 300ms ease;
+  }
+  .geo-faq-item[open] .geo-faq-a {
+    grid-template-rows: 1fr;
+  }
+  .geo-faq-a p {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: none;
+    margin: 0;
+    padding-bottom: var(--space-lg);
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .geo-other-areas {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--content-padding);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .geo-other-label {
+    font-size: 9px;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+  .geo-other-areas a {
+    color: var(--stone-mid);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .geo-other-areas a:hover { color: var(--warm-sand); }
+
+  @media (max-width: 1024px) {
+    .geo-intro-container { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .geo-intro-facts { flex-direction: row; flex-wrap: wrap; }
+    .geo-fact { flex: 1; min-width: 150px; }
+    .geo-products-grid { grid-template-columns: repeat(2, 1fr); }
+    .geo-why-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .geo-products-grid { grid-template-columns: 1fr; }
+    .geo-intro-facts { flex-direction: column; }
+  }
+</style>
