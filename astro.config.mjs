@@ -49,6 +49,9 @@ export default defineConfig({
         ) {
           return { ...item, priority: 0.8, changefreq: 'weekly' };
         }
+        if (url.includes('/blog')) {
+          return { ...item, priority: 0.7, changefreq: 'weekly' };
+        }
         return item;
       },
     }),

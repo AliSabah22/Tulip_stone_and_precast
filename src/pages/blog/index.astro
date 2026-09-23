@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Add posts here as they're written. Empty for now — the section
+// below renders a "Coming Soon" state whenever this array is empty.
+const posts: {
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  image: string;
+  imagePosition: string;
+  date: string;
+  readTime: string;
+}[] = [];
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",
+      "item": "https://www.tulipstone.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Blog",
+      "item": "https://www.tulipstone.ca/blog" }
+  ]
+});
+---
+
+<BaseLayout
+  title="Blog | Indiana Limestone &amp; Precast Guides | Tulip Precast"
+  description="Guides on Indiana Limestone, precast concrete, GFRC, and heritage stone restoration from Tulip Limestone · Precast, Brampton, ON."
+  pageClass="page-blog"
+  solidNav={true}
+  additionalSchema={breadcrumbSchema}
+>
+
+  <section class="blog-intro" aria-label="Blog introduction">
+    <div class="blog-intro-container">
+      <span class="label-section">Tulip Precast · Blog</span>
+      <h1 class="blog-intro-title">
+        Guides on Stone, Precast, and Restoration.
+      </h1>
+      <p class="blog-intro-body">
+        Straight answers to the questions we hear most often from
+        homeowners, architects, and contractors across the Greater
+        Toronto Area — written by the people who fabricate the stone.
+      </p>
+    </div>
+  </section>
+
+  <main class="blog-main">
+    <div class="blog-container">
+
+      {posts.length > 0 ? (
+        <div class="blog-grid">
+          {posts.map(post => (
+            <a href={`/blog/${post.slug}`} class="blog-card">
+              <div class="blog-card-img">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                  style={`object-position: ${post.imagePosition};`}
+                />
+              </div>
+              <div class="blog-card-body">
+                <span class="blog-card-cat">{post.category}</span>
+                <h2 class="blog-card-title">{post.title}</h2>
+                <p class="blog-card-excerpt">{post.excerpt}</p>
+                <span class="blog-card-meta">{post.date} · {post.readTime}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="blog-empty">
+          <span class="blog-empty-icon" aria-hidden="true">✎</span>
+          <h2 class="blog-empty-title">New guides are on the way.</h2>
+          <p class="blog-empty-body">
+            We're writing up practical answers to the questions we
+            hear most from homeowners, architects, and contractors —
+            from material comparisons to heritage restoration guides.
+            Check back soon, or reach out directly with a question.
+          </p>
+          <a href="/contact" class="btn btn-outlined btn-magnetic">
+            Ask Us a Question →
+          </a>
+        </div>
+      )}
+
+    </div>
+  </main>
+
+</BaseLayout>
+
+<style>
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .blog-intro {
+    background: var(--sand-pale);
+    padding: var(--space-2xl) 0;
+  }
+  .blog-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+  .blog-intro-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .blog-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    max-width: 60ch;
+    line-height: var(--lh-body);
+  }
+
+  .blog-main { padding: var(--space-2xl) 0 var(--space-3xl); }
+  .blog-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  /* ── Populated grid (used once posts exist) ─────────────────── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  .blog-card {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .blog-card:hover {
+    border-color: var(--warm-sand);
+    transform: translateY(-3px);
+  }
+  .blog-card-img {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--cream-dark);
+  }
+  .blog-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 600ms ease;
+  }
+  .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+  .blog-card-body {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .blog-card-cat {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--sage-green);
+  }
+  .blog-card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 400;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+  .blog-card-excerpt {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    flex: 1;
+  }
+  .blog-card-meta {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    color: var(--stone-light);
+    margin-top: var(--space-xs);
+  }
+
+  /* ── Empty state ─────────────────────────────────────────────── */
+  .blog-empty {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--content-padding);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .blog-empty-icon {
+    font-size: 28px;
+    color: var(--warm-sand);
+    margin-bottom: var(--space-xs);
+  }
+  .blog-empty-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 300;
+    color: var(--stone-dark);
+  }
+  .blog-empty-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    margin-bottom: var(--space-md);
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+</style>
