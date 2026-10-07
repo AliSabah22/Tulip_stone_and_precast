@@ -2,6 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
+import RecentWork from '../components/geo/RecentWork.astro';
+
+// PLACEHOLDER CONTENT — replace with real Mississauga project photos
+// and a real client quote before launch. Do not ship these placeholder
+// images/testimonial to production as-is.
+const recentWorkImages = [
+  { src: '/pictures/hero%20image.jpg', alt: 'Placeholder — replace with a real completed Mississauga project photo' },
+  { src: '/pictures/column.jpg', alt: 'Placeholder — replace with a real completed Mississauga project photo' },
+  { src: '/pictures/stone%20texture.jpg', alt: 'Placeholder — replace with a real completed Mississauga project photo' },
+];
+const recentWorkTestimonial = {
+  quote: 'Placeholder testimonial — replace with a real client quote before launch.',
+  author: '— [Client Name], [Project Type], Mississauga',
+};
 
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -191,6 +205,19 @@ const combinedSchema = JSON.stringify([
       </div>
     </div>
   </section>
+
+  <!--
+    PLACEHOLDER CONTENT: the gallery images and testimonial below are
+    generic stock/brand photography and templated quote text, not a
+    real Mississauga project. Replace recentWorkImages and
+    recentWorkTestimonial above with real client-supplied photos and
+    a real quote before this is considered launch-ready.
+  -->
+  <RecentWork
+    city="Mississauga"
+    images={recentWorkImages}
+    testimonial={recentWorkTestimonial}
+  />
 
   <section class="geo-faq" aria-label="Frequently asked questions">
     <div class="geo-faq-container">

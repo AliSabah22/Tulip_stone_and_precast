@@ -1,0 +1,136 @@
+---
+// "Recent work in [city]" social-proof block for geo landing pages.
+// Entirely props-driven — pass real project photos and a real client
+// quote per page once they're available. Nothing in this component
+// is city-specific; the images/testimonial live in the calling page.
+export interface Props {
+  city: string;
+  images: { src: string; alt: string }[]; // expects exactly 3
+  testimonial: { quote: string; author: string };
+}
+
+const { city, images, testimonial } = Astro.props;
+---
+
+<section class="recent-work" aria-label={`Recent work in ${city}`}>
+  <div class="recent-work-container">
+    <span class="label-section">Recent Work</span>
+    <h2 class="recent-work-title">Recent work in {city}.</h2>
+
+    <div class="recent-work-grid">
+      {images.map((img) => (
+        <div class="recent-work-image reveal">
+          <img
+            src={img.src}
+            alt={img.alt}
+            loading="lazy"
+            width="600"
+            height="450"
+          />
+        </div>
+      ))}
+    </div>
+
+    <blockquote class="recent-work-quote reveal">
+      <p class="recent-work-quote-text">&ldquo;{testimonial.quote}&rdquo;</p>
+      <cite class="recent-work-quote-author">{testimonial.author}</cite>
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .recent-work {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+  }
+
+  .recent-work-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+
+  .recent-work-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    margin: var(--space-xs) 0 var(--space-xl);
+    line-height: var(--lh-heading);
+  }
+
+  .recent-work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .recent-work-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+  }
+
+  .recent-work-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 600ms ease;
+  }
+
+  .recent-work-image:hover img {
+    transform: scale(1.04);
+  }
+
+  .recent-work-quote {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+    padding: 0;
+  }
+
+  .recent-work-quote-text {
+    font-family: var(--font-serif);
+    font-size: var(--text-subtitle);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .recent-work-quote-author {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: var(--ls-wide);
+    color: var(--stone-light);
+  }
+
+  @media (max-width: 1024px) {
+    .recent-work-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .recent-work-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
