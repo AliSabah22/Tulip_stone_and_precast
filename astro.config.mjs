@@ -39,7 +39,10 @@ export default defineConfig({
           url === 'https://www.tulipstone.ca/brampton' ||
           url === 'https://www.tulipstone.ca/toronto' ||
           url === 'https://www.tulipstone.ca/mississauga' ||
-          url === 'https://www.tulipstone.ca/oakville'
+          url === 'https://www.tulipstone.ca/oakville' ||
+          url === 'https://www.tulipstone.ca/limestone-contractor-brampton' ||
+          url === 'https://www.tulipstone.ca/limestone-masonry-toronto' ||
+          url === 'https://www.tulipstone.ca/precast-concrete-toronto'
         ) {
           return { ...item, priority: 0.9, changefreq: 'weekly' };
         }

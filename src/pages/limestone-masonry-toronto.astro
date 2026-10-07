@@ -2,20 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
-import RecentWork from '../components/geo/RecentWork.astro';
-
-// PLACEHOLDER CONTENT — replace with real Toronto project photos and
-// a real client quote before launch. Do not ship these placeholder
-// images/testimonial to production as-is.
-const recentWorkImages = [
-  { src: '/pictures/stone%20texture%202.jpg', alt: 'Placeholder — replace with a real completed Toronto project photo' },
-  { src: '/pictures/masonry%20detail.jpg', alt: 'Placeholder — replace with a real completed Toronto project photo' },
-  { src: '/pictures/window.jpg', alt: 'Placeholder — replace with a real completed Toronto project photo' },
-];
-const recentWorkTestimonial = {
-  quote: 'Placeholder testimonial — replace with a real client quote before launch.',
-  author: '— [Client Name], [Project Type], Toronto',
-};
 
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -23,34 +9,34 @@ const faqSchema = JSON.stringify({
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Do you deliver limestone to Toronto?",
+      "name": "Do you supply limestone veneer for masonry crews working in Toronto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Tulip delivers Indiana Limestone and precast products throughout Toronto — downtown, midtown, Etobicoke, Scarborough, North York, and East York. Our shop is in Brampton, roughly 40 minutes from the core. Our team handles unloading."
+        "text": "Yes. We fabricate full bed and thin bed Indiana Limestone veneer, corner units, and coursing accessories, palletized for direct delivery to Toronto job sites and matched to the coursing pattern your masonry crew is installing."
       }
     },
     {
       "@type": "Question",
-      "name": "Can you match limestone on a Toronto heritage building?",
+      "name": "Can limestone masonry units be matched to a specific mortar joint width?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Heritage profile matching is one of our specialties. We work from photographs, measurements, and where available original drawings to replicate colour, texture, and profile exactly. This is common on Toronto century homes and commercial restorations."
+        "text": "Yes. We fabricate to the joint width specified in your masonry drawings, including corner returns and coursing accessories, so units lay up consistently without field cutting to compensate for mismatched dimensions."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you work with Toronto architects on specifications?",
+      "name": "Do you provide limestone sills, banding, and trim to accompany a masonry veneer installation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Our drafting team produces full shop drawing packages and coordinates directly with architects and general contractors. We can provide specification support, physical samples, and technical documentation for your submittal package."
+        "text": "Yes. Sills, banding, water tables, and wall caps are fabricated alongside veneer orders so masons receive a complete trim package for the elevation, not just field stone."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the lead time for a Toronto project?",
+      "name": "How is limestone masonry material delivered to a Toronto job site?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lead time depends on project complexity and current fabrication schedule. The process begins with shop drawings; fabrication starts once drawings are approved and a signed proposal with deposit is received. Contact us at 647-534-7755 for a current estimate."
+        "text": "Veneer and masonry trim ship palletized from our Brampton shop directly to Toronto sites, sequenced with your mason's schedule. Our team handles unloading on standard deliveries."
       }
     }
   ]
@@ -60,8 +46,8 @@ const localBizSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Tulip Limestone · Precast",
-  "description": "Indiana Limestone fabrication for Toronto residential and commercial projects, delivered from our Brampton shop.",
-  "url": "https://www.tulipstone.ca/toronto",
+  "description": "Indiana Limestone masonry veneer and trim fabrication supplying masonry contractors and crews in Toronto, Ontario.",
+  "url": "https://www.tulipstone.ca/limestone-masonry-toronto",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
   "address": {
@@ -84,7 +70,7 @@ const breadcrumbSchema = JSON.stringify({
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
-    { "@type": "ListItem", "position": 2, "name": "Toronto", "item": "https://www.tulipstone.ca/toronto" }
+    { "@type": "ListItem", "position": 2, "name": "Limestone Masonry Toronto", "item": "https://www.tulipstone.ca/limestone-masonry-toronto" }
   ]
 });
 
@@ -96,180 +82,171 @@ const combinedSchema = JSON.stringify([
 ---
 
 <BaseLayout
-  title="Indiana Limestone Toronto | Custom Stone Fabrication | Tulip"
-  description="Indiana Limestone fabrication for Toronto residential and commercial projects. Columns, veneers, sills, carving, and GFRC. Delivered across Toronto from our Brampton shop. Ontario Made."
-  pageClass="page-geo-toronto"
+  title="Limestone Masonry Toronto | Veneer &amp; Trim Supply | Tulip"
+  description="Indiana Limestone masonry veneer and trim for Toronto masonry contractors. Full bed and thin bed veneer, matched coursing, and direct-to-site delivery. Request a quote."
+  pageClass="page-geo-service-toronto"
   solidNav={true}
   additionalSchema={combinedSchema}
 >
 
   <Hero
     size="xs"
-    imageSrc="/pictures/stone%20texture%202.jpg"
-    imageAlt="Indiana Limestone facade on Toronto residential building — Tulip Limestone Precast Ontario"
-    eyebrow="TORONTO, ONTARIO · DELIVERED &amp; INSTALLED"
-    headline="Indiana Limestone"
-    headlineItalic="for Toronto."
-    primaryCTA="REQUEST A QUOTE"
-    primaryCTAHref="/contact?location=toronto"
-    secondaryCTA="VIEW PORTFOLIO"
-    secondaryCTAHref="/portfolio"
+    imageSrc="/pictures/masonry%20detail.jpg"
+    imageAlt="Indiana Limestone masonry veneer detail for Toronto masonry contractors — Tulip Limestone Precast"
+    eyebrow="TORONTO, ONTARIO · MASONRY VENEER &amp; TRIM"
+    headline="Limestone Masonry"
+    headlineItalic="in Toronto."
+    primaryCTA="REQUEST A VENEER QUOTE"
+    primaryCTAHref="/contact?location=toronto&audience=masonry"
+    secondaryCTA="TALK TO OUR SHOP"
+    secondaryCTAHref="/contact"
   />
 
-  <section class="geo-intro" aria-label="Toronto limestone services">
+  <section class="geo-intro" aria-label="Limestone masonry veneer services in Toronto">
     <div class="geo-intro-container">
       <div class="geo-intro-text">
-        <span class="label-section">Toronto, Ontario · Residential &amp; Commercial</span>
-        <h2 class="geo-intro-headline">Custom limestone for Toronto's most demanding projects.</h2>
+        <span class="label-section">Toronto, Ontario · Masonry Veneer Supply</span>
+        <h2 class="geo-intro-headline">Limestone masonry veneer fabricated to how your crew lays it up.</h2>
         <span class="geo-intro-rule draw-line" aria-hidden="true"></span>
-        <p class="geo-intro-body">Toronto's architectural landscape spans century homes in Rosedale and the Annex, heritage commercial buildings downtown, and contemporary residential builds across the city. Each demands something different from stone — and Indiana Limestone handles all of it. Tulip fabricates and delivers throughout Toronto from our shop in Brampton, 40 minutes from the core.</p>
-        <p class="geo-intro-body">We work directly with Toronto architects, general contractors, and homeowners. Every project starts with custom shop drawings — our drafting team collaborates with your architect to address every detail before fabrication begins, eliminating jobsite issues before they happen.</p>
+        <p class="geo-intro-body">Tulip Limestone · Precast fabricates Indiana Limestone veneer, coursing accessories, and trim for masonry contractors building in Toronto. Units are cut to the joint width and coursing pattern in your masonry drawings, so your crew lays up consistent courses without field-cutting to make pieces fit.</p>
+        <p class="geo-intro-body">We supply full bed veneer for structural masonry applications and thin bed veneer for lightweight cladding, along with the sills, banding, and trim that complete the elevation package — all palletized and delivered directly to your Toronto site.</p>
       </div>
       <div class="geo-intro-facts">
         <div class="geo-fact">
-          <span class="geo-fact-val">40 min</span>
-          <span class="geo-fact-lbl">From our Brampton shop to downtown</span>
+          <span class="geo-fact-val">Matched</span>
+          <span class="geo-fact-lbl">Coursing &amp; mortar joint width</span>
         </div>
         <div class="geo-fact">
-          <span class="geo-fact-val">Heritage</span>
-          <span class="geo-fact-lbl">Profile matching and replica carving</span>
+          <span class="geo-fact-val">Full &amp; Thin</span>
+          <span class="geo-fact-lbl">Bed veneer, both available</span>
         </div>
         <div class="geo-fact">
-          <span class="geo-fact-val">Full range</span>
-          <span class="geo-fact-lbl">Limestone, precast, and GFRC</span>
+          <span class="geo-fact-val">Palletized</span>
+          <span class="geo-fact-lbl">Delivery to the Toronto site</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="geo-products" aria-label="Products available">
+  <section class="geo-products" aria-label="Masonry veneer and trim range">
     <div class="geo-products-container">
-      <span class="label-section">Available in Toronto</span>
-      <h2 class="geo-products-title">Products for every Toronto project.</h2>
-      <p class="geo-products-intro">From heritage restoration to new-build facades, delivered from our Brampton shop.</p>
+      <span class="label-section">Supplied for Toronto Masonry Projects</span>
+      <h2 class="geo-products-title">The veneer and trim range.</h2>
+      <p class="geo-products-intro">Everything a masonry crew needs for a limestone elevation, fabricated to match and delivered together.</p>
       <div class="geo-products-grid">
-        <a href="/limestone/columns" class="geo-product-tile">
-          <span class="geo-product-name">Columns</span>
-          <span class="geo-product-desc">Five classical orders, handcrafted to specification.</span>
-          <span class="geo-product-arrow" aria-hidden="true">→</span>
-        </a>
         <a href="/limestone/veneers" class="geo-product-tile">
           <span class="geo-product-name">Veneers</span>
-          <span class="geo-product-desc">Full bed and thin bed veneer in six styles.</span>
+          <span class="geo-product-desc">Full bed and thin bed veneer in six styles, matched coursing.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/limestone/sills" class="geo-product-tile">
           <span class="geo-product-name">Sills</span>
-          <span class="geo-product-desc">Slip and lug sills in standard and custom profiles.</span>
-          <span class="geo-product-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="/limestone/carving" class="geo-product-tile">
-          <span class="geo-product-name">Custom Carving</span>
-          <span class="geo-product-desc">Hand-carved ornament and architectural detail.</span>
+          <span class="geo-product-desc">Slip and lug sills coordinated with the veneer course height.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/limestone/banding" class="geo-product-tile">
-          <span class="geo-product-name">Banding</span>
-          <span class="geo-product-desc">Horizontal string courses in seven profiles.</span>
+          <span class="geo-product-name">Banding &amp; Water Tables</span>
+          <span class="geo-product-desc">Continuous banding runs that align with veneer coursing.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
-        <a href="/gfrc" class="geo-product-tile">
-          <span class="geo-product-name">GFRC Panels</span>
-          <span class="geo-product-desc">Lightweight architectural panels, up to 75% lighter than precast.</span>
+        <a href="/limestone/quoins" class="geo-product-tile">
+          <span class="geo-product-name">Quoins</span>
+          <span class="geo-product-desc">Corner units fabricated to the same joint width as the field.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/wall-caps" class="geo-product-tile">
+          <span class="geo-product-name">Wall Caps</span>
+          <span class="geo-product-desc">Double wash caps that shed water off masonry below.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/pavers" class="geo-product-tile">
+          <span class="geo-product-name">Pavers</span>
+          <span class="geo-product-desc">Matching limestone pavers for hardscape alongside the veneer.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="geo-why" aria-label="Why choose Tulip">
+  <section class="geo-why" aria-label="Why masonry contractors choose Tulip">
     <div class="geo-why-container">
-      <span class="label-section">Why Toronto Projects Choose Tulip</span>
-      <h2 class="geo-why-title">A fabrication partner, not just a supplier.</h2>
+      <span class="label-section">Why Toronto Masons Choose Tulip</span>
+      <h2 class="geo-why-title">Veneer that lays up the way it was drawn.</h2>
       <div class="geo-why-grid">
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">01</span>
-          <h3 class="geo-why-heading">Heritage matching expertise</h3>
-          <p class="geo-why-body">Toronto has thousands of century buildings with original limestone detail. We match existing colour, texture, and profile so replacement pieces integrate invisibly.</p>
+          <h3 class="geo-why-heading">Coursing confirmed before fabrication</h3>
+          <p class="geo-why-body">We check joint width and course height against your masonry drawings before cutting, so veneer, corners, and trim line up on the wall without rework.</p>
         </div>
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">02</span>
-          <h3 class="geo-why-heading">We work with architects</h3>
-          <p class="geo-why-body">Full shop drawing packages, specification support, and direct coordination with your design team. Not just a supplier — a fabrication partner.</p>
+          <h3 class="geo-why-heading">Corners and trim supplied together</h3>
+          <p class="geo-why-body">Corner units, sills, banding, and caps ship as one coordinated order, so your crew isn't waiting on a second supplier for the pieces that tie the elevation together.</p>
         </div>
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">03</span>
-          <h3 class="geo-why-heading">Delivered and unloaded</h3>
-          <p class="geo-why-body">We deliver across Toronto and handle unloading. Commercial deliveries are coordinated with your site superintendent during scheduling.</p>
+          <h3 class="geo-why-heading">Delivery sequenced to your crew</h3>
+          <p class="geo-why-body">Palletized veneer arrives in Toronto sequenced to your install schedule, so material is on site when the crew needs it and not stacking up before scaffold is ready.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!--
-    PLACEHOLDER CONTENT: the gallery images and testimonial below are
-    generic stock/brand photography and templated quote text, not a
-    real Toronto project. Replace recentWorkImages and
-    recentWorkTestimonial above with real client-supplied photos and
-    a real quote before this is considered launch-ready.
-  -->
-  <RecentWork
-    city="Toronto"
-    images={recentWorkImages}
-    testimonial={recentWorkTestimonial}
-  />
 
   <section class="geo-faq" aria-label="Frequently asked questions">
     <div class="geo-faq-container">
       <span class="label-section">Common Questions</span>
-      <h2 class="geo-faq-title">Toronto — Frequently Asked</h2>
+      <h2 class="geo-faq-title">Toronto Masonry — Frequently Asked</h2>
       <div class="geo-faq-list">
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">Do you deliver limestone to Toronto?</summary>
-          <div class="geo-faq-a"><p>Yes. Tulip delivers Indiana Limestone and precast products throughout Toronto — downtown, midtown, Etobicoke, Scarborough, North York, and East York. Our shop is in Brampton, roughly 40 minutes from the core. Our team handles unloading.</p></div>
+          <summary class="geo-faq-q">Do you supply limestone veneer for masonry crews working in Toronto?</summary>
+          <div class="geo-faq-a"><p>Yes. We fabricate full bed and thin bed Indiana Limestone veneer, corner units, and coursing accessories, palletized for direct delivery to Toronto job sites and matched to the coursing pattern your masonry crew is installing.</p></div>
         </details>
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">Can you match limestone on a Toronto heritage building?</summary>
-          <div class="geo-faq-a"><p>Yes. Heritage profile matching is one of our specialties. We work from photographs, measurements, and where available original drawings to replicate colour, texture, and profile exactly. This is common on Toronto century homes and commercial restorations.</p></div>
+          <summary class="geo-faq-q">Can limestone masonry units be matched to a specific mortar joint width?</summary>
+          <div class="geo-faq-a"><p>Yes. We fabricate to the joint width specified in your masonry drawings, including corner returns and coursing accessories, so units lay up consistently without field cutting to compensate for mismatched dimensions.</p></div>
         </details>
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">Do you work with Toronto architects on specifications?</summary>
-          <div class="geo-faq-a"><p>Yes. Our drafting team produces full shop drawing packages and coordinates directly with architects and general contractors. We can provide specification support, physical samples, and technical documentation for your submittal package.</p></div>
+          <summary class="geo-faq-q">Do you provide limestone sills, banding, and trim to accompany a masonry veneer installation?</summary>
+          <div class="geo-faq-a"><p>Yes. Sills, banding, water tables, and wall caps are fabricated alongside veneer orders so masons receive a complete trim package for the elevation, not just field stone.</p></div>
         </details>
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">What is the lead time for a Toronto project?</summary>
-          <div class="geo-faq-a"><p>Lead time depends on project complexity and current fabrication schedule. The process begins with shop drawings; fabrication starts once drawings are approved and a signed proposal with deposit is received. Contact us at 647-534-7755 for a current estimate.</p></div>
+          <summary class="geo-faq-q">How is limestone masonry material delivered to a Toronto job site?</summary>
+          <div class="geo-faq-a"><p>Veneer and masonry trim ship palletized from our Brampton shop directly to Toronto sites, sequenced with your mason's schedule. Our team handles unloading on standard deliveries.</p></div>
         </details>
       </div>
     </div>
   </section>
 
   <CTASection
-    headline="Building in Toronto?"
-    subheading="Send us your drawings or specifications. Our team will respond within one business day."
-    buttonText="REQUEST A QUOTE"
-    buttonHref="/contact?location=toronto"
+    headline="Building a masonry veneer wall in Toronto?"
+    subheading="Send us your masonry drawings. We'll match coursing and joint width and quote a delivery schedule for your crew."
+    buttonText="REQUEST A VENEER QUOTE"
+    buttonHref="/contact?location=toronto&audience=masonry"
     background="sage"
   />
 
   <div class="geo-other-areas">
     <span class="geo-other-label">Also serving</span>
+    <a href="/toronto">Toronto General</a> ·
     <a href="/brampton">Brampton</a> ·
     <a href="/mississauga">Mississauga</a> ·
-    <a href="/oakville">Oakville</a> ·
-    <a href="/montreal">Montreal</a> ·
-    <a href="/vancouver">Vancouver</a>
-  </div>
-
-  <div class="geo-other-areas">
-    <span class="geo-other-label">Looking for a specific trade?</span>
-    <a href="/limestone-masonry-toronto">Limestone Masonry in Toronto</a> ·
-    <a href="/precast-concrete-toronto">Precast Concrete in Toronto</a>
+    <a href="/oakville">Oakville</a>
   </div>
 
 </BaseLayout>
 
 <style>
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
   .geo-intro {
     background: var(--sand-pale);
     padding: var(--space-3xl) 0;

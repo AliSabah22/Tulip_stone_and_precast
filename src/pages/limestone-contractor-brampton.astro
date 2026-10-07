@@ -2,20 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
-import RecentWork from '../components/geo/RecentWork.astro';
-
-// PLACEHOLDER CONTENT — replace with real Toronto project photos and
-// a real client quote before launch. Do not ship these placeholder
-// images/testimonial to production as-is.
-const recentWorkImages = [
-  { src: '/pictures/stone%20texture%202.jpg', alt: 'Placeholder — replace with a real completed Toronto project photo' },
-  { src: '/pictures/masonry%20detail.jpg', alt: 'Placeholder — replace with a real completed Toronto project photo' },
-  { src: '/pictures/window.jpg', alt: 'Placeholder — replace with a real completed Toronto project photo' },
-];
-const recentWorkTestimonial = {
-  quote: 'Placeholder testimonial — replace with a real client quote before launch.',
-  author: '— [Client Name], [Project Type], Toronto',
-};
 
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -23,34 +9,34 @@ const faqSchema = JSON.stringify({
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Do you deliver limestone to Toronto?",
+      "name": "Do you work directly with general contractors and builders in Brampton?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Tulip delivers Indiana Limestone and precast products throughout Toronto — downtown, midtown, Etobicoke, Scarborough, North York, and East York. Our shop is in Brampton, roughly 40 minutes from the core. Our team handles unloading."
+        "text": "Yes. As a limestone contractor supplying trade accounts across Brampton, we work directly with general contractors, builders, and subcontractors — not just homeowners. We quote from drawings, coordinate delivery around your schedule, and provide a single point of contact through the project."
       }
     },
     {
       "@type": "Question",
-      "name": "Can you match limestone on a Toronto heritage building?",
+      "name": "Can you provide shop drawings for permit or structural review?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Heritage profile matching is one of our specialties. We work from photographs, measurements, and where available original drawings to replicate colour, texture, and profile exactly. This is common on Toronto century homes and commercial restorations."
+        "text": "Yes. Every custom order goes through in-house shop drawing production before fabrication begins. We can turn these around for permit submission, architect sign-off, or structural engineer review, and revise to match field conditions."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you work with Toronto architects on specifications?",
+      "name": "Do you offer trade pricing for contractors ordering multiple units or lots?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Our drafting team produces full shop drawing packages and coordinates directly with architects and general contractors. We can provide specification support, physical samples, and technical documentation for your submittal package."
+        "text": "Yes. Contractors working across multiple units, phases, or lots receive volume pricing and consistent lead times on repeat orders. Set up a trade account by contacting our Brampton shop directly."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the lead time for a Toronto project?",
+      "name": "How do you coordinate delivery with other trades on an active job site?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lead time depends on project complexity and current fabrication schedule. The process begins with shop drawings; fabrication starts once drawings are approved and a signed proposal with deposit is received. Contact us at 647-534-7755 for a current estimate."
+        "text": "We deliver directly to Brampton job sites and coordinate timing with your site superintendent so limestone arrives when the site is ready for it — not before framing, masonry, or crane access is in place. Our team handles unloading on standard deliveries."
       }
     }
   ]
@@ -60,8 +46,8 @@ const localBizSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Tulip Limestone · Precast",
-  "description": "Indiana Limestone fabrication for Toronto residential and commercial projects, delivered from our Brampton shop.",
-  "url": "https://www.tulipstone.ca/toronto",
+  "description": "Limestone contractor and fabrication shop serving builders, general contractors, and subcontractors in Brampton, Ontario. Trade accounts, shop drawings, and direct-to-site delivery.",
+  "url": "https://www.tulipstone.ca/limestone-contractor-brampton",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
   "address": {
@@ -74,7 +60,7 @@ const localBizSchema = JSON.stringify({
   },
   "areaServed": {
     "@type": "City",
-    "name": "Toronto"
+    "name": "Brampton"
   },
   "priceRange": "$$$"
 });
@@ -84,7 +70,7 @@ const breadcrumbSchema = JSON.stringify({
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.tulipstone.ca" },
-    { "@type": "ListItem", "position": 2, "name": "Toronto", "item": "https://www.tulipstone.ca/toronto" }
+    { "@type": "ListItem", "position": 2, "name": "Limestone Contractor Brampton", "item": "https://www.tulipstone.ca/limestone-contractor-brampton" }
   ]
 });
 
@@ -96,180 +82,171 @@ const combinedSchema = JSON.stringify([
 ---
 
 <BaseLayout
-  title="Indiana Limestone Toronto | Custom Stone Fabrication | Tulip"
-  description="Indiana Limestone fabrication for Toronto residential and commercial projects. Columns, veneers, sills, carving, and GFRC. Delivered across Toronto from our Brampton shop. Ontario Made."
-  pageClass="page-geo-toronto"
+  title="Limestone Contractor Brampton | Trade Fabrication Shop | Tulip"
+  description="Limestone contractor serving builders and general contractors in Brampton, Ontario. Trade pricing, in-house shop drawings, and direct-to-site delivery. Request a trade quote."
+  pageClass="page-geo-service-brampton"
   solidNav={true}
   additionalSchema={combinedSchema}
 >
 
   <Hero
     size="xs"
-    imageSrc="/pictures/stone%20texture%202.jpg"
-    imageAlt="Indiana Limestone facade on Toronto residential building — Tulip Limestone Precast Ontario"
-    eyebrow="TORONTO, ONTARIO · DELIVERED &amp; INSTALLED"
-    headline="Indiana Limestone"
-    headlineItalic="for Toronto."
-    primaryCTA="REQUEST A QUOTE"
-    primaryCTAHref="/contact?location=toronto"
-    secondaryCTA="VIEW PORTFOLIO"
-    secondaryCTAHref="/portfolio"
+    imageSrc="/pictures/craftsman%20hands.jpg"
+    imageAlt="Limestone contractor fabrication shop Brampton Ontario — Tulip Limestone Precast"
+    eyebrow="BRAMPTON, ONTARIO · TRADE &amp; CONTRACTOR ACCOUNTS"
+    headline="Limestone Contractor"
+    headlineItalic="in Brampton."
+    primaryCTA="REQUEST A TRADE QUOTE"
+    primaryCTAHref="/contact?location=brampton&audience=contractor"
+    secondaryCTA="SET UP A TRADE ACCOUNT"
+    secondaryCTAHref="/contact"
   />
 
-  <section class="geo-intro" aria-label="Toronto limestone services">
+  <section class="geo-intro" aria-label="Limestone contractor services in Brampton">
     <div class="geo-intro-container">
       <div class="geo-intro-text">
-        <span class="label-section">Toronto, Ontario · Residential &amp; Commercial</span>
-        <h2 class="geo-intro-headline">Custom limestone for Toronto's most demanding projects.</h2>
+        <span class="label-section">Brampton, Ontario · Builder &amp; GC Supply</span>
+        <h2 class="geo-intro-headline">A limestone contractor built around how builders actually work.</h2>
         <span class="geo-intro-rule draw-line" aria-hidden="true"></span>
-        <p class="geo-intro-body">Toronto's architectural landscape spans century homes in Rosedale and the Annex, heritage commercial buildings downtown, and contemporary residential builds across the city. Each demands something different from stone — and Indiana Limestone handles all of it. Tulip fabricates and delivers throughout Toronto from our shop in Brampton, 40 minutes from the core.</p>
-        <p class="geo-intro-body">We work directly with Toronto architects, general contractors, and homeowners. Every project starts with custom shop drawings — our drafting team collaborates with your architect to address every detail before fabrication begins, eliminating jobsite issues before they happen.</p>
+        <p class="geo-intro-body">Tulip Limestone · Precast fabricates and supplies Indiana Limestone for general contractors, builders, and subcontractors across Brampton — not just one-off homeowner orders. We quote from drawings, produce our own shop drawings in-house, and coordinate delivery around your site schedule, not ours.</p>
+        <p class="geo-intro-body">Whether you're a GC managing a custom home build, a subcontractor supplying stone to a masonry crew, or a builder running multiple units on the same elevation package, you get one Brampton-based point of contact from quote to delivery.</p>
       </div>
       <div class="geo-intro-facts">
         <div class="geo-fact">
-          <span class="geo-fact-val">40 min</span>
-          <span class="geo-fact-lbl">From our Brampton shop to downtown</span>
+          <span class="geo-fact-val">Trade</span>
+          <span class="geo-fact-lbl">Accounts &amp; volume pricing</span>
         </div>
         <div class="geo-fact">
-          <span class="geo-fact-val">Heritage</span>
-          <span class="geo-fact-lbl">Profile matching and replica carving</span>
+          <span class="geo-fact-val">In-house</span>
+          <span class="geo-fact-lbl">Shop drawings for permit review</span>
         </div>
         <div class="geo-fact">
-          <span class="geo-fact-val">Full range</span>
-          <span class="geo-fact-lbl">Limestone, precast, and GFRC</span>
+          <span class="geo-fact-val">Direct</span>
+          <span class="geo-fact-lbl">Site delivery, scheduled with you</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="geo-products" aria-label="Products available">
+  <section class="geo-products" aria-label="What we supply to contractors">
     <div class="geo-products-container">
-      <span class="label-section">Available in Toronto</span>
-      <h2 class="geo-products-title">Products for every Toronto project.</h2>
-      <p class="geo-products-intro">From heritage restoration to new-build facades, delivered from our Brampton shop.</p>
+      <span class="label-section">Supplied to Brampton Job Sites</span>
+      <h2 class="geo-products-title">Fabricated to your elevation package.</h2>
+      <p class="geo-products-intro">We fabricate the full range of Indiana Limestone trim and architectural elements that show up on a typical builder's elevation drawings, plus precast and GFRC alternatives where weight or budget matters.</p>
       <div class="geo-products-grid">
+        <a href="/limestone/sills" class="geo-product-tile">
+          <span class="geo-product-name">Sills</span>
+          <span class="geo-product-desc">Slip and lug sills, standard and custom, to match your window schedule.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/limestone/banding" class="geo-product-tile">
+          <span class="geo-product-name">Banding &amp; Water Tables</span>
+          <span class="geo-product-desc">Continuous banding runs fabricated to consistent profile across units.</span>
+          <span class="geo-product-arrow" aria-hidden="true">→</span>
+        </a>
         <a href="/limestone/columns" class="geo-product-tile">
-          <span class="geo-product-name">Columns</span>
-          <span class="geo-product-desc">Five classical orders, handcrafted to specification.</span>
+          <span class="geo-product-name">Columns &amp; Quoins</span>
+          <span class="geo-product-desc">Classical orders and corner quoins for front elevation packages.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/limestone/veneers" class="geo-product-tile">
           <span class="geo-product-name">Veneers</span>
-          <span class="geo-product-desc">Full bed and thin bed veneer in six styles.</span>
+          <span class="geo-product-desc">Full bed and thin bed veneer, palletized for masonry crews.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
-        <a href="/limestone/sills" class="geo-product-tile">
-          <span class="geo-product-name">Sills</span>
-          <span class="geo-product-desc">Slip and lug sills in standard and custom profiles.</span>
-          <span class="geo-product-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="/limestone/carving" class="geo-product-tile">
-          <span class="geo-product-name">Custom Carving</span>
-          <span class="geo-product-desc">Hand-carved ornament and architectural detail.</span>
-          <span class="geo-product-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="/limestone/banding" class="geo-product-tile">
-          <span class="geo-product-name">Banding</span>
-          <span class="geo-product-desc">Horizontal string courses in seven profiles.</span>
+        <a href="/precast" class="geo-product-tile">
+          <span class="geo-product-name">Precast Concrete</span>
+          <span class="geo-product-desc">A lower-cost alternative for repetitive trim on multi-unit projects.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/gfrc" class="geo-product-tile">
           <span class="geo-product-name">GFRC Panels</span>
-          <span class="geo-product-desc">Lightweight architectural panels, up to 75% lighter than precast.</span>
+          <span class="geo-product-desc">Up to 75% lighter where structural load or crane access is limited.</span>
           <span class="geo-product-arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="geo-why" aria-label="Why choose Tulip">
+  <section class="geo-why" aria-label="Why contractors choose Tulip">
     <div class="geo-why-container">
-      <span class="label-section">Why Toronto Projects Choose Tulip</span>
-      <h2 class="geo-why-title">A fabrication partner, not just a supplier.</h2>
+      <span class="label-section">Why Brampton Builders Choose Tulip</span>
+      <h2 class="geo-why-title">One supplier, one schedule, no surprises.</h2>
       <div class="geo-why-grid">
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">01</span>
-          <h3 class="geo-why-heading">Heritage matching expertise</h3>
-          <p class="geo-why-body">Toronto has thousands of century buildings with original limestone detail. We match existing colour, texture, and profile so replacement pieces integrate invisibly.</p>
+          <h3 class="geo-why-heading">Drawings reviewed before fabrication</h3>
+          <p class="geo-why-body">We confirm dimensions, profiles, and quantities against your drawing set before cutting starts, so field-fit surprises get caught at the shop drawing stage, not on site.</p>
         </div>
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">02</span>
-          <h3 class="geo-why-heading">We work with architects</h3>
-          <p class="geo-why-body">Full shop drawing packages, specification support, and direct coordination with your design team. Not just a supplier — a fabrication partner.</p>
+          <h3 class="geo-why-heading">Consistent profiles across units</h3>
+          <p class="geo-why-body">Multi-unit and multi-phase projects get the same profile, colour, and finish run after run — production notes are kept on file for repeat orders.</p>
         </div>
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">03</span>
-          <h3 class="geo-why-heading">Delivered and unloaded</h3>
-          <p class="geo-why-body">We deliver across Toronto and handle unloading. Commercial deliveries are coordinated with your site superintendent during scheduling.</p>
+          <h3 class="geo-why-heading">Delivery that fits your sequence</h3>
+          <p class="geo-why-body">We schedule drop-off around your framing, masonry, or crane windows — not the other way around — and our team handles unloading on standard site deliveries.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!--
-    PLACEHOLDER CONTENT: the gallery images and testimonial below are
-    generic stock/brand photography and templated quote text, not a
-    real Toronto project. Replace recentWorkImages and
-    recentWorkTestimonial above with real client-supplied photos and
-    a real quote before this is considered launch-ready.
-  -->
-  <RecentWork
-    city="Toronto"
-    images={recentWorkImages}
-    testimonial={recentWorkTestimonial}
-  />
-
   <section class="geo-faq" aria-label="Frequently asked questions">
     <div class="geo-faq-container">
       <span class="label-section">Common Questions</span>
-      <h2 class="geo-faq-title">Toronto — Frequently Asked</h2>
+      <h2 class="geo-faq-title">Brampton Contractors — Frequently Asked</h2>
       <div class="geo-faq-list">
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">Do you deliver limestone to Toronto?</summary>
-          <div class="geo-faq-a"><p>Yes. Tulip delivers Indiana Limestone and precast products throughout Toronto — downtown, midtown, Etobicoke, Scarborough, North York, and East York. Our shop is in Brampton, roughly 40 minutes from the core. Our team handles unloading.</p></div>
+          <summary class="geo-faq-q">Do you work directly with general contractors and builders in Brampton?</summary>
+          <div class="geo-faq-a"><p>Yes. As a limestone contractor supplying trade accounts across Brampton, we work directly with general contractors, builders, and subcontractors — not just homeowners. We quote from drawings, coordinate delivery around your schedule, and provide a single point of contact through the project.</p></div>
         </details>
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">Can you match limestone on a Toronto heritage building?</summary>
-          <div class="geo-faq-a"><p>Yes. Heritage profile matching is one of our specialties. We work from photographs, measurements, and where available original drawings to replicate colour, texture, and profile exactly. This is common on Toronto century homes and commercial restorations.</p></div>
+          <summary class="geo-faq-q">Can you provide shop drawings for permit or structural review?</summary>
+          <div class="geo-faq-a"><p>Yes. Every custom order goes through in-house shop drawing production before fabrication begins. We can turn these around for permit submission, architect sign-off, or structural engineer review, and revise to match field conditions.</p></div>
         </details>
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">Do you work with Toronto architects on specifications?</summary>
-          <div class="geo-faq-a"><p>Yes. Our drafting team produces full shop drawing packages and coordinates directly with architects and general contractors. We can provide specification support, physical samples, and technical documentation for your submittal package.</p></div>
+          <summary class="geo-faq-q">Do you offer trade pricing for contractors ordering multiple units or lots?</summary>
+          <div class="geo-faq-a"><p>Yes. Contractors working across multiple units, phases, or lots receive volume pricing and consistent lead times on repeat orders. Set up a trade account by contacting our Brampton shop directly.</p></div>
         </details>
         <details class="geo-faq-item">
-          <summary class="geo-faq-q">What is the lead time for a Toronto project?</summary>
-          <div class="geo-faq-a"><p>Lead time depends on project complexity and current fabrication schedule. The process begins with shop drawings; fabrication starts once drawings are approved and a signed proposal with deposit is received. Contact us at 647-534-7755 for a current estimate.</p></div>
+          <summary class="geo-faq-q">How do you coordinate delivery with other trades on an active job site?</summary>
+          <div class="geo-faq-a"><p>We deliver directly to Brampton job sites and coordinate timing with your site superintendent so limestone arrives when the site is ready for it — not before framing, masonry, or crane access is in place. Our team handles unloading on standard deliveries.</p></div>
         </details>
       </div>
     </div>
   </section>
 
   <CTASection
-    headline="Building in Toronto?"
-    subheading="Send us your drawings or specifications. Our team will respond within one business day."
-    buttonText="REQUEST A QUOTE"
-    buttonHref="/contact?location=toronto"
+    headline="Running a job in Brampton?"
+    subheading="Send us your elevation drawings or specs. We'll quote trade pricing and a delivery schedule that matches your build."
+    buttonText="REQUEST A TRADE QUOTE"
+    buttonHref="/contact?location=brampton&audience=contractor"
     background="sage"
   />
 
   <div class="geo-other-areas">
     <span class="geo-other-label">Also serving</span>
-    <a href="/brampton">Brampton</a> ·
+    <a href="/brampton">Brampton Homeowners</a> ·
+    <a href="/toronto">Toronto</a> ·
     <a href="/mississauga">Mississauga</a> ·
-    <a href="/oakville">Oakville</a> ·
-    <a href="/montreal">Montreal</a> ·
-    <a href="/vancouver">Vancouver</a>
-  </div>
-
-  <div class="geo-other-areas">
-    <span class="geo-other-label">Looking for a specific trade?</span>
-    <a href="/limestone-masonry-toronto">Limestone Masonry in Toronto</a> ·
-    <a href="/precast-concrete-toronto">Precast Concrete in Toronto</a>
+    <a href="/oakville">Oakville</a>
   </div>
 
 </BaseLayout>
 
 <style>
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
   .geo-intro {
     background: var(--sand-pale);
     padding: var(--space-3xl) 0;

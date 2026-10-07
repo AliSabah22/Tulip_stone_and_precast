@@ -254,6 +254,11 @@ const processSteps = [
         </div>
       </section>
 
+      <div class="precast-other-services">
+        <span class="precast-other-services-label">Building in Toronto?</span>
+        <a href="/precast-concrete-toronto">See our dedicated Precast Concrete in Toronto page</a>
+      </div>
+
       <!-- Process section -->
       <section id="process" class="process-section">
         <SectionHeader
@@ -639,6 +644,33 @@ const processSteps = [
     line-height: var(--lh-body);
     max-width: none;
     margin: 0;
+  }
+
+  .precast-other-services {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--content-padding);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .precast-other-services-label {
+    font-size: 9px;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+  .precast-other-services a {
+    color: var(--stone-mid);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .precast-other-services a:hover {
+    color: var(--warm-sand);
   }
 
   /* ── Process ───────────────────────────────────────── */
