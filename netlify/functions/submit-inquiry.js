@@ -2,6 +2,7 @@ import Busboy from 'busboy';
 import { Resend } from 'resend';
 
 const RECIPIENT = 'office@tulipprecast.com';
+const MIN_TIME_ON_PAGE_MS = 3000;
 
 const PRODUCT_LABELS = {
   'indiana-limestone': 'Indiana Limestone Products',
@@ -154,6 +155,15 @@ function buildHtml(f) {
 </html>`;
 }
 
+function isLikelyBot(fields) {
+  if (fields['website']) return true;
+
+  const loadedAt = parseInt(fields['loaded-at'], 10);
+  if (!Number.isFinite(loadedAt)) return true;
+
+  return Date.now() - loadedAt < MIN_TIME_ON_PAGE_MS;
+}
+
 function parseForm(event) {
   return new Promise((resolve, reject) => {
     const fields = {};
@@ -220,6 +230,15 @@ export const handler = async (event) => {
 
   try {
     const { fields, files } = await parseForm(event);
+
+    if (isLikelyBot(fields)) {
+      console.log('Inquiry rejected as likely bot (honeypot or timing check failed)');
+      return {
+        statusCode: 200,
+        headers: { ...cors, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ success: true }),
+      };
+    }
 
     const resend   = new Resend(process.env.RESEND_API_KEY);
     const fullName = `${fields['first-name'] || ''} ${fields['last-name'] || ''}`.trim() || 'Website Visitor';

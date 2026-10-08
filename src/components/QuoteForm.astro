@@ -218,6 +218,19 @@
       </div>
     </div>
 
+    <!-- Honeypot: invisible to real users, must stay empty. Off-screen
+         rather than display:none, so bots that only skip display:none
+         fields still fill this in and get silently rejected server-side. -->
+    <div class="hp-field" aria-hidden="true">
+      <label for="website">Website</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <!-- Minimum-time-on-page check: set to the page-load timestamp by the
+         inline script below. The function rejects submissions sent less
+         than ~3 seconds after this timestamp. -->
+    <input type="hidden" id="loaded-at" name="loaded-at" value="" />
+
     <!-- Submit -->
     <div class="form-row form-row--full">
       <button type="submit" class="btn btn-primary btn-full">
@@ -228,3 +241,10 @@
     <p class="form-submit-note">We typically respond within 1 business day.</p>
   </form>
 </div>
+
+<script>
+  const loadedAtField = document.getElementById('loaded-at');
+  if (loadedAtField instanceof HTMLInputElement) {
+    loadedAtField.value = String(Date.now());
+  }
+</script>
