@@ -118,6 +118,35 @@
     submitBtn.textContent = loading ? 'Sending…' : 'Submit Request';
   }
 
+  // ── GA4 client ID ─────────────────────────────────────────
+  // Used server-side to tag this lead's qualified/converted events
+  // to the same GA4 user. Falls back to empty string (the function
+  // generates a synthetic id instead) if gtag hasn't loaded.
+
+  function getGaClientId(timeoutMs = 1000) {
+    return new Promise((resolve) => {
+      if (typeof window.gtag !== 'function') {
+        resolve('');
+        return;
+      }
+      let settled = false;
+      const timer = setTimeout(() => {
+        if (!settled) { settled = true; resolve(''); }
+      }, timeoutMs);
+      try {
+        window.gtag('get', 'G-926GRE36JL', 'client_id', (clientId) => {
+          if (!settled) {
+            settled = true;
+            clearTimeout(timer);
+            resolve(clientId || '');
+          }
+        });
+      } catch {
+        if (!settled) { settled = true; clearTimeout(timer); resolve(''); }
+      }
+    });
+  }
+
   // ── Submit ───────────────────────────────────────────────
 
   form.addEventListener('submit', async (e) => {
@@ -143,9 +172,13 @@
 
     try {
       // FormData preserves file uploads as multipart/form-data automatically
+      const formData = new FormData(form);
+      const gaClientId = await getGaClientId();
+      if (gaClientId) formData.set('ga-client-id', gaClientId);
+
       const response = await fetch('/.netlify/functions/submit-inquiry', {
         method: 'POST',
-        body:   new FormData(form),
+        body:   formData,
         // Do NOT set Content-Type — browser adds multipart boundary automatically
       });
 

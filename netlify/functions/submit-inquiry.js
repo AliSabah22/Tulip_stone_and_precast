@@ -1,8 +1,10 @@
+import { randomUUID } from 'node:crypto';
 import Busboy from 'busboy';
 import { Resend } from 'resend';
 
 const RECIPIENT = 'office@tulipprecast.com';
 const MIN_TIME_ON_PAGE_MS = 3000;
+const SITE_URL = 'https://www.tulipstone.ca';
 
 const PRODUCT_LABELS = {
   'indiana-limestone': 'Indiana Limestone Products',
@@ -33,7 +35,7 @@ function esc(str) {
     .replace(/"/g, '&quot;');
 }
 
-function buildHtml(f) {
+function buildHtml(f, qualifiedLink, convertedLink) {
   const name     = `${f['first-name'] || ''} ${f['last-name'] || ''}`.trim() || '—';
   const email    = f['email']   || '—';
   const phone    = f['phone']   || '—';
@@ -77,6 +79,23 @@ function buildHtml(f) {
   <tr>
     <td style="background:#C8A882;padding:9px 40px;">
       <p style="margin:0;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#3D3530;">${esc(now)}</p>
+    </td>
+  </tr>
+
+  <!-- Lead status actions -->
+  <tr>
+    <td style="background:#FFFFFF;padding:24px 40px 0;text-align:center;border-bottom:1px solid #F0E8D8;">
+      <p style="margin:0 0 12px;font-size:9px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:#9C8880;">One-Click Lead Tracking</p>
+      <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 24px;">
+        <tr>
+          <td style="padding:0 6px;">
+            <a href="${qualifiedLink}" style="display:inline-block;padding:10px 22px;background:#C8A882;color:#3D3530;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px;">Mark as Qualified</a>
+          </td>
+          <td style="padding:0 6px;">
+            <a href="${convertedLink}" style="display:inline-block;padding:10px 22px;background:#3D3530;color:#FDFAF6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px;">Mark as Converted</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
 
@@ -243,12 +262,22 @@ export const handler = async (event) => {
     const resend   = new Resend(process.env.RESEND_API_KEY);
     const fullName = `${fields['first-name'] || ''} ${fields['last-name'] || ''}`.trim() || 'Website Visitor';
 
+    // Tag GA4 lead-status events to the lead's own GA4 client id when the
+    // browser provided one; otherwise fall back to a synthetic id derived
+    // from a per-submission token, so the event still registers in GA4.
+    const token      = randomUUID();
+    const trackingId = fields['ga-client-id'] || `lead-token.${token}`;
+    const leadParam   = encodeURIComponent(fullName);
+    const cidParam    = encodeURIComponent(trackingId);
+    const qualifiedLink = `${SITE_URL}/.netlify/functions/lead-status?status=qualified&cid=${cidParam}&lead=${leadParam}`;
+    const convertedLink = `${SITE_URL}/.netlify/functions/lead-status?status=converted&cid=${cidParam}&lead=${leadParam}`;
+
     const { error } = await resend.emails.send({
       from:        process.env.EMAIL_FROM || 'Tulip Precast Website <noreply@tulipprecast.com>',
       to:          [RECIPIENT, 'tulip.stone.gta@gmail.com'],
       reply_to:    fields['email'] || undefined,
       subject:     `New Quote Request — ${fullName}`,
-      html:        buildHtml(fields),
+      html:        buildHtml(fields, qualifiedLink, convertedLink),
       attachments: files.map((f) => ({
         filename: f.filename,
         content:  f.content,
