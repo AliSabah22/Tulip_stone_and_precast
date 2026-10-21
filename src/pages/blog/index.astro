@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Add posts here as they're written. Empty for now — the section
-// below renders a "Coming Soon" state whenever this array is empty.
+// Add posts here as they're written. When this array is empty the
+// section below falls back to the "New guides are on the way" state.
 const posts: {
   slug: string;
   title: string;
@@ -11,19 +11,56 @@ const posts: {
   image: string;
   imagePosition: string;
   date: string;
+  dateISO: string;
   readTime: string;
-}[] = [];
+}[] = [
+  {
+    slug: 'precast-vs-limestone-cladding-ontario',
+    title: 'Precast Concrete vs. Natural Limestone: Choosing Exterior Cladding in Ontario',
+    category: 'Comparisons',
+    excerpt: 'Both perform in Ontario\u2019s climate \u2014 but they cost, look, and age very differently. Here is how to choose, and when to use both.',
+    image: '/pictures/Residential.jpg',
+    imagePosition: 'center 40%',
+    date: 'October 21, 2026',
+    dateISO: '2026-10-21',
+    readTime: '6 min read',
+  },
+];
 
-const breadcrumbSchema = JSON.stringify({
+// Absolute URLs are built from Astro.site so they match the canonical
+// the layout emits.
+const blogUrl = new URL('/blog/', Astro.site).href;
+const postUrl = (slug: string) => new URL(`/blog/${slug}/`, Astro.site).href;
+
+const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home",
-      "item": "https://www.tulipstone.ca" },
+      "item": Astro.site!.origin },
     { "@type": "ListItem", "position": 2, "name": "Blog",
-      "item": "https://www.tulipstone.ca/blog" }
+      "item": blogUrl }
   ]
-});
+};
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Tulip Precast Blog",
+  "url": blogUrl,
+  "publisher": { "@type": "Organization", "name": "Tulip Limestone \u00b7 Precast" },
+  "blogPost": posts.map((p) => ({
+    "@type": "BlogPosting",
+    "headline": p.title,
+    "url": postUrl(p.slug),
+    "datePublished": p.dateISO,
+  })),
+};
+
+// Blog schema only once there is at least one post.
+const combinedSchema = JSON.stringify(
+  posts.length > 0 ? [breadcrumbSchema, blogSchema] : [breadcrumbSchema]
+);
 ---
 
 <BaseLayout
@@ -31,7 +68,7 @@ const breadcrumbSchema = JSON.stringify({
   description="Guides on Indiana Limestone, precast concrete, GFRC, and heritage stone restoration from Tulip Limestone · Precast, Brampton, ON."
   pageClass="page-blog"
   solidNav={true}
-  additionalSchema={breadcrumbSchema}
+  additionalSchema={combinedSchema}
 >
 
   <section class="blog-intro" aria-label="Blog introduction">
@@ -52,7 +89,8 @@ const breadcrumbSchema = JSON.stringify({
     <div class="blog-container">
 
       {posts.length > 0 ? (
-        <div class="blog-grid">
+        <>
+        <div class={`blog-grid${posts.length === 1 ? ' blog-grid--single' : ''}`}>
           {posts.map(post => (
             <a href={`/blog/${post.slug}`} class="blog-card">
               <div class="blog-card-img">
@@ -69,11 +107,15 @@ const breadcrumbSchema = JSON.stringify({
                 <span class="blog-card-cat">{post.category}</span>
                 <h2 class="blog-card-title">{post.title}</h2>
                 <p class="blog-card-excerpt">{post.excerpt}</p>
-                <span class="blog-card-meta">{post.date} · {post.readTime}</span>
+                <span class="blog-card-meta"><time datetime={post.dateISO}>{post.date}</time> · {post.readTime}</span>
               </div>
             </a>
           ))}
         </div>
+        <p class="blog-more-note">
+          More guides on limestone, precast, and restoration are on the way.
+        </p>
+        </>
       ) : (
         <div class="blog-empty">
           <span class="blog-empty-icon" aria-hidden="true">✎</span>
@@ -208,6 +250,18 @@ const breadcrumbSchema = JSON.stringify({
     margin-top: var(--space-xs);
   }
 
+  .blog-grid--single {
+    grid-template-columns: minmax(0, 760px);
+    justify-content: start;
+  }
+  .blog-more-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    margin-top: var(--space-lg);
+  }
+
   /* ── Empty state ─────────────────────────────────────────────── */
   .blog-empty {
     max-width: 520px;
@@ -241,8 +295,10 @@ const breadcrumbSchema = JSON.stringify({
 
   @media (max-width: 1024px) {
     .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    .blog-grid--single { grid-template-columns: minmax(0, 760px); }
   }
-  @media (max-width: 640px) {
-    .blog-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    .blog-grid,
+    .blog-grid--single { grid-template-columns: 1fr; }
   }
 </style>

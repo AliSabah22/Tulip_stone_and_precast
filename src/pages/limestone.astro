@@ -64,6 +64,8 @@ const colours = [
   <!-- ── Main Content ───────────────────────────────────────── -->
   <div class="limestone-content">
 
+    <p class="limestone-blog-note">Comparing materials? <a href="/blog/precast-vs-limestone-cladding-ontario">See how Indiana Limestone compares to precast concrete →</a></p>
+
     <!-- Order Requirements Callout -->
     <div class="order-callout reveal">
       <div class="order-callout-inner">
@@ -1068,6 +1070,25 @@ const colours = [
     background: var(--limestone-cream);
     padding: var(--space-2xl) 0;
   }
+
+  .limestone-blog-note {
+    max-width: var(--max-width);
+    margin: 0 auto var(--space-xl);
+    padding: 0 var(--content-padding);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+  }
+  .limestone-blog-note a {
+    color: var(--stone-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--warm-sand);
+    text-underline-offset: 3px;
+    transition: color 200ms ease;
+  }
+  .limestone-blog-note a:hover { color: var(--warm-sand); }
 
   /* ── Label utility ───────────────────────────────────────── */
 

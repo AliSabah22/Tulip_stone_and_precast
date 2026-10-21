@@ -77,6 +77,8 @@ const processSteps = [
   <div class="precast-content">
     <div class="container">
 
+      <p class="precast-blog-note">Deciding between precast and natural stone? <a href="/blog/precast-vs-limestone-cladding-ontario">Read our precast vs. limestone comparison →</a></p>
+
       {categories.map((cat, i) => (
         <section id={cat.id} class="precast-section reveal" aria-label={cat.title}>
           <div class={`precast-grid ${i % 2 === 1 ? 'precast-grid--reverse' : ''}`}>
@@ -377,6 +379,24 @@ const processSteps = [
     height: 1px;
     background: var(--warm-sand);
   }
+
+  .precast-blog-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    line-height: var(--lh-body);
+    color: var(--stone-mid);
+    max-width: none;
+    margin: 0 0 var(--space-xl);
+  }
+  .precast-blog-note a {
+    color: var(--stone-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--warm-sand);
+    text-underline-offset: 3px;
+    transition: color 200ms ease;
+  }
+  .precast-blog-note a:hover { color: var(--warm-sand); }
 
   .precast-description {
     font-size: var(--text-body);

@@ -52,6 +52,10 @@ export default defineConfig({
         ) {
           return { ...item, priority: 0.8, changefreq: 'weekly' };
         }
+        // Individual articles: any path with a segment after /blog/
+        if (/^https:\/\/www\.tulipstone\.ca\/blog\/[^/]+/.test(url)) {
+          return { ...item, priority: 0.8, changefreq: 'monthly', lastmod: '2026-10-21' };
+        }
         if (url.includes('/blog')) {
           return { ...item, priority: 0.7, changefreq: 'weekly' };
         }

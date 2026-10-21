@@ -19,6 +19,10 @@ export interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
   canonicalUrl?: string;
   pageClass?: string;
   loadParticles?: boolean;
@@ -33,6 +37,10 @@ const {
   title,
   description,
   ogImage = '/pictures/hero%20image.jpg',
+  ogImageAlt = 'Tulip Limestone · Precast — Indiana Limestone Fabrication',
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
   canonicalUrl,
   pageClass = '',
   loadParticles = false,
@@ -87,7 +95,7 @@ const ogImageAbsolute = ogImage.startsWith('http')
       openGraph={{
         basic: {
           title: title,
-          type: 'website',
+          type: ogType,
           image: ogImageAbsolute,
           url: canonical,
         },
@@ -97,8 +105,11 @@ const ogImageAbsolute = ogImage.startsWith('http')
           siteName: 'Tulip Limestone · Precast',
         },
         image: {
-          alt: 'Tulip Limestone · Precast — Indiana Limestone Fabrication',
+          alt: ogImageAlt,
         },
+        ...(ogType === 'article' && publishedTime
+          ? { article: { publishedTime, ...(modifiedTime ? { modifiedTime } : {}) } }
+          : {}),
       }}
       twitter={{
         card: 'summary_large_image',
