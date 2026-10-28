@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
 import RecentWork from '../components/geo/RecentWork.astro';
 
+import { postalAddressSchema, getLocation } from '../data/locations.js';
 // PLACEHOLDER CONTENT — replace with real Toronto project photos and
 // a real client quote before launch. Do not ship these placeholder
 // images/testimonial to production as-is.
@@ -64,14 +65,7 @@ const localBizSchema = JSON.stringify({
   "url": "https://www.tulipstone.ca/toronto",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "98 Rutherford Rd Unit 2C",
-    "addressLocality": "Brampton",
-    "addressRegion": "ON",
-    "postalCode": "L6W 3J5",
-    "addressCountry": "CA"
-  },
+  "address": postalAddressSchema(getLocation('brampton')),
   "areaServed": {
     "@type": "City",
     "name": "Toronto"

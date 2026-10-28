@@ -1,93 +1,18 @@
 ---
-// JSON-LD LocalBusiness schema — included on every page
+// JSON-LD LocalBusiness schema — included on every page via BaseLayout.
+// Emits one node per location from src/data/locations.js. Location pages
+// pass `only` so they emit just their own node; every other page
+// (including the homepage) references both locations.
+import { locations, localBusinessSchema } from '../../data/locations.js';
+
+export interface Props {
+  only?: string;
+}
+
+const { only } = Astro.props;
+const nodes = locations
+  .filter((l) => !only || l.id === only)
+  .map((l) => localBusinessSchema(l));
 ---
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Tulip Limestone · Precast",
-  "alternateName": "Tulip Precast",
-  "description": "Premium Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across the Greater Toronto Area. Ontario Made certified.",
-  "url": "https://www.tulipstone.ca",
-  "logo": "https://www.tulipstone.ca/favicon.svg",
-  "image": "https://www.tulipstone.ca/pictures/hero%20image.jpg",
-  "telephone": [
-    "+1-647-534-7755",
-    "+1-905-796-0110"
-  ],
-  "email": "office@tulipprecast.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "98 Rutherford Rd Unit 2C",
-    "addressLocality": "Brampton",
-    "addressRegion": "ON",
-    "postalCode": "L6W 3J5",
-    "addressCountry": "CA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 43.6975248,
-    "longitude": -79.7352554
-  },
-  "areaServed": [
-    { "@type": "City", "name": "Brampton" },
-    { "@type": "City", "name": "Mississauga" },
-    { "@type": "City", "name": "Oakville" },
-    { "@type": "City", "name": "Burlington" },
-    { "@type": "City", "name": "Hamilton" },
-    { "@type": "City", "name": "Toronto" },
-    { "@type": "City", "name": "Vaughan" },
-    { "@type": "City", "name": "Markham" },
-    { "@type": "City", "name": "Montreal" },
-    { "@type": "City", "name": "Vancouver" },
-    { "@type": "State", "name": "New York" },
-    { "@type": "City", "name": "Boston" },
-    { "@type": "City", "name": "Chicago" },
-    { "@type": "State", "name": "Texas" },
-    { "@type": "State", "name": "Florida" }
-  ],
-  "priceRange": "$$$$",
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "08:00",
-      "closes": "17:00"
-    }
-  ],
-  "sameAs": [
-    "https://www.instagram.com/tulipstone_and_precast/",
-    "https://www.facebook.com/tulipprecast.ca/",
-    "https://www.linkedin.com/company/tulip-precast-inc/?originalSubdomain=ca",
-    "https://www.youtube.com/@TulipStonefabrication"
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Limestone, GFRC & Precast Products",
-    "itemListElement": [
-      {
-        "@type": "OfferCatalog",
-        "name": "Indiana Limestone Products",
-        "description": "Columns, balusters, veneers, pavers, wall caps, keystones, sills, quoins, door surrounds, carving and more"
-      },
-      {
-        "@type": "OfferCatalog",
-        "name": "GFRC Fabrication",
-        "description": "Glass fiber reinforced concrete panels for facades, feature walls, fireplace surrounds, and custom architectural elements"
-      },
-      {
-        "@type": "OfferCatalog",
-        "name": "Concrete Precast Products",
-        "description": "Residential, commercial, and industrial precast concrete elements fabricated to specification"
-      }
-    ]
-  }
-}
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(nodes.length === 1 ? nodes[0] : nodes)} />

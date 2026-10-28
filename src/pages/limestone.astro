@@ -6,6 +6,7 @@ import ProductSection from '../components/limestone/ProductSection.astro';
 import CTASection from '../components/CTASection.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 
+import { cityList } from '../data/locations.js';
 const colours = [
   { name: 'Alabama Stone',              src: '/pictures/Indiana%20limesone%20colors/Alabama%20Stone.webp' },
   { name: 'American Mist Honed',        src: '/pictures/Indiana%20limesone%20colors/American%20mist%20honed.png' },
@@ -30,7 +31,7 @@ const colours = [
 
 <BaseLayout
   title="Indiana Limestone Products | Custom Stone | Tulip Precast"
-  description="Indiana Limestone products in Brampton, ON — columns, balusters, veneers, sills, carving, and more. Custom shop drawings. Ontario Made fabricator."
+  description={`Indiana Limestone products in ${cityList()}, ON — columns, balusters, veneers, sills, carving, and more. Custom shop drawings. Ontario Made fabricator.`}
   pageClass="page-limestone"
   solidNav={true}
 >

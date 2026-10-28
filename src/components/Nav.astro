@@ -1,4 +1,6 @@
 ---
+import { company, locations, locationPath } from '../data/locations.js';
+
 export interface Props {
   solidNav?: boolean;
 }
@@ -78,8 +80,10 @@ function isActive(href: string) {
     ))}
     <a class="nav-mobile-cta" href="/contact">Request a Quote</a>
     <div class="nav-mobile-contact">
-      <a href="tel:6475347755">647-534-7755</a>
-      <a href="mailto:office@tulipprecast.com">office@tulipprecast.com</a>
+      {locations.map((loc) => (
+        <a href={locationPath(loc)}>{loc.city} Location</a>
+      ))}
+      <a href={`mailto:${company.email}`}>{company.email}</a>
     </div>
   </div>
 </nav>

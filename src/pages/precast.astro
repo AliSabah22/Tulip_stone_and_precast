@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 
+import { cityList } from '../data/locations.js';
 const categories = [
   {
     id: 'residential',
@@ -54,7 +55,7 @@ const processSteps = [
 
 <BaseLayout
   title="Precast Concrete Fabrication | GTA | Tulip Precast"
-  description="Custom precast concrete in Brampton, ON. Residential, commercial, and industrial elements to specification. Serving the GTA. Ontario Made."
+  description={`Custom precast concrete in ${cityList()}, ON. Residential, commercial, and industrial elements to specification. Serving the GTA. Ontario Made.`}
   pageClass="page-precast"
 >
 

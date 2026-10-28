@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import ProductSection from '../../components/limestone/ProductSection.astro';
 import CTASection from '../../components/CTASection.astro';
 
+import { cityList } from '../../data/locations.js';
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -61,7 +62,7 @@ const combinedSchema = JSON.stringify([
 
 <BaseLayout
   title="Custom Limestone Carving Ontario | Architectural Stone | Tulip"
-  description="Custom Indiana Limestone carving for residential and commercial projects across Ontario. Architectural ornaments, sculptural commissions, and heritage replica work. Based in Brampton. Request a quote."
+  description={`Custom Indiana Limestone carving for residential and commercial projects across Ontario. Architectural ornaments, sculptural commissions, and heritage replica work. Based in ${cityList()}. Request a quote.`}
   pageClass="page-limestone-carving"
   solidNav={true}
   additionalSchema={combinedSchema}

@@ -4,6 +4,8 @@ import LocalBusiness from '../components/schema/LocalBusiness.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SplashScreen from '../components/SplashScreen.astro';
+import TransitionBanner from '../components/locations/TransitionBanner.astro';
+import { locations, getLocation, hasCoords } from '../data/locations.js';
 
 import '../styles/reset.css';
 import '../styles/tokens.css';
@@ -31,6 +33,9 @@ export interface Props {
   solidNav?: boolean;
   additionalSchema?: string;
   noindex?: boolean;
+  // Location pages pass their id: emits only that location's LocalBusiness
+  // schema and uses its coordinates for the geo meta tags.
+  locationId?: string;
 }
 
 const {
@@ -49,7 +54,19 @@ const {
   solidNav = false,
   additionalSchema,
   noindex = false,
+  locationId,
 } = Astro.props;
+
+// Geo meta: the page's own location when given, otherwise the first
+// location that has confirmed coordinates. Omitted if none do.
+const geoLocation = (locationId && getLocation(locationId)) || locations.find(hasCoords);
+const geoMeta = geoLocation && hasCoords(geoLocation)
+  ? [
+      { name: 'geo.placename', content: `${geoLocation.city}, Ontario` },
+      { name: 'geo.position', content: `${geoLocation.lat};${geoLocation.lng}` },
+      { name: 'ICBM', content: `${geoLocation.lat}, ${geoLocation.lng}` },
+    ]
+  : [];
 
 const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site).href;
 const ogImageAbsolute = ogImage.startsWith('http')
@@ -130,9 +147,7 @@ const ogImageAbsolute = ogImage.startsWith('http')
           { name: 'author', content: 'Tulip Limestone · Precast' },
           { httpEquiv: 'content-language', content: 'en-CA' },
           { name: 'geo.region', content: 'CA-ON' },
-          { name: 'geo.placename', content: 'Brampton, Ontario' },
-          { name: 'geo.position', content: '43.6975248;-79.7352554' },
-          { name: 'ICBM', content: '43.6975248, -79.7352554' },
+          ...geoMeta,
         ],
       }}
     />
@@ -162,7 +177,7 @@ const ogImageAbsolute = ogImage.startsWith('http')
       gtag('config', 'G-926GRE36JL', { anonymize_ip: true });
     </script>
 
-    <LocalBusiness />
+    <LocalBusiness only={locationId} />
 
     {additionalSchema && (
       <script type="application/ld+json" set:html={additionalSchema} />
@@ -185,6 +200,8 @@ const ogImageAbsolute = ogImage.startsWith('http')
     </main>
 
     <Footer />
+
+    <TransitionBanner />
 
     <!-- Global scripts — bundled by Vite -->
     <script>

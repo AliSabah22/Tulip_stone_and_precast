@@ -52,6 +52,10 @@ export default defineConfig({
         ) {
           return { ...item, priority: 0.8, changefreq: 'weekly' };
         }
+        // Location pages (linked from the Google Business Profiles)
+        if (url.startsWith('https://www.tulipstone.ca/locations/')) {
+          return { ...item, priority: 0.9, changefreq: 'monthly' };
+        }
         // Individual articles: any path with a segment after /blog/
         if (/^https:\/\/www\.tulipstone\.ca\/blog\/[^/]+/.test(url)) {
           return { ...item, priority: 0.8, changefreq: 'monthly', lastmod: '2026-10-21' };

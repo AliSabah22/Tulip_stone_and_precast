@@ -5,6 +5,7 @@ import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 import ColourDetail from '../components/ColourDetail.astro';
 
+import { cityList } from '../data/locations.js';
 const colours = [
   {
     id: 'standard-buff',
@@ -480,7 +481,7 @@ const veneerTypes = [
 
 <BaseLayout
   title="Indiana Limestone Colours & Finishes | Tulip Precast"
-  description="Indiana Limestone colours from Tulip Precast, Brampton ON. Four natural colour families plus premium Turkish Limestone. Physical samples available on request."
+  description={`Indiana Limestone colours from Tulip Precast, ${cityList()} ON. Four natural colour families plus premium Turkish Limestone. Physical samples available on request.`}
   pageClass="page-colours"
 >
 

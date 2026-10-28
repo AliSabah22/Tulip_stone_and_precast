@@ -1,0 +1,193 @@
+---
+// One location: address, phone, hours, lazy-loaded map, directions.
+// All values come from src/data/locations.js. Unfilled [TOKEN] values
+// render as plain text (no dead tel: link).
+import {
+  isPlaceholder, isNewLocation, hasHours, streetLine, cityLine,
+  locationPath, directionsUrl, mapEmbedUrl,
+} from '../../data/locations.js';
+
+export interface Props {
+  location: import('../../data/locations.js').Location;
+}
+
+const { location: loc } = Astro.props;
+const headingId = `location-${loc.id}-heading`;
+---
+
+<article class="location-card" aria-labelledby={headingId}>
+  {isNewLocation(loc) && <span class="location-card-tag">New location</span>}
+  <h3 class="location-card-city" id={headingId}>{loc.city}</h3>
+
+  <address class="location-card-address">
+    <p>{streetLine(loc)}</p>
+    <p>{cityLine(loc)}</p>
+  </address>
+
+  <div class="location-card-row">
+    <span class="location-card-label">Phone</span>
+    {isPlaceholder(loc.phone) ? (
+      <span class="location-card-value">{loc.phone}</span>
+    ) : (
+      <a class="location-card-value location-card-link" href={`tel:${loc.phone.e164}`}>{loc.phone.display}</a>
+    )}
+  </div>
+
+  <div class="location-card-row">
+    <span class="location-card-label">Hours</span>
+    {hasHours(loc) ? (
+      <div class="hours-grid">
+        {loc.hours.display.map((row) => (
+          <>
+            <span class="hours-day">{row.days}</span>
+            <span class="hours-time">{row.time}</span>
+          </>
+        ))}
+      </div>
+    ) : (
+      <span class="location-card-value">{loc.hours}</span>
+    )}
+  </div>
+
+  <div class="map-wrap">
+    <iframe
+      title={`Map showing the Tulip Limestone · Precast ${loc.city} location`}
+      src={mapEmbedUrl(loc)}
+      width="100%"
+      height="100%"
+      style="border:0"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <div class="location-card-actions">
+    <a
+      href={directionsUrl(loc)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-outlined-dark btn-sm"
+      aria-label={`Get directions to our ${loc.city} location (opens in Google Maps)`}
+    >
+      Get Directions
+    </a>
+    <a class="location-card-more" href={locationPath(loc)}>{loc.city} location details &rarr;</a>
+  </div>
+</article>
+
+<style>
+  .location-card {
+    background: var(--sand-pale);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .location-card-tag {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+  }
+
+  .location-card-city {
+    font-family: var(--font-serif);
+    font-size: var(--text-title);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+  }
+
+  .location-card-address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .location-card-address p {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    max-width: none;
+  }
+
+  .location-card-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .location-card-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--stone-light);
+  }
+
+  .location-card-value {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+  }
+
+  .location-card-link {
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .location-card-link:hover { color: var(--warm-sand); }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 16px;
+  }
+
+  .hours-day {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+  }
+
+  .hours-time {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    color: var(--stone-dark);
+  }
+
+  .map-wrap {
+    margin-top: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+    background: var(--cream-dark);
+  }
+
+  .location-card-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .location-card-more {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .location-card-more:hover { color: var(--warm-sand); }
+</style>

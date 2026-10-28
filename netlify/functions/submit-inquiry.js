@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import Busboy from 'busboy';
 import { Resend } from 'resend';
+import { locations, streetLine } from '../../src/data/locations.js';
 
 const RECIPIENT = 'office@tulipprecast.com';
 const MIN_TIME_ON_PAGE_MS = 3000;
@@ -163,7 +164,7 @@ function buildHtml(f, qualifiedLink, convertedLink) {
   <tr>
     <td style="background:#3D3530;padding:24px 40px;text-align:center;">
       <p style="margin:0 0 4px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#9C8880;">Tulip Limestone · Precast — Ontario Made</p>
-      <p style="margin:0;font-size:10px;font-weight:300;color:#706358;">98 Rutherford Rd Unit 2C, Brampton, ON &nbsp;·&nbsp; office@tulipprecast.com</p>
+      <p style="margin:0;font-size:10px;font-weight:300;color:#706358;">${locations.map((l) => esc(`${streetLine(l)}, ${l.city}, ${l.region}`)).join(' &nbsp;·&nbsp; ')} &nbsp;·&nbsp; office@tulipprecast.com</p>
     </td>
   </tr>
 

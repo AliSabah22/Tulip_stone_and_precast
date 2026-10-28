@@ -7,6 +7,7 @@ import ProductCard from '../components/ProductCard.astro';
 import PortfolioItem from '../components/PortfolioItem.astro';
 import CTASection from '../components/CTASection.astro';
 
+import { cityList } from '../data/locations.js';
 const processSteps = [
   {
     num: '01',
@@ -42,7 +43,7 @@ const processSteps = [
 ---
 
 <BaseLayout
-  title="Indiana Limestone Fabricator | Brampton, ON | Tulip Precast"
+  title={`Indiana Limestone Fabricator | ${cityList()} | Tulip`}
   description="Premium Indiana Limestone fabrication and concrete precast for residential, commercial, and industrial projects across the Greater Toronto Area. Ontario Made. Request a free quote."
   pageClass="page-home"
   loadParticles={true}

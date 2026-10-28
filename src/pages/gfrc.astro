@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 
+import { postalAddressSchema, getLocation } from '../data/locations.js';
 const gfrcSchema = JSON.stringify([
   {
     "@context": "https://schema.org",
@@ -15,14 +16,7 @@ const gfrcSchema = JSON.stringify([
       "name": "Tulip Limestone · Precast",
       "url": "https://www.tulipstone.ca",
       "telephone": ["+1-647-534-7755", "+1-905-796-0110"],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "98 Rutherford Rd Unit 2C",
-        "addressLocality": "Brampton",
-        "addressRegion": "ON",
-        "postalCode": "L6W 3J5",
-        "addressCountry": "CA"
-      }
+      "address": postalAddressSchema(getLocation('brampton'))
     },
     "areaServed": [
       { "@type": "City", "name": "Brampton" },

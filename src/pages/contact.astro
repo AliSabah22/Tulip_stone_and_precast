@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QuoteForm from '../components/QuoteForm.astro';
+import LocationCard from '../components/locations/LocationCard.astro';
+import { company, locations, cityList } from '../data/locations.js';
 ---
 
 <BaseLayout
-  title="Request a Quote | Tulip Limestone & Precast | Brampton"
-  description="Request a quote from Tulip Precast in Brampton, ON. Custom Indiana Limestone and precast concrete for residential and commercial projects across the GTA."
+  title={`Request a Quote | Tulip Limestone & Precast | ${cityList()}`}
+  description={`Request a quote from Tulip Precast in ${cityList()}, ON. Custom Indiana Limestone and precast concrete for residential and commercial projects across the GTA.`}
   pageClass="page-contact"
   solidNav={true}
   loadFormValidation={true}
@@ -44,69 +46,21 @@ import QuoteForm from '../components/QuoteForm.astro';
             <div class="info-block">
               <h3 class="info-block-heading">Direct Contact</h3>
               <div class="info-links">
-                <a href="mailto:office@tulipprecast.com" class="info-link info-link--email">
+                <a href={`mailto:${company.email}`} class="info-link info-link--email">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <rect x="1" y="3" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1"/>
                     <path d="M1 4l7 5 7-5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
                   </svg>
-                  office@tulipprecast.com
+                  {company.email}
                 </a>
-                <a href="tel:6475347755" class="info-link">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M10.5 1.5c.5 1.5 1.5 3 2.5 3.5l-2 2c-1-1-2.5-2-4-2.5L8.5 2.5a8.5 8.5 0 00-2 0L5 4.5C5.5 6 6.5 7.5 7.5 8.5L5.5 10.5c-.5-1.5-1.5-3-2.5-3.5l2-2c.5 1 1.5 2 2.5 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M1 2.5A1.5 1.5 0 012.5 1h1.1c.4 0 .8.3.9.7l.8 3.1a1 1 0 01-.3 1L4 6.8a10 10 0 004.2 4.2l1-.9a1 1 0 011-.3l3.1.8c.4.1.7.5.7.9v1.1a1.5 1.5 0 01-1.5 1.5C6.3 14 1 8.7 1 2.5z" stroke="currentColor" stroke-width="1"/>
-                  </svg>
-                  647-534-7755
-                </a>
-<a href="tel:9057960110" class="info-link">
+                {company.phones.map((p) => (
+                  <a href={`tel:${p.e164}`} class="info-link">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M1 2.5A1.5 1.5 0 012.5 1h1.1c.4 0 .8.3.9.7l.8 3.1a1 1 0 01-.3 1L4 6.8a10 10 0 004.2 4.2l1-.9a1 1 0 011-.3l3.1.8c.4.1.7.5.7.9v1.1a1.5 1.5 0 01-1.5 1.5C6.3 14 1 8.7 1 2.5z" stroke="currentColor" stroke-width="1"/>
                   </svg>
-                  905-796-0110
-                </a>
-              </div>
-            </div>
-
-            <!-- Location -->
-            <div class="info-block">
-              <h3 class="info-block-heading">Our Location</h3>
-              <address class="info-address">
-                <p>98 Rutherford Rd Unit 2C</p>
-                <p>Brampton, ON L6W 3J5</p>
-              </address>
-
-              <!-- Map embed -->
-              <div class="map-wrap" aria-label="Google Maps showing Tulip Precast location">
-                <iframe
-                  title="Tulip Limestone · Precast location"
-                  src="https://www.google.com/maps?q=43.6975248,-79.7352554(Tulip+Stone+and+Precast)&z=17&output=embed"
-                  width="100%"
-                  height="100%"
-                  style="border:0"
-                  allowfullscreen
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=43.6975248,-79.7352554"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-outlined-dark btn-sm"
-              >
-                Get Directions
-              </a>
-            </div>
-
-            <!-- Hours -->
-            <div class="info-block">
-              <h3 class="info-block-heading">Hours</h3>
-              <div class="hours-grid">
-                <span class="hours-day">Monday – Friday</span>
-                <span class="hours-time">8:00 AM – 5:00 PM</span>
-                <span class="hours-day">Saturday – Sunday</span>
-                <span class="hours-time">By appointment</span>
+                    {p.display}
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -159,13 +113,24 @@ import QuoteForm from '../components/QuoteForm.astro';
                   Lead times vary by project complexity and current fabrication schedule. Contact us for a current estimate before specifying deadlines.
                 </li>
               </ul>
-              <p class="info-block-note">Questions about delivery? Call us at 647-534-7755 or email office@tulipprecast.com</p>
+              <p class="info-block-note">Questions about delivery? Call us at {company.phones[0].display} or email {company.email}</p>
             </div>
 
           </div>
         </aside>
 
       </div>
+
+      <!-- Locations -->
+      <section id="locations" class="contact-locations" aria-labelledby="contact-locations-heading">
+        <h2 class="col-heading" id="contact-locations-heading">Our Locations</h2>
+        <div class="contact-locations-grid">
+          {locations.map((loc) => (
+            <LocationCard location={loc} />
+          ))}
+        </div>
+      </section>
+
     </div>
   </div>
 
@@ -305,53 +270,17 @@ import QuoteForm from '../components/QuoteForm.astro';
     color: var(--stone-light);
   }
 
-  /* ── Address ───────────────────────────────────────── */
+  /* ── Locations ─────────────────────────────────────── */
 
-  .info-address {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  .contact-locations {
+    margin-top: var(--space-3xl);
+    scroll-margin-top: 100px;
   }
 
-  .info-address p {
-    font-family: var(--font-sans);
-    font-size: var(--text-small);
-    font-weight: 300;
-    color: var(--stone-mid);
-    max-width: none;
-  }
-
-  /* ── Map ───────────────────────────────────────────── */
-
-  .map-wrap {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border: 1px solid var(--cream-dark);
-    background: var(--cream-dark);
-  }
-
-  /* ── Hours ─────────────────────────────────────────── */
-
-  .hours-grid {
+  .contact-locations-grid {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 4px 16px;
-  }
-
-  .hours-day {
-    font-family: var(--font-sans);
-    font-size: var(--text-small);
-    font-weight: 300;
-    color: var(--stone-mid);
-  }
-
-  .hours-time {
-    font-family: var(--font-sans);
-    font-size: var(--text-small);
-    font-weight: 400;
-    color: var(--stone-dark);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
   }
 
   /* ── What to include card ──────────────────────────── */
@@ -404,9 +333,11 @@ import QuoteForm from '../components/QuoteForm.astro';
     .contact-info-sticky {
       position: static;
     }
+  }
 
-    .map-wrap {
-      aspect-ratio: 16 / 9;
+  @media (max-width: 768px) {
+    .contact-locations-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

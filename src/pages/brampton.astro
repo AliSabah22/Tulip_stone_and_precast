@@ -4,6 +4,9 @@ import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
 import RecentWork from '../components/geo/RecentWork.astro';
 
+import { postalAddressSchema, getLocation, fullAddress } from '../data/locations.js';
+
+const brampton = getLocation('brampton');
 // PLACEHOLDER CONTENT — replace with real Brampton project photos and
 // a real client quote before launch. Do not ship these placeholder
 // images/testimonial to production as-is.
@@ -26,7 +29,7 @@ const faqSchema = JSON.stringify({
       "name": "Where is Tulip Limestone located in Brampton?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tulip Limestone · Precast is located at 98 Rutherford Rd Unit 2C, Brampton, ON L6W 3J5. Our fabrication shop, drafting office, and stone yard are all at this location. Call 647-534-7755 to arrange a visit."
+        "text": `Tulip Limestone · Precast is located at ${fullAddress(brampton)}. Our fabrication shop, drafting office, and stone yard are all at this location. Call 647-534-7755 to arrange a visit.`
       }
     },
     {
@@ -64,14 +67,7 @@ const localBizSchema = JSON.stringify({
   "url": "https://www.tulipstone.ca/brampton",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "98 Rutherford Rd Unit 2C",
-    "addressLocality": "Brampton",
-    "addressRegion": "ON",
-    "postalCode": "L6W 3J5",
-    "addressCountry": "CA"
-  },
+  "address": postalAddressSchema(brampton),
   "areaServed": {
     "@type": "City",
     "name": "Brampton"
@@ -97,7 +93,7 @@ const combinedSchema = JSON.stringify([
 
 <BaseLayout
   title="Limestone Fabricator Brampton, ON | Tulip Limestone & Precast"
-  description="Indiana Limestone and precast concrete fabrication in Brampton, Ontario. Custom columns, balusters, veneers, sills, and carving. Local shop at 98 Rutherford Rd. Ontario Made. Request a quote."
+  description={`Indiana Limestone and precast concrete fabrication in Brampton, Ontario. Custom columns, balusters, veneers, sills, and carving. Local shop at ${brampton.street}. Ontario Made. Request a quote.`}
   pageClass="page-geo-brampton"
   solidNav={true}
   additionalSchema={combinedSchema}
@@ -122,7 +118,7 @@ const combinedSchema = JSON.stringify([
         <span class="label-section">Brampton, Ontario · Our Home Shop</span>
         <h2 class="geo-intro-headline">Your local limestone fabricator, right here in Brampton.</h2>
         <span class="geo-intro-rule draw-line" aria-hidden="true"></span>
-        <p class="geo-intro-body">Tulip Limestone · Precast operates from 98 Rutherford Rd in Brampton — our fabrication shop, our drafting office, and our stone yard all in one location. For Brampton homeowners, builders, and contractors that means something practical: you can drive over, see the stone in person, hold a physical sample, and talk to the people who will actually fabricate your project.</p>
+        <p class="geo-intro-body">Tulip Limestone · Precast operates from {brampton.street} in Brampton — our fabrication shop, our drafting office, and our stone yard all in one location. For Brampton homeowners, builders, and contractors that means something practical: you can drive over, see the stone in person, hold a physical sample, and talk to the people who will actually fabricate your project.</p>
         <p class="geo-intro-body">We fabricate the full range of Indiana Limestone products here — columns, balusters, veneers, sills, quoins, banding, water tables, wall caps, pier caps, pavers, and custom carving — as well as precast concrete and GFRC panels. Every project begins with custom shop drawings produced in-house.</p>
       </div>
       <div class="geo-intro-facts">
@@ -190,7 +186,7 @@ const combinedSchema = JSON.stringify([
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">01</span>
           <h3 class="geo-why-heading">Local shop, local team</h3>
-          <p class="geo-why-body">Our fabrication facility, drafting office, and stone yard are all at 98 Rutherford Rd. No middleman, no distant supplier — the people quoting your project are the people making it.</p>
+          <p class="geo-why-body">Our fabrication facility, drafting office, and stone yard are all at {brampton.street}. No middleman, no distant supplier — the people quoting your project are the people making it.</p>
         </div>
         <div class="geo-why-card">
           <span class="geo-why-num" aria-hidden="true">02</span>
@@ -226,7 +222,7 @@ const combinedSchema = JSON.stringify([
       <div class="geo-faq-list">
         <details class="geo-faq-item">
           <summary class="geo-faq-q">Where is Tulip Limestone located in Brampton?</summary>
-          <div class="geo-faq-a"><p>Tulip Limestone · Precast is located at 98 Rutherford Rd Unit 2C, Brampton, ON L6W 3J5. Our fabrication shop, drafting office, and stone yard are all at this location. Call 647-534-7755 to arrange a visit.</p></div>
+          <div class="geo-faq-a"><p>Tulip Limestone · Precast is located at {fullAddress(brampton)}. Our fabrication shop, drafting office, and stone yard are all at this location. Call 647-534-7755 to arrange a visit.</p></div>
         </details>
         <details class="geo-faq-item">
           <summary class="geo-faq-q">Can I see limestone samples in person in Brampton?</summary>

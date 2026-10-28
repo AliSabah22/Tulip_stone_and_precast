@@ -1,0 +1,300 @@
+---
+// One page per location (/locations/mississauga, /locations/brampton).
+// These are the URLs linked from each Google Business Profile.
+// All content comes from src/data/locations.js.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTASection from '../../components/CTASection.astro';
+import {
+  SITE_URL, company, locations, isPlaceholder, isNewLocation, hasHours,
+  streetLine, cityLine, fullAddress, locationPath, locationUrl, directionsUrl,
+  mapEmbedUrl,
+} from '../../data/locations.js';
+
+export function getStaticPaths() {
+  return locations.map((loc) => ({ params: { slug: loc.id }, props: { loc } }));
+}
+
+const { loc } = Astro.props;
+const others = locations.filter((l) => l.id !== loc.id);
+
+const title = `Tulip Precast ${loc.city} Location | ${loc.street}`;
+const description = `Visit Tulip Limestone · Precast at ${fullAddress(loc)}. Indiana Limestone and precast concrete fabrication — directions, contact details, and quote requests.`;
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: `${loc.city} Location`, item: locationUrl(loc) },
+  ],
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  pageClass="page-location"
+  solidNav={true}
+  locationId={loc.id}
+  additionalSchema={breadcrumbSchema}
+>
+
+  <Hero
+    size="xs"
+    imageSrc={loc.heroImage}
+    imageAlt={`Tulip Limestone · Precast — ${loc.city}, Ontario`}
+    eyebrow={`${loc.city.toUpperCase()}, ONTARIO · LOCATION`}
+    headline="Tulip Precast"
+    headlineItalic={`in ${loc.city}.`}
+    primaryCTA="REQUEST A QUOTE"
+    primaryCTAHref={`/contact?location=${loc.id}`}
+    secondaryCTA="GET DIRECTIONS"
+    secondaryCTAHref={directionsUrl(loc)}
+  />
+
+  <section class="loc-intro" aria-label={`${loc.city} location details`}>
+    <div class="loc-intro-container">
+      <div class="loc-intro-text">
+        <span class="label-section">{isNewLocation(loc) ? 'Our Newest Location' : 'Our Location'}</span>
+        <h2 class="loc-intro-headline">Visit us in {loc.city}.</h2>
+        <span class="loc-intro-rule draw-line" aria-hidden="true"></span>
+        <p class="loc-intro-body">{loc.description}</p>
+      </div>
+
+      <div class="loc-facts">
+        <div class="loc-fact">
+          <span class="loc-fact-lbl">Address</span>
+          <address class="loc-fact-address">
+            <span>{company.name}</span>
+            <span>{streetLine(loc)}</span>
+            <span>{cityLine(loc)}</span>
+          </address>
+        </div>
+        <div class="loc-fact">
+          <span class="loc-fact-lbl">Phone</span>
+          {isPlaceholder(loc.phone) ? (
+            <span class="loc-fact-val">{loc.phone}</span>
+          ) : (
+            <a class="loc-fact-val loc-fact-link" href={`tel:${loc.phone.e164}`}>{loc.phone.display}</a>
+          )}
+        </div>
+        <div class="loc-fact">
+          <span class="loc-fact-lbl">Hours</span>
+          {hasHours(loc) ? (
+            <div class="hours-grid">
+              {loc.hours.display.map((row) => (
+                <>
+                  <span class="hours-day">{row.days}</span>
+                  <span class="hours-time">{row.time}</span>
+                </>
+              ))}
+            </div>
+          ) : (
+            <span class="loc-fact-val">{loc.hours}</span>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="loc-map" aria-label={`Map of the ${loc.city} location`}>
+    <div class="loc-map-container">
+      <div class="map-wrap">
+        <iframe
+          title={`Map showing the Tulip Limestone · Precast ${loc.city} location`}
+          src={mapEmbedUrl(loc)}
+          width="100%"
+          height="100%"
+          style="border:0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <a
+        href={directionsUrl(loc)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outlined-dark btn-sm"
+        aria-label={`Get directions to our ${loc.city} location (opens in Google Maps)`}
+      >
+        Get Directions
+      </a>
+    </div>
+  </section>
+
+  <CTASection
+    headline={`Planning a project near ${loc.city}?`}
+    subheading="Send us your drawings or describe what you need. We'll respond within one business day."
+    buttonText="REQUEST A QUOTE"
+    buttonHref={`/contact?location=${loc.id}`}
+    background="sage"
+  />
+
+  <div class="loc-other">
+    <span class="loc-other-label">Also visit us in</span>
+    {others.map((o, i) => (
+      <>
+        {i > 0 && ' · '}
+        <a href={locationPath(o)}>{o.city}</a>
+      </>
+    ))}
+  </div>
+
+</BaseLayout>
+
+<style>
+  .label-section {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--warm-sand);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .loc-intro {
+    background: var(--sand-pale);
+    padding: var(--space-3xl) 0;
+    border-bottom: 1px solid var(--sand-light);
+  }
+  .loc-intro-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+  .loc-intro-headline {
+    font-family: var(--font-serif);
+    font-size: var(--text-display);
+    font-weight: 300;
+    color: var(--stone-dark);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+  .loc-intro-rule {
+    display: block; height: 1px; width: 60px;
+    background: var(--sand-light);
+    margin-bottom: var(--space-lg);
+    transform-origin: left center;
+  }
+  .loc-intro-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-mid);
+    line-height: var(--lh-body);
+    max-width: 62ch;
+  }
+
+  .loc-facts {
+    display: flex; flex-direction: column;
+    gap: var(--space-sm); padding-top: var(--space-md);
+  }
+  .loc-fact {
+    background: var(--white-warm);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--warm-sand);
+    padding: var(--space-lg);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .loc-fact-lbl {
+    font-family: var(--font-sans); font-size: 9px;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase; color: var(--stone-light);
+  }
+  .loc-fact-address {
+    font-style: normal;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .loc-fact-address span,
+  .loc-fact-val {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 300;
+    color: var(--stone-dark);
+  }
+  .loc-fact-link { transition: color var(--duration-fast) var(--ease-out); }
+  .loc-fact-link:hover { color: var(--warm-sand); }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 16px;
+  }
+  .hours-day {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-mid);
+  }
+  .hours-time {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 400;
+    color: var(--stone-dark);
+  }
+
+  .loc-map {
+    background: var(--limestone-cream);
+    padding: var(--space-3xl) 0;
+  }
+  .loc-map-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+    display: flex; flex-direction: column;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+  .map-wrap {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+    background: var(--cream-dark);
+  }
+
+  .loc-other {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--content-padding);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--stone-light);
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .loc-other-label {
+    font-size: 9px;
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+  .loc-other a {
+    color: var(--stone-mid);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .loc-other a:hover { color: var(--warm-sand); }
+
+  @media (max-width: 1024px) {
+    .loc-intro-container { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .loc-facts { flex-direction: row; flex-wrap: wrap; }
+    .loc-fact { flex: 1; min-width: 200px; }
+    .map-wrap { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 640px) {
+    .loc-facts { flex-direction: column; }
+    .map-wrap { aspect-ratio: 4 / 3; }
+  }
+</style>

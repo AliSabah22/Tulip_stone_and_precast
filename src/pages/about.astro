@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 
+import { cityList } from '../data/locations.js';
 const pillars = [
   {
     num: '01',
@@ -105,7 +106,7 @@ const deliveryFAQ = JSON.stringify({
 
 <BaseLayout
   title="About Tulip Precast | Ontario Made Stone Fabrication"
-  description="Tulip Precast — premium Indiana Limestone and precast concrete fabrication in Brampton, Ontario. Serving homeowners, architects, and contractors across the GTA."
+  description={`Tulip Precast — premium Indiana Limestone and precast concrete fabrication in ${cityList()}, Ontario. Serving homeowners, architects, and contractors across the GTA.`}
   pageClass="page-about"
   additionalSchema={deliveryFAQ}
 >

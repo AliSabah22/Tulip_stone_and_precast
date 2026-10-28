@@ -1,4 +1,9 @@
 ---
+import {
+  company, locations, isPlaceholder, isNewLocation, streetLine, cityLine,
+  locationPath, directionsUrl, cityList,
+} from '../data/locations.js';
+
 const year = new Date().getFullYear();
 ---
 
@@ -94,16 +99,40 @@ const year = new Date().getFullYear();
     <div class="footer-col footer-col--contact">
       <h3 class="footer-col-heading">Contact</h3>
       <address class="footer-address">
-        <a href="mailto:office@tulipprecast.com">office@tulipprecast.com</a>
-        <a href="tel:6475347755">647-534-7755</a>
-<a href="tel:9057960110">905-796-0110</a>
-        <a href="https://www.google.com/maps/place/Tulip+Stone+and+Precast/@43.6975248,-79.7352554,17z/data=!4m6!3m5!1s0x882b2fa4992c9cc5:0x6a48582350b20292!8m2!3d43.6975248!4d-79.7352554!16s%2Fg%2F11fswp0jnt" target="_blank" rel="noopener noreferrer">
-          98 Rutherford Rd Unit 2C<br />
-          Brampton, ON L6W 3J5
-        </a>
+        <a href={`mailto:${company.email}`}>{company.email}</a>
+        {company.phones.map((p) => (
+          <a href={`tel:${p.e164}`}>{p.display}</a>
+        ))}
       </address>
     </div>
 
+  </div>
+
+  <!-- Locations -->
+  <div class="footer-locations" aria-label="Our locations">
+    <h3 class="footer-col-heading">Our Locations</h3>
+    <div class="footer-locations-grid">
+      {locations.map((loc) => (
+        <address class="footer-location">
+          <a class="footer-location-name" href={locationPath(loc)}>
+            {loc.city}{isNewLocation(loc) && <span class="footer-location-new">New</span>}
+          </a>
+          <span>{streetLine(loc)}</span>
+          <span>{cityLine(loc)}</span>
+          {isPlaceholder(loc.phone) ? (
+            <span>{loc.phone}</span>
+          ) : (
+            <a href={`tel:${loc.phone.e164}`}>{loc.phone.display}</a>
+          )}
+          <a
+            href={directionsUrl(loc)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Get directions to our ${loc.city} location (opens in Google Maps)`}
+          >Get directions &rarr;</a>
+        </address>
+      ))}
+    </div>
   </div>
 
   <!-- Bottom bar -->
@@ -111,7 +140,7 @@ const year = new Date().getFullYear();
     <p class="footer-copyright">
       &copy; {year} Tulip Limestone · Precast. All rights reserved.
     </p>
-    <p class="footer-ontario">Ontario Made · Brampton, ON · Canada</p>
+    <p class="footer-ontario">Ontario Made · {cityList()}, ON · Canada</p>
   </div>
 </footer>
 
@@ -241,6 +270,62 @@ const year = new Date().getFullYear();
 
   .footer-address a:hover { color: var(--warm-sand); }
 
+  .footer-locations {
+    max-width: var(--max-width);
+    margin: var(--space-2xl) auto 0;
+    padding: var(--space-lg) var(--content-padding) 0;
+    border-top: 1px solid rgba(156, 136, 128, 0.12);
+  }
+
+  .footer-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  .footer-location {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-style: normal;
+  }
+
+  .footer-location a,
+  .footer-location span {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--stone-light);
+    letter-spacing: 0.03em;
+    line-height: var(--lh-body);
+  }
+
+  .footer-location a {
+    transition: color var(--duration-fast) var(--ease-out);
+    align-self: flex-start;
+  }
+
+  .footer-location a:hover { color: var(--warm-sand); }
+
+  .footer-location .footer-location-name {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: var(--ls-wider);
+    text-transform: uppercase;
+    color: var(--white-warm);
+  }
+
+  .footer-location .footer-location-name:hover { color: var(--warm-sand); }
+
+  .footer-location-new {
+    margin-left: var(--space-xs);
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: var(--ls-widest);
+    color: var(--warm-sand);
+  }
+
   .footer-bottom {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -249,7 +334,7 @@ const year = new Date().getFullYear();
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid rgba(156, 136, 128, 0.12);
-    margin-top: var(--space-2xl);
+    margin-top: var(--space-lg);
   }
 
   .footer-copyright,
@@ -271,6 +356,11 @@ const year = new Date().getFullYear();
 
   @media (max-width: 640px) {
     .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .footer-locations-grid {
       grid-template-columns: 1fr;
       gap: var(--space-lg);
     }

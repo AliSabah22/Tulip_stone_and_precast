@@ -1,0 +1,95 @@
+---
+// Dismissible announcement bar for the two-location transition.
+// Remove it site-wide by setting transition.showBanner = false in
+// src/data/locations.js.
+import { transition } from '../../data/locations.js';
+
+const { showBanner, bannerId, message, linkText, linkHref } = transition;
+---
+
+{showBanner && (
+  <div class="transition-banner" role="region" aria-label="Announcement" data-banner-id={bannerId}>
+    <p class="transition-banner-text">
+      {message}
+      {linkText && linkHref && (
+        <a class="transition-banner-link" href={linkHref}>{linkText} &rarr;</a>
+      )}
+    </p>
+    <button type="button" class="transition-banner-close" aria-label="Dismiss announcement">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <script is:inline define:vars={{ bannerId }}>
+    (function () {
+      var el = document.querySelector('.transition-banner');
+      if (!el) return;
+      var key = 'tulip_banner_dismissed_' + bannerId;
+      try {
+        if (localStorage.getItem(key)) { el.hidden = true; return; }
+      } catch (e) {}
+      el.querySelector('.transition-banner-close').addEventListener('click', function () {
+        el.hidden = true;
+        try { localStorage.setItem(key, '1'); } catch (e) {}
+      });
+    })();
+  </script>
+)}
+
+<style>
+  /* Sits after the footer in the document and sticks to the bottom of the
+     viewport, so it never overlaps the fixed nav or shifts page content. */
+  .transition-banner {
+    position: sticky;
+    bottom: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--content-padding);
+    background: var(--quarry-stone);
+    border-top: 1px solid rgba(200, 168, 130, 0.25);
+  }
+
+  .transition-banner[hidden] { display: none; }
+
+  .transition-banner-text {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: 300;
+    color: var(--white-warm);
+    letter-spacing: 0.02em;
+    max-width: none;
+    text-align: center;
+  }
+
+  .transition-banner-link {
+    color: var(--warm-sand);
+    margin-left: var(--space-xs);
+    white-space: nowrap;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .transition-banner-link:hover { color: var(--sand-light); }
+
+  .transition-banner-close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--stone-light);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .transition-banner-close:hover { color: var(--warm-sand); }
+
+  @media (max-width: 640px) {
+    .transition-banner { justify-content: space-between; }
+    .transition-banner-text { text-align: left; font-size: var(--text-xs); }
+  }
+</style>

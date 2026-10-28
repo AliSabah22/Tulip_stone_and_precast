@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+import { cityList } from '../../data/locations.js';
 // Add posts here as they're written. When this array is empty the
 // section below falls back to the "New guides are on the way" state.
 const posts: {
@@ -65,7 +66,7 @@ const combinedSchema = JSON.stringify(
 
 <BaseLayout
   title="Blog | Indiana Limestone &amp; Precast Guides | Tulip Precast"
-  description="Guides on Indiana Limestone, precast concrete, GFRC, and heritage stone restoration from Tulip Limestone · Precast, Brampton, ON."
+  description={`Guides on Indiana Limestone, precast concrete, GFRC, and heritage stone restoration from Tulip Limestone · Precast, ${cityList()}, ON.`}
   pageClass="page-blog"
   solidNav={true}
   additionalSchema={combinedSchema}
