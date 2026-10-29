@@ -42,8 +42,8 @@ export const transition = {
   linkText: 'View locations',
   linkHref: '/contact#locations',
   // 'mississauga' | 'brampton'. Drives the "New location" tag.
-  // Leave as the token until decided: no tag is shown while it is a token.
-  newLocation: '[NEW_LOCATION]',
+  // Set it to anything else (or a [TOKEN]) to hide the tag.
+  newLocation: 'mississauga',
 };
 
 /**
@@ -62,6 +62,25 @@ export const transition = {
  * }} Location
  */
 
+// Both locations currently share the same phone line and hours.
+// To give a location its own, replace the reference in its entry below.
+const sharedPhone = company.phones[0];
+
+// Existing published hours (previously on the contact page).
+const sharedHours = {
+  display: [
+    { days: 'Monday \u2013 Friday', time: '8:00 AM \u2013 5:00 PM' },
+    { days: 'Saturday \u2013 Sunday', time: 'By appointment' },
+  ],
+  spec: [
+    {
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '17:00',
+    },
+  ],
+};
+
 /** @type {Location[]} */
 export const locations = [
   {
@@ -72,12 +91,10 @@ export const locations = [
     country: 'CA',
     street: '3130 Universal Drive',
     unit: '',
-    phone: '[PHONE_MISSISSAUGA]',
-    hours: '[HOURS_MISSISSAUGA]',
-    // Coordinates not yet confirmed — the map embed and directions fall
-    // back to the street address while these are tokens.
-    lat: '[LAT_MISSISSAUGA]',
-    lng: '[LNG_MISSISSAUGA]',
+    phone: sharedPhone,
+    hours: sharedHours,
+    lat: 43.62323408459827,
+    lng: -79.57406408260572,
     // Plain Google Maps search link built from the address (no token needed).
     mapsUrl:
       'https://www.google.com/maps/search/?api=1&query=3130+Universal+Drive%2C+Mississauga%2C+ON+L4X+2C8',
@@ -95,27 +112,14 @@ export const locations = [
     country: 'CA',
     street: '98 Rutherford Rd S',
     unit: 'Unit 2C',
-    phone: '[PHONE_BRAMPTON]',
-    // Existing published hours (previously on the contact page).
-    hours: {
-      display: [
-        { days: 'Monday – Friday', time: '8:00 AM – 5:00 PM' },
-        { days: 'Saturday – Sunday', time: 'By appointment' },
-      ],
-      spec: [
-        {
-          days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '08:00',
-          closes: '17:00',
-        },
-      ],
-    },
+    phone: sharedPhone,
+    hours: sharedHours,
     lat: 43.6975248,
     lng: -79.7352554,
     // Existing Google Maps place link (previously in the footer).
     mapsUrl:
       'https://www.google.com/maps/place/Tulip+Stone+and+Precast/@43.6975248,-79.7352554,17z/data=!4m6!3m5!1s0x882b2fa4992c9cc5:0x6a48582350b20292!8m2!3d43.6975248!4d-79.7352554!16s%2Fg%2F11fswp0jnt',
-    gbpUrl: '[GBP_URL_BRAMPTON]',
+    gbpUrl: 'https://g.page/r/CZICslAjWEhqEAI/review',
     heroImage: '/pictures/hero%20image.jpg',
     description:
       'Our Brampton location is home to our fabrication shop, drafting office, and stone yard. Stop by to see physical Indiana Limestone samples, talk through your drawings with the team that fabricates your project, or arrange a site visit.',
