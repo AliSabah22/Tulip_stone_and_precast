@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
 
-import { postalAddressSchema, getLocation } from '../data/locations.js';
+import { postalAddressSchema, primaryLocation } from '../data/locations.js';
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -29,7 +29,7 @@ const faqSchema = JSON.stringify({
       "name": "Do you offer trade pricing for contractors ordering multiple units or lots?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Contractors working across multiple units, phases, or lots receive volume pricing and consistent lead times on repeat orders. Set up a trade account by contacting our Brampton shop directly."
+        "text": "Yes. Contractors working across multiple units, phases, or lots receive volume pricing and consistent lead times on repeat orders. Set up a trade account by contacting our Mississauga shop directly."
       }
     },
     {
@@ -47,11 +47,11 @@ const localBizSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Tulip Limestone · Precast",
-  "description": "Limestone contractor and fabrication shop serving builders, general contractors, and subcontractors in Brampton, Ontario. Trade accounts, shop drawings, and direct-to-site delivery.",
+  "description": "Limestone contractor and fabrication shop serving builders, general contractors, and subcontractors in Brampton, Ontario from Mississauga. Trade accounts, shop drawings, and direct-to-site delivery.",
   "url": "https://www.tulipstone.ca/limestone-contractor-brampton",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
-  "address": postalAddressSchema(getLocation('brampton')),
+  "address": postalAddressSchema(primaryLocation),
   "areaServed": {
     "@type": "City",
     "name": "Brampton"
@@ -86,7 +86,7 @@ const combinedSchema = JSON.stringify([
   <Hero
     size="xs"
     imageSrc="/pictures/craftsman%20hands.jpg"
-    imageAlt="Limestone contractor fabrication shop Brampton Ontario — Tulip Limestone Precast"
+    imageAlt="Limestone contractor fabrication shop — Tulip Limestone Precast"
     eyebrow="BRAMPTON, ONTARIO · TRADE &amp; CONTRACTOR ACCOUNTS"
     headline="Limestone Contractor"
     headlineItalic="in Brampton."
@@ -103,7 +103,7 @@ const combinedSchema = JSON.stringify([
         <h2 class="geo-intro-headline">A limestone contractor built around how builders actually work.</h2>
         <span class="geo-intro-rule draw-line" aria-hidden="true"></span>
         <p class="geo-intro-body">Tulip Limestone · Precast fabricates and supplies Indiana Limestone for general contractors, builders, and subcontractors across Brampton — not just one-off homeowner orders. We quote from drawings, produce our own shop drawings in-house, and coordinate delivery around your site schedule, not ours.</p>
-        <p class="geo-intro-body">Whether you're a GC managing a custom home build, a subcontractor supplying stone to a masonry crew, or a builder running multiple units on the same elevation package, you get one Brampton-based point of contact from quote to delivery.</p>
+        <p class="geo-intro-body">Whether you're a GC managing a custom home build, a subcontractor supplying stone to a masonry crew, or a builder running multiple units on the same elevation package, you get one point of contact from quote to delivery.</p>
       </div>
       <div class="geo-intro-facts">
         <div class="geo-fact">
@@ -201,7 +201,7 @@ const combinedSchema = JSON.stringify([
         </details>
         <details class="geo-faq-item">
           <summary class="geo-faq-q">Do you offer trade pricing for contractors ordering multiple units or lots?</summary>
-          <div class="geo-faq-a"><p>Yes. Contractors working across multiple units, phases, or lots receive volume pricing and consistent lead times on repeat orders. Set up a trade account by contacting our Brampton shop directly.</p></div>
+          <div class="geo-faq-a"><p>Yes. Contractors working across multiple units, phases, or lots receive volume pricing and consistent lead times on repeat orders. Set up a trade account by contacting our Mississauga shop directly.</p></div>
         </details>
         <details class="geo-faq-item">
           <summary class="geo-faq-q">How do you coordinate delivery with other trades on an active job site?</summary>

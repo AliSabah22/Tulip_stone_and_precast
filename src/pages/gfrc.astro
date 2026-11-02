@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 
-import { postalAddressSchema, getLocation } from '../data/locations.js';
+import { postalAddressSchema, primaryLocation } from '../data/locations.js';
 const gfrcSchema = JSON.stringify([
   {
     "@context": "https://schema.org",
@@ -16,7 +16,7 @@ const gfrcSchema = JSON.stringify([
       "name": "Tulip Limestone · Precast",
       "url": "https://www.tulipstone.ca",
       "telephone": ["+1-647-534-7755", "+1-905-796-0110"],
-      "address": postalAddressSchema(getLocation('brampton'))
+      "address": postalAddressSchema(primaryLocation)
     },
     "areaServed": [
       { "@type": "City", "name": "Brampton" },
@@ -126,7 +126,7 @@ const gfrcSchema = JSON.stringify([
     size="short"
     backgroundGradient="var(--grad-product)"
     imageSrc="/pictures/stone%20texture%202.jpg"
-    imageAlt="GFRC architectural panel texture — Tulip Precast Brampton"
+    imageAlt="GFRC architectural panel texture — Tulip Precast Mississauga"
   />
 
   <!-- Section 2: Material Introduction -->
@@ -136,7 +136,7 @@ const gfrcSchema = JSON.stringify([
         label="The Material"
         title="A New Standard in"
         titleItalic="Architectural Concrete."
-        subtitle="Glass Fiber Reinforced Concrete combines the aesthetic of traditional cast stone with a dramatically reduced weight profile and expanded geometric possibility. Fabricated in Brampton, Ontario."
+        subtitle="Glass Fiber Reinforced Concrete combines the aesthetic of traditional cast stone with a dramatically reduced weight profile and expanded geometric possibility. Fabricated in Mississauga, Ontario."
         align="center"
       />
 

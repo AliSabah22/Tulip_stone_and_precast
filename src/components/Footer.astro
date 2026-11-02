@@ -1,6 +1,6 @@
 ---
 import {
-  company, locations, isPlaceholder, isNewLocation, streetLine, cityLine,
+  company, locations, isPlaceholder, streetLine, cityLine,
   locationPath, directionsUrl, cityList,
 } from '../data/locations.js';
 
@@ -109,13 +109,13 @@ const year = new Date().getFullYear();
   </div>
 
   <!-- Locations -->
-  <div class="footer-locations" aria-label="Our locations">
-    <h3 class="footer-col-heading">Our Locations</h3>
-    <div class="footer-locations-grid">
+  <div class="footer-locations" aria-label={locations.length > 1 ? 'Our locations' : 'Our location'}>
+    <h3 class="footer-col-heading">{locations.length > 1 ? 'Our Locations' : 'Our Location'}</h3>
+    <div class="footer-locations-grid" data-count={locations.length}>
       {locations.map((loc) => (
         <address class="footer-location">
           <a class="footer-location-name" href={locationPath(loc)}>
-            {loc.city}{isNewLocation(loc) && <span class="footer-location-new">New</span>}
+            {loc.city}
           </a>
           <span>{streetLine(loc)}</span>
           <span>{cityLine(loc)}</span>
@@ -283,6 +283,10 @@ const year = new Date().getFullYear();
     gap: var(--space-2xl);
   }
 
+  .footer-locations-grid[data-count="1"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .footer-location {
     display: flex;
     flex-direction: column;
@@ -317,14 +321,6 @@ const year = new Date().getFullYear();
   }
 
   .footer-location .footer-location-name:hover { color: var(--warm-sand); }
-
-  .footer-location-new {
-    margin-left: var(--space-xs);
-    font-family: var(--font-sans);
-    font-size: 9px;
-    letter-spacing: var(--ls-widest);
-    color: var(--warm-sand);
-  }
 
   .footer-bottom {
     max-width: var(--max-width);

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
 
-import { postalAddressSchema, getLocation } from '../data/locations.js';
+import { postalAddressSchema, primaryLocation } from '../data/locations.js';
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -51,7 +51,7 @@ const localBizSchema = JSON.stringify({
   "url": "https://www.tulipstone.ca/montreal",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
-  "address": postalAddressSchema(getLocation('brampton')),
+  "address": postalAddressSchema(primaryLocation),
   "areaServed": {
     "@type": "City",
     "name": "Montreal"

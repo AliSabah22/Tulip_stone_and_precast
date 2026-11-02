@@ -6,7 +6,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import CTASection from '../../components/CTASection.astro';
 import {
-  SITE_URL, company, locations, isPlaceholder, isNewLocation, hasHours,
+  SITE_URL, company, locations, isPlaceholder, hasHours,
   streetLine, cityLine, fullAddress, locationPath, locationUrl, directionsUrl,
   mapEmbedUrl,
 } from '../../data/locations.js';
@@ -56,7 +56,7 @@ const breadcrumbSchema = JSON.stringify({
   <section class="loc-intro" aria-label={`${loc.city} location details`}>
     <div class="loc-intro-container">
       <div class="loc-intro-text">
-        <span class="label-section">{isNewLocation(loc) ? 'Our Newest Location' : 'Our Location'}</span>
+        <span class="label-section">Our Location</span>
         <h2 class="loc-intro-headline">Visit us in {loc.city}.</h2>
         <span class="loc-intro-rule draw-line" aria-hidden="true"></span>
         <p class="loc-intro-body">{loc.description}</p>
@@ -132,15 +132,17 @@ const breadcrumbSchema = JSON.stringify({
     background="sage"
   />
 
-  <div class="loc-other">
-    <span class="loc-other-label">Also visit us in</span>
-    {others.map((o, i) => (
-      <>
-        {i > 0 && ' · '}
-        <a href={locationPath(o)}>{o.city}</a>
-      </>
-    ))}
-  </div>
+  {others.length > 0 && (
+    <div class="loc-other">
+      <span class="loc-other-label">Also visit us in</span>
+      {others.map((o, i) => (
+        <>
+          {i > 0 && ' · '}
+          <a href={locationPath(o)}>{o.city}</a>
+        </>
+      ))}
+    </div>
+  )}
 
 </BaseLayout>
 

@@ -3,7 +3,7 @@
 // All values come from src/data/locations.js. Unfilled [TOKEN] values
 // render as plain text (no dead tel: link).
 import {
-  isPlaceholder, isNewLocation, hasHours, streetLine, cityLine,
+  isPlaceholder, hasHours, streetLine, cityLine,
   locationPath, directionsUrl, mapEmbedUrl,
 } from '../../data/locations.js';
 
@@ -16,7 +16,6 @@ const headingId = `location-${loc.id}-heading`;
 ---
 
 <article class="location-card" aria-labelledby={headingId}>
-  {isNewLocation(loc) && <span class="location-card-tag">New location</span>}
   <h3 class="location-card-city" id={headingId}>{loc.city}</h3>
 
   <address class="location-card-address">
@@ -83,15 +82,6 @@ const headingId = `location-${loc.id}-heading`;
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-  }
-
-  .location-card-tag {
-    font-family: var(--font-sans);
-    font-size: var(--text-label);
-    font-weight: 400;
-    letter-spacing: var(--ls-widest);
-    text-transform: uppercase;
-    color: var(--warm-sand);
   }
 
   .location-card-city {

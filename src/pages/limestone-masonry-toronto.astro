@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CTASection from '../components/CTASection.astro';
 
-import { postalAddressSchema, getLocation } from '../data/locations.js';
+import { postalAddressSchema, primaryLocation } from '../data/locations.js';
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -37,7 +37,7 @@ const faqSchema = JSON.stringify({
       "name": "How is limestone masonry material delivered to a Toronto job site?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Veneer and masonry trim ship palletized from our Brampton shop directly to Toronto sites, sequenced with your mason's schedule. Our team handles unloading on standard deliveries."
+        "text": "Veneer and masonry trim ship palletized from our Mississauga shop directly to Toronto sites, sequenced with your mason's schedule. Our team handles unloading on standard deliveries."
       }
     }
   ]
@@ -51,7 +51,7 @@ const localBizSchema = JSON.stringify({
   "url": "https://www.tulipstone.ca/limestone-masonry-toronto",
   "telephone": "+1-647-534-7755",
   "email": "office@tulipprecast.com",
-  "address": postalAddressSchema(getLocation('brampton')),
+  "address": postalAddressSchema(primaryLocation),
   "areaServed": {
     "@type": "City",
     "name": "Toronto"
@@ -205,7 +205,7 @@ const combinedSchema = JSON.stringify([
         </details>
         <details class="geo-faq-item">
           <summary class="geo-faq-q">How is limestone masonry material delivered to a Toronto job site?</summary>
-          <div class="geo-faq-a"><p>Veneer and masonry trim ship palletized from our Brampton shop directly to Toronto sites, sequenced with your mason's schedule. Our team handles unloading on standard deliveries.</p></div>
+          <div class="geo-faq-a"><p>Veneer and masonry trim ship palletized from our Mississauga shop directly to Toronto sites, sequenced with your mason's schedule. Our team handles unloading on standard deliveries.</p></div>
         </details>
       </div>
     </div>

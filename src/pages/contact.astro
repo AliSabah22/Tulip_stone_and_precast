@@ -123,8 +123,8 @@ import { company, locations, cityList } from '../data/locations.js';
 
       <!-- Locations -->
       <section id="locations" class="contact-locations" aria-labelledby="contact-locations-heading">
-        <h2 class="col-heading" id="contact-locations-heading">Our Locations</h2>
-        <div class="contact-locations-grid">
+        <h2 class="col-heading" id="contact-locations-heading">{locations.length > 1 ? 'Our Locations' : 'Our Location'}</h2>
+        <div class="contact-locations-grid" data-count={locations.length}>
           {locations.map((loc) => (
             <LocationCard location={loc} />
           ))}
@@ -325,6 +325,10 @@ import { company, locations, cityList } from '../data/locations.js';
 
   /* ── Responsive ────────────────────────────────────── */
 
+  .contact-locations-grid[data-count="1"] {
+    grid-template-columns: minmax(0, 560px);
+  }
+
   @media (max-width: 1024px) {
     .contact-grid {
       grid-template-columns: 1fr;
@@ -336,7 +340,8 @@ import { company, locations, cityList } from '../data/locations.js';
   }
 
   @media (max-width: 768px) {
-    .contact-locations-grid {
+    .contact-locations-grid,
+    .contact-locations-grid[data-count="1"] {
       grid-template-columns: 1fr;
     }
   }

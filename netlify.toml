@@ -24,6 +24,14 @@
   status = 301
   force = false
 
+# The business moved from Brampton to Mississauga; retire the old
+# Brampton location page.
+[[redirects]]
+  from = "/locations/brampton"
+  to = "/locations/mississauga"
+  status = 301
+  force = true
+
 # 404 fallback for unknown routes
 [[redirects]]
   from = "/*"

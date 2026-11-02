@@ -1,9 +1,11 @@
 // ─────────────────────────────────────────────────────────────
 // Single source of truth for business locations.
 //
-// Every component, page, JSON-LD block and the quote-notification
-// email pulls name / address / phone / hours from here — never hardcode
-// an address anywhere else.
+// The business is currently at a single location (Mississauga; it moved
+// from Brampton). Every component, page, JSON-LD block and the
+// quote-notification email pulls name / address / phone / hours from here
+// — never hardcode an address anywhere else. Components also handle
+// several entries, so adding a location is just another object below.
 //
 // Unfilled values are the literal [TOKEN] strings listed in each
 // entry. Replace the token with the real value and everything updates:
@@ -31,21 +33,6 @@ export const company = {
   ],
 };
 
-// ── Transition period ────────────────────────────────────────
-// Set showBanner to false to remove the announcement bar site-wide.
-// Change bannerId when the message changes so visitors who dismissed
-// the old one see the new one.
-export const transition = {
-  showBanner: true,
-  bannerId: 'two-locations-2026',
-  message: 'We’ve expanded — now serving you from Mississauga and Brampton.',
-  linkText: 'View locations',
-  linkHref: '/contact#locations',
-  // 'mississauga' | 'brampton'. Drives the "New location" tag.
-  // Set it to anything else (or a [TOKEN]) to hide the tag.
-  newLocation: 'mississauga',
-};
-
 /**
  * @typedef {{ display: string, e164: string }} Phone
  * @typedef {{ days: string, time: string }} HoursRow
@@ -62,8 +49,7 @@ export const transition = {
  * }} Location
  */
 
-// Both locations currently share the same phone line and hours.
-// To give a location its own, replace the reference in its entry below.
+// Phone line and hours (shared constants so a second location can reuse them).
 const sharedPhone = company.phones[0];
 
 // Existing published hours (previously on the contact page).
@@ -102,27 +88,7 @@ export const locations = [
     heroImage: '/pictures/masonry%20detail.jpg',
     // DRAFT COPY — confirm what is actually offered at this location.
     description:
-      'Our Mississauga location serves Mississauga and the surrounding western GTA. Send us your drawings, request a quote, or call ahead to arrange a visit.',
-  },
-  {
-    id: 'brampton',
-    city: 'Brampton',
-    region: 'ON',
-    postalCode: 'L6W 3J5',
-    country: 'CA',
-    street: '98 Rutherford Rd S',
-    unit: 'Unit 2C',
-    phone: sharedPhone,
-    hours: sharedHours,
-    lat: 43.6975248,
-    lng: -79.7352554,
-    // Existing Google Maps place link (previously in the footer).
-    mapsUrl:
-      'https://www.google.com/maps/place/Tulip+Stone+and+Precast/@43.6975248,-79.7352554,17z/data=!4m6!3m5!1s0x882b2fa4992c9cc5:0x6a48582350b20292!8m2!3d43.6975248!4d-79.7352554!16s%2Fg%2F11fswp0jnt',
-    gbpUrl: 'https://g.page/r/CZICslAjWEhqEAI/review',
-    heroImage: '/pictures/hero%20image.jpg',
-    description:
-      'Our Brampton location is home to our fabrication shop, drafting office, and stone yard. Stop by to see physical Indiana Limestone samples, talk through your drawings with the team that fabricates your project, or arrange a site visit.',
+      'Tulip Limestone \u00b7 Precast has moved to Mississauga. Send us your drawings, request a quote, or call ahead to arrange a visit \u2014 we serve projects across the Greater Toronto Area.',
   },
 ];
 
@@ -133,20 +99,23 @@ export const isPlaceholder = (v) => typeof v === 'string' && /^\[[A-Z0-9_]+\]$/.
 
 export const getLocation = (id) => locations.find((l) => l.id === id);
 
-/** "98 Rutherford Rd S, Unit 2C" / "3130 Universal Drive" */
+/** The business's main location (used for sitewide schema/address). */
+export const primaryLocation = locations[0];
+
+/** "3130 Universal Drive" (with ", Unit X" when a unit is set) */
 export const streetLine = (loc) => (loc.unit ? `${loc.street}, ${loc.unit}` : loc.street);
 
-/** "Brampton, ON L6W 3J5" */
+/** "Mississauga, ON L4X 2C8" */
 export const cityLine = (loc) => `${loc.city}, ${loc.region} ${loc.postalCode}`;
 
-/** "98 Rutherford Rd S, Unit 2C, Brampton, ON L6W 3J5" */
+/** "3130 Universal Drive, Mississauga, ON L4X 2C8" */
 export const fullAddress = (loc) => `${streetLine(loc)}, ${cityLine(loc)}`;
 
 export const locationPath = (loc) => `/locations/${loc.id}`;
 
 export const locationUrl = (loc) => `${SITE_URL}/locations/${loc.id}/`;
 
-/** "Mississauga & Brampton" (or "A, B & C") */
+/** "Mississauga" (or "A & B" / "A, B & C" with several locations) */
 export const cityList = () => {
   const names = locations.map((l) => l.city);
   return names.length > 1
@@ -159,8 +128,6 @@ export const hasPhone = (loc) => typeof loc.phone === 'object';
 export const hasHours = (loc) => typeof loc.hours === 'object';
 export const hasGbp = (loc) => !isPlaceholder(loc.gbpUrl);
 
-export const isNewLocation = (loc) => transition.newLocation === loc.id;
-
 const addressQuery = (loc) => encodeURIComponent(fullAddress(loc));
 
 export const directionsUrl = (loc) =>
@@ -172,6 +139,18 @@ export const mapEmbedUrl = (loc) =>
   hasCoords(loc)
     ? `https://www.google.com/maps?q=${loc.lat},${loc.lng}(${encodeURIComponent(company.name)})&z=17&output=embed`
     : `https://www.google.com/maps?q=${addressQuery(loc)}&z=17&output=embed`;
+
+// ── Move announcement ────────────────────────────────────────
+// Set showBanner to false to remove the announcement bar site-wide.
+// Change bannerId when the message changes so visitors who dismissed
+// the old one see the new one.
+export const transition = {
+  showBanner: true,
+  bannerId: 'moved-to-mississauga-2026',
+  message: `We\u2019ve moved \u2014 find us at ${streetLine(primaryLocation)}, ${primaryLocation.city}.`,
+  linkText: 'View location',
+  linkHref: locationPath(primaryLocation),
+};
 
 // ── JSON-LD ──────────────────────────────────────────────────
 
